@@ -53,10 +53,10 @@
     <Compile Include="Builders\UiCreatorFactory.cs" />
     <Compile Include="Commands\AsyncCommand.cs" />
     <Compile Include="Commands\RelayCommand.cs" />
-    <Compile Include="Events\Publish\EventType.cs" />
-    <Compile Include="Events\Publish\IPublishListener.cs" />
-    <Compile Include="Events\Publish\Publisher.cs" />
-    <Compile Include="Events\Publish\PublishEvent.cs" />
+    <Compile Include="Events\Publishing\EventType.cs" />
+    <Compile Include="Events\Publishing\IPublishListener.cs" />
+    <Compile Include="Events\Publishing\Publisher.cs" />
+    <Compile Include="Events\Publishing\PublishEvent.cs" />
     <Compile Include="ModelViews\BaseModelView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Windows\BaseWizard.xaml.cs">
