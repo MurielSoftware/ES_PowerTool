@@ -1,11 +1,12 @@
-﻿using Desktop.Shared;
+﻿using Desktop.Shared.Core.Attributes;
+using Desktop.Shared.Core.Dtos;
+using Desktop.Shared.Core.References;
+using Desktop.Ui.I18n;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 

@@ -3,17 +3,24 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:r="clr-namespace:Desktop.Ui.I18n;assembly=Desktop.Ui.I18n"
         xmlns:local="clr-namespace:ES_PowerTool"
         mc:Ignorable="d"
-        Title="ES_PowerTool" Height="350" Width="525">
+        Title="{x:Static r:Resource.App_Title}" Height="350" Width="525">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="45" />
+            <RowDefinition Height="auto" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="50*" />
-            <ColumnDefinition Width="50*" />
-        </Grid.ColumnDefinitions>
+
+        <ToolBarTray Grid.Row="0">
+            <ToolBar>
+                <Button Content="{x:Static r:Resource.Label_Import}" />
+            </ToolBar>
+        </ToolBarTray>
+        <StatusBar Grid.Row="2">
+            <Label Content="f" />
+        </StatusBar>
     </Grid>
 </Window>

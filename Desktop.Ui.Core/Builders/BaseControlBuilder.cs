@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Desktop.Shared.Core.Attributes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -21,7 +22,7 @@ namespace Desktop.Ui.Core.Builders
 
         protected string GetDisplayName(PropertyInfo propertyInfo)
         {
-            return TypeUtils.GetAttribute<LocalizedDisplayNameAttribute>(propertyInfo).DisplayName;
+            return propertyInfo.GetCustomAttribute<LocalizedDisplayNameAttribute>().DisplayName;
         }
     }
 }

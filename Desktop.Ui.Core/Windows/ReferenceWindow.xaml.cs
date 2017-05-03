@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace Desktop.Ui.Core.Windows
 {
     /// <summary>
-    /// Interaction logic for BaseWizard.xaml
+    /// Interaction logic for ReferenceWindow.xaml
     /// </summary>
-    public partial class BaseWizard : Window
+    public partial class ReferenceWindow : Window
     {
-        public BaseWizard()
+        public ReferenceWindow()
         {
             InitializeComponent();
         }

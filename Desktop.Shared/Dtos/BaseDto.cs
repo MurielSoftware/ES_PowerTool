@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Desktop.Shared
+namespace Desktop.Shared.Core.Dtos
 {
     public abstract class BaseDto
     {

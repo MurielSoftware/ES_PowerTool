@@ -1,11 +1,8 @@
-﻿using Desktop.Shared;
+﻿using Desktop.Shared.Core.Dtos;
+using Desktop.Shared.Core.References;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -70,15 +67,15 @@ namespace Desktop.Ui.Core.Builders
 
         private void ReferenceButtonClick(object sender, RoutedEventArgs e)
         {
-            EditorAttribute editorAttribute = (EditorAttribute)_propertyInfo.GetCustomAttribute(typeof(EditorAttribute));
-            BaseReferenceEditor baseReferenceEditor = (BaseReferenceEditor)Activator.CreateInstance(Type.GetType(editorAttribute.EditorTypeName));
-            TreeNavigationItem selectedTreeNavigationItem = DialogUtils.OpenReferenceWindow(baseReferenceEditor.GetProposals);
-            if (selectedTreeNavigationItem != null)
-            {
-                ReferenceString referenceString = new ReferenceString(selectedTreeNavigationItem.Id, selectedTreeNavigationItem.Name);
-                _propertyInfo.SetValue(_dto, referenceString);
-                _referenceLabel.Content = referenceString.GetValue();
-            }
+            //EditorAttribute editorAttribute = (EditorAttribute)_propertyInfo.GetCustomAttribute(typeof(EditorAttribute));
+            //ReferenceEditor ReferenceEditor = (ReferenceEditor)Activator.CreateInstance(Type.GetType(editorAttribute.EditorTypeName));
+            //TreeNavigationItem selectedTreeNavigationItem = DialogUtils.OpenReferenceWindow(baseReferenceEditor.GetProposals);
+            //if (selectedTreeNavigationItem != null)
+            //{
+            //    ReferenceString referenceString = new ReferenceString(selectedTreeNavigationItem.Id, selectedTreeNavigationItem.Name);
+            //    _propertyInfo.SetValue(_dto, referenceString);
+            //    _referenceLabel.Content = referenceString.GetValue();
+            //}
         }
 
         private void RemoveReferenceButtonClick(object sender, RoutedEventArgs e)

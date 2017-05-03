@@ -8,10 +8,11 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>ES_PowerTool</RootNamespace>
     <AssemblyName>ES_PowerTool</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -85,15 +86,13 @@
     <Compile Include="Data\Tables\TypeElementDataTable.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Handlers\BaseHandler.cs" />
-    <Compile Include="Handlers\DeleteEntityHandler.cs" />
-    <Compile Include="Handlers\NewEntityHandler.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ModelViews\MainWindowModelView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -119,6 +118,22 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Desktop.Ui.Core\Desktop.Ui.Core.csproj">
+      <Project>{61c6cc4b-bf6f-49e2-adb0-0bbfff0ce19b}</Project>
+      <Name>Desktop.Ui.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Desktop.Ui.I18n\Desktop.Ui.I18n.csproj">
+      <Project>{ceca7aa6-f76b-4bfc-a009-699bfff8f93b}</Project>
+      <Name>Desktop.Ui.I18n</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ES_PowerTool.Shared\ES_PowerTool.Shared.csproj">
+      <Project>{c7abc907-08a3-439b-bdee-6d0f171ef4c6}</Project>
+      <Name>ES_PowerTool.Shared</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Handlers\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
