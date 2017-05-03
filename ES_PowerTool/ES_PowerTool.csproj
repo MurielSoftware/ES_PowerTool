@@ -34,6 +34,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServerCompact">
+      <HintPath>..\packages\EntityFramework.SqlServerCompact.6.1.3\lib\net45\EntityFramework.SqlServerCompact.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -62,30 +72,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Data\DataRows\FolderDataRow.cs" />
-    <Compile Include="Data\DataRows\TypeElementDataRow.cs" />
-    <Compile Include="Data\DataRows\TypeDataRow.cs" />
-    <Compile Include="Data\DataRows\BaseDataRow.cs" />
-    <Compile Include="Data\Services\TypeElementService.cs" />
-    <Compile Include="Data\Services\TypeService.cs" />
-    <Compile Include="Data\Services\FolderService.cs" />
-    <Compile Include="Data\Services\GenericService.cs" />
-    <Compile Include="Data\Repositories\Repository.cs" />
-    <Compile Include="Data\Tables\BaseDataTable.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Data\Tables\ES_DataSet.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Data\Tables\FolderDataTable.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Data\Tables\TypeDataTable.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Data\Tables\TypeElementDataTable.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="Handlers\NewProjectHandler.cs" />
+    <Compile Include="Handlers\SaveProjectHandler.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -93,6 +81,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ModelViews\MainWindowModelView.cs" />
+    <Compile Include="ModelViews\NewProjectModelView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -119,6 +108,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Desktop.Shared\Desktop.Shared.Core.csproj">
+      <Project>{61260A01-D7C6-42EB-896E-F13B16B264E9}</Project>
+      <Name>Desktop.Shared.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Desktop.Ui.Core\Desktop.Ui.Core.csproj">
       <Project>{61c6cc4b-bf6f-49e2-adb0-0bbfff0ce19b}</Project>
       <Name>Desktop.Ui.Core</Name>
@@ -127,13 +120,15 @@
       <Project>{ceca7aa6-f76b-4bfc-a009-699bfff8f93b}</Project>
       <Name>Desktop.Ui.I18n</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ES_PowerTool.Data\ES_PowerTool.Data.csproj">
+      <Project>{d572c1e8-cc95-44a8-8641-30db458b7f9c}</Project>
+      <Name>ES_PowerTool.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ES_PowerTool.Shared\ES_PowerTool.Shared.csproj">
       <Project>{c7abc907-08a3-439b-bdee-6d0f171ef4c6}</Project>
       <Name>ES_PowerTool.Shared</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Handlers\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

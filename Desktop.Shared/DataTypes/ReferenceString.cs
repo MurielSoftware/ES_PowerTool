@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Desktop.Shared.Core.References
+namespace Desktop.Shared.Core.DataTypes
 {
     public class ReferenceString
     {

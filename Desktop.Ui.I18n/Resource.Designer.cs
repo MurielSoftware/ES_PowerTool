@@ -70,11 +70,74 @@ namespace Desktop.Ui.I18n {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Import.
+        ///   Looks up a localized string similar to Common.
         /// </summary>
-        public static string Label_Import {
+        public static string label_common_category {
             get {
-                return ResourceManager.GetString("Label_Import", resourceCulture);
+                return ResourceManager.GetString("label_common_category", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CSV Paths.
+        /// </summary>
+        public static string label_csv_category {
+            get {
+                return ResourceManager.GetString("label_csv_category", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Path to CSV Folder.
+        /// </summary>
+        public static string label_folder_csv_path {
+            get {
+                return ResourceManager.GetString("label_folder_csv_path", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        public static string label_name {
+            get {
+                return ResourceManager.GetString("label_name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New Project.
+        /// </summary>
+        public static string Label_NewProject {
+            get {
+                return ResourceManager.GetString("Label_NewProject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Project.
+        /// </summary>
+        public static string label_project {
+            get {
+                return ResourceManager.GetString("label_project", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Path to CSV Type.
+        /// </summary>
+        public static string label_type_csv_path {
+            get {
+                return ResourceManager.GetString("label_type_csv_path", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Path to CSV Type Element.
+        /// </summary>
+        public static string label_type_element_csv_path {
+            get {
+                return ResourceManager.GetString("label_type_element_csv_path", resourceCulture);
             }
         }
     }

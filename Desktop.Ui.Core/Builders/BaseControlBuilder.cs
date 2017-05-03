@@ -14,7 +14,7 @@ namespace Desktop.Ui.Core.Builders
         protected void CreateLabel(PropertyInfo propertyInfo, Grid grid, int rowIndex)
         {
             Label label = new Label();
-            label.Content = GetDisplayName(propertyInfo);
+            label.Content = GetDisplayName(propertyInfo) + ":";
             grid.Children.Add(label);
             Grid.SetRow(label, rowIndex);
             Grid.SetColumn(label, 0);

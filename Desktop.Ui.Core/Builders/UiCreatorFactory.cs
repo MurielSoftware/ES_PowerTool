@@ -1,6 +1,6 @@
 ﻿using Desktop.Shared.Core.Attributes;
 using Desktop.Shared.Core.Dtos;
-using Desktop.Shared.Core.References;
+using Desktop.Shared.Core.DataTypes;
 using Desktop.Ui.I18n;
 using System;
 using System.Collections.Generic;
@@ -9,6 +9,7 @@ using System.Linq;
 using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
+using Desktop.Shared.DataTypes;
 
 namespace Desktop.Ui.Core.Builders
 {
@@ -99,6 +100,7 @@ namespace Desktop.Ui.Core.Builders
             map.Add(typeof(bool), new CheckBoxControlBuilder());
             map.Add(typeof(Enum), new EnumControlBuilder());
             map.Add(typeof(ReferenceString), new ReferenceControlBuilder());
+            map.Add(typeof(FilePath), new FileBrowserControlBuilder());
             return map;
         }
 

@@ -1,5 +1,5 @@
 ﻿using Desktop.Shared.Core.Dtos;
-using Desktop.Shared.Core.References;
+using Desktop.Shared.Core.DataTypes;
 using System;
 using System.ComponentModel;
 using System.Reflection;

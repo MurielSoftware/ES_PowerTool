@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Desktop.Shared.Core.Dtos;
+using Desktop.Ui.Core.Builders;
+using Desktop.Ui.Core.ModelViews;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +23,16 @@ namespace Desktop.Ui.Core.Windows
     /// </summary>
     public partial class Wizard : Window
     {
+        private UiCreatorFactory _uiCreatorFactory = new UiCreatorFactory();
+
         public Wizard()
         {
             InitializeComponent();
+        }
+
+        internal void CreateUi()
+        {
+            _uiCreatorFactory.Generate(MainGrid, ((IWizardModelView)DataContext).GetDto());
         }
     }
 }

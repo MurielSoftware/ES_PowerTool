@@ -7,10 +7,8 @@ using System.Threading.Tasks;
 
 namespace ES_PowerTool.Shared.Dtos
 {
-    public class ImportWizardDto : BaseDto
+    public class CompositeTypeDto : BaseDto
     {
-        public string PathFolder { get; set; }
-        public string PathType { get; set; }
-        public string PathTypeElement { get; set; }
+        public virtual string Description { get; set; }
     }
 }

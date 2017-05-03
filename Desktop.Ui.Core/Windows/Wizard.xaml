@@ -4,20 +4,26 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              mc:Ignorable="d" 
+             Title="{Binding Title}"
              Width="480" Height="360">
-    <Grid>
+    <Grid Background="WhiteSmoke">
         <Grid.RowDefinitions>
             <RowDefinition Height="70" />
             <RowDefinition Height="*" />
             <RowDefinition Height="35" />
         </Grid.RowDefinitions>
-
+        <Border BorderBrush="LightGray" BorderThickness="0 0 0 1">
+            <StackPanel Grid.Row="0" Background="White">
+                <Label Content="{Binding Title}"  />  
+            </StackPanel>
+        </Border>
         <ScrollViewer VerticalScrollBarVisibility="Visible" Grid.Row="1">
             <Grid x:Name="MainGrid"></Grid>
-        </ScrollViewer>
-        <StackPanel Orientation="Horizontal" Margin="10, 5" Grid.Row="2" HorizontalAlignment="Right">
-            <Button Content="Cancel" Margin="10, 0" Width="70" IsDefault="True" />
-            <Button Content="Finish" Margin="0, 0" Width="70" IsCancel="True" />
+        </ScrollViewer>            
+
+        <StackPanel Orientation="Horizontal" Margin="10, 6" Grid.Row="2" HorizontalAlignment="Right">
+            <Button Content="Cancel" Margin="10, 0" Width="70" IsDefault="True" Command="{Binding CancelCommand}" />
+            <Button Content="Finish" Margin="0, 0" Width="70" IsCancel="True" Command="{Binding FinishCommand}" />
         </StackPanel>
     </Grid>
 </Window>

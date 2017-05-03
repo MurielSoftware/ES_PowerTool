@@ -1,28 +1,24 @@
 ﻿using Desktop.Ui.Core.Commands;
 using Desktop.Ui.Core.Handlers;
 using Desktop.Ui.Core.ModelViews;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using ES_PowerTool.Handlers;
 using System.Windows.Input;
 
 namespace ES_PowerTool.ModelViews
 {
     public class MainWindowModelView : BaseModelView
     {
-        public ICommand ImportCommand { get; private set; }
+        public ICommand NewProjectCommand { get; private set; }
 
         public MainWindowModelView() 
             : base(typeof(MainWindowModelView).Name)
         {
-            ImportCommand = new RelayCommand(OnImportCommand);
+            NewProjectCommand = new RelayCommand(OnNewProjectCommand);
         }
 
-        private void OnImportCommand(object obj)
+        private void OnNewProjectCommand(object obj)
         {
-         //   HandlerExecutor.Execute(typeof(OpenWindowHandler<>), typeof(SettingsWindow), ExecutionEvent.Create());
+            HandlerExecutor.Execute<NewProjectHandler>(null);
         }
     }
 }

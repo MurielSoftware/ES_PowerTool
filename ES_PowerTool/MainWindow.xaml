@@ -4,9 +4,13 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:r="clr-namespace:Desktop.Ui.I18n;assembly=Desktop.Ui.I18n"
+        xmlns:modelViews="clr-namespace:ES_PowerTool.ModelViews"
         xmlns:local="clr-namespace:ES_PowerTool"
         mc:Ignorable="d"
         Title="{x:Static r:Resource.App_Title}" Height="350" Width="525">
+    <Window.DataContext>
+        <modelViews:MainWindowModelView />
+    </Window.DataContext>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
@@ -16,7 +20,7 @@
 
         <ToolBarTray Grid.Row="0">
             <ToolBar>
-                <Button Content="{x:Static r:Resource.Label_Import}" />
+                <Button Content="{x:Static r:Resource.Label_NewProject}" Command="{Binding NewProjectCommand}" />
             </ToolBar>
         </ToolBarTray>
         <StatusBar Grid.Row="2">
