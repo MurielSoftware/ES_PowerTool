@@ -51,9 +51,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BAL\CompositeTypeElementCRUDService.cs" />
+    <Compile Include="BAL\CompositeTypeNavigationService.cs" />
     <Compile Include="BAL\FolderCRUDService.cs" />
     <Compile Include="BAL\CompositeTypeCRUDService.cs" />
     <Compile Include="BAL\GenericCRUDService.cs" />
+    <Compile Include="BAL\ProjectCRUDService.cs" />
     <Compile Include="Context\ES_PowerToolContext.cs" />
     <Compile Include="Converters\Attributes\PrimitiveAttributeConverter.cs" />
     <Compile Include="Converters\BaseConvertProvider.cs" />
@@ -73,7 +75,10 @@
     <Compile Include="Converters\References\Reference\EntityToDto\SingleReferenceAttributeEntityToDtoConverter.cs" />
     <Compile Include="Converters\References\Utils\ReferenceConversionUtils.cs" />
     <Compile Include="DAL\BaseRepository.cs" />
+    <Compile Include="DAL\CompositeTypeElementNavigationRepository.cs" />
     <Compile Include="DAL\CompositeTypeElementRepository.cs" />
+    <Compile Include="DAL\CompositeTypeNavigationRepository.cs" />
+    <Compile Include="DAL\FolderNavigationRepository.cs" />
     <Compile Include="DAL\FolderRepository.cs" />
     <Compile Include="DAL\CompositeTypeRepository.cs" />
     <Compile Include="DAL\GenericRepository.cs" />
@@ -81,6 +86,7 @@
     <Compile Include="Model\CompositeType.cs" />
     <Compile Include="Model\CompositeTypeElement.cs" />
     <Compile Include="Model\Folder.cs" />
+    <Compile Include="Model\Project.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

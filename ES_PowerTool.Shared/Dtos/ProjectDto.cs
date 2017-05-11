@@ -2,8 +2,10 @@
 using Desktop.Shared.Core.Dtos;
 using Desktop.Shared.DataTypes;
 using Desktop.Ui.I18n;
+using ES_PowerTool.Shared.CSV;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.IO;
 using System.Linq;
@@ -22,18 +24,27 @@ namespace ES_PowerTool.Shared.Dtos
         [LocalizedDisplayName(MessageKeyConstants.LABEL_NAME)]
         [Required]
         [XmlAttribute("Name")]
-        public string Name { get; set; }
+        public virtual string Name { get; set; }
 
         [LocalizedCategory(MessageKeyConstants.LABEL_CSV_CATEGORY)]
         [LocalizedDisplayName(MessageKeyConstants.LABEL_FOLDER_CSV_PATH)]
-        public FilePath PathFolder { get; set; }
+        public virtual FilePath PathFolder { get; set; }
 
         [LocalizedCategory(MessageKeyConstants.LABEL_CSV_CATEGORY)]
         [LocalizedDisplayName(MessageKeyConstants.LABEL_TYPE_CSV_PATH)]
-        public FilePath PathType { get; set; }
+        public virtual FilePath PathType { get; set; }
 
         [LocalizedCategory(MessageKeyConstants.LABEL_CSV_CATEGORY)]
         [LocalizedDisplayName(MessageKeyConstants.LABEL_TYPE_ELEMENT_CSV_PATH)]
-        public FilePath PathTypeElement { get; set; }
+        public virtual FilePath PathTypeElement { get; set; }
+
+        [Browsable(false)]
+        public virtual CSVFile CsvFolders { get; set; }
+
+        [Browsable(false)]
+        public virtual CSVFile CsvTypes { get; set; }
+
+        [Browsable(false)]
+        public virtual CSVFile CsvTypeElements { get; set; }
     }
 }

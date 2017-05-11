@@ -68,11 +68,17 @@
     <Compile Include="Handlers\ExecutionEvent.cs" />
     <Compile Include="Handlers\HandlerExecutor.cs" />
     <Compile Include="Handlers\NewEntityHandler.cs" />
+    <Compile Include="Jobs\LongRunningJob.cs" />
     <Compile Include="ModelViews\BaseModelView.cs" />
+    <Compile Include="ModelViews\ProgressWindowModelView.cs" />
     <Compile Include="ModelViews\IWizardModelView.cs" />
     <Compile Include="ModelViews\WizardModelView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Singleton.cs" />
+    <Compile Include="Utils\SystemDialogUtils.cs" />
+    <Compile Include="Windows\ProgressWindow.xaml.cs">
+      <DependentUpon>ProgressWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\WindowsManager.cs" />
     <Compile Include="Windows\ReferenceWindow.xaml.cs">
       <DependentUpon>ReferenceWindow.xaml</DependentUpon>
@@ -95,6 +101,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Windows\ProgressWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Windows\ReferenceWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

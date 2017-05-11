@@ -14,10 +14,14 @@ namespace ES_PowerTool.Data.Model
         public virtual Guid RuntimeId { get; set; }
         public virtual bool BuiltIn { get; set; }
         public virtual int SortValue { get; set; }
+        public virtual bool? Derivable { get; set; }
 
         public virtual Guid FolderId { get; set; }
 
         [ForeignKey("FolderId")]
         public virtual Folder Folder { get; set; }
+
+        [InverseProperty("OwningType")]
+        public virtual ICollection<CompositeTypeElement> Children { get; set; }
     }
 }

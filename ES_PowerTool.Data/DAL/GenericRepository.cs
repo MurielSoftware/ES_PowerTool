@@ -97,6 +97,15 @@ namespace ES_PowerTool.Data.DAL
             return entity;
         }
 
+        internal virtual void PersistAsNews<T>(List<T> entities) where T : BaseEntity
+        {
+            foreach(T entity in entities)
+            {
+                GetContext().Set<T>().Add(entity);
+            }
+            Flush();
+        }
+
         /// <summary>
         /// Delets the entity
         /// </summary>

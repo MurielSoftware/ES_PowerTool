@@ -23,6 +23,6 @@ namespace ES_PowerTool.Shared.Dtos
         public virtual int SortValue { get; set; }
 
         [CSVAttribute("PARENT_ID")]
-        public virtual Guid FolderId { get; set; }
+        public virtual Guid? ParentId { get; set; }
     }
 }

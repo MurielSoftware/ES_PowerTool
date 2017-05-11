@@ -9,5 +9,15 @@ namespace Desktop.Shared.DataTypes
     public class FilePath
     {
         public string Path { get; set; }
+
+        public FilePath(string path)
+        {
+            Path = path;
+        }
+
+        public override string ToString()
+        {
+            return Path;
+        }
     }
 }

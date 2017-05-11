@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ES_PowerTool.CSV
+namespace ES_PowerTool.Shared.CSV
 {
     public class CSVRow
     {

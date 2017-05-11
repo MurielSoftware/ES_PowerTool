@@ -18,5 +18,8 @@ namespace ES_PowerTool.Data.Model
 
         [ForeignKey("ParentId")]
         public virtual Folder Parent { get; set; }
+
+        public virtual ICollection<Folder> Folders { get; set; }
+        public virtual ICollection<CompositeType> CompositeTypes { get; set; }
     }
 }

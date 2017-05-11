@@ -17,7 +17,7 @@ namespace ES_PowerTool.Data.BAL
         where T : BaseDto
         where U : BaseEntity
     {
-        private GenericRepository _genericRepository;
+        protected GenericRepository _genericRepository;
 
         protected BaseConvertProvider<T, U> _dtoToEntityConverter = new DtoToEntityConvertProvider<T, U>();
         protected BaseConvertProvider<U, T> _entityToDtoConverter = new EntityToDtoConvertProvider<U, T>();
@@ -28,21 +28,21 @@ namespace ES_PowerTool.Data.BAL
             _genericRepository = new GenericRepository(unitOfWork);
         }
 
-        public void Delete(Guid id)
+        public virtual void Delete(Guid id)
         {
             U entityToDelete = _genericRepository.FindTracking<U>(id);
             ValidationBeforeDelete(entityToDelete);
             DoDelete(entityToDelete);
         }
 
-        public T Persist(T dto)
+        public virtual T Persist(T dto)
         {
             ValidationBeforePersist(dto);
             U persistedEntity = DoPersist(CreateEntity(dto));
             return CreateDto(persistedEntity);
         }
 
-        public T Read(Guid id)
+        public virtual T Read(Guid id)
         {
             return CreateDto(_genericRepository.Find<U>(id));
         }

@@ -10,7 +10,6 @@ namespace ES_PowerTool.Data.Model
 {
     public abstract class BaseEntity
     {
-        [Key]
         public Guid Id { get; set; }
     }
 }
