@@ -13,7 +13,7 @@ namespace ES_PowerTool.Shared
         public T Get<T>()
         {
             Type type = assembly.GetTypes().Where(x => x.Name == GetInstanceName(typeof(T))).SingleOrDefault();
-            return (T)Activator.CreateInstance(type, new object[] { });
+            return (T)Activator.CreateInstance(type, new object[] { null });
         }
 
         private static string GetInstanceName(Type type)

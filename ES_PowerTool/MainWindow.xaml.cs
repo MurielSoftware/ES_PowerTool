@@ -23,6 +23,8 @@ namespace ES_PowerTool
         public MainWindow()
         {
             InitializeComponent();
+
+            AppDomain.CurrentDomain.SetData("DataDirectory", AppDomain.CurrentDomain.BaseDirectory);
         }
     }
 }

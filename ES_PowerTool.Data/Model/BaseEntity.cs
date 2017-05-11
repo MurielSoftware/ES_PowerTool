@@ -1,18 +1,16 @@
 ﻿using Desktop.Shared.Core.Attributes;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Xml.Serialization;
 
-namespace Desktop.Shared.Core.Dtos
+namespace ES_PowerTool.Data.Model
 {
-    public abstract class BaseDto
+    public abstract class BaseEntity
     {
-        [Browsable(false)]
-        [CSVAttribute("ID")]
+        [Key]
         public Guid Id { get; set; }
     }
 }

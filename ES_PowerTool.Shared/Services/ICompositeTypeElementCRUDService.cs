@@ -1,4 +1,4 @@
-﻿using Desktop.Shared.Core.Dtos;
+﻿using ES_PowerTool.Shared.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,10 +7,7 @@ using System.Threading.Tasks;
 
 namespace ES_PowerTool.Shared.Services
 {
-    public interface ICRUDService<T> where T : BaseDto
+    public interface ICompositeTypeElementCRUDService : ICRUDService<CompositeTypeElementDto>
     {
-        T Read(Guid id);
-        T Persist(T dto);
-        void Delete(Guid id);
     }
 }

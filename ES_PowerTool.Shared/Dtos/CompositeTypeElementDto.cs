@@ -7,13 +7,14 @@ using System.Threading.Tasks;
 
 namespace ES_PowerTool.Shared.Dtos
 {
-    public class CompositeTypeDto : BaseDto
+    public class CompositeTypeElementDto : BaseDto
     {
         public virtual string UniqueName { get; set; }
         public virtual string Description { get; set; }
+        public virtual bool Optional { get; set; }
         public virtual Guid RuntimeId { get; set; }
-        public virtual bool BuiltIn { get; set; }
 
-        public virtual Guid FolderId { get; set; }
+        public virtual Guid OwningTypeId { get; set; }
+        public virtual Guid ElementTypeId { get; set; }
     }
 }
