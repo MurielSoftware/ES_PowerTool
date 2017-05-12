@@ -1,5 +1,5 @@
 ﻿using Desktop.Shared.Core.Context;
-using Desktop.Shared.Navigations;
+using Desktop.Shared.Core.Navigations;
 using ES_PowerTool.Data.Model;
 using System;
 using System.Collections.Generic;
@@ -20,16 +20,16 @@ namespace ES_PowerTool.Data.DAL
         {
             return GetContext().Set<CompositeTypeElement>()
                 .Where(x => x.OwningTypeId == parentId)
-                .Select(x => new TreeNavigationItem() { Id = x.Id, Label = x.Description, Type = NavigationType.TYPE })
+                .Select(x => new TreeNavigationItem() { Id = x.Id, Name = x.Description, Type = NavigationType.TYPE_ELEMENT })
                 .ToList();
         }
 
-        public List<TreeNavigationItem> FindSpecific(Guid id)
+        public TreeNavigationItem FindSpecific(Guid id)
         {
             return GetContext().Set<CompositeTypeElement>()
                 .Where(x => x.Id == id)
-                .Select(x => new TreeNavigationItem() { Id = x.Id, Label = x.Description, Type = NavigationType.TYPE })
-                .ToList();
+                .Select(x => new TreeNavigationItem() { Id = x.Id, Name = x.Description, Type = NavigationType.TYPE_ELEMENT })
+                .SingleOrDefault();
         }
     }
 }

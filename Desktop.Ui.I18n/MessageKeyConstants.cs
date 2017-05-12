@@ -15,5 +15,6 @@ namespace Desktop.Ui.I18n
         public const string LABEL_CSV_CATEGORY = "label_csv_category";
         public const string LABEL_NAME = "label_name";
         public const string LABEL_PROJECT = "label_project";
+        public const string LABEL_LOADING = "label_loading";
     }
 }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Desktop.Shared.Services
+namespace Desktop.Shared.Core.Services
 {
     public interface IService
     {

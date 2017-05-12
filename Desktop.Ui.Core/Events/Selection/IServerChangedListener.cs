@@ -4,12 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Desktop.Shared.Core.Navigations
+namespace Desktop.Ui.Core.Events.Selection
 {
-    public enum NavigationType
+    public interface IServerChangedListener
     {
-        FOLDER,
-        TYPE,
-        TYPE_ELEMENT
+        void OnServerSwitched(object obj);
     }
 }

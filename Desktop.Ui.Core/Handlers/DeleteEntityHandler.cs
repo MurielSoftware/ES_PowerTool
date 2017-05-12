@@ -19,7 +19,7 @@ namespace Desktop.Ui.Core.Handlers
             throw new NotImplementedException();
         }
 
-        protected override void OnSuccessful(ExecutionEvent executionEvent)
+        protected override void OnSuccessful(ExecutionEvent executionEvent, Guid affectedObjectId)
         {
             throw new NotImplementedException();
         }

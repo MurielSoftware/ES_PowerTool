@@ -22,7 +22,7 @@ namespace Desktop.Ui.Core.Jobs
             _progressWindowModelView.CurrentStep = string.Empty;
             _progressWindowModelView.CurrentProgress = 0;
 
-            _progressWindow = new ProgressWindow();
+            _progressWindow = WindowsManager.GetInstance().ShowDialog<ProgressWindow>();
             _progressWindow.DataContext = _progressWindowModelView;
         }
 

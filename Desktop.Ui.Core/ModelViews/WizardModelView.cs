@@ -1,6 +1,8 @@
 ﻿using Desktop.Shared.Core.Attributes;
 using Desktop.Shared.Core.Dtos;
+using Desktop.Shared.Core.Services;
 using Desktop.Ui.Core.Commands;
+using Desktop.Ui.Core.Jobs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +15,7 @@ namespace Desktop.Ui.Core.ModelViews
     public class WizardModelView<T> : BaseModelView, IWizardModelView where T : BaseDto
     {
         public T Dto { get; protected set; }
+        public ICRUDService<T> _crudService;
         public string Title { get; private set; }
         public string Description { get; private set; }
         public ICommand CancelCommand { get; private set; }
@@ -29,17 +32,39 @@ namespace Desktop.Ui.Core.ModelViews
             CreateTitle();
         }
 
+        public BaseDto GetDto()
+        {
+            return Dto;
+        }
+
         protected virtual void OnCancelCommand(object obj)
         {
+
         }
 
         protected virtual void OnFinishCommand(object obj)
         {
+            try
+            {
+                LongRunningJob<T> projectCreationJob = new LongRunningJob<T>(DoFinish, Title);
+                projectCreationJob.Execute(Dto);
+            }
+            catch(Exception ex)
+            {
+
+            }
         }
 
-        public BaseDto GetDto()
+        protected virtual void DoFinish(T dto)
         {
-            return Dto;
+            try
+            {
+                Dto = _crudService.Persist(Dto);
+            }
+            catch(Exception ex)
+            {
+
+            }
         }
 
         private void CreateTitle()

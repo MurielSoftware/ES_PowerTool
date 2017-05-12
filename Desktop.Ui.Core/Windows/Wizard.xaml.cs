@@ -34,5 +34,41 @@ namespace Desktop.Ui.Core.Windows
         {
             _uiCreatorFactory.Generate(MainGrid, ((IWizardModelView)DataContext).GetDto());
         }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            FindVisualChild<TextBox>(this).Focus();
+        }
+
+        private void Finish_Click(object sender, RoutedEventArgs e)
+        {
+            //Close();
+        }
+
+        private void Cancel_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
+        private static T FindVisualChild<T>(DependencyObject dependencyObject) where T : DependencyObject
+        {
+            if (dependencyObject != null)
+            {
+                for (int i = 0; i < VisualTreeHelper.GetChildrenCount(dependencyObject); i++)
+                {
+                    DependencyObject child = VisualTreeHelper.GetChild(dependencyObject, i);
+                    if (child != null && child is T)
+                    {
+                        return (T)child;
+                    }
+                    T childItem = FindVisualChild<T>(child);
+                    if (childItem != null)
+                    {
+                        return childItem;
+                    }
+                }
+            }
+            return null;
+        }
     }
 }

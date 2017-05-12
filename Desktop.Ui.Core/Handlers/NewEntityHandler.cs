@@ -1,4 +1,8 @@
-﻿using Desktop.Ui.Core.Handlers;
+﻿using Desktop.Shared.Core.Dtos;
+using Desktop.Ui.Core.Events.Publishing;
+using Desktop.Ui.Core.Handlers;
+using Desktop.Ui.Core.ModelViews;
+using Desktop.Ui.Core.Windows;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,21 +11,37 @@ using System.Threading.Tasks;
 
 namespace Desktop.Ui.Core.Handlers
 {
-    public class NewEntityHandler : BaseHandler
+    public class NewEntityHandler<T> : BaseHandler
+        where T : BaseDto
     {
         protected override void DoExecute(ExecutionEvent executionEvent)
         {
-            throw new NotImplementedException();
+            WizardModelView<T> wizardModelView = new WizardModelView<T>();
+            //BeforePersist(executionEvent, wizardModelView.Dto);
+            bool dialogResult = WindowsManager.GetInstance().ShowWizard<Wizard>(wizardModelView);
+            if (dialogResult)
+            {
+                //AfterPersist(executionEvent, wizardModelView.Dto);
+                OnSuccessful(executionEvent, wizardModelView.Dto.Id);
+            }
+            return;
         }
+
+        //protected virtual void AfterPersist(ExecutionEvent executionEvent, T dto)
+        //{
+        //}
+
+        //protected virtual void BeforePersist(ExecutionEvent executionEvent, T dto)
+        //{
+        //}
 
         protected override void OnFailure(ExecutionEvent executionEvent)
         {
-            throw new NotImplementedException();
         }
 
-        protected override void OnSuccessful(ExecutionEvent executionEvent)
+        protected override void OnSuccessful(ExecutionEvent executionEvent, Guid affectedObjectId)
         {
-            throw new NotImplementedException();
+            Publisher.GetInstance().Publish(PublishEvent.CreateCreationEvent(affectedObjectId, executionEvent.GetFirstTreeNavigationItem().Id));
         }
     }
 }

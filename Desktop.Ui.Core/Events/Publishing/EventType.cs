@@ -10,6 +10,6 @@ namespace Desktop.Ui.Core.Events.Publishing
     {
         CREATE,
         UPDATE,
-        DELETE,
+        DELETE
     }
 }

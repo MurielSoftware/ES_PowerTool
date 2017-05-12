@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Desktop.Shared.Navigations
+namespace Desktop.Shared.Core.Navigations
 {
     public class NavigationContext
     {

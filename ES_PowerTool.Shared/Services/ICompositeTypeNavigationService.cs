@@ -1,4 +1,4 @@
-﻿using Desktop.Shared.Services;
+﻿using Desktop.Shared.Core.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;

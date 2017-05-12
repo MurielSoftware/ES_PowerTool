@@ -13,7 +13,7 @@ namespace Desktop.Ui.Core.Handlers
             try
             {
                 DoExecute(executionEvent);
-                OnSuccessful(executionEvent);
+                //OnSuccessful(executionEvent);
             }
             catch(Exception ex)
             {
@@ -22,7 +22,7 @@ namespace Desktop.Ui.Core.Handlers
         }
 
         protected abstract void DoExecute(ExecutionEvent executionEvent);
-        protected abstract void OnSuccessful(ExecutionEvent executionEvent);
+        protected abstract void OnSuccessful(ExecutionEvent executionEvent, Guid affectedObjectId);
         protected abstract void OnFailure(ExecutionEvent executionEvent);
     }
 }

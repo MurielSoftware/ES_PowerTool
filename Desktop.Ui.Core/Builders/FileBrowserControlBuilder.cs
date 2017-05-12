@@ -31,7 +31,7 @@ namespace Desktop.Ui.Core.Builders
             fileBrowserGrid.ColumnDefinitions.Add(new ColumnDefinition() { Width = GridLength.Auto });
             fileBrowserGrid.ColumnDefinitions.Add(new ColumnDefinition() { Width = GridLength.Auto });
 
-            Label fileLabel = CreateFileLabel(propertyInfo);
+            TextBox fileTextBox = CreateFileTextBox(propertyInfo);
 
             Button referenceButton = CreateButton("Browse", null);
             referenceButton.Click += delegate
@@ -41,14 +41,14 @@ namespace Desktop.Ui.Core.Builders
                 {
                     FilePath filePath = new FilePath(fileName);
                     propertyInfo.SetValue(dto, filePath);
-                    fileLabel.Content = filePath.ToString();
+                    fileTextBox.Text = filePath.ToString();
                 }
             };
 
-            fileBrowserGrid.Children.Add(fileLabel);
+            fileBrowserGrid.Children.Add(fileTextBox);
             fileBrowserGrid.Children.Add(referenceButton);
 
-            Grid.SetColumn(fileLabel, 0);
+            Grid.SetColumn(fileTextBox, 0);
             Grid.SetColumn(referenceButton, 1);
 
             grid.Children.Add(fileBrowserGrid);
@@ -58,12 +58,15 @@ namespace Desktop.Ui.Core.Builders
             return fileBrowserGrid;
         }
 
-        private Label CreateFileLabel(PropertyInfo propertyInfo)
+        private TextBox CreateFileTextBox(PropertyInfo propertyInfo)
         {
-            Label referenceLabel = new Label();
+            TextBox textBox = new TextBox();
+            textBox.IsReadOnly = true;
+            textBox.VerticalContentAlignment = VerticalAlignment.Center;
+            textBox.Margin = new Thickness(0, 4, 0, 4);
             Binding binding = new Binding("Dto." + propertyInfo.Name);
-            referenceLabel.SetBinding(Label.ContentProperty, binding);
-            return referenceLabel;
+            textBox.SetBinding(TextBox.TextProperty, binding);
+            return textBox;
         }
 
         private Button CreateButton(string label, RoutedEventHandler click)

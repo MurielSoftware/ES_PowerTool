@@ -11,6 +11,8 @@ namespace Desktop.Shared
     {
         private static Assembly serviceAssembly = Assembly.Load("ES_PowerTool.Data");
 
+        //public static Dictionary<Type, Type> DTO_TO_SERVICE = CreateDtoToService();
+
         public static T Get<T>()
         {
             Type instanceType = serviceAssembly.GetTypes().Where(x => x.Name == GetInstanceName(typeof(T).Name)).SingleOrDefault();
@@ -21,5 +23,12 @@ namespace Desktop.Shared
         {
             return interfaceName.Substring(1);
         }
+
+        //private static Dictionary<Type, Type> CreateDtoToService()
+        //{
+        //    Dictionary<Type, Type> map = new Dictionary<Type, Type>();
+        //    map.Add(typeof(FolderDto))
+        //    return map;
+        //}
     }
 }

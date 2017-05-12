@@ -10,24 +10,29 @@ namespace Desktop.Ui.Core.Windows
 {
     public class WindowsManager : Singleton<WindowsManager>
     {
-        public T ShowDialog<T>() where T : Window
+        public T ShowDialog<T>(BaseModelView modelView = null) where T : Window
         {
             T window = Activator.CreateInstance<T>();
             window.Owner = Application.Current.MainWindow;
             window.WindowStartupLocation = WindowStartupLocation.CenterOwner;
-            window.ShowDialog();
+            window.DataContext = modelView;
+            window.Show();
             return window;
         }
 
-        public T ShowWizard<T>(BaseModelView baseModelView) where T : Wizard
+        public bool ShowWizard<T>(BaseModelView modelView = null) where T : Wizard
         {
             T wizard = Activator.CreateInstance<T>();
             wizard.Owner = Application.Current.MainWindow;
             wizard.WindowStartupLocation = WindowStartupLocation.CenterOwner;
-            wizard.DataContext = baseModelView;
+            wizard.DataContext = modelView;
             wizard.CreateUi();
-            wizard.ShowDialog();
-            return wizard;
+            bool? dialogResult = wizard.ShowDialog();
+            if(dialogResult.HasValue)
+            {
+                return dialogResult.Value;
+            }
+            return false;
         }
     }
 }

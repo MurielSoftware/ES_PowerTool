@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ES_PowerTool.Shared.Services
+namespace Desktop.Shared.Core.Services
 {
     public interface ICRUDService<T> where T : BaseDto
     {

@@ -7,8 +7,8 @@
     <ProjectGuid>{61260A01-D7C6-42EB-896E-F13B16B264E9}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Desktop.Shared</RootNamespace>
-    <AssemblyName>Desktop.Shared</AssemblyName>
+    <RootNamespace>Desktop.Shared.Core</RootNamespace>
+    <AssemblyName>Desktop.Shared.Core</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -52,11 +52,13 @@
     <Compile Include="Dtos\BaseDto.cs" />
     <Compile Include="Navigations\NavigationContext.cs" />
     <Compile Include="Navigations\NavigationType.cs" />
+    <Compile Include="Navigations\NavigationTypeToImage.cs" />
     <Compile Include="Navigations\TreeNavigationItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DataTypes\ReferenceString.cs" />
     <Compile Include="ServiceActivator.cs" />
     <Compile Include="Services\BaseService.cs" />
+    <Compile Include="Services\ICRUDService.cs" />
     <Compile Include="Services\INavigationService.cs" />
     <Compile Include="Services\IService.cs" />
     <Compile Include="Utils\Converter.cs" />

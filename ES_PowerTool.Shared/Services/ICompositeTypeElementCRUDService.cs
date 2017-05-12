@@ -1,4 +1,5 @@
-﻿using ES_PowerTool.Shared.Dtos;
+﻿using Desktop.Shared.Core.Services;
+using ES_PowerTool.Shared.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
