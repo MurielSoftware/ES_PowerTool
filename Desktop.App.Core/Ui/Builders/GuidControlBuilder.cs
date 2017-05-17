@@ -60,7 +60,7 @@ namespace Desktop.App.Core.Ui.Builders
             button.Content = label;
             button.Margin = new Thickness(2, 5, 2, 5);
             button.Padding = new Thickness(4, 0, 4, 0);
-            button.Height = 22;
+            button.Height = 24;
             return button;
         }
     }

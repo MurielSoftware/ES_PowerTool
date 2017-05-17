@@ -10,12 +10,12 @@ using ES_PowerTool.Shared.Services;
 
 namespace ES_PowerTool.Editors
 {
-    public class TypeReferenceEditor : BaseReferenceEditor
+    public class TypeReferenceDerivableEditor : BaseReferenceEditor
     {
         protected override List<TreeNavigationItem> DoGetProposals()
         {
             ICompositeTypeNavigationService compositeTypeNavigationService = ServiceActivator.Get<ICompositeTypeNavigationService>();
-            return compositeTypeNavigationService.GetAllCompositeTypes();
+            return compositeTypeNavigationService.GetAllDerivableCompositeTypes();
         }
     }
 }

@@ -11,6 +11,7 @@ using Desktop.Shared.Utils;
 using Desktop.Shared.Core.Dtos;
 using Desktop.Data.Core.Model;
 using Desktop.Data.Core.BAL;
+using Desktop.Shared.Core;
 
 namespace ES_PowerTool.Data.BAL
 {
@@ -24,45 +25,58 @@ namespace ES_PowerTool.Data.BAL
         public override ProjectDto Persist(ProjectDto projectDto)
         {
             ProjectDto persistedProjectDto = base.Persist(projectDto);
-            PersistEntities<Folder, FolderDto>(persistedProjectDto.Id, projectDto.CsvFolders);
-            PersistEntities<CompositeType, CompositeTypeDto>(persistedProjectDto.Id, projectDto.CsvTypes);
-            PersistEntities<CompositeTypeElement, CompositeTypeElementDto>(persistedProjectDto.Id, projectDto.CsvTypeElements);
+            PersistEntities<Folder>(persistedProjectDto.Id, projectDto.CsvFolders);
+            PersistEntities<CompositeType>(persistedProjectDto.Id, projectDto.CsvTypes, "COM");
+            PersistEntities<PrimitiveType>(persistedProjectDto.Id, projectDto.CsvTypes, "PRI");
+            PersistEntities<CompositeTypeElement>(persistedProjectDto.Id, projectDto.CsvTypeElements);
             return persistedProjectDto;
         }
 
-        private void PersistEntities<T, U>(Guid projectId, CSVFile file)
+        private void PersistEntities<T>(Guid projectId, CSVFile file, string dtype = "")
             where T : BaseEntity
-            where U : BaseDto
         {
             int rowIndex = 0;
             List<T> entities = new List<T>();
             foreach(CSVRow csvRow in file.GetRows())
             {
                 Dictionary<string, string> rowToHeader = file.GetRowToHeader(rowIndex++);
-                entities.Add(CreateEntity<T, U>(projectId, rowToHeader));
+                if(rowToHeader.ContainsKey("DTYPE"))
+                {
+                    if(!dtype.Equals(rowToHeader["DTYPE"]))
+                    {
+                        continue;
+                    }
+                }
+                entities.Add(CreateEntity<T>(projectId, rowToHeader));
             }
             _genericRepository.PersistAsNews<T>(entities);
         }
 
-        private T CreateEntity<T, U>(Guid projectId, Dictionary<string, string> rowToHeader) 
+        private T CreateEntity<T>(Guid projectId, Dictionary<string, string> rowToHeader) 
             where T : BaseEntity 
-            where U : BaseDto
         {
             T entity = Activator.CreateInstance<T>();
             if(typeof(IProjectAwareEntity).IsAssignableFrom(typeof(T)))
             {
                 ((IProjectAwareEntity)entity).ProjectId = projectId;
             }
-            List<PropertyInfo> csvAttributePropertyInfos = typeof(U).GetProperties().Where(x => Attribute.IsDefined(x, typeof(CSVAttribute))).ToList();
+            if(typeof(IStateAwareEntity).IsAssignableFrom(typeof(T)))
+            {
+                ((IStateAwareEntity)entity).State = State.BUILTIN;
+            }
+            List<PropertyInfo> csvAttributePropertyInfos = typeof(T).GetProperties().Where(x => Attribute.IsDefined(x, typeof(CSVAttributeAttribute))).ToList();
 
             foreach(PropertyInfo csvAttributePropertyInfo in csvAttributePropertyInfos)
             {
-                CSVAttribute csvAttribute = csvAttributePropertyInfo.GetCustomAttribute<CSVAttribute>();
+                CSVAttributeAttribute csvAttribute = csvAttributePropertyInfo.GetCustomAttribute<CSVAttributeAttribute>();
                 string value = rowToHeader[csvAttribute.Name];
                 object convertedValue = Converter.ConvertValue(csvAttributePropertyInfo.PropertyType, value);
 
                 PropertyInfo entityPropertyInfo = entity.GetType().GetProperty(csvAttributePropertyInfo.Name);
-                entityPropertyInfo.SetValue(entity, convertedValue);
+                if (entityPropertyInfo != null)
+                {
+                    entityPropertyInfo.SetValue(entity, convertedValue);
+                }
             }
             return entity;
         }

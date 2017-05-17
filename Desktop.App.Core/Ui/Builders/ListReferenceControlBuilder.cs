@@ -79,6 +79,7 @@ namespace Desktop.App.Core.Ui.Builders
         private ListBox CreateReferenceList(BaseDto baseDto, PropertyInfo propertyInfo)
         {
             ListBox listBox = new ListBox();
+            listBox.Margin = new Thickness(2, 5, 2, 5);
             ReferenceString referenceString = (ReferenceString)propertyInfo.GetValue(baseDto);
             if(referenceString != null)
             {

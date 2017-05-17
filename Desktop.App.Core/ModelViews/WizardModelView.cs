@@ -32,6 +32,8 @@ namespace Desktop.App.Core.ModelViews
         protected BasePersister<T> _persister;
         protected Wizard _wizard;
 
+        private bool _successFinish;
+
         public WizardModelView(T dto) 
             : base(typeof(WizardModelView<>).Name)
         {
@@ -75,7 +77,7 @@ namespace Desktop.App.Core.ModelViews
                 LongRunningJob<T> projectCreationJob = new LongRunningJob<T>(DoFinish, Title);
                 projectCreationJob.AddAction(delegate 
                 {
-                    _wizard.Dispatcher.Invoke(DispatcherPriority.Normal, new ThreadStart(CloseWizard));
+                    _wizard.Dispatcher.Invoke(DispatcherPriority.Normal, new ThreadStart(CloseWizardOnFinish));
                 });
                 projectCreationJob.Execute(Dto);
             }
@@ -85,15 +87,25 @@ namespace Desktop.App.Core.ModelViews
             }
         }
 
-        protected virtual void CloseWizard()
+        protected virtual void CloseWizardOnFinish()
         {
-            _wizard.DialogResult = true;
-            _wizard.Close();
+            if (_successFinish)
+            {
+                _wizard.DialogResult = true;
+                _wizard.Close();
+            }
         }
 
         protected virtual void DoFinish(T dto)
         {
+            if(!dto.IsValid)
+            {
+                ValidationMessage = dto.GetValidationResult();
+                OnPropertyChanged(() => ValidationMessage);
+                return;
+            }
             _persister.Persist();
+            _successFinish = true;
         }
 
         private void CreateTitle()

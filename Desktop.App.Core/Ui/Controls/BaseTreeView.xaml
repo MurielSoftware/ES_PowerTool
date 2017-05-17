@@ -20,6 +20,7 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <TreeView.Resources>
         <Converters:AlphabetSortConverter x:Key="alphabetSortConverter" />
+        <Converters:TreeNavigationItemLabelConverter x:Key="treeNavigationItemLabelConverter" />
         <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#CBE8F6" />
         <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="Black" />
     </TreeView.Resources>
@@ -27,7 +28,7 @@
         <HierarchicalDataTemplate ItemsSource="{Binding Children, Converter={StaticResource alphabetSortConverter}, ConverterParameter=Name}" DataType="{x:Type Navigations:TreeNavigationItem}">
             <StackPanel Orientation="Horizontal" MouseRightButtonUp="StackPanel_MouseRightButtonUp">
                 <Image Source="{Binding Image}" Width="16" Height="16" />
-                <TextBlock Text="{Binding Name}" Margin="6, 1" />
+                <TextBlock Text="{Binding Converter={StaticResource treeNavigationItemLabelConverter}}" Margin="6, 1" />
             </StackPanel>
         </HierarchicalDataTemplate>
     </TreeView.ItemTemplate>

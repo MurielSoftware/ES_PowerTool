@@ -85,6 +85,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Handlers\GenerateHandler.cs" />
+    <Compile Include="Ui\Windows\GenerateWindow.xaml.cs">
+      <DependentUpon>GenerateWindow.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -94,6 +98,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Editors\TypeReferenceEditor.cs" />
+    <Compile Include="Editors\TypeReferenceDerivableEditor.cs" />
     <Compile Include="Handlers\NewTypeElementHandler.cs" />
     <Compile Include="Handlers\NewTypeHandler.cs" />
     <Compile Include="Handlers\NewFolderHandler.cs" />
@@ -103,6 +108,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Ui\Windows\GenerateWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ModelViews\CompositeTypeTreeModelView.cs" />
@@ -181,6 +190,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\generate.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

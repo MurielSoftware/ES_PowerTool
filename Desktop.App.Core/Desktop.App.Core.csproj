@@ -91,6 +91,7 @@
     <Compile Include="Events\Selection\SelectionChangeNotifier.cs" />
     <Compile Include="Singleton.cs" />
     <Compile Include="Ui\Converters\ListBoxConverter.cs" />
+    <Compile Include="Ui\Converters\TreeNavigationItemLabelConverter.cs" />
     <Compile Include="Utils\DialogUtils.cs" />
     <Compile Include="Utils\SystemDialogUtils.cs" />
     <Compile Include="Ui\Windows\ProgressWindow.xaml.cs">

@@ -142,6 +142,15 @@ namespace Desktop.Ui.I18n {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Generate.
+        /// </summary>
+        public static string label_generate {
+            get {
+                return ResourceManager.GetString("label_generate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Loading....
         /// </summary>
         public static string label_loading {

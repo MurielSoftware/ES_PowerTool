@@ -33,6 +33,13 @@
                         <TextBlock Text="{x:Static r:Resource.label_open_project}" />
                     </StackPanel>
                 </Button>
+                <Separator />
+                <Button Command="{Binding GenerateCommand}">
+                    <StackPanel>
+                        <Image Source="pack://application:,,,/Images/generate.png" Width="16" Height="16" />
+                        <TextBlock Text="{x:Static r:Resource.label_generate}" />
+                    </StackPanel>
+                </Button>
             </ToolBar>
         </ToolBarTray>
 

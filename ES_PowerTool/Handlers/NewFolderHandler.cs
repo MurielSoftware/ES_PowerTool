@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Desktop.Shared.Core;
 
 namespace ES_PowerTool.Handlers
 {
@@ -14,6 +15,7 @@ namespace ES_PowerTool.Handlers
         protected override FolderDto CreateNewDto(ExecutionEvent executionEvent)
         {
             FolderDto folderDto = base.CreateNewDto(executionEvent);
+            folderDto.State = State.NEW;
             TreeNavigationItem selectedTreeNavigationItem = executionEvent.GetFirstTreeNavigationItem();
             if(NavigationType.PROJECT.Equals(selectedTreeNavigationItem.Type))
             {

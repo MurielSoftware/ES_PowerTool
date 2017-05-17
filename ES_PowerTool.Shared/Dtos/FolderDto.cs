@@ -1,4 +1,5 @@
-﻿using Desktop.Shared.Core.Attributes;
+﻿using Desktop.Shared.Core;
+using Desktop.Shared.Core.Attributes;
 using Desktop.Shared.Core.Dtos;
 using Desktop.Ui.I18n;
 using System;
@@ -14,29 +15,33 @@ namespace ES_PowerTool.Shared.Dtos
     [LocalizedDisplayName(MessageKeyConstants.LABEL_FOLDER)]
     public class FolderDto : BaseDto
     {
-        [CSVAttribute("NAME")]
         [LocalizedCategory(MessageKeyConstants.LABEL_COMMON_CATEGORY)]
         [LocalizedDisplayName(MessageKeyConstants.LABEL_NAME)]
         [Required]
+        [CSVAttribute("NAME")]
         public virtual string Name { get; set; }
 
-        [CSVAttribute("BUILT_IN")]
         [Browsable(false)]
+        [CSVAttribute("BUILT_IN")]
         public virtual bool BuiltIn { get; set; }
 
-        [CSVAttribute("CONTENT_BUILT_IN")]
         [Browsable(false)]
+        [CSVAttribute("CONTENT_BUILT_IN")]
         public virtual bool ContentBuiltIn { get; set; }
 
-        [CSVAttribute("SORT_VALUE")]
         [Browsable(false)]
+        [CSVAttribute("SORT_VALUE")]
         public virtual int SortValue { get; set; }
 
-        [CSVAttribute("PARENT_ID")]
         [Browsable(false)]
+
+        [CSVAttribute("PARENT_ID")]
         public virtual Guid? ParentId { get; set; }
 
         [Browsable(false)]
         public virtual Guid ProjectId { get; set; }
+
+        [Browsable(false)]
+        public virtual State State { get; set; }
     }
 }

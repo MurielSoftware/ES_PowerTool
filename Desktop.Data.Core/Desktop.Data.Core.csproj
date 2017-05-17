@@ -71,9 +71,12 @@
     <Compile Include="DAL\GenericRepository.cs" />
     <Compile Include="Model\BaseEntity.cs" />
     <Compile Include="Model\CompositeType.cs" />
+    <Compile Include="Model\IStateAwareEntity.cs" />
+    <Compile Include="Model\ModelObjectType.cs" />
     <Compile Include="Model\CompositeTypeElement.cs" />
     <Compile Include="Model\Folder.cs" />
     <Compile Include="Model\IProjectAwareEntity.cs" />
+    <Compile Include="Model\PrimitiveType.cs" />
     <Compile Include="Model\Project.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

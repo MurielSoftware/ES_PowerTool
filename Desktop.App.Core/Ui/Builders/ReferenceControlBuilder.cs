@@ -24,7 +24,7 @@ namespace Desktop.App.Core.Ui.Builders
             referenceGrid.ColumnDefinitions.Add(new ColumnDefinition() { Width = GridLength.Auto });
             referenceGrid.ColumnDefinitions.Add(new ColumnDefinition() { Width = GridLength.Auto });
 
-            Label referenceLabel = CreateReferenceLabel(propertyInfo);
+            Label referenceLabel = CreateReferenceLabel(dto, propertyInfo);
 
             Button referenceButton = CreateButton("...", delegate 
             {
@@ -60,12 +60,15 @@ namespace Desktop.App.Core.Ui.Builders
             return referenceGrid;
         }
 
-        private Label CreateReferenceLabel(PropertyInfo propertyInfo)
+        private Label CreateReferenceLabel(BaseDto dto, PropertyInfo propertyInfo)
         {
             Label label = new Label();
-            Binding binding = new Binding("Dto." + propertyInfo.Name);
-            label.SetBinding(Label.ContentProperty, binding);
             label.Margin = new Thickness(0, 2, 0, 2);
+            ReferenceString referenceString = (ReferenceString)propertyInfo.GetValue(dto);
+            if(referenceString != null)
+            {
+                label.Content = referenceString.GetValue();
+            }
             return label;
         }
 

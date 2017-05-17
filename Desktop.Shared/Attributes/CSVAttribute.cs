@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Desktop.Shared.Core.Attributes
 {
-    public class CSVAttribute : Attribute
+    public class CSVAttributeAttribute : Attribute
     {
         public string Name { get; private set; }
 
-        public CSVAttribute(string name)
+        public CSVAttributeAttribute(string name)
         {
             Name = name;
         }

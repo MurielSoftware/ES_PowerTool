@@ -31,11 +31,19 @@ namespace ES_PowerTool.Data.DAL
                 .SingleOrDefault();
         }
 
-        internal List<TreeNavigationItem> FindAllDerivable()
+        internal List<TreeNavigationItem> FindAllDerivableTypes()
         {
             return GetContext().Set<CompositeType>()
                 .AsNoTracking()
                 .Where(x => x.Derivable == true)
+                .Select(x => new TreeNavigationItem() { Id = x.Id, Name = x.Description, Type = NavigationType.TYPE })
+                .ToList();
+        }
+
+        internal List<TreeNavigationItem> FindAllTypes()
+        {
+            return GetContext().Set<CompositeType>()
+                .AsNoTracking()
                 .Select(x => new TreeNavigationItem() { Id = x.Id, Name = x.Description, Type = NavigationType.TYPE })
                 .ToList();
         }

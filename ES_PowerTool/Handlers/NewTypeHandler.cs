@@ -1,4 +1,5 @@
 ﻿using Desktop.App.Core.Handlers;
+using Desktop.Shared.Core;
 using ES_PowerTool.Shared.Dtos;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,7 @@ namespace ES_PowerTool.Handlers
         {
             CompositeTypeDto compositeTypeDto = base.CreateNewDto(executionEvent);
             compositeTypeDto.FolderId = executionEvent.GetFirstTreeNavigationItem().Id;
+            compositeTypeDto.State = State.NEW;
             return compositeTypeDto;
         }
     }

@@ -27,9 +27,14 @@ namespace ES_PowerTool.Data.BAL
             _projectNavigationRepository = new ProjectNavigationRepository(connection);
         }
 
+        public List<TreeNavigationItem> GetAllCompositeTypes()
+        {
+            return _compositeTypeNavigationRepository.FindAllTypes();
+        }
+
         public List<TreeNavigationItem> GetAllDerivableCompositeTypes()
         {
-            return _compositeTypeNavigationRepository.FindAllDerivable();
+            return _compositeTypeNavigationRepository.FindAllDerivableTypes();
         }
 
         public List<TreeNavigationItem> GetChildren(NavigationContext navigationContext, TreeNavigationItem parentTreeNavigationItem)

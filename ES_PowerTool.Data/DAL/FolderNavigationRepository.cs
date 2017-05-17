@@ -19,7 +19,7 @@ namespace ES_PowerTool.Data.DAL
         { 
             return GetContext().Set<Folder>()
                 .Where(x => x.ProjectId == projectId && x.ParentId == null)
-                .Select(x => new TreeNavigationItem() { Id = x.Id, Name = x.Name, Type = NavigationType.FOLDER, ProjectId = x.ProjectId, HasRemoteChildren = x.CompositeTypes.Count > 0 || x.Folders.Count > 0 })
+                .Select(x => new TreeNavigationItem() { Id = x.Id, Name = x.Name, Type = NavigationType.FOLDER, ProjectId = x.ProjectId, HasRemoteChildren = x.ModelObjectTypes.Count > 0 || x.Folders.Count > 0 })
                 .ToList();
         }
 
@@ -27,7 +27,7 @@ namespace ES_PowerTool.Data.DAL
         {
             return GetContext().Set<Folder>()
                 .Where(x => x.ParentId == parentId)
-                .Select(x => new TreeNavigationItem() { Id = x.Id, Name = x.Name, Type = NavigationType.FOLDER, HasRemoteChildren = x.CompositeTypes.Count > 0 || x.Folders.Count > 0 })
+                .Select(x => new TreeNavigationItem() { Id = x.Id, Name = x.Name, Type = NavigationType.FOLDER, HasRemoteChildren = x.ModelObjectTypes.Count > 0 || x.Folders.Count > 0 })
                 .ToList();
         }
 
@@ -35,7 +35,7 @@ namespace ES_PowerTool.Data.DAL
         {
             return GetContext().Set<Folder>()
                 .Where(x => x.Id == id)
-                .Select(x => new TreeNavigationItem() { Id = x.Id, Name = x.Name, Type = NavigationType.FOLDER, HasRemoteChildren = x.CompositeTypes.Count > 0 || x.Folders.Count > 0 })
+                .Select(x => new TreeNavigationItem() { Id = x.Id, Name = x.Name, Type = NavigationType.FOLDER, HasRemoteChildren = x.ModelObjectTypes.Count > 0 || x.Folders.Count > 0 })
                 .SingleOrDefault();
         }
 
