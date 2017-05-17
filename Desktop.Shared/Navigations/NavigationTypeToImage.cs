@@ -10,9 +10,10 @@ namespace Desktop.Shared.Core.Navigations
     {
         public static Dictionary<NavigationType, Uri> NAVIGATION_TYPE_TO_IMAGE = new Dictionary<NavigationType, Uri>()
         {
-            { NavigationType.FOLDER, new Uri("pack://application:,,,/Images/folder.png") },
+            { NavigationType.PROJECT, new Uri("pack://application:,,,/Images/project.png") },
+            { NavigationType.FOLDER, new Uri("pack://application:,,,/Images/folder.gif") },
             { NavigationType.TYPE, new Uri("pack://application:,,,/Images/type.png") },
-            { NavigationType.TYPE_ELEMENT, new Uri("pack://application:,,,/Images/element.png") },
+            { NavigationType.TYPE_ELEMENT, new Uri("pack://application:,,,/Images/green_circle_filled.gif") },
         };
     }
 }

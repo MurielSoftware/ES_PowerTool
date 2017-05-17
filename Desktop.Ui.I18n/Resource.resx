@@ -123,7 +123,7 @@
   <data name="label_folder_csv_path" xml:space="preserve">
     <value>Path to CSV Folder</value>
   </data>
-  <data name="Label_NewProject" xml:space="preserve">
+  <data name="label_new_project" xml:space="preserve">
     <value>New Project</value>
   </data>
   <data name="label_type_csv_path" xml:space="preserve">
@@ -143,5 +143,47 @@
   </data>
   <data name="label_project" xml:space="preserve">
     <value>Project</value>
+  </data>
+  <data name="label_open_project" xml:space="preserve">
+    <value>Open project</value>
+  </data>
+  <data name="label_built_in" xml:space="preserve">
+    <value>Built-in</value>
+  </data>
+  <data name="label_derivable" xml:space="preserve">
+    <value>Derivable</value>
+  </data>
+  <data name="label_description" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="label_folder" xml:space="preserve">
+    <value>Folder</value>
+  </data>
+  <data name="label_loading" xml:space="preserve">
+    <value>Loading...</value>
+  </data>
+  <data name="label_optional" xml:space="preserve">
+    <value>Optional</value>
+  </data>
+  <data name="label_runtime_id" xml:space="preserve">
+    <value>Runtime ID</value>
+  </data>
+  <data name="label_specific_category" xml:space="preserve">
+    <value>Specific</value>
+  </data>
+  <data name="label_type" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="label_type_element" xml:space="preserve">
+    <value>Type element</value>
+  </data>
+  <data name="label_unique_name" xml:space="preserve">
+    <value>Unique name</value>
+  </data>
+  <data name="label_element_type" xml:space="preserve">
+    <value>Element Type</value>
+  </data>
+  <data name="label_supertypes" xml:space="preserve">
+    <value>Super types</value>
   </data>
 </root>

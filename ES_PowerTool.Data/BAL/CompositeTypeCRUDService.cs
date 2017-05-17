@@ -1,19 +1,15 @@
-﻿using ES_PowerTool.Data.Model;
-using ES_PowerTool.Shared.Dtos;
+﻿using ES_PowerTool.Shared.Dtos;
 using ES_PowerTool.Shared.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Desktop.Shared.Core.Context;
+using Desktop.Data.Core.BAL;
+using Desktop.Data.Core.Model;
 
 namespace ES_PowerTool.Data.BAL
 {
     public class CompositeTypeCRUDService : GenericCRUDService<CompositeTypeDto, CompositeType>, ICompositeTypeCRUDService
     {
-        public CompositeTypeCRUDService(IUnitOfWork unitOfWork) 
-            : base(unitOfWork)
+        public CompositeTypeCRUDService(Connection connection) 
+            : base(connection)
         {
         }
     }

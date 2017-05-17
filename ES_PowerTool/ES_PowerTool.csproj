@@ -93,8 +93,12 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Editors\TypeReferenceEditor.cs" />
+    <Compile Include="Handlers\NewTypeElementHandler.cs" />
+    <Compile Include="Handlers\NewTypeHandler.cs" />
+    <Compile Include="Handlers\NewFolderHandler.cs" />
     <Compile Include="Handlers\NewProjectHandler.cs" />
-    <Compile Include="Handlers\SaveProjectHandler.cs" />
+    <Compile Include="Handlers\OpenProjectHandler.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -104,6 +108,7 @@
     <Compile Include="ModelViews\CompositeTypeTreeModelView.cs" />
     <Compile Include="ModelViews\MainWindowModelView.cs" />
     <Compile Include="ModelViews\NewProjectModelView.cs" />
+    <Compile Include="Persister\ProjectPersister.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -135,9 +140,9 @@
       <Project>{61260A01-D7C6-42EB-896E-F13B16B264E9}</Project>
       <Name>Desktop.Shared.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Desktop.Ui.Core\Desktop.Ui.Core.csproj">
+    <ProjectReference Include="..\Desktop.App.Core\Desktop.App.Core.csproj">
       <Project>{61c6cc4b-bf6f-49e2-adb0-0bbfff0ce19b}</Project>
-      <Name>Desktop.Ui.Core</Name>
+      <Name>Desktop.App.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\Desktop.Ui.I18n\Desktop.Ui.I18n.csproj">
       <Project>{ceca7aa6-f76b-4bfc-a009-699bfff8f93b}</Project>
@@ -160,11 +165,22 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <Resource Include="Images\element.png" />
-    <Resource Include="Images\folder.png" />
+    <Resource Include="Images\folder.gif" />
+    <Resource Include="Images\green_circle_filled.gif" />
     <Resource Include="Images\type.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\project.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\open.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\edit.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

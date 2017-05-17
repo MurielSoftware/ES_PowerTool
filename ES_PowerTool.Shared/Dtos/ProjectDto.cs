@@ -45,6 +45,6 @@ namespace ES_PowerTool.Shared.Dtos
         public virtual CSVFile CsvTypes { get; set; }
 
         [Browsable(false)]
-        public virtual CSVFile CsvTypeElements { get; set; }
+        public virtual CSVFile CsvTypeElements { get; set; }    
     }
 }

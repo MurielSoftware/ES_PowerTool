@@ -1,11 +1,12 @@
-﻿using System;
+﻿using Desktop.Shared.Core.Context;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Desktop.Shared
+namespace Desktop.Shared.Core
 {
     public class ServiceActivator
     {
@@ -15,8 +16,13 @@ namespace Desktop.Shared
 
         public static T Get<T>()
         {
-            Type instanceType = serviceAssembly.GetTypes().Where(x => x.Name == GetInstanceName(typeof(T).Name)).SingleOrDefault();
-            return (T)Activator.CreateInstance(instanceType, new object[] { null });
+            return (T)Get(typeof(T));
+        }
+
+        public static object Get(Type type)
+        {
+            Type instanceType = serviceAssembly.GetTypes().Where(x => x.Name == GetInstanceName(type.Name)).SingleOrDefault();
+            return Activator.CreateInstance(instanceType, new object[] { Connection.GetInstance() });
         }
 
         private static string GetInstanceName(string interfaceName)

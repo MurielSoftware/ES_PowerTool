@@ -53,6 +53,7 @@ namespace Desktop.Shared.Core.Navigations
         public virtual TreeNavigationItem Parent { get; set; }
         public virtual ObservableCollection<TreeNavigationItem> Children { get; set; }
         public virtual bool HasRemoteChildren { get; set; }
+        public virtual Guid ProjectId { get; set; }
 
         public TreeNavigationItem()
         {
@@ -67,11 +68,11 @@ namespace Desktop.Shared.Core.Navigations
             Type = type;
         }
 
-        public TreeNavigationItem(Guid id, string name, NavigationType type, bool remote)
-            : this(id, name, type)
-        {
-            HasRemoteChildren = remote;
-        }
+        //public TreeNavigationItem(Guid id, string name, NavigationType type, bool remote)
+        //    : this(id, name, type)
+        //{
+        //    HasRemoteChildren = remote;
+        //}
 
         public void SetChildren(List<TreeNavigationItem> children)
         {
@@ -120,6 +121,11 @@ namespace Desktop.Shared.Core.Navigations
 
             TreeNavigationItem rsd = obj as TreeNavigationItem;
             return Id.Equals(rsd.Id);
+        }
+
+        public override string ToString()
+        {
+            return Name;
         }
 
         public string GetPathToRoot()

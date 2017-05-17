@@ -24,7 +24,7 @@ namespace ES_PowerTool
         {
             InitializeComponent();
 
-            AppDomain.CurrentDomain.SetData("DataDirectory", AppDomain.CurrentDomain.BaseDirectory);
+            //AppDomain.CurrentDomain.SetData("DataDirectory", AppDomain.CurrentDomain.BaseDirectory);
         }
     }
 }

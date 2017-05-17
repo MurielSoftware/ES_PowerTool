@@ -1,4 +1,5 @@
-﻿using Desktop.Shared.Core.Services;
+﻿using Desktop.Shared.Core.Navigations;
+using Desktop.Shared.Core.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,5 +10,6 @@ namespace ES_PowerTool.Shared.Services
 {
     public interface ICompositeTypeNavigationService : INavigationService
     {
+        List<TreeNavigationItem> GetAllDerivableCompositeTypes();
     }
 }

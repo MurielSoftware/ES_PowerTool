@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Desktop.Shared.Core.Navigations;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,6 +10,11 @@ namespace Desktop.Shared.Core.DataTypes
     public class ReferenceString
     {
         private string _value;
+
+        public ReferenceString()
+        {
+
+        }
 
         public ReferenceString(string value)
         {
@@ -43,6 +49,13 @@ namespace Desktop.Shared.Core.DataTypes
             _value += id.ToString() + ":" + value + ";";
         }
 
+        public void Remove(Guid id)
+        {
+            int startIndex = _value.IndexOf(id.ToString());
+            int removeIndex = _value.IndexOf(";", startIndex) + 1;
+            _value = _value.Remove(startIndex, removeIndex - startIndex);
+        }
+
         public override string ToString()
         {
             return _value;
@@ -58,6 +71,17 @@ namespace Desktop.Shared.Core.DataTypes
                 parsedReferenceString.Add(Guid.Parse(pair[0]), pair[1]);
             }
             return parsedReferenceString;
+        }
+
+        public List<TreeNavigationItem> ToTreeNavigationItems()
+        {
+            Dictionary<Guid, string> parsedReferenceString = Parse(_value);
+            List<TreeNavigationItem> treeNavigationItems = new List<TreeNavigationItem>();
+            foreach(KeyValuePair<Guid, string> value in parsedReferenceString)
+            {
+                treeNavigationItems.Add(new TreeNavigationItem(value.Key, value.Value, NavigationType.FOLDER));
+            }
+            return treeNavigationItems;
         }
     }
 }

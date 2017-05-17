@@ -54,42 +54,21 @@
     <Compile Include="BAL\CompositeTypeNavigationService.cs" />
     <Compile Include="BAL\FolderCRUDService.cs" />
     <Compile Include="BAL\CompositeTypeCRUDService.cs" />
-    <Compile Include="BAL\GenericCRUDService.cs" />
     <Compile Include="BAL\ProjectCRUDService.cs" />
-    <Compile Include="Context\ES_PowerToolContext.cs" />
-    <Compile Include="Converters\Attributes\PrimitiveAttributeConverter.cs" />
-    <Compile Include="Converters\BaseConvertProvider.cs" />
-    <Compile Include="Converters\DtoToEntityConvertProvider.cs" />
-    <Compile Include="Converters\EntityToDtoConvertProvider.cs" />
-    <Compile Include="Converters\IConverter.cs" />
-    <Compile Include="Converters\References\BaseReferenceAttributeConverter.cs" />
-    <Compile Include="Converters\References\IReferenceConverter.cs" />
-    <Compile Include="Converters\References\List\BaseListReferenceAttributeConverter.cs" />
-    <Compile Include="Converters\References\List\EntityToDto\ListReferenceAttributeEntityToDto.cs" />
-    <Compile Include="Converters\References\List\EntityToDto\SingleListReferenceAttributeEntityToDto.cs" />
-    <Compile Include="Converters\References\Reference\DtoToEntity\MultiReferenceAttributeDtoToEntityConverter.cs" />
-    <Compile Include="Converters\References\Reference\DtoToEntity\ReferenceAttributeDtoToEntityConverter.cs" />
-    <Compile Include="Converters\References\Reference\DtoToEntity\SingleReferenceAttributeDtoToEntityConverter.cs" />
-    <Compile Include="Converters\References\Reference\EntityToDto\MultiReferenceAttributeEntityToDtoConverter.cs" />
-    <Compile Include="Converters\References\Reference\EntityToDto\ReferenceAttributeEntityToDtoConverter.cs" />
-    <Compile Include="Converters\References\Reference\EntityToDto\SingleReferenceAttributeEntityToDtoConverter.cs" />
-    <Compile Include="Converters\References\Utils\ReferenceConversionUtils.cs" />
-    <Compile Include="DAL\BaseRepository.cs" />
     <Compile Include="DAL\CompositeTypeElementNavigationRepository.cs" />
     <Compile Include="DAL\CompositeTypeElementRepository.cs" />
     <Compile Include="DAL\CompositeTypeNavigationRepository.cs" />
     <Compile Include="DAL\FolderNavigationRepository.cs" />
     <Compile Include="DAL\FolderRepository.cs" />
     <Compile Include="DAL\CompositeTypeRepository.cs" />
-    <Compile Include="DAL\GenericRepository.cs" />
-    <Compile Include="Model\BaseEntity.cs" />
-    <Compile Include="Model\CompositeType.cs" />
-    <Compile Include="Model\CompositeTypeElement.cs" />
-    <Compile Include="Model\Folder.cs" />
-    <Compile Include="Model\Project.cs" />
+    <Compile Include="DAL\ProjectNavigationRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Desktop.Data.Core\Desktop.Data.Core.csproj">
+      <Project>{fee263d1-c64f-448b-b24d-9347af62a035}</Project>
+      <Name>Desktop.Data.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Desktop.Shared\Desktop.Shared.Core.csproj">
       <Project>{61260a01-d7c6-42eb-896e-f13b16b264e9}</Project>
       <Name>Desktop.Shared.Core</Name>

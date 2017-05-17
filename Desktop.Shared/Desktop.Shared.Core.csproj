@@ -46,6 +46,8 @@
     <Compile Include="Attributes\LocalizedCategoryAttribute.cs" />
     <Compile Include="Attributes\LocalizedDisplayNameAttribute.cs" />
     <Compile Include="Attributes\ReferenceAttribute.cs" />
+    <Compile Include="Attributes\ReferenceEdirorAttribute.cs" />
+    <Compile Include="Context\Connection.cs" />
     <Compile Include="Context\IDatabaseContext.cs" />
     <Compile Include="Context\IUnitOfWork.cs" />
     <Compile Include="DataTypes\FilePath.cs" />
@@ -61,6 +63,7 @@
     <Compile Include="Services\ICRUDService.cs" />
     <Compile Include="Services\INavigationService.cs" />
     <Compile Include="Services\IService.cs" />
+    <Compile Include="Singleton.cs" />
     <Compile Include="Utils\Converter.cs" />
   </ItemGroup>
   <ItemGroup>

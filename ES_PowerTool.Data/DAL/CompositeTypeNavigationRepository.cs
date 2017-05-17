@@ -1,18 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Desktop.Shared.Core.Context;
-using ES_PowerTool.Data.Model;
 using Desktop.Shared.Core.Navigations;
+using Desktop.Data.Core.DAL;
+using Desktop.Data.Core.Model;
 
 namespace ES_PowerTool.Data.DAL
 {
     public class CompositeTypeNavigationRepository : BaseRepository
     {
-        public CompositeTypeNavigationRepository(IUnitOfWork unitOfWork) 
-            : base(unitOfWork)
+        public CompositeTypeNavigationRepository(Connection connection) 
+            : base(connection)
         {
         }
 
@@ -28,8 +27,17 @@ namespace ES_PowerTool.Data.DAL
         {
             return GetContext().Set<CompositeType>()
                 .Where(x => x.Id == id)
-                .Select(x => new TreeNavigationItem() { Id = x.Id, Name = x.Description, Type = NavigationType.TYPE })
+                .Select(x => new TreeNavigationItem() { Id = x.Id, Name = x.Description, Type = NavigationType.TYPE, HasRemoteChildren = x.Children.Count > 0 })
                 .SingleOrDefault();
+        }
+
+        internal List<TreeNavigationItem> FindAllDerivable()
+        {
+            return GetContext().Set<CompositeType>()
+                .AsNoTracking()
+                .Where(x => x.Derivable == true)
+                .Select(x => new TreeNavigationItem() { Id = x.Id, Name = x.Description, Type = NavigationType.TYPE })
+                .ToList();
         }
     }
 }

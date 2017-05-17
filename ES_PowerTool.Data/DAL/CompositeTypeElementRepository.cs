@@ -1,16 +1,12 @@
-﻿using Desktop.Shared.Core.Context;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Desktop.Data.Core.DAL;
+using Desktop.Shared.Core.Context;
 
 namespace ES_PowerTool.Data.DAL
 {
     public class CompositeTypeElementRepository : BaseRepository
     {
-        public CompositeTypeElementRepository(IUnitOfWork unitOfWork)
-            : base(unitOfWork)
+        public CompositeTypeElementRepository(Connection connection)
+            : base(connection)
         {
         }
     }

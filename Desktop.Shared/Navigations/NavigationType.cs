@@ -8,6 +8,7 @@ namespace Desktop.Shared.Core.Navigations
 {
     public enum NavigationType
     {
+        PROJECT,
         FOLDER,
         TYPE,
         TYPE_ELEMENT

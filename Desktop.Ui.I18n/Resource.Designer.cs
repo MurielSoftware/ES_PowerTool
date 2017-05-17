@@ -70,6 +70,15 @@ namespace Desktop.Ui.I18n {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Built-in.
+        /// </summary>
+        public static string label_built_in {
+            get {
+                return ResourceManager.GetString("label_built_in", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Common.
         /// </summary>
         public static string label_common_category {
@@ -88,11 +97,56 @@ namespace Desktop.Ui.I18n {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Derivable.
+        /// </summary>
+        public static string label_derivable {
+            get {
+                return ResourceManager.GetString("label_derivable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Description.
+        /// </summary>
+        public static string label_description {
+            get {
+                return ResourceManager.GetString("label_description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Element Type.
+        /// </summary>
+        public static string label_element_type {
+            get {
+                return ResourceManager.GetString("label_element_type", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Folder.
+        /// </summary>
+        public static string label_folder {
+            get {
+                return ResourceManager.GetString("label_folder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Path to CSV Folder.
         /// </summary>
         public static string label_folder_csv_path {
             get {
                 return ResourceManager.GetString("label_folder_csv_path", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Loading....
+        /// </summary>
+        public static string label_loading {
+            get {
+                return ResourceManager.GetString("label_loading", resourceCulture);
             }
         }
         
@@ -108,9 +162,27 @@ namespace Desktop.Ui.I18n {
         /// <summary>
         ///   Looks up a localized string similar to New Project.
         /// </summary>
-        public static string Label_NewProject {
+        public static string label_new_project {
             get {
-                return ResourceManager.GetString("Label_NewProject", resourceCulture);
+                return ResourceManager.GetString("label_new_project", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open project.
+        /// </summary>
+        public static string label_open_project {
+            get {
+                return ResourceManager.GetString("label_open_project", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Optional.
+        /// </summary>
+        public static string label_optional {
+            get {
+                return ResourceManager.GetString("label_optional", resourceCulture);
             }
         }
         
@@ -124,6 +196,42 @@ namespace Desktop.Ui.I18n {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Runtime ID.
+        /// </summary>
+        public static string label_runtime_id {
+            get {
+                return ResourceManager.GetString("label_runtime_id", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specific.
+        /// </summary>
+        public static string label_specific_category {
+            get {
+                return ResourceManager.GetString("label_specific_category", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Super types.
+        /// </summary>
+        public static string label_supertypes {
+            get {
+                return ResourceManager.GetString("label_supertypes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Type.
+        /// </summary>
+        public static string label_type {
+            get {
+                return ResourceManager.GetString("label_type", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Path to CSV Type.
         /// </summary>
         public static string label_type_csv_path {
@@ -133,11 +241,29 @@ namespace Desktop.Ui.I18n {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Type element.
+        /// </summary>
+        public static string label_type_element {
+            get {
+                return ResourceManager.GetString("label_type_element", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Path to CSV Type Element.
         /// </summary>
         public static string label_type_element_csv_path {
             get {
                 return ResourceManager.GetString("label_type_element_csv_path", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unique name.
+        /// </summary>
+        public static string label_unique_name {
+            get {
+                return ResourceManager.GetString("label_unique_name", resourceCulture);
             }
         }
     }

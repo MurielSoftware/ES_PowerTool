@@ -12,11 +12,11 @@ namespace Desktop.Shared.Core.Services
     /// </summary>
     public abstract class BaseService : IService
     {
-        protected IUnitOfWork _unitOfWork;
+        protected Connection _connection;
 
-        public BaseService(IUnitOfWork unitOfWork)
+        public BaseService(Connection connection)
         {
-            _unitOfWork = unitOfWork;
+            _connection = connection;
         }
     }
 }
