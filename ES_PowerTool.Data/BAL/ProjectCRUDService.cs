@@ -35,21 +35,21 @@ namespace ES_PowerTool.Data.BAL
         private void PersistEntities<T>(Guid projectId, CSVFile file, string dtype = "")
             where T : BaseEntity
         {
-            int rowIndex = 0;
-            List<T> entities = new List<T>();
-            foreach(CSVRow csvRow in file.GetRows())
-            {
-                Dictionary<string, string> rowToHeader = file.GetRowToHeader(rowIndex++);
-                if(rowToHeader.ContainsKey("DTYPE"))
-                {
-                    if(!dtype.Equals(rowToHeader["DTYPE"]))
-                    {
-                        continue;
-                    }
-                }
-                entities.Add(CreateEntity<T>(projectId, rowToHeader));
-            }
-            _genericRepository.PersistAsNews<T>(entities);
+            //int rowIndex = 0;
+            //List<T> entities = new List<T>();
+            //foreach(CSVRow csvRow in file.GetRows())
+            //{
+            //    Dictionary<string, string> rowToHeader = file.GetRowToHeader(rowIndex++);
+            //    if(rowToHeader.ContainsKey("DTYPE"))
+            //    {
+            //        if(!dtype.Equals(rowToHeader["DTYPE"]))
+            //        {
+            //            continue;
+            //        }
+            //    }
+            //    entities.Add(CreateEntity<T>(projectId, rowToHeader));
+            //}
+            //_genericRepository.PersistAsNews<T>(entities);
         }
 
         private T CreateEntity<T>(Guid projectId, Dictionary<string, string> rowToHeader) 

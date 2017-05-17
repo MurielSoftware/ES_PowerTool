@@ -43,7 +43,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CSV\CSVFile.cs" />
+    <Compile Include="CSV\CSVHeader.cs" />
     <Compile Include="CSV\CSVRow.cs" />
+    <Compile Include="CSV\CSVValue.cs" />
     <Compile Include="Dtos\CompositeTypeDto.cs" />
     <Compile Include="Dtos\CompositeTypeElementDto.cs" />
     <Compile Include="Dtos\FolderDto.cs" />
