@@ -35,25 +35,5 @@ namespace ES_PowerTool.Shared.CSV
             }
             return value;
         }
-
-        //public override bool Equals(object obj)
-        //{
-        //    if (obj == null)
-        //    {
-        //        return false;
-        //    }
-        //    if (!(obj is CSVValue))
-        //    {
-        //        return false;
-        //    }
-
-        //    CSVValue rsd = obj as CSVValue;
-        //    return _value.Equals(rsd.GetValue());
-        //}
-
-        //public override int GetHashCode()
-        //{
-        //    return _value.GetHashCode();
-        //}
     }
 }

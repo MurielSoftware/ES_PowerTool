@@ -86,6 +86,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Handlers\GenerateHandler.cs" />
+    <Compile Include="ModelViews\GenerateWindowModelView.cs" />
     <Compile Include="Ui\Windows\GenerateWindow.xaml.cs">
       <DependentUpon>GenerateWindow.xaml</DependentUpon>
     </Compile>

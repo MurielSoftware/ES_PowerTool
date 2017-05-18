@@ -9,7 +9,7 @@
     <Grid>
         <TabControl>
             <TabItem Header="FOLDER">
-                <TextBox />
+                <TextBox Text="{Binding Dto.GeneratedCSVFolder}" />
             </TabItem>
             <TabItem Header="TYPE">
                 <TextBox />

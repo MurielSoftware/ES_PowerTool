@@ -20,9 +20,9 @@ namespace ES_PowerTool.Persister
 
         protected override void BeforePersist()
         {
-            GetDto().CsvFolders = CSVFile.Load(GetDto().PathFolder.Path);
-            GetDto().CsvTypes = CSVFile.Load(GetDto().PathType.Path);
-            GetDto().CsvTypeElements = CSVFile.Load(GetDto().PathTypeElement.Path);
+            GetDto().CsvFolders = CSVReader.Read(GetDto().PathFolder.Path);
+            GetDto().CsvTypes = CSVReader.Read(GetDto().PathType.Path);
+            GetDto().CsvTypeElements = CSVReader.Read(GetDto().PathTypeElement.Path);
         }
     }
 }

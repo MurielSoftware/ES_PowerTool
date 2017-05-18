@@ -14,7 +14,7 @@ namespace Desktop.Shared.Core.Dtos
     public abstract class BaseDto : IDataErrorInfo
     {
         [Browsable(false)]
-        [CSVAttribute("ID")]
+        [CSVAttribute("ID", 0)]
         public Guid Id { get; set; }
 
         [Browsable(false)]

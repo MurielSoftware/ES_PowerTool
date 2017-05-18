@@ -18,24 +18,24 @@ namespace ES_PowerTool.Shared.Dtos
         [LocalizedCategory(MessageKeyConstants.LABEL_COMMON_CATEGORY)]
         [LocalizedDisplayName(MessageKeyConstants.LABEL_NAME)]
         [Required]
-        [CSVAttribute("NAME")]
+        [CSVAttribute("NAME", 1)]
         public virtual string Name { get; set; }
 
         [Browsable(false)]
-        [CSVAttribute("BUILT_IN")]
+        [CSVAttribute("BUILT_IN", 2)]
         public virtual bool BuiltIn { get; set; }
 
         [Browsable(false)]
-        [CSVAttribute("CONTENT_BUILT_IN")]
+        [CSVAttribute("CONTENT_BUILT_IN", 3)]
         public virtual bool ContentBuiltIn { get; set; }
 
         [Browsable(false)]
-        [CSVAttribute("SORT_VALUE")]
+        [CSVAttribute("SORT_VALUE", 4)]
         public virtual int SortValue { get; set; }
 
         [Browsable(false)]
 
-        [CSVAttribute("PARENT_ID")]
+        [CSVAttribute("PARENT_ID", 5)]
         public virtual Guid? ParentId { get; set; }
 
         [Browsable(false)]

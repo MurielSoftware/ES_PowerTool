@@ -25,11 +25,11 @@ namespace Desktop.Shared.Utils
             }
             else if (type == typeof(Guid?))
             {
-                //if (string.IsNullOrEmpty(value) || "null".Equals(value))
-                //{
-                //    return null;
-                //}
                 return Guid.Parse(value);
+            }
+            else if(type == typeof(bool?))
+            {
+                return Boolean.Parse(value);
             }
             return Convert.ChangeType(value, type);
         }

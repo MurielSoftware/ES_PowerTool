@@ -19,36 +19,36 @@ namespace ES_PowerTool.Shared.Dtos
         [LocalizedCategory(MessageKeyConstants.LABEL_COMMON_CATEGORY)]
         [LocalizedDisplayName(MessageKeyConstants.LABEL_UNIQUE_NAME)]
         [Required]
-        [CSVAttribute("UNIQUE_NAME")]
+        [CSVAttribute("UNIQUE_NAME", 1)]
         public virtual string UniqueName { get; set; }
 
         [LocalizedCategory(MessageKeyConstants.LABEL_COMMON_CATEGORY)]
         [LocalizedDisplayName(MessageKeyConstants.LABEL_DESCRIPTION)]
         [Required]
-        [CSVAttribute("DESCRIPTION")]
+        [CSVAttribute("DESCRIPTION", 2)]
         public virtual string Description { get; set; }
 
         [LocalizedCategory(MessageKeyConstants.LABEL_SPECIFIC_CATEGORY)]
         [LocalizedDisplayName(MessageKeyConstants.LABEL_OPTIONAL)]
-        [CSVAttribute("OPTIONAL")]
+        [CSVAttribute("OPTIONAL", 3)]
         public virtual bool Optional { get; set; }
         
         [LocalizedCategory(MessageKeyConstants.LABEL_SPECIFIC_CATEGORY)]
         [LocalizedDisplayName(MessageKeyConstants.LABEL_RUNTIME_ID)]
         [Required]
-        [CSVAttribute("RUNTIME_ID")]
+        [CSVAttribute("RUNTIME_ID", 4)]
         public virtual Guid RuntimeId { get; set; }
 
         [Browsable(false)]
-        [CSVAttribute("SORT_VALUE")]
+        [CSVAttribute("SORT_VALUE", 5)]
         public virtual int SortValue { get; set; }
 
         [Browsable(false)]
-        [CSVAttribute("OWNING_TYPE_ID")]
+        [CSVAttribute("OWNING_TYPE_ID", 6)]
         public virtual Guid OwningTypeId { get; set; }
 
         [Browsable(false)]
-        [CSVAttribute("ELEMENT_TYPE_ID")]
+        [CSVAttribute("ELEMENT_TYPE_ID", 7)]
         public virtual Guid ElementTypeId { get; set; }
 
         [LocalizedCategory(MessageKeyConstants.LABEL_SPECIFIC_CATEGORY)]

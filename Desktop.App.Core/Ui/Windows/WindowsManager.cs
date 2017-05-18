@@ -1,7 +1,9 @@
 ﻿using Desktop.App.Core;
 using Desktop.App.Core.ModelViews;
 using System;
+using System.Threading;
 using System.Windows;
+using System.Windows.Threading;
 
 namespace Desktop.App.Core.Ui.Windows
 {
@@ -31,5 +33,26 @@ namespace Desktop.App.Core.Ui.Windows
             }
             return false;
         }
+
+        public void ShowDialogThreadSafe(Window window, BaseModelView modelView = null)
+        {
+            window.Owner = Application.Current.MainWindow;
+            window.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            window.DataContext = modelView;
+            window.ShowDialog();
+            //wizard.CreateUi();
+            //bool? dialogResult = wizard.ShowDialog();
+            //window.Dispatcher.Invoke(DispatcherPriority.Normal, new ThreadStart(ShowDialog));
+            //if (dialogResult.HasValue)
+            //{
+            //    return dialogResult.Value;
+            //}
+            //return false;
+        }
+
+        //private void ShowDialog(Window window)
+        //{
+        //    window.ShowDialog();
+        //}
     }
 }

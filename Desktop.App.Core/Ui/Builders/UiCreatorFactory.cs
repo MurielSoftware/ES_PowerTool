@@ -109,6 +109,7 @@ namespace Desktop.App.Core.Ui.Builders
             map.Add(typeof(float), new TextBoxControlBuilder());
             map.Add(typeof(int), new TextBoxControlBuilder());
             map.Add(typeof(bool), new CheckBoxControlBuilder());
+            map.Add(typeof(bool?), new CheckBoxControlBuilder());
             map.Add(typeof(Enum), new EnumControlBuilder());
             //map.Add(typeof(ReferenceString), new ReferenceControlBuilder());
             map.Add(typeof(FilePath), new FileBrowserControlBuilder());

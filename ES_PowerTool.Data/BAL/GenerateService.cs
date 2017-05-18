@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 using Desktop.Shared.Core.Context;
 using ES_PowerTool.Data.DAL;
 using Desktop.Data.Core.Model;
+using ES_PowerTool.Shared.CSV;
+using ES_PowerTool.Shared.Dtos;
 
 namespace ES_PowerTool.Data.BAL
 {
@@ -21,9 +23,12 @@ namespace ES_PowerTool.Data.BAL
             _folderRepository = new FolderRepository(connection);
         }
 
-        public void Generate()
+        public GenerateDto Generate()
         {
+            GenerateDto generateDto = new GenerateDto();
             List<Folder> folders = _folderRepository.GetFoldersToExport();
+            generateDto.GeneratedCSVFolder = CSVWriter.Write<FolderDto>(folders);
+            return generateDto;
         }
     }
 }
