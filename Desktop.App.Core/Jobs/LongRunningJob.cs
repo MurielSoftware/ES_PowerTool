@@ -11,7 +11,7 @@ namespace Desktop.App.Core.Jobs
         private ProgressWindow _progressWindow;
         private ProgressWindowModelView _progressWindowModelView;
         private Action<T> _action;
-        private List<Action> _afterAction = new List<Action>();
+        private List<Action<T>> _afterAction = new List<Action<T>>();
             
         public LongRunningJob(Action<T> action, string title)
         {
@@ -25,7 +25,7 @@ namespace Desktop.App.Core.Jobs
             _progressWindow.DataContext = _progressWindowModelView;
         }
 
-        public void AddAction(Action action)
+        public void AddAction(Action<T> action)
         {
             _afterAction.Add(action);
         }
@@ -40,9 +40,9 @@ namespace Desktop.App.Core.Jobs
         private async Task AsyncExecute(T parameter)
         {
             Task task = Task.Factory.StartNew(() => _action.Invoke(parameter));
-            foreach(Action action in _afterAction)
+            foreach(Action<T> action in _afterAction)
             {
-                await task.ContinueWith(t => action.Invoke());
+                await task.ContinueWith(t => action.Invoke(parameter));
             }
             await task;
         }

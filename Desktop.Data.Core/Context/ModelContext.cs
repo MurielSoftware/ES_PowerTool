@@ -16,6 +16,9 @@ namespace Desktop.Data.Core.Context
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<CompositeTypeElement>().HasRequired(x => x.ElementType).WithMany().HasForeignKey(x => x.ElementTypeId).WillCascadeOnDelete(false);
             modelBuilder.Entity<CompositeTypeElement>().HasRequired(x => x.OwningType).WithMany().HasForeignKey(x => x.OwningTypeId).WillCascadeOnDelete(false);
+            //modelBuilder.Entity<Preset>().HasRequired(x => x.CompositeType).WithMany().HasForeignKey(x => x.CompositeTypeId).WillCascadeOnDelete(false);
+            modelBuilder.Entity<CompositeType>().HasMany(x => x.Presets).WithRequired().HasForeignKey(x => x.CompositeTypeId).WillCascadeOnDelete(false);
+            //modelBuilder.Entity<Preset>().HasRequired(x => x.).WithMany().HasForeignKey(x => x.OwningTypeId).WillCascadeOnDelete(false);
 
             modelBuilder.Entity<ModelObjectType>()
                 .Map<CompositeType>(m => m.Requires("Discriminator").HasValue(CompositeType.DISC))
@@ -26,5 +29,6 @@ namespace Desktop.Data.Core.Context
         public DbSet<Folder> Folders { get; set; }
         public DbSet<CompositeTypeElement> CompositeTypeElements { get; set; }
         public DbSet<Project> Projects { get; set; }
+        public DbSet<Preset> Preset { get; set; }
     }
 }

@@ -189,4 +189,7 @@
   <data name="label_generate" xml:space="preserve">
     <value>Generate</value>
   </data>
+  <data name="label_preset" xml:space="preserve">
+    <value>Preset</value>
+  </data>
 </root>

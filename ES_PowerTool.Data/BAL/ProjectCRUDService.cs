@@ -36,6 +36,11 @@ namespace ES_PowerTool.Data.BAL
             where T : BaseEntity
             where U : BaseDto
         {
+            if(file == null)
+            {
+                return;
+            }
+
             List<T> entities = new List<T>();
             CSVRow header = file.GetHeader();
             foreach(CSVRow row in file.GetValues())

@@ -28,5 +28,6 @@ namespace Desktop.Ui.I18n
         public const string LABEL_DERIVABLE = "label_derivable";
         public const string LABEL_ELEMENT_TYPE = "label_element_type";
         public const string LABEL_SUPERTYPES = "label_supertypes";
+        public const string LABEL_PRESET = "label_preset";
     }
 }

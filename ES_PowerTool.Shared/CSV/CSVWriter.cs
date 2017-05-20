@@ -48,7 +48,7 @@ namespace ES_PowerTool.Shared.CSV
                     {
                         row.Append("null");
                     }
-                    else if (isNotQuoteAttribute(propertyInfo.PropertyType))
+                    else if (IsNotQuoteAttribute(propertyInfo.PropertyType))
                     {
                         row.Append(value.ToString().ToLower());
                     }
@@ -73,7 +73,7 @@ namespace ES_PowerTool.Shared.CSV
                 .ToList();
         }
 
-        private static bool isNotQuoteAttribute(Type type)
+        private static bool IsNotQuoteAttribute(Type type)
         {
             return type == typeof(bool);
         }

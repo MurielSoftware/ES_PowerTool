@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Desktop.Shared.Core.Services;
 using ES_PowerTool.Shared.CSV;
 using Desktop.Shared.Core.Context;
+using Desktop.Shared.DataTypes;
 
 namespace ES_PowerTool.Persister
 {
@@ -20,6 +21,13 @@ namespace ES_PowerTool.Persister
 
         protected override void BeforePersist()
         {
+            FilePath pathFolder = GetDto().PathFolder;
+            FilePath pathType = GetDto().PathType;
+            FilePath pathTypeElements = GetDto().PathTypeElement;
+            if(pathFolder == null && pathType == null && pathTypeElements == null)
+            {
+                return;
+            }
             GetDto().CsvFolders = CSVReader.Read(GetDto().PathFolder.Path);
             GetDto().CsvTypes = CSVReader.Read(GetDto().PathType.Path);
             GetDto().CsvTypeElements = CSVReader.Read(GetDto().PathTypeElement.Path);

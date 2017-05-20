@@ -11,6 +11,7 @@ namespace Desktop.Shared.Core.Navigations
         PROJECT,
         FOLDER,
         TYPE,
-        TYPE_ELEMENT
+        TYPE_ELEMENT,
+        PRESET
     }
 }

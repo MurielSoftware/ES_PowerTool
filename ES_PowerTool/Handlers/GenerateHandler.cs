@@ -20,21 +20,14 @@ namespace ES_PowerTool.Handlers
     {
         private GenerateWindow _generateWindow = new GenerateWindow();
         private GenerateDto _generateDto = new GenerateDto();
-
         protected override void DoExecute(ExecutionEvent executionEvent)
         {
-            //GenerateWindow generateWindow = new GenerateWindow();
-
+            
             try
             {
-                LongRunningJob<GenerateDto> projectCreationJob = new LongRunningJob<GenerateDto>(Generate, "Generate");
-                projectCreationJob.AddAction(delegate
-                {
-                    //generateWindow.ShowDialog();
-                    //WindowsManager.GetInstance().ShowDialogThreadSafe(generateWindow);
-                    // Dispatcher.CurrentDispatcher.Invoke(DispatcherPriority.Normal, new ThreadStart(OpenDialog));
-                    //WindowsManager.GetInstance().ShowDialog<GenerateWindow>();
-                    _generateWindow.Dispatcher.Invoke(DispatcherPriority.Normal, new ThreadStart(OpenDialog));
+                LongRunningJob<GenerateDto> projectCreationJob = new LongRunningJob<GenerateDto>(GenerateAction, "Generate");
+                projectCreationJob.AddAction(delegate {
+                    _generateWindow.Dispatcher.Invoke(AfterGenerateAction, DispatcherPriority.Normal);
                 });
                 projectCreationJob.Execute(_generateDto);
             }
@@ -42,17 +35,18 @@ namespace ES_PowerTool.Handlers
             {
 
             }
+            //WindowsManager.GetInstance().ShowDialog<GenerateWindow>(new GenerateWindowModelView(generateDto));
         }
 
-        private void OpenDialog()
-        {
-            WindowsManager.GetInstance().ShowDialogThreadSafe(_generateWindow, new GenerateWindowModelView(_generateDto));
-        }
-
-        private void Generate(GenerateDto generateDto)
+        private void GenerateAction(GenerateDto generateDto)
         {
             IGenerateService generateService = ServiceActivator.Get<IGenerateService>();
-            generateDto = generateService.Generate();
+            _generateDto = generateService.Generate();
+        }
+
+        private void AfterGenerateAction()
+        {
+            WindowsManager.GetInstance().ShowDialog<GenerateWindow>(new GenerateWindowModelView(_generateDto)); 
         }
 
         protected override void OnFailure(ExecutionEvent executionEvent)

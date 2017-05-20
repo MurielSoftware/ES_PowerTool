@@ -39,10 +39,10 @@ namespace Desktop.App.Core.Ui.Windows
             window.Owner = Application.Current.MainWindow;
             window.WindowStartupLocation = WindowStartupLocation.CenterOwner;
             window.DataContext = modelView;
-            window.ShowDialog();
+            //window.ShowDialog();
             //wizard.CreateUi();
             //bool? dialogResult = wizard.ShowDialog();
-            //window.Dispatcher.Invoke(DispatcherPriority.Normal, new ThreadStart(ShowDialog));
+            window.Dispatcher.Invoke(DispatcherPriority.Normal, new ThreadStart(window.Show));
             //if (dialogResult.HasValue)
             //{
             //    return dialogResult.Value;

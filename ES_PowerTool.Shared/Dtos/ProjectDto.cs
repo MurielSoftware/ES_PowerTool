@@ -15,15 +15,12 @@ using System.Xml.Serialization;
 
 namespace ES_PowerTool.Shared.Dtos
 {
-    [Serializable]
-    [XmlRoot("Project")]
     [LocalizedDisplayName(MessageKeyConstants.LABEL_PROJECT)]
     public class ProjectDto : BaseDto
     {
         [LocalizedCategory(MessageKeyConstants.LABEL_COMMON_CATEGORY)]
         [LocalizedDisplayName(MessageKeyConstants.LABEL_NAME)]
         [Required]
-        [XmlAttribute("Name")]
         public virtual string Name { get; set; }
 
         [LocalizedCategory(MessageKeyConstants.LABEL_CSV_CATEGORY)]

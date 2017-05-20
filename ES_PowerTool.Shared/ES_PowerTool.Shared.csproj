@@ -52,6 +52,7 @@
     <Compile Include="Dtos\FolderDto.cs" />
     <Compile Include="Dtos\GenerateDto.cs" />
     <Compile Include="Dtos\ModelObjectTypeDto.cs" />
+    <Compile Include="Dtos\PresetDto.cs" />
     <Compile Include="Dtos\PrimitiveTypeDto.cs" />
     <Compile Include="Dtos\ProjectDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -60,6 +61,7 @@
     <Compile Include="Services\IFolderCRUDService.cs" />
     <Compile Include="Services\ICompositeTypeCRUDService.cs" />
     <Compile Include="Services\IGenerateService.cs" />
+    <Compile Include="Services\IPresetCRUDService.cs" />
     <Compile Include="Services\IPrimitiveCRUDService.cs" />
     <Compile Include="Services\IProjectCRUDService.cs" />
   </ItemGroup>

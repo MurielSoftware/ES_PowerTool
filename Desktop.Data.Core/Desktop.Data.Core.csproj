@@ -76,6 +76,7 @@
     <Compile Include="Model\CompositeTypeElement.cs" />
     <Compile Include="Model\Folder.cs" />
     <Compile Include="Model\IProjectAwareEntity.cs" />
+    <Compile Include="Model\Preset.cs" />
     <Compile Include="Model\PrimitiveType.cs" />
     <Compile Include="Model\Project.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

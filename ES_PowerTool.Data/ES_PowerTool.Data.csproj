@@ -55,6 +55,7 @@
     <Compile Include="BAL\FolderCRUDService.cs" />
     <Compile Include="BAL\CompositeTypeCRUDService.cs" />
     <Compile Include="BAL\GenerateService.cs" />
+    <Compile Include="BAL\PresetCRUDService.cs" />
     <Compile Include="BAL\ProjectCRUDService.cs" />
     <Compile Include="DAL\CompositeTypeElementNavigationRepository.cs" />
     <Compile Include="DAL\CompositeTypeElementRepository.cs" />

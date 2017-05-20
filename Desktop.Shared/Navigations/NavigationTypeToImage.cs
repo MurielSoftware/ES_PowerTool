@@ -14,6 +14,7 @@ namespace Desktop.Shared.Core.Navigations
             { NavigationType.FOLDER, new Uri("pack://application:,,,/Images/folder.gif") },
             { NavigationType.TYPE, new Uri("pack://application:,,,/Images/type.png") },
             { NavigationType.TYPE_ELEMENT, new Uri("pack://application:,,,/Images/green_circle_filled.gif") },
+            { NavigationType.PRESET, new Uri("pack://application:,,,/Images/preset.gif") },
         };
     }
 }
