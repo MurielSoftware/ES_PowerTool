@@ -15,7 +15,7 @@ namespace ES_PowerTool.Shared.Dtos
     [LocalizedDisplayName(MessageKeyConstants.LABEL_TYPE)]
     public class CompositeTypeDto : ModelObjectTypeDto
     {
-        [LocalizedCategory(MessageKeyConstants.LABEL_SPECIFIC_CATEGORY)]
+        [LocalizedCategory(MessageKeyConstants.LABEL_SPECIFIC_CATEGORY, 1)]
         [LocalizedDisplayName(MessageKeyConstants.LABEL_SUPERTYPES)]
         [ListReference("SuperTypes")]
         [ReferenceEdiror("ES_PowerTool.Editors.TypeReferenceDerivableEditor", "ES_PowerTool")]

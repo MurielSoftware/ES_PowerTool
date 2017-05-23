@@ -18,32 +18,32 @@ namespace ES_PowerTool.Shared.Dtos
     [LocalizedDisplayName(MessageKeyConstants.LABEL_PROJECT)]
     public class ProjectDto : BaseDto
     {
-        [LocalizedCategory(MessageKeyConstants.LABEL_COMMON_CATEGORY)]
+        [LocalizedCategory(MessageKeyConstants.LABEL_COMMON_CATEGORY, 0)]
         [LocalizedDisplayName(MessageKeyConstants.LABEL_NAME)]
         [Required]
         public virtual string Name { get; set; }
 
-        [LocalizedCategory(MessageKeyConstants.LABEL_CSV_CATEGORY)]
+        [LocalizedCategory(MessageKeyConstants.LABEL_CSV_CATEGORY, 1)]
         [LocalizedDisplayName(MessageKeyConstants.LABEL_FOLDER_CSV_PATH)]
         public virtual FilePath PathFolder { get; set; }
 
-        [LocalizedCategory(MessageKeyConstants.LABEL_CSV_CATEGORY)]
+        [LocalizedCategory(MessageKeyConstants.LABEL_CSV_CATEGORY, 1)]
         [LocalizedDisplayName(MessageKeyConstants.LABEL_TYPE_CSV_PATH)]
         public virtual FilePath PathType { get; set; }
 
-        [LocalizedCategory(MessageKeyConstants.LABEL_CSV_CATEGORY)]
+        [LocalizedCategory(MessageKeyConstants.LABEL_CSV_CATEGORY, 1)]
         [LocalizedDisplayName(MessageKeyConstants.LABEL_TYPE_ELEMENT_CSV_PATH)]
         public virtual FilePath PathTypeElement { get; set; }
 
-        [LocalizedCategory(MessageKeyConstants.LABEL_CSV_CATEGORY)]
+        [LocalizedCategory(MessageKeyConstants.LABEL_CSV_CATEGORY, 1)]
         [LocalizedDisplayName(MessageKeyConstants.LABEL_PRESET_CSV_PATH)]
         public virtual FilePath PathPreset { get; set; }
 
-        [LocalizedCategory(MessageKeyConstants.LABEL_CSV_CATEGORY)]
+        [LocalizedCategory(MessageKeyConstants.LABEL_CSV_CATEGORY, 1)]
         [LocalizedDisplayName(MessageKeyConstants.LABEL_DEFAULT_PRESET_CSV_PATH)]
         public virtual FilePath PathDefaultPreset { get; set; }
 
-        [LocalizedCategory(MessageKeyConstants.LABEL_CSV_CATEGORY)]
+        [LocalizedCategory(MessageKeyConstants.LABEL_CSV_CATEGORY, 1)]
         [LocalizedDisplayName(MessageKeyConstants.LABEL_TYPE_TYPE_CSV_PATH)]
         public virtual FilePath PathTypeType { get; set; }
 

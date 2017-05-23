@@ -45,6 +45,7 @@ namespace Desktop.App.Core.Ui.Windows
             List<TreeNavigationItem> proposals = await _actionToGetProposals.Invoke();
             proposalCollectionView = CollectionViewSource.GetDefaultView(proposals);
             _referenceWindowModelView.LoadProposals(proposals);
+            FilterTextBox.Focus();
         }
 
         private void ButtonOK_Click(object sender, RoutedEventArgs e)
@@ -57,11 +58,6 @@ namespace Desktop.App.Core.Ui.Windows
         {
             DialogResult = false;
             Close();
-        }
-
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
         }
     }
 }

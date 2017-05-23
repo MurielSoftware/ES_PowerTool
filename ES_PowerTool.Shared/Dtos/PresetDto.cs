@@ -11,7 +11,7 @@ namespace ES_PowerTool.Shared.Dtos
     [LocalizedDisplayName(MessageKeyConstants.LABEL_PRESET)]
     public class PresetDto : BaseDto
     {
-        [LocalizedCategory(MessageKeyConstants.LABEL_COMMON_CATEGORY)]
+        [LocalizedCategory(MessageKeyConstants.LABEL_COMMON_CATEGORY, 0)]
         [LocalizedDisplayName(MessageKeyConstants.LABEL_NAME)]
         [Required]
         [CSVAttribute("NAME", 2)]

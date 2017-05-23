@@ -27,7 +27,10 @@ namespace Desktop.App.Core.Ui.Builders
         private Dictionary<string, List<PropertyInfo>> GetGroups(Type dtoType)
         {
             List<PropertyInfo> properties = dtoType.GetProperties().Where(x => !Attribute.IsDefined(x, typeof(BrowsableAttribute))).ToList();
-            return properties.GroupBy(x => ((LocalizedCategoryAttribute)x.GetCustomAttribute(typeof(LocalizedCategoryAttribute))).Category).ToDictionary(y => y.Key, y => y.ToList());
+            return properties
+                .OrderBy(x => ((LocalizedCategoryAttribute)x.GetCustomAttribute(typeof(LocalizedCategoryAttribute))).SortValue)
+                .GroupBy(x => ((LocalizedCategoryAttribute)x.GetCustomAttribute(typeof(LocalizedCategoryAttribute))).Category)
+                .ToDictionary(y => y.Key, y => y.ToList());
         }
 
         private void CreateRowGridDefinitions(Grid grid, int rows)

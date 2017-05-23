@@ -62,7 +62,7 @@ namespace Desktop.App.Core.ModelViews
                 {
                     return false;
                 }
-                return treeNavigationItem.Name.Contains(obj.ToString());
+                return treeNavigationItem.Name.ToLower().Contains(obj.ToString().ToLower());
             };
         }
     }

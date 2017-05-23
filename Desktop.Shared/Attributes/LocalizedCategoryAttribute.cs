@@ -11,11 +11,13 @@ namespace Desktop.Shared.Core.Attributes
     public class LocalizedCategoryAttribute : CategoryAttribute
     {
         private readonly string _resourceKey;
+        public int SortValue { get; private set; }
 
-        public LocalizedCategoryAttribute(string resourceKey)
+        public LocalizedCategoryAttribute(string resourceKey, int sortValue)
             : base()
         {
             _resourceKey = resourceKey;
+            SortValue = sortValue;
         }
 
         protected override string GetLocalizedString(string value)

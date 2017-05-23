@@ -23,7 +23,7 @@ namespace ES_PowerTool.Shared.Dtos
         [CSVAttribute("PARENT_ID", 3)]
         public virtual Guid? ParentId { get; set; }
 
-        [LocalizedCategory(MessageKeyConstants.LABEL_COMMON_CATEGORY)]
+        [LocalizedCategory(MessageKeyConstants.LABEL_COMMON_CATEGORY, 0)]
         [LocalizedDisplayName(MessageKeyConstants.LABEL_NAME)]
         [Required]
         [CSVAttribute("NAME", 4)]

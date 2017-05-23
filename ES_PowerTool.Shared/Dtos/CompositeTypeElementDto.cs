@@ -20,19 +20,19 @@ namespace ES_PowerTool.Shared.Dtos
         [CSVAttribute("SORT_VALUE", 2)]
         public virtual int SortValue { get; set; }
 
-        [LocalizedCategory(MessageKeyConstants.LABEL_COMMON_CATEGORY)]
+        [LocalizedCategory(MessageKeyConstants.LABEL_COMMON_CATEGORY, 0)]
         [LocalizedDisplayName(MessageKeyConstants.LABEL_DESCRIPTION)]
         [Required]
         [CSVAttribute("DESCRIPTION", 3)]
         public virtual string Description { get; set; }
 
-        [LocalizedCategory(MessageKeyConstants.LABEL_COMMON_CATEGORY)]
+        [LocalizedCategory(MessageKeyConstants.LABEL_COMMON_CATEGORY, 0)]
         [LocalizedDisplayName(MessageKeyConstants.LABEL_UNIQUE_NAME)]
         [Required]
         [CSVAttribute("UNIQUE_NAME", 4)]
         public virtual string UniqueName { get; set; }
 
-        [LocalizedCategory(MessageKeyConstants.LABEL_SPECIFIC_CATEGORY)]
+        [LocalizedCategory(MessageKeyConstants.LABEL_SPECIFIC_CATEGORY, 1)]
         [LocalizedDisplayName(MessageKeyConstants.LABEL_RUNTIME_ID)]
         [Required]
         [CSVAttribute("RUNTIME_ID", 5)]
@@ -50,7 +50,7 @@ namespace ES_PowerTool.Shared.Dtos
         [CSVAttribute("DEFAULT_VALUE_LITERAL", 8)]
         public virtual string DefaultValueLiteral { get; set; }
 
-        [LocalizedCategory(MessageKeyConstants.LABEL_SPECIFIC_CATEGORY)]
+        [LocalizedCategory(MessageKeyConstants.LABEL_SPECIFIC_CATEGORY, 1)]
         [LocalizedDisplayName(MessageKeyConstants.LABEL_OPTIONAL)]
         [CSVAttribute("OPTIONAL", 9)]
         public virtual bool Optional { get; set; }
@@ -59,7 +59,7 @@ namespace ES_PowerTool.Shared.Dtos
         [CSVAttribute("VERSION", 10)]
         public virtual int Version { get; set; }
 
-        [LocalizedCategory(MessageKeyConstants.LABEL_SPECIFIC_CATEGORY)]
+        [LocalizedCategory(MessageKeyConstants.LABEL_SPECIFIC_CATEGORY, 1)]
         [LocalizedDisplayName(MessageKeyConstants.LABEL_ELEMENT_TYPE)]
         [Reference("ElementType")]
         [ReferenceEdiror("ES_PowerTool.Editors.TypeReferenceEditor", "ES_PowerTool")]
