@@ -49,7 +49,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Handlers\UpdateEntityHandler.cs" />
+    <Compile Include="ModelViews\BaseDetailsTreeModelView.cs" />
     <Compile Include="ModelViews\BaseReferenceWindowModelView.cs" />
+    <Compile Include="ModelViews\ITreeModelView.cs" />
+    <Compile Include="ModelViews\MessageWindowModelView.cs" />
     <Compile Include="Ui\Builders\BaseControlBuilder.cs" />
     <Compile Include="Ui\Builders\CheckBoxControlBuilder.cs" />
     <Compile Include="Ui\Builders\EnumControlBuilder.cs" />
@@ -91,8 +94,14 @@
     <Compile Include="Events\Selection\SelectionChangeNotifier.cs" />
     <Compile Include="Singleton.cs" />
     <Compile Include="Ui\Converters\ListBoxConverter.cs" />
+    <Compile Include="Ui\Converters\MessageWindowIconConverter.cs" />
+    <Compile Include="Ui\Converters\TreeNavigationItemImageConverter.cs" />
     <Compile Include="Ui\Converters\TreeNavigationItemLabelConverter.cs" />
+    <Compile Include="Ui\Windows\MessageWindow.xaml.cs">
+      <DependentUpon>MessageWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Utils\DialogUtils.cs" />
+    <Compile Include="Utils\MessageDialogUtils.cs" />
     <Compile Include="Utils\SystemDialogUtils.cs" />
     <Compile Include="Ui\Windows\ProgressWindow.xaml.cs">
       <DependentUpon>ProgressWindow.xaml</DependentUpon>
@@ -122,6 +131,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Ui\Controls\BaseTreeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ui\Windows\MessageWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

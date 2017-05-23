@@ -20,9 +20,11 @@ namespace ES_PowerTool.Handlers
     {
         private GenerateWindow _generateWindow = new GenerateWindow();
         private GenerateDto _generateDto = new GenerateDto();
+        private Guid _projectId;
+
         protected override void DoExecute(ExecutionEvent executionEvent)
         {
-            
+            _projectId = executionEvent.GetFirstSelectedTreeNavigationItem().ProjectId;
             try
             {
                 LongRunningJob<GenerateDto> projectCreationJob = new LongRunningJob<GenerateDto>(GenerateAction, "Generate");
@@ -41,7 +43,7 @@ namespace ES_PowerTool.Handlers
         private void GenerateAction(GenerateDto generateDto)
         {
             IGenerateService generateService = ServiceActivator.Get<IGenerateService>();
-            _generateDto = generateService.Generate();
+            _generateDto = generateService.Generate(_projectId);
         }
 
         private void AfterGenerateAction()

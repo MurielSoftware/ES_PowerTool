@@ -24,13 +24,20 @@ namespace ES_PowerTool.Persister
             FilePath pathFolder = GetDto().PathFolder;
             FilePath pathType = GetDto().PathType;
             FilePath pathTypeElements = GetDto().PathTypeElement;
-            if(pathFolder == null && pathType == null && pathTypeElements == null)
+            FilePath pathPreset = GetDto().PathPreset;
+            FilePath pathDefaultPreset = GetDto().PathDefaultPreset;
+            FilePath pathTypeType = GetDto().PathTypeType;
+
+            if (pathFolder == null && pathType == null && pathTypeElements == null && pathPreset == null && pathDefaultPreset == null && pathTypeType == null)
             {
                 return;
             }
             GetDto().CsvFolders = CSVReader.Read(GetDto().PathFolder.Path);
             GetDto().CsvTypes = CSVReader.Read(GetDto().PathType.Path);
             GetDto().CsvTypeElements = CSVReader.Read(GetDto().PathTypeElement.Path);
+            GetDto().CsvPresets = CSVReader.Read(GetDto().PathPreset.Path);
+            GetDto().CsvDefaultPreset = CSVReader.Read(GetDto().PathDefaultPreset.Path);
+            GetDto().CsvTypeType = CSVReader.Read(GetDto().PathTypeType.Path);
         }
     }
 }

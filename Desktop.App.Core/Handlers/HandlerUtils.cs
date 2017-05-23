@@ -23,8 +23,9 @@ namespace Desktop.App.Core.Handlers
         {
             Register(NavigationType.PROJECT, typeof(ProjectDto), typeof(IProjectCRUDService));
             Register(NavigationType.FOLDER, typeof(FolderDto), typeof(IFolderCRUDService));
-            Register(NavigationType.TYPE, typeof(CompositeTypeDto), typeof(ICompositeTypeCRUDService));
+            Register(NavigationType.COMPOSITE_TYPE, typeof(CompositeTypeDto), typeof(ICompositeTypeCRUDService));
             Register(NavigationType.TYPE_ELEMENT, typeof(CompositeTypeElementDto), typeof(ICompositeTypeElementCRUDService));
+            Register(NavigationType.PRESET, typeof(PresetDto), typeof(IPresetCRUDService));
         }
 
         private static void Register(NavigationType type, Type dto, Type service)

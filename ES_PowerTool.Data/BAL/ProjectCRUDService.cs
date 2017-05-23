@@ -29,6 +29,9 @@ namespace ES_PowerTool.Data.BAL
             PersistEntities<CompositeType, CompositeTypeDto>(persistedProjectDto.Id, projectDto.CsvTypes, "COM");
             PersistEntities<PrimitiveType, PrimitiveTypeDto>(persistedProjectDto.Id, projectDto.CsvTypes, "PRI");
             PersistEntities<CompositeTypeElement, CompositeTypeElementDto>(persistedProjectDto.Id, projectDto.CsvTypeElements);
+            PersistEntities<Preset, PresetDto>(persistedProjectDto.Id, projectDto.CsvPresets);
+            SetDefaultPresetsToTypes(projectDto.CsvDefaultPreset);
+            SetSuperTypes(projectDto.CsvTypeType);
             return persistedProjectDto;
         }
 
@@ -86,6 +89,41 @@ namespace ES_PowerTool.Data.BAL
                 }
             }
             return entity;
+        }
+
+        private void SetDefaultPresetsToTypes(CSVFile file)
+        {
+            foreach (CSVRow row in file.GetValues())
+            {
+                CSVValue typeIdValue = file.GetValueToColumn(row, "ID");
+                CSVValue defaultPresetIdValue = file.GetValueToColumn(row, "DEFAULT_PRESET_ID");
+                Guid typeId = Converter.ConvertValue<Guid>(typeIdValue.GetValue());
+                Guid defaultPresetId = Converter.ConvertValue<Guid>(defaultPresetIdValue.GetValue());
+
+                CompositeType compositeType = _genericRepository.Find<CompositeType>(typeId);
+                compositeType.DefaultPresetId = defaultPresetId;
+                _genericRepository.Persist<CompositeType>(compositeType);
+            }
+        }
+
+        private void SetSuperTypes(CSVFile file)
+        {
+            foreach (CSVRow row in file.GetValues())
+            {
+                CSVValue subTypeIdValue = file.GetValueToColumn(row, "SUB_TYPE_ID");
+                CSVValue superTypeIdValue = file.GetValueToColumn(row, "SUPER_TYPE_ID");
+                Guid subTypeId = Converter.ConvertValue<Guid>(subTypeIdValue.GetValue());
+                Guid superTypeId = Converter.ConvertValue<Guid>(superTypeIdValue.GetValue());
+
+                CompositeType subCompositeType = _genericRepository.Find<CompositeType>(subTypeId);
+                CompositeType superCompositeType = _genericRepository.Find<CompositeType>(superTypeId);
+                if(subCompositeType.SuperTypes == null)
+                {
+                    subCompositeType.SuperTypes = new List<CompositeType>();
+                }
+                subCompositeType.SuperTypes.Add(superCompositeType);
+                _genericRepository.Persist<CompositeType>(subCompositeType);
+            }
         }
     }
 }

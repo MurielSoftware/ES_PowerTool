@@ -12,15 +12,17 @@ namespace Desktop.Data.Core.Model
 {
     public class Folder : BaseEntity, IProjectAwareEntity, IStateAwareEntity
     {
+        public virtual int SortValue { get; set; }
+        public virtual Guid? ParentId { get; set; }
+
         [Required]
         public virtual string Name { get; set; }
+        public virtual int Type { get; set; }
         public virtual bool BuiltIn { get; set; }
         public virtual bool ContentBuiltIn { get; set; }
-        public virtual int SortValue { get; set; }
-        public virtual State State { get; set; }
 
-        public virtual Guid? ParentId { get; set; }
         public virtual Guid ProjectId { get; set; }
+        public virtual State State { get; set; }              
 
         [ForeignKey("ParentId")]
         public virtual Folder Parent { get; set; }

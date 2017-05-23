@@ -13,5 +13,8 @@ namespace Desktop.Data.Core.Model
         public virtual string Name { get; set; }
 
         public virtual ICollection<Folder> Folders { get; set; }
+        public virtual ICollection<ModelObjectType> ModelObjectTypes { get; set; }
+        public virtual ICollection<CompositeTypeElement> CompositeTypeElements { get; set; }
+        public virtual ICollection<Preset> Presets { get; set; }
     }
 }

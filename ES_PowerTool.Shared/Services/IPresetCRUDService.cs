@@ -10,5 +10,6 @@ namespace ES_PowerTool.Shared.Services
 {
     public interface IPresetCRUDService : ICRUDService<PresetDto>
     {
+        void SetAsDefault(Guid presetId, Guid owningTypeId);
     }
 }

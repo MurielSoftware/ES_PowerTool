@@ -40,10 +40,11 @@ namespace Desktop.Shared.Core.Navigations
             }
         }
 
-        public Uri Image
-        {
-            get { return NavigationTypeToImage.NAVIGATION_TYPE_TO_IMAGE[Type]; }
-        }
+        //public Uri Image
+        //{
+        //    get { return NavigationTypeToImage.NAVIGATION_TYPE_TO_IMAGE[Type]; }
+        //    set { }
+        //}
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -154,22 +155,22 @@ namespace Desktop.Shared.Core.Navigations
 
         public static ICollection<Guid> CollectIds(List<TreeNavigationItem> treeNavigationItems)
         {
-            return treeNavigationItems.Where(x => x.Parent != null).Select(x => x.Id).ToList();
+            return treeNavigationItems/*.Where(x => x.Parent != null)*/.Select(x => x.Id).ToList();
         }
 
-        public static ICollection<Guid> CollectParentIds(List<TreeNavigationItem> treeNavigationItems)
-        {
-            return treeNavigationItems.Where(x => x.Parent != null).Select(x => x.Parent.Id).ToList();
-        }
+        //public static ICollection<Guid> CollectParentIds(List<TreeNavigationItem> treeNavigationItems)
+        //{
+        //    return treeNavigationItems.Where(x => x.Parent != null).Select(x => x.Parent.Id).ToList();
+        //}
 
-        public static Dictionary<Guid, Guid> GetIdToParentId(List<TreeNavigationItem> treeNavigationItems)
-        {
-            return treeNavigationItems.Where(x => x.Parent != null).ToDictionary(x => x.Id, x => x.Parent.Id);
-        }
+        //public static Dictionary<Guid, Guid> GetIdToParentId(List<TreeNavigationItem> treeNavigationItems)
+        //{
+        //    return treeNavigationItems.Where(x => x.Parent != null).ToDictionary(x => x.Id, x => x.Parent.Id);
+        //}
 
-        public static bool IsSameType(List<TreeNavigationItem> treeNavigationItems)
-        {
-            return treeNavigationItems.Where(x => x.Type == treeNavigationItems.First().Type).Count() == treeNavigationItems.Count;
-        }
+        //public static bool IsSameType(List<TreeNavigationItem> treeNavigationItems)
+        //{
+        //    return treeNavigationItems.Where(x => x.Type == treeNavigationItems.First().Type).Count() == treeNavigationItems.Count;
+        //}
     }
 }

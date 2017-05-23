@@ -22,7 +22,7 @@ namespace Desktop.Data.Core.DAL
         /// <typeparam name="T">The type of the entity</typeparam>
         /// <param name="id">The ID of the entity</param>
         /// <returns>The found entity</returns>
-        internal virtual T Find<T>(Guid id) where T : BaseEntity
+        public virtual T Find<T>(Guid id) where T : BaseEntity
         {
             return GetContext().Set<T>().Find(id);
        //     return GetContext().Set<T>().Where(x => x.Id == id).AsNoTracking().SingleOrDefault();
@@ -34,7 +34,7 @@ namespace Desktop.Data.Core.DAL
         /// <typeparam name="T">The type of the entity</typeparam>
         /// <param name="id">The ID of the entity</param>
         /// <returns>The found entity</returns>
-        internal virtual T FindTracking<T>(Guid id) where T : BaseEntity
+        public virtual T FindTracking<T>(Guid id) where T : BaseEntity
         {
             return GetContext().Set<T>().Where(x => x.Id == id).SingleOrDefault();
         }
@@ -60,9 +60,14 @@ namespace Desktop.Data.Core.DAL
         /// <typeparam name="T">The type of the entity</typeparam>
         /// <param name="where">The where statement</param>
         /// <returns>True if it exists, otherwise it returns false</returns>
-        internal virtual bool Exists<T>(Expression<Func<T, bool>> where) where T : BaseEntity
+        public virtual bool Exists<T>(Expression<Func<T, bool>> where) where T : BaseEntity
         {
             return GetContext().Set<T>().Where(where).Count() > 0;
+        }
+
+        public virtual List<Guid> FindIds<T>(Expression<Func<T, bool>> where) where T : BaseEntity
+        {
+            return GetContext().Set<T>().Where(where).Select(x => x.Id).ToList();
         }
 
         /// <summary>
@@ -70,7 +75,7 @@ namespace Desktop.Data.Core.DAL
         /// </summary>
         /// <typeparam name="T">The type of the entity</typeparam>
         /// <returns>The count of the records</returns>
-        internal virtual int Count<T>() where T : BaseEntity
+        public virtual int Count<T>() where T : BaseEntity
         {
             return GetContext().Set<T>().Count();
         }
@@ -81,15 +86,17 @@ namespace Desktop.Data.Core.DAL
         /// <typeparam name="T">The type of the entity</typeparam>
         /// <param name="entity">The entity to persist</param>
         /// <returns>The persisted entity</returns>
-        internal virtual T Persist<T>(T entity) where T : BaseEntity
+        public virtual T Persist<T>(T entity) where T : BaseEntity
         {
             if (entity.Id == Guid.Empty)
             {
                 entity.Id = Guid.NewGuid();
+                entity.LastUpdate = DateTime.Now;
                 entity = GetContext().Set<T>().Add(entity);
             }
             else
             {
+                entity.LastUpdate = DateTime.Now;
                 GetContext().Entry(entity).State = EntityState.Modified;
             }
             Flush();
@@ -100,6 +107,7 @@ namespace Desktop.Data.Core.DAL
         {
             foreach(T entity in entities)
             {
+                entity.LastUpdate = DateTime.Now;
                 GetContext().Set<T>().Add(entity);
             }
             Flush();
@@ -110,9 +118,15 @@ namespace Desktop.Data.Core.DAL
         /// </summary>
         /// <typeparam name="T">The type of the entity</typeparam>
         /// <param name="entity">The entity to delete</param>
-        internal virtual void Delete<T>(T entity) where T : BaseEntity
+        public virtual void Delete<T>(T entity) where T : BaseEntity
         {
             GetContext().Set<T>().Remove(entity);
+            Flush();
+        }
+
+        public virtual void DeleteRange<T>(Func<T, bool> where) where T : BaseEntity
+        {
+            GetContext().Set<T>().RemoveRange(GetContext().Set<T>().Where(where));
             Flush();
         }
 
@@ -127,7 +141,7 @@ namespace Desktop.Data.Core.DAL
         /// <summary>
         /// Disposes the database.
         /// </summary>
-        internal void Dispose()
+        public void Dispose()
         {
             GetContext().Dispose();
         }
@@ -137,7 +151,7 @@ namespace Desktop.Data.Core.DAL
         /// </summary>
         /// <typeparam name="T">The type of the entity</typeparam>
         /// <param name="entity">The entity to be attached</param>
-        internal void Attach<T>(T entity) where T : BaseEntity
+        public void Attach<T>(T entity) where T : BaseEntity
         {
             GetContext().Set<T>().Attach(entity);
         }
@@ -147,7 +161,7 @@ namespace Desktop.Data.Core.DAL
         /// </summary>
         /// <param name="type">The type of the entity</param>
         /// <param name="entity">The entity to be attached</param>
-        internal void Attach(Type type, BaseEntity entity)
+        public void Attach(Type type, BaseEntity entity)
         {
             GetContext().Set(type).Attach(entity);
         }

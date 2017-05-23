@@ -36,7 +36,7 @@ namespace Desktop.App.Core.Handlers
 
         protected override void OnSuccessful(ExecutionEvent executionEvent, Guid affectedObjectId)
         {
-            Publisher.GetInstance().Publish(PublishEvent.CreateCreationEvent(affectedObjectId, executionEvent.GetFirstTreeNavigationItem().Id));
+            Publisher.GetInstance().Publish(PublishEvent.CreateCreationEvent(affectedObjectId, executionEvent.GetFirstSelectedTreeNavigationItem().Id));
         }
     }
 }

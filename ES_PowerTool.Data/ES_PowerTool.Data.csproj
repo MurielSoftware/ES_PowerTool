@@ -50,6 +50,7 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BAL\CompositeTypeDetailsNavigationService.cs" />
     <Compile Include="BAL\CompositeTypeElementCRUDService.cs" />
     <Compile Include="BAL\CompositeTypeNavigationService.cs" />
     <Compile Include="BAL\FolderCRUDService.cs" />
@@ -58,11 +59,14 @@
     <Compile Include="BAL\PresetCRUDService.cs" />
     <Compile Include="BAL\ProjectCRUDService.cs" />
     <Compile Include="DAL\CompositeTypeElementNavigationRepository.cs" />
+    <Compile Include="DAL\PresetRepository.cs" />
     <Compile Include="DAL\CompositeTypeElementRepository.cs" />
     <Compile Include="DAL\CompositeTypeNavigationRepository.cs" />
     <Compile Include="DAL\FolderNavigationRepository.cs" />
     <Compile Include="DAL\FolderRepository.cs" />
     <Compile Include="DAL\CompositeTypeRepository.cs" />
+    <Compile Include="DAL\PresetNavigationRepository.cs" />
+    <Compile Include="DAL\PrimitiveTypeNavigationRepository.cs" />
     <Compile Include="DAL\ProjectNavigationRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -74,6 +78,10 @@
     <ProjectReference Include="..\Desktop.Shared\Desktop.Shared.Core.csproj">
       <Project>{61260a01-d7c6-42eb-896e-f13b16b264e9}</Project>
       <Name>Desktop.Shared.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Desktop.Ui.I18n\Desktop.Ui.I18n.csproj">
+      <Project>{ceca7aa6-f76b-4bfc-a009-699bfff8f93b}</Project>
+      <Name>Desktop.Ui.I18n</Name>
     </ProjectReference>
     <ProjectReference Include="..\ES_PowerTool.Shared\ES_PowerTool.Shared.csproj">
       <Project>{c7abc907-08a3-439b-bdee-6d0f171ef4c6}</Project>

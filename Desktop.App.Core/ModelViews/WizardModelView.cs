@@ -104,8 +104,10 @@ namespace Desktop.App.Core.ModelViews
                 OnPropertyChanged(() => ValidationMessage);
                 return;
             }
-            _persister.Persist();
-            _successFinish = true;
+            if(_persister.Persist())
+            {
+                _successFinish = true;
+            }
         }
 
         private void CreateTitle()

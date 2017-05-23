@@ -22,6 +22,10 @@ namespace Desktop.Data.Core.Converters.References.List.DtoToEntity
     {
         public void Convert(Connection connection, BaseEntity sourceEntity, BaseDto dto, PropertyInfo sourcePropertyInfo, ReferenceAttribute referenceAttribute, ReferenceString referenceString)
         {
+            if (referenceString == null)
+            {
+                return;
+            }
             PropertyInfo targetProperty = sourceEntity.GetType().GetProperty(referenceAttribute.RefencedPropertyName);
             List<Guid> referencedIds = referenceString.GetIds();
             ICollection<U> referencedEntities = (ICollection<U>)targetProperty.GetValue(sourceEntity);

@@ -34,7 +34,7 @@ namespace ES_PowerTool.ModelViews
 
         private void OnGenerateCommand(object obj)
         {
-            HandlerExecutor.Execute<GenerateHandler>(null);
+            HandlerExecutor.Execute<GenerateHandler>(ExecutionEvent.Create(obj as List<TreeNavigationItem>));
         }
     }
 }

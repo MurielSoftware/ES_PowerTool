@@ -16,7 +16,7 @@ namespace ES_PowerTool.Handlers
         {
             FolderDto folderDto = base.CreateNewDto(executionEvent);
             folderDto.State = State.NEW;
-            TreeNavigationItem selectedTreeNavigationItem = executionEvent.GetFirstTreeNavigationItem();
+            TreeNavigationItem selectedTreeNavigationItem = executionEvent.GetFirstSelectedTreeNavigationItem();
             if(NavigationType.PROJECT.Equals(selectedTreeNavigationItem.Type))
             {
                 folderDto.ProjectId = selectedTreeNavigationItem.Id;

@@ -35,6 +35,18 @@ namespace ES_PowerTool.Shared.Dtos
         [LocalizedDisplayName(MessageKeyConstants.LABEL_TYPE_ELEMENT_CSV_PATH)]
         public virtual FilePath PathTypeElement { get; set; }
 
+        [LocalizedCategory(MessageKeyConstants.LABEL_CSV_CATEGORY)]
+        [LocalizedDisplayName(MessageKeyConstants.LABEL_PRESET_CSV_PATH)]
+        public virtual FilePath PathPreset { get; set; }
+
+        [LocalizedCategory(MessageKeyConstants.LABEL_CSV_CATEGORY)]
+        [LocalizedDisplayName(MessageKeyConstants.LABEL_DEFAULT_PRESET_CSV_PATH)]
+        public virtual FilePath PathDefaultPreset { get; set; }
+
+        [LocalizedCategory(MessageKeyConstants.LABEL_CSV_CATEGORY)]
+        [LocalizedDisplayName(MessageKeyConstants.LABEL_TYPE_TYPE_CSV_PATH)]
+        public virtual FilePath PathTypeType { get; set; }
+
         [Browsable(false)]
         public virtual CSVFile CsvFolders { get; set; }
 
@@ -42,6 +54,15 @@ namespace ES_PowerTool.Shared.Dtos
         public virtual CSVFile CsvTypes { get; set; }
 
         [Browsable(false)]
-        public virtual CSVFile CsvTypeElements { get; set; }    
+        public virtual CSVFile CsvTypeElements { get; set; }
+
+        [Browsable(false)]
+        public virtual CSVFile CsvPresets { get; set; }
+
+        [Browsable(false)]
+        public virtual CSVFile CsvDefaultPreset { get; set; }
+
+        [Browsable(false)]
+        public virtual CSVFile CsvTypeType { get; set; }
     }
 }

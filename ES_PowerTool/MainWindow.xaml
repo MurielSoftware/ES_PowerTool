@@ -7,6 +7,7 @@
         xmlns:r="clr-namespace:Desktop.Ui.I18n;assembly=Desktop.Ui.I18n"
         xmlns:modelViews="clr-namespace:ES_PowerTool.ModelViews"
         xmlns:local="clr-namespace:ES_PowerTool"
+        Icon="pack://application:,,,/Images/es_pt32.png"
         mc:Ignorable="d"
         Title="{x:Static r:Resource.App_Title}" Height="420" Width="640">
     <Window.DataContext>
@@ -34,7 +35,7 @@
                     </StackPanel>
                 </Button>
                 <Separator />
-                <Button Command="{Binding GenerateCommand}">
+                <Button Command="{Binding GenerateCommand}" CommandParameter="{Binding ElementName=ModelObjectViewTree, Path=SelectedItems}">
                     <StackPanel>
                         <Image Source="pack://application:,,,/Images/generate.png" Width="16" Height="16" />
                         <TextBlock Text="{x:Static r:Resource.label_generate}" />
@@ -49,7 +50,7 @@
                 <ColumnDefinition Width="5" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Controls:BaseTreeView Grid.Column="0">
+            <Controls:BaseTreeView Name="ModelObjectViewTree" Grid.Column="0">
                 <Controls:BaseTreeView.DataContext>
                     <modelViews:CompositeTypeTreeModelView />
                 </Controls:BaseTreeView.DataContext>
@@ -67,12 +68,12 @@
                         </MenuItem>
                         <Separator />
                         <MenuItem Header="New">
-                            <MenuItem Header="Type" Command="{Binding NewTypeCommand}" CommandParameter="{Binding PlacementTarget.SelectedItems, RelativeSource={RelativeSource AncestorType={x:Type ContextMenu}}}">
+                            <MenuItem Header="Composite Type" Command="{Binding NewCompositeTypeCommand}" CommandParameter="{Binding PlacementTarget.SelectedItems, RelativeSource={RelativeSource AncestorType={x:Type ContextMenu}}}">
                                 <MenuItem.Icon>
                                     <Image Source="pack://application:,,,/Images/type.png" />
                                 </MenuItem.Icon>
                             </MenuItem>
-                            <MenuItem Header="Type Element" Command="{Binding NewTypeElementCommand}" CommandParameter="{Binding PlacementTarget.SelectedItems, RelativeSource={RelativeSource AncestorType={x:Type ContextMenu}}}">
+                            <MenuItem Header="Type Element" Command="{Binding NewCompmositeTypeElementCommand}" CommandParameter="{Binding PlacementTarget.SelectedItems, RelativeSource={RelativeSource AncestorType={x:Type ContextMenu}}}">
                                 <MenuItem.Icon>
                                     <Image Source="pack://application:,,,/Images/green_circle_filled.gif" />
                                 </MenuItem.Icon>
@@ -87,6 +88,39 @@
                 </Controls:BaseTreeView.ContextMenu>
             </Controls:BaseTreeView>
             <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch" />
+            <Controls:BaseTreeView Grid.Column="2">
+                <Controls:BaseTreeView.DataContext>
+                    <modelViews:CompositeTypeDetailsTreeModelView />
+                </Controls:BaseTreeView.DataContext>
+                <Controls:BaseTreeView.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Edit" Command="{Binding UpdateCommand}" CommandParameter="{Binding PlacementTarget.SelectedItems, RelativeSource={RelativeSource AncestorType={x:Type ContextMenu}}}">
+                            <MenuItem.Icon>
+                                <Image Source="pack://application:,,,/Images/edit.png" />
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <MenuItem Header="Delete" Command="{Binding DeleteCommand}" CommandParameter="{Binding PlacementTarget.SelectedItems, RelativeSource={RelativeSource AncestorType={x:Type ContextMenu}}}">
+                            <MenuItem.Icon>
+                                <Image Source="pack://application:,,,/Images/delete.png" />
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <Separator />
+                        <MenuItem Header="Set as default" Command="{Binding SetAsDefaultCommand}" CommandParameter="{Binding PlacementTarget.SelectedItems, RelativeSource={RelativeSource AncestorType={x:Type ContextMenu}}}">
+                            <MenuItem.Icon>
+                                <Image Source="pack://application:,,,/Images/preset_default.png" />
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <Separator />
+                        <MenuItem Header="New">
+                            <MenuItem Header="Preset" Command="{Binding NewPresetCommand}" CommandParameter="{Binding PlacementTarget.SelectedItems, RelativeSource={RelativeSource AncestorType={x:Type ContextMenu}}}">
+                                <MenuItem.Icon>
+                                    <Image Source="pack://application:,,,/Images/preset.png" />
+                                </MenuItem.Icon>
+                            </MenuItem>
+                        </MenuItem>
+                    </ContextMenu>
+                </Controls:BaseTreeView.ContextMenu>
+            </Controls:BaseTreeView>
         </Grid>
         
         <StatusBar Grid.Row="2">

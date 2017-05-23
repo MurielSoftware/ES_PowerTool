@@ -33,9 +33,8 @@ namespace Desktop.App.Core.Persisters
             }
             catch (Exception ex)
             {
-
+                return false;
             }
-            return false;
         }
 
         protected virtual void BeforePersist()

@@ -10,7 +10,8 @@ namespace Desktop.Shared.Core.Navigations
     {
         PROJECT,
         FOLDER,
-        TYPE,
+        PRIMITIVE_TYPE,
+        COMPOSITE_TYPE,
         TYPE_ELEMENT,
         PRESET
     }

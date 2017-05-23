@@ -1,20 +1,11 @@
 ﻿using Desktop.App.Core.ModelViews;
 using Desktop.Shared.Core.Navigations;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Desktop.App.Core.Ui.Controls
 {
@@ -49,6 +40,7 @@ namespace Desktop.App.Core.Ui.Controls
             InitializeComponent();
             AllowMultiSelection(this);
         }
+
         private void TreeView_Loaded(object sender, RoutedEventArgs e)
         {
             _baseTreeModelView = (BaseTreeModelView)DataContext;
@@ -76,7 +68,7 @@ namespace Desktop.App.Core.Ui.Controls
             {
                 return;
             }
-            _baseTreeModelView.SelectionChanged(sourceTreeView.SelectedItem);
+            //_baseTreeModelView.SelectionChanged(sourceTreeView.SelectedItem);
         }
 
         private void StackPanel_MouseRightButtonUp(object sender, MouseButtonEventArgs e)

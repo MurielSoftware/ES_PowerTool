@@ -44,8 +44,7 @@ namespace Desktop.App.Core.Events.Selection
         private static Dictionary<string, List<string>> CreateSourceToListenerViewsMap()
         {
             Dictionary<string, List<string>> map = new Dictionary<string, List<string>>();
-            map.Add("GameObjectModelView", new List<string>() { "PropertiesModelView" });
-            map.Add("ResourceModelView", new List<string>() { "PropertiesModelView" });
+            map.Add("CompositeTypeTreeModelView", new List<string>() { "CompositeTypeDetailsTreeModelView" });
             return map;
         }
     }

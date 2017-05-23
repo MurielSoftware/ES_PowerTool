@@ -97,6 +97,15 @@ namespace Desktop.Ui.I18n {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Path to CSV default Preset.
+        /// </summary>
+        public static string label_default_preset_csv_path {
+            get {
+                return ResourceManager.GetString("label_default_preset_csv_path", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Derivable.
         /// </summary>
         public static string label_derivable {
@@ -205,6 +214,15 @@ namespace Desktop.Ui.I18n {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Path to CSV Presets.
+        /// </summary>
+        public static string label_preset_csv_path {
+            get {
+                return ResourceManager.GetString("label_preset_csv_path", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Project.
         /// </summary>
         public static string label_project {
@@ -277,11 +295,56 @@ namespace Desktop.Ui.I18n {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Path to super type.
+        /// </summary>
+        public static string label_type_type_csv_path {
+            get {
+                return ResourceManager.GetString("label_type_type_csv_path", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unique name.
         /// </summary>
         public static string label_unique_name {
             get {
                 return ResourceManager.GetString("label_unique_name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do you want to remove &apos;{0}&apos;?.
+        /// </summary>
+        public static string question_do_you_want_to_remove_object_message {
+            get {
+                return ResourceManager.GetString("question_do_you_want_to_remove_object_message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do you want to remove the selected objects?.
+        /// </summary>
+        public static string question_do_you_want_to_remove_objects_message {
+            get {
+                return ResourceManager.GetString("question_do_you_want_to_remove_objects_message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Type &apos;{0}&apos; is used as a supertype.
+        /// </summary>
+        public static string validation_message_type_is_used_as_super_type {
+            get {
+                return ResourceManager.GetString("validation_message_type_is_used_as_super_type", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Type &apos;{0}&apos; is used as a type element.
+        /// </summary>
+        public static string validation_message_type_is_used_as_type_element {
+            get {
+                return ResourceManager.GetString("validation_message_type_is_used_as_type_element", resourceCulture);
             }
         }
     }

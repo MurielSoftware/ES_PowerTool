@@ -11,7 +11,8 @@ namespace Desktop.Data.Core.Model
     {
         public static string DISC = "COM";
 
-        public virtual Guid DefaultPresetId { get; set; }
+        public virtual Guid? DefaultPresetId { get; set; }
+        public virtual Guid? DefaultWidgetTypeId { get; set; }
 
         [ForeignKey("DefaultPresetId")]
         public virtual Preset DefaultPreset { get; set; }
@@ -21,7 +22,7 @@ namespace Desktop.Data.Core.Model
         [InverseProperty("OwningType")]
         public virtual ICollection<CompositeTypeElement> Children { get; set; }
 
-        [InverseProperty("CompositeType")]
+        [InverseProperty("Type")]
         public virtual ICollection<Preset> Presets { get; set; }
     }
 }

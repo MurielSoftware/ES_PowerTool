@@ -11,8 +11,9 @@ using Desktop.Shared.Core.Navigations;
 
 namespace ES_PowerTool.Data.BAL
 {
-    public class CompositeTypeNavigationService : BaseService, ICompositeTypeNavigationService
+    public class CompositeTypeNavigationService : BaseNavigationService, ICompositeTypeNavigationService
     {
+        private PrimitiveTypeNavigationRepository _primitiveTypeNavigationRepository;
         private CompositeTypeNavigationRepository _compositeTypeNavigationRepository;
         private CompositeTypeElementNavigationRepository _compositeTypeElementNavigationRepository;
         private FolderNavigationRepository _folderNavigationRepository;
@@ -21,6 +22,7 @@ namespace ES_PowerTool.Data.BAL
         public CompositeTypeNavigationService(Connection connection) 
             : base(connection)
         {
+            _primitiveTypeNavigationRepository = new PrimitiveTypeNavigationRepository(connection);
             _compositeTypeNavigationRepository = new CompositeTypeNavigationRepository(connection);
             _compositeTypeElementNavigationRepository = new CompositeTypeElementNavigationRepository(connection);
             _folderNavigationRepository = new FolderNavigationRepository(connection);
@@ -30,6 +32,19 @@ namespace ES_PowerTool.Data.BAL
         public List<TreeNavigationItem> GetAllCompositeTypes()
         {
             return _compositeTypeNavigationRepository.FindAllTypes();
+        }
+
+        public List<TreeNavigationItem> GetAllPrimitiveTypes()
+        {
+            return _primitiveTypeNavigationRepository.FindAllTypes();
+        }
+
+        public List<TreeNavigationItem> GetAllTypes()
+        {
+            List<TreeNavigationItem> typesTreeNavigationItems = new List<TreeNavigationItem>();
+            typesTreeNavigationItems.AddRange(GetAllCompositeTypes());
+            typesTreeNavigationItems.AddRange(GetAllPrimitiveTypes());
+            return typesTreeNavigationItems;
         }
 
         public List<TreeNavigationItem> GetAllDerivableCompositeTypes()
@@ -46,10 +61,18 @@ namespace ES_PowerTool.Data.BAL
                     children.AddRange(_folderNavigationRepository.FindRoots(parentTreeNavigationItem.Id));
                     break;
                 case NavigationType.FOLDER:
-                    children.AddRange(_folderNavigationRepository.FindChildren(parentTreeNavigationItem.Id));
-                    children.AddRange(_compositeTypeNavigationRepository.FindChildren(parentTreeNavigationItem.Id));
+                    if (parentTreeNavigationItem.Name == "PrimitiveTypes")
+                    {
+                        children.AddRange(_folderNavigationRepository.FindChildren(parentTreeNavigationItem.Id));
+                        children.AddRange(_primitiveTypeNavigationRepository.FindChildren(parentTreeNavigationItem.Id));
+                    }
+                    else
+                    {
+                        children.AddRange(_folderNavigationRepository.FindChildren(parentTreeNavigationItem.Id));
+                        children.AddRange(_compositeTypeNavigationRepository.FindChildren(parentTreeNavigationItem.Id));
+                    }
                     break;
-                case NavigationType.TYPE:
+                case NavigationType.COMPOSITE_TYPE:
                     children.AddRange(_compositeTypeElementNavigationRepository.FindChildren(parentTreeNavigationItem.Id));
                     break;
             }
@@ -75,7 +98,7 @@ namespace ES_PowerTool.Data.BAL
                 case NavigationType.FOLDER:
                     updatedTreeNavigationItem = _folderNavigationRepository.FindSpecific(treeNavigationItem.Id);
                     break;
-                case NavigationType.TYPE:
+                case NavigationType.COMPOSITE_TYPE:
                     updatedTreeNavigationItem = _compositeTypeNavigationRepository.FindSpecific(treeNavigationItem.Id);
                     break;
                 case NavigationType.TYPE_ELEMENT:
@@ -83,23 +106,6 @@ namespace ES_PowerTool.Data.BAL
                     break;
             }
             return updatedTreeNavigationItem;
-        }
-
-        protected virtual void ExtendTreeNavigationItems(List<TreeNavigationItem> treeNavigationItems, TreeNavigationItem parentTreeNavigationItem)
-        {
-            TreeNavigationItem loadingTreeNavigationItem = new TreeNavigationItem(Guid.Empty, "Loading...", NavigationType.FOLDER);
-
-            foreach (TreeNavigationItem treeNavigationItem in treeNavigationItems)
-            {
-                if (treeNavigationItem.HasRemoteChildren)
-                {
-                    treeNavigationItem.Children.Add(loadingTreeNavigationItem);
-                }
-                if (parentTreeNavigationItem != null)
-                {
-                    treeNavigationItem.Parent = parentTreeNavigationItem;
-                }
-            }
         }
     }
 }

@@ -16,32 +16,27 @@ namespace ES_PowerTool.Shared.Dtos
     [LocalizedDisplayName(MessageKeyConstants.LABEL_TYPE_ELEMENT)]
     public class CompositeTypeElementDto : BaseDto
     {
-        [LocalizedCategory(MessageKeyConstants.LABEL_COMMON_CATEGORY)]
-        [LocalizedDisplayName(MessageKeyConstants.LABEL_UNIQUE_NAME)]
-        [Required]
-        [CSVAttribute("UNIQUE_NAME", 1)]
-        public virtual string UniqueName { get; set; }
+        [Browsable(false)]
+        [CSVAttribute("SORT_VALUE", 2)]
+        public virtual int SortValue { get; set; }
 
         [LocalizedCategory(MessageKeyConstants.LABEL_COMMON_CATEGORY)]
         [LocalizedDisplayName(MessageKeyConstants.LABEL_DESCRIPTION)]
         [Required]
-        [CSVAttribute("DESCRIPTION", 2)]
+        [CSVAttribute("DESCRIPTION", 3)]
         public virtual string Description { get; set; }
 
-        [LocalizedCategory(MessageKeyConstants.LABEL_SPECIFIC_CATEGORY)]
-        [LocalizedDisplayName(MessageKeyConstants.LABEL_OPTIONAL)]
-        [CSVAttribute("OPTIONAL", 3)]
-        public virtual bool Optional { get; set; }
-        
+        [LocalizedCategory(MessageKeyConstants.LABEL_COMMON_CATEGORY)]
+        [LocalizedDisplayName(MessageKeyConstants.LABEL_UNIQUE_NAME)]
+        [Required]
+        [CSVAttribute("UNIQUE_NAME", 4)]
+        public virtual string UniqueName { get; set; }
+
         [LocalizedCategory(MessageKeyConstants.LABEL_SPECIFIC_CATEGORY)]
         [LocalizedDisplayName(MessageKeyConstants.LABEL_RUNTIME_ID)]
         [Required]
-        [CSVAttribute("RUNTIME_ID", 4)]
+        [CSVAttribute("RUNTIME_ID", 5)]
         public virtual Guid RuntimeId { get; set; }
-
-        [Browsable(false)]
-        [CSVAttribute("SORT_VALUE", 5)]
-        public virtual int SortValue { get; set; }
 
         [Browsable(false)]
         [CSVAttribute("OWNING_TYPE_ID", 6)]
@@ -51,14 +46,35 @@ namespace ES_PowerTool.Shared.Dtos
         [CSVAttribute("ELEMENT_TYPE_ID", 7)]
         public virtual Guid ElementTypeId { get; set; }
 
+        [Browsable(false)]
+        [CSVAttribute("DEFAULT_VALUE_LITERAL", 8)]
+        public virtual string DefaultValueLiteral { get; set; }
+
+        [LocalizedCategory(MessageKeyConstants.LABEL_SPECIFIC_CATEGORY)]
+        [LocalizedDisplayName(MessageKeyConstants.LABEL_OPTIONAL)]
+        [CSVAttribute("OPTIONAL", 9)]
+        public virtual bool Optional { get; set; }
+
+        [Browsable(false)]
+        [CSVAttribute("VERSION", 10)]
+        public virtual int Version { get; set; }
+
         [LocalizedCategory(MessageKeyConstants.LABEL_SPECIFIC_CATEGORY)]
         [LocalizedDisplayName(MessageKeyConstants.LABEL_ELEMENT_TYPE)]
         [Reference("ElementType")]
         [ReferenceEdiror("ES_PowerTool.Editors.TypeReferenceEditor", "ES_PowerTool")]
-        //[Editor("Editor.Ui.Editors.ModelReferenceEditor, Editor", "Editor.Core.Ui.Editors.BaseReferenceEditor, Editor.Core")]
         public virtual ReferenceString ModelReference { get; set; }
 
         [Browsable(false)]
-        public virtual State State { get; set; } 
+        public virtual State State { get; set; }
+
+        [Browsable(false)]
+        public virtual Guid ProjectId { get; set; }
+
+        public CompositeTypeElementDto()
+        {
+            DefaultValueLiteral = null;
+            Version = 0;
+        }
     }
 }

@@ -192,4 +192,25 @@
   <data name="label_preset" xml:space="preserve">
     <value>Preset</value>
   </data>
+  <data name="label_preset_csv_path" xml:space="preserve">
+    <value>Path to CSV Presets</value>
+  </data>
+  <data name="label_default_preset_csv_path" xml:space="preserve">
+    <value>Path to CSV default Preset</value>
+  </data>
+  <data name="label_type_type_csv_path" xml:space="preserve">
+    <value>Path to super type</value>
+  </data>
+  <data name="question_do_you_want_to_remove_objects_message" xml:space="preserve">
+    <value>Do you want to remove the selected objects?</value>
+  </data>
+  <data name="question_do_you_want_to_remove_object_message" xml:space="preserve">
+    <value>Do you want to remove '{0}'?</value>
+  </data>
+  <data name="validation_message_type_is_used_as_super_type" xml:space="preserve">
+    <value>Type '{0}' is used as a supertype</value>
+  </data>
+  <data name="validation_message_type_is_used_as_type_element" xml:space="preserve">
+    <value>Type '{0}' is used as a type element</value>
+  </data>
 </root>

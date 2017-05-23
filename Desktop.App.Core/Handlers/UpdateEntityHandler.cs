@@ -37,7 +37,7 @@ namespace Desktop.App.Core.Handlers
 
             ICRUDService<T> crudService = (ICRUDService<T>)ServiceActivator.Get(HandlerUtils.DTO_TO_SERVICE[typeof(T)]);
             //Connection.GetInstance().StartTransaction();
-            T dto = crudService.Read(executionEvent.GetFirstTreeNavigationItem().Id);
+            T dto = crudService.Read(executionEvent.GetFirstSelectedTreeNavigationItem().Id);
             //Connection.GetInstance().EndTransaction();
             return dto;
         }
@@ -48,7 +48,7 @@ namespace Desktop.App.Core.Handlers
 
         protected override void OnSuccessful(ExecutionEvent executionEvent, Guid affectedObjectId)
         {
-            Publisher.GetInstance().Publish(PublishEvent.CreateUpdateEvent(affectedObjectId, executionEvent.GetFirstTreeNavigationItem().Id));
+            Publisher.GetInstance().Publish(PublishEvent.CreateUpdateEvent(affectedObjectId, executionEvent.GetFirstSelectedTreeNavigationItem().Id));
         }
     }
 }

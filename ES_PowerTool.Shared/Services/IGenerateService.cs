@@ -9,6 +9,6 @@ namespace ES_PowerTool.Shared.Services
 {
     public interface IGenerateService
     {
-        GenerateDto Generate();
+        GenerateDto Generate(Guid projectId);
     }
 }

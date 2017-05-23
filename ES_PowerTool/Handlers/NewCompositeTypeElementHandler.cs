@@ -9,12 +9,13 @@ using System.Threading.Tasks;
 
 namespace ES_PowerTool.Handlers
 {
-    public class NewTypeElementHandler : NewEntityHandler<CompositeTypeElementDto>
+    public class NewCompositeTypeElementHandler : NewEntityHandler<CompositeTypeElementDto>
     {
         protected override CompositeTypeElementDto CreateNewDto(ExecutionEvent executionEvent)
         {
             CompositeTypeElementDto compositeTypeElementDto = base.CreateNewDto(executionEvent);
-            compositeTypeElementDto.OwningTypeId = executionEvent.GetFirstTreeNavigationItem().Id;
+            compositeTypeElementDto.OwningTypeId = executionEvent.GetFirstSelectedTreeNavigationItem().Id;
+            compositeTypeElementDto.ProjectId = executionEvent.GetFirstSelectedTreeNavigationItem().ProjectId;
             compositeTypeElementDto.State = State.NEW;
             return compositeTypeElementDto;
         }

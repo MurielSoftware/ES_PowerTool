@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Desktop.App.Core.Events.Selection;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -13,6 +14,8 @@ namespace Desktop.App.Core.ModelViews
         public event PropertyChangedEventHandler PropertyChanged;
 
         private string _modelViewId;
+        protected MasterSelectionChangeService _masterSelectionChangeService = new MasterSelectionChangeService();
+
 
         public BaseModelView(string modelViewId)
         {

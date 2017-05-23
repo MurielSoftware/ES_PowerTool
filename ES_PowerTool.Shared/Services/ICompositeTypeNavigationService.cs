@@ -11,6 +11,8 @@ namespace ES_PowerTool.Shared.Services
     public interface ICompositeTypeNavigationService : INavigationService
     {
         List<TreeNavigationItem> GetAllDerivableCompositeTypes();
+        List<TreeNavigationItem> GetAllTypes();
         List<TreeNavigationItem> GetAllCompositeTypes();
+        List<TreeNavigationItem> GetAllPrimitiveTypes();
     }
 }

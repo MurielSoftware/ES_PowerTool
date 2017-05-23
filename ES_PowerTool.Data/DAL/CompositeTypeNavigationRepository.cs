@@ -19,7 +19,7 @@ namespace ES_PowerTool.Data.DAL
         {
             return GetContext().Set<CompositeType>()
                 .Where(x => x.FolderId == parentId)
-                .Select(x => new TreeNavigationItem() { Id = x.Id, Name = x.Description, Type = NavigationType.TYPE, HasRemoteChildren = x.Children.Count > 0 })
+                .Select(x => new TreeNavigationItem() { Id = x.Id, Name = x.Description, Type = NavigationType.COMPOSITE_TYPE, ProjectId = x.ProjectId, HasRemoteChildren = x.Children.Count > 0 })
                 .ToList();
         }
 
@@ -27,7 +27,7 @@ namespace ES_PowerTool.Data.DAL
         {
             return GetContext().Set<CompositeType>()
                 .Where(x => x.Id == id)
-                .Select(x => new TreeNavigationItem() { Id = x.Id, Name = x.Description, Type = NavigationType.TYPE, HasRemoteChildren = x.Children.Count > 0 })
+                .Select(x => new TreeNavigationItem() { Id = x.Id, Name = x.Description, Type = NavigationType.COMPOSITE_TYPE, ProjectId = x.ProjectId, HasRemoteChildren = x.Children.Count > 0 })
                 .SingleOrDefault();
         }
 
@@ -36,7 +36,7 @@ namespace ES_PowerTool.Data.DAL
             return GetContext().Set<CompositeType>()
                 .AsNoTracking()
                 .Where(x => x.Derivable == true)
-                .Select(x => new TreeNavigationItem() { Id = x.Id, Name = x.Description, Type = NavigationType.TYPE })
+                .Select(x => new TreeNavigationItem() { Id = x.Id, Name = x.Description, Type = NavigationType.COMPOSITE_TYPE, ProjectId = x.ProjectId })
                 .ToList();
         }
 
@@ -44,7 +44,7 @@ namespace ES_PowerTool.Data.DAL
         {
             return GetContext().Set<CompositeType>()
                 .AsNoTracking()
-                .Select(x => new TreeNavigationItem() { Id = x.Id, Name = x.Description, Type = NavigationType.TYPE })
+                .Select(x => new TreeNavigationItem() { Id = x.Id, Name = x.Description, Type = NavigationType.COMPOSITE_TYPE, ProjectId = x.ProjectId })
                 .ToList();
         }
     }

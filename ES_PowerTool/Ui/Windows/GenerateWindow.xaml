@@ -9,13 +9,22 @@
     <Grid>
         <TabControl>
             <TabItem Header="FOLDER">
-                <TextBox Text="{Binding Dto.GeneratedCSVFolder}" />
+                <TextBox Text="{Binding Dto.GeneratedCSVFolder}" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" />
             </TabItem>
             <TabItem Header="TYPE">
-                <TextBox />
+                <TextBox Text="{Binding Dto.GeneratedCSVType}" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" />
             </TabItem>
             <TabItem Header="TYPE ELEMENT">
-                <TextBox />
+                <TextBox Text="{Binding Dto.GeneratedCSVTypeElement}" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" />
+            </TabItem>
+            <TabItem Header="PRESET">
+                <TextBox Text="{Binding Dto.GeneratedCSVPreset}" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" />
+            </TabItem>
+            <TabItem Header="DEFAULT_PRESET">
+                <TextBox Text="{Binding Dto.GeneratedCSVDefaultPreset}" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" />
+            </TabItem>
+            <TabItem Header="JOIN_TYPE_TYPE">
+                <TextBox Text="{Binding Dto.GeneratedCSVTypeType}" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" />
             </TabItem>
         </TabControl>
     </Grid>

@@ -16,7 +16,7 @@ namespace Desktop.App.Core.ModelViews
     {
         protected INavigationService _service;
 
-        public ObservableCollection<TreeNavigationItem> Roots { get; private set; }
+        public ObservableCollection<TreeNavigationItem> Roots { get; protected set; }
 
         public BaseTreeModelView(string modelViewId)
             : base(modelViewId)
@@ -26,18 +26,9 @@ namespace Desktop.App.Core.ModelViews
             Roots = new ObservableCollection<TreeNavigationItem>();
         }
 
-        public abstract void SetService();
-
         public async void OnServerSwitched(object obj)
         {
-            //if (obj == null)
-            //{
-            //    Roots.Clear();
-            //    OnPropertyChanged(() => Roots);
-            //    return;
-            //}
-            SetService();
-
+            _service = CreateNavigationService();
             Roots = new ObservableCollection<TreeNavigationItem>();
             Roots.Add(new TreeNavigationItem(Guid.Empty, ResourceUtils.GetMessage(MessageKeyConstants.LABEL_LOADING), NavigationType.FOLDER));
             OnPropertyChanged(() => Roots);
@@ -46,7 +37,9 @@ namespace Desktop.App.Core.ModelViews
             OnPropertyChanged(() => Roots);
         }
 
-        private async Task<List<TreeNavigationItem>> DoLoadRoots()
+        protected abstract INavigationService CreateNavigationService();
+
+        protected virtual async Task<List<TreeNavigationItem>> DoLoadRoots()
         {
             return await Task.Run(() =>
             {
@@ -95,7 +88,11 @@ namespace Desktop.App.Core.ModelViews
             }
             parentTreeNavigationItem.SetChildren(_service.GetChildren(NavigationContext.CreateNavigationContext(), parentTreeNavigationItem));
             parentTreeNavigationItem.IsExpanded = true;
-            Find(Roots, publishEvent.AffectedObjectId).IsSelected = true;
+            TreeNavigationItem affectedTreeNavigationItem = Find(Roots, publishEvent.AffectedObjectId);
+            if (affectedTreeNavigationItem != null)
+            {
+                affectedTreeNavigationItem.IsSelected = true;
+            }
         }
 
         protected virtual void OnUpdate(PublishEvent publishEvent)
@@ -147,10 +144,10 @@ namespace Desktop.App.Core.ModelViews
 
         public virtual void SelectionChanged(object selection)
         {
-            //_masterSelectionChangeService.SelectionChanged(GetModelViewId(), selection);
+            _masterSelectionChangeService.SelectionChanged(GetModelViewId(), selection);
         }
 
-        private TreeNavigationItem Find(ObservableCollection<TreeNavigationItem> treeNavigationItems, Guid id)
+        protected TreeNavigationItem Find(ObservableCollection<TreeNavigationItem> treeNavigationItems, Guid id)
         {
             foreach (TreeNavigationItem treeNavigationItem in treeNavigationItems)
             {

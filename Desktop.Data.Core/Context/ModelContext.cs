@@ -17,8 +17,14 @@ namespace Desktop.Data.Core.Context
             modelBuilder.Entity<CompositeTypeElement>().HasRequired(x => x.ElementType).WithMany().HasForeignKey(x => x.ElementTypeId).WillCascadeOnDelete(false);
             modelBuilder.Entity<CompositeTypeElement>().HasRequired(x => x.OwningType).WithMany().HasForeignKey(x => x.OwningTypeId).WillCascadeOnDelete(false);
             //modelBuilder.Entity<Preset>().HasRequired(x => x.CompositeType).WithMany().HasForeignKey(x => x.CompositeTypeId).WillCascadeOnDelete(false);
-            modelBuilder.Entity<CompositeType>().HasMany(x => x.Presets).WithRequired().HasForeignKey(x => x.CompositeTypeId).WillCascadeOnDelete(false);
+            modelBuilder.Entity<CompositeType>().HasMany(x => x.Presets).WithRequired().HasForeignKey(x => x.TypeId).WillCascadeOnDelete(false);
             //modelBuilder.Entity<Preset>().HasRequired(x => x.).WithMany().HasForeignKey(x => x.OwningTypeId).WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Project>().HasMany(x => x.Folders).WithRequired().HasForeignKey(x => x.ProjectId).WillCascadeOnDelete(false);
+            modelBuilder.Entity<Project>().HasMany(x => x.ModelObjectTypes).WithRequired().HasForeignKey(x => x.ProjectId).WillCascadeOnDelete(false);
+            modelBuilder.Entity<Project>().HasMany(x => x.CompositeTypeElements).WithRequired().HasForeignKey(x => x.ProjectId).WillCascadeOnDelete(false);
+            modelBuilder.Entity<Project>().HasMany(x => x.Presets).WithRequired().HasForeignKey(x => x.ProjectId).WillCascadeOnDelete(false);
+
 
             modelBuilder.Entity<ModelObjectType>()
                 .Map<CompositeType>(m => m.Requires("Discriminator").HasValue(CompositeType.DISC))

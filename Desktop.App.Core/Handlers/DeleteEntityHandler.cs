@@ -9,6 +9,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Desktop.Shared.Core.Validations;
+using System.Windows;
+using Desktop.Ui.I18n;
+using Desktop.App.Core.Utils;
+using Desktop.App.Core.Ui.Windows;
+using Desktop.App.Core.ModelViews;
 
 namespace Desktop.App.Core.Handlers
 {
@@ -17,14 +23,14 @@ namespace Desktop.App.Core.Handlers
     {
         protected override void DoExecute(ExecutionEvent executionEvent)
         {
-            //try
+            try
             {
-                ICollection<Guid> idsToRemove = TreeNavigationItem.CollectIds(executionEvent.GetTreeNavigationItems());
-                //string questionMessage = GetQuestionMessage(idsToRemove.Count, executionEvent.GetFirstTreeNavigationItem().Name);
-                //if (MessageBoxResult.No.Equals(MessageDialogUtils.Question(questionMessage, executionEvent.GetFirstTreeNavigationItem().Name)))
-                //{
-                //    return;
-                //}
+                ICollection<Guid> idsToRemove = TreeNavigationItem.CollectIds(executionEvent.GetSelectedTreeNavigationItems());
+                string questionMessage = GetQuestionMessage(idsToRemove.Count, executionEvent.GetFirstSelectedTreeNavigationItem().Name);
+                if (MessageBoxResult.No.Equals(MessageDialogUtils.Question(questionMessage, executionEvent.GetFirstSelectedTreeNavigationItem().Name)))
+                {
+                    return;
+                }
 
                 foreach (Guid idToRemove in idsToRemove)
                 {
@@ -32,10 +38,11 @@ namespace Desktop.App.Core.Handlers
                     OnSuccessful(executionEvent, idToRemove);
                 }
             }
-            //catch (ValidationException ex)
-            //{
-            //    MessageDialogUtils.ErrorMessage(ValidationResultUtils.FormatValidationMessage(ex.GetValidationResult()));
-            //}
+            catch (ValidationException ex)
+            {
+                WindowsManager.GetInstance().ShowDialog<MessageWindow>(new MessageWindowModelView(ex.GetValidationResult()));
+                //MessageDialogUtils.ErrorMessage(ValidationResultUtils.FormatValidationMessage(ex.GetValidationResult()));
+            }
         }
 
         protected virtual void Delete(ExecutionEvent executionEvent, Guid id)
@@ -52,6 +59,16 @@ namespace Desktop.App.Core.Handlers
         protected override void OnSuccessful(ExecutionEvent executionEvent, Guid affectedObjectId)
         {
             Publisher.GetInstance().Publish(PublishEvent.CreateDeletionEvent(affectedObjectId, null));
+        }
+
+        private string GetQuestionMessage(int itemsCountToRemove, string name)
+        {
+            string questionMessage = MessageKeyConstants.QUESTION_DO_YOU_WANT_TO_REMOVE_OBJECTS_MESSAGE;
+            if (itemsCountToRemove == 1)
+            {
+                questionMessage = ResourceUtils.GetMessage(MessageKeyConstants.QUESTION_DO_YOU_WANT_TO_REMOVE_OBJECT_MESSAGE, name);
+            }
+            return questionMessage;
         }
     }
 }

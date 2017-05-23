@@ -49,13 +49,17 @@
     <Compile Include="CSV\CSVWriter.cs" />
     <Compile Include="Dtos\CompositeTypeDto.cs" />
     <Compile Include="Dtos\CompositeTypeElementDto.cs" />
+    <Compile Include="Dtos\DefaultPresetGenearateDto.cs" />
     <Compile Include="Dtos\FolderDto.cs" />
     <Compile Include="Dtos\GenerateDto.cs" />
+    <Compile Include="Dtos\JoinTypeTypeGenerateDto.cs" />
     <Compile Include="Dtos\ModelObjectTypeDto.cs" />
     <Compile Include="Dtos\PresetDto.cs" />
     <Compile Include="Dtos\PrimitiveTypeDto.cs" />
     <Compile Include="Dtos\ProjectDto.cs" />
+    <Compile Include="IdConstants.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\ICompositeTypeDetailsNavigationService.cs" />
     <Compile Include="Services\ICompositeTypeElementCRUDService.cs" />
     <Compile Include="Services\ICompositeTypeNavigationService.cs" />
     <Compile Include="Services\IFolderCRUDService.cs" />

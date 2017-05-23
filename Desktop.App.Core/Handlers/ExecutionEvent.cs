@@ -10,39 +10,50 @@ namespace Desktop.App.Core.Handlers
 {
     public class ExecutionEvent
     {
-        public List<TreeNavigationItem> _treeNavigationItems;// { get; private set; }
-        public BaseDto Dto { get; set; }
-        //public ResourceType ResourceType { get; private set; }
+        private List<TreeNavigationItem> _selectedTreeNavigationItems;
+        private TreeNavigationItem _masterTreeNavigationItem; 
+        //public BaseDto Dto { get; set; }
 
         private ExecutionEvent()
         {
         }
 
-        private ExecutionEvent(List<TreeNavigationItem> treeNavigationItems)
+        private ExecutionEvent(List<TreeNavigationItem> selectedtreeNavigationItems)
         {
-            _treeNavigationItems = treeNavigationItems;
+            _selectedTreeNavigationItems = selectedtreeNavigationItems;
         }
 
-        private ExecutionEvent(List<TreeNavigationItem> treeNavigationItems, BaseDto dto)
-            : this(treeNavigationItems)
+        private ExecutionEvent(List<TreeNavigationItem> selectedtreeNavigationItems, TreeNavigationItem masterTreeNavigationItem)
+            : this(selectedtreeNavigationItems)
         {
-            Dto = dto;
+            _masterTreeNavigationItem = masterTreeNavigationItem;
         }
 
-        //private ExecutionEvent(List<TreeNavigationItem> treeNavigationItems, ResourceType resourceType)
+        //private ExecutionEvent(List<TreeNavigationItem> treeNavigationItems, BaseDto dto)
         //    : this(treeNavigationItems)
         //{
-        //    ResourceType = resourceType;
+        //    Dto = dto;
         //}
 
-        public TreeNavigationItem GetFirstTreeNavigationItem()
+        ////private ExecutionEvent(List<TreeNavigationItem> treeNavigationItems, ResourceType resourceType)
+        ////    : this(treeNavigationItems)
+        ////{
+        ////    ResourceType = resourceType;
+        ////}
+
+        public TreeNavigationItem GetFirstSelectedTreeNavigationItem()
         {
-            return _treeNavigationItems.First();
+            return _selectedTreeNavigationItems.First();
         }
 
-        public List<TreeNavigationItem> GetTreeNavigationItems()
+        public TreeNavigationItem GetMasterTreeNavigationItem()
         {
-            return _treeNavigationItems;
+            return _masterTreeNavigationItem;
+        }
+
+        public List<TreeNavigationItem> GetSelectedTreeNavigationItems()
+        {
+            return _selectedTreeNavigationItems;
         }
 
         public static ExecutionEvent Create()
@@ -50,9 +61,24 @@ namespace Desktop.App.Core.Handlers
             return new ExecutionEvent();
         }
 
-        public static ExecutionEvent Create(List<TreeNavigationItem> treeNavigationItems)
+        public static ExecutionEvent Create(List<TreeNavigationItem> selectedTreeNavigationItems)
         {
-            return new ExecutionEvent(treeNavigationItems);
+            return new ExecutionEvent(selectedTreeNavigationItems);
+        }
+
+        public static ExecutionEvent Create(List<TreeNavigationItem> selectedTreeNavigationItems, TreeNavigationItem masterTreeNavigationItem)
+        {
+            return new ExecutionEvent(selectedTreeNavigationItems, masterTreeNavigationItem);
+        }
+
+        public static ExecutionEvent Create(TreeNavigationItem selectedTreeNavigationItem)
+        {
+            return new ExecutionEvent(new List<TreeNavigationItem>() { selectedTreeNavigationItem });
+        }
+
+        public static ExecutionEvent Create(TreeNavigationItem selectedTreeNavigationItem, TreeNavigationItem masterTreeNavigationItem)
+        {
+            return new ExecutionEvent(new List<TreeNavigationItem>() { selectedTreeNavigationItem }, masterTreeNavigationItem);
         }
 
         //public static ExecutionEvent Create(List<TreeNavigationItem> treeNavigationItems, ResourceType resourceType)
@@ -60,9 +86,9 @@ namespace Desktop.App.Core.Handlers
         //    return new ExecutionEvent(treeNavigationItems, resourceType);
         //}
 
-        public static ExecutionEvent Create(List<TreeNavigationItem> treeNavigationItems, BaseDto dto)
-        {
-            return new ExecutionEvent(treeNavigationItems, dto);
-        }
+        //public static ExecutionEvent Create(List<TreeNavigationItem> treeNavigationItems, BaseDto dto)
+        //{
+        //    return new ExecutionEvent(treeNavigationItems, dto);
+        //}
     }
 }

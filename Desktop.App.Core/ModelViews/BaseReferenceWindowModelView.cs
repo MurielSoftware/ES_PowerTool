@@ -3,30 +3,34 @@ using Desktop.App.Core.Ui.Windows;
 using Desktop.Shared.Core.Navigations;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Data;
 using System.Windows.Input;
 
 namespace Desktop.App.Core.ModelViews
 {
     public class BaseReferenceWindowModelView : BaseModelView
     {
-        public List<TreeNavigationItem> Proposals { get; private set; }
         public TreeNavigationItem SelectedObject { get; set; }
         public ICommand CancelCommand { get; private set; }
         public ICommand FinishCommand { get; private set; }
+        public ICommand FilterChangedCommand { get; private set; }
+        public ICollectionView Proposals { get; private set; }
 
         public BaseReferenceWindowModelView()
             : base("BaseReferenceWindowModelView")
         {
+            FilterChangedCommand = new RelayCommand(OnFilterChangedCommand);
             FinishCommand = new RelayCommand(OnFinishCommand);
             CancelCommand = new RelayCommand(OnCancelCommand);
         }
 
         public void LoadProposals(List<TreeNavigationItem> proposals)
         {
-            Proposals = proposals;
+            Proposals = CollectionViewSource.GetDefaultView(proposals);
             OnPropertyChanged(() => Proposals);
         }
 
@@ -42,6 +46,24 @@ namespace Desktop.App.Core.ModelViews
             ReferenceWindow referenceWindow = (ReferenceWindow)obj;
             referenceWindow.DialogResult = true;
             referenceWindow.Close();
+        }
+
+        protected virtual void OnFilterChangedCommand(object obj)
+        {
+            if(string.IsNullOrEmpty(obj.ToString()))
+            {
+                Proposals.Filter = null;
+            }
+
+            Proposals.Filter = x =>
+            {
+                TreeNavigationItem treeNavigationItem = (TreeNavigationItem)x;
+                if (treeNavigationItem == null)
+                {
+                    return false;
+                }
+                return treeNavigationItem.Name.Contains(obj.ToString());
+            };
         }
     }
 }

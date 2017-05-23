@@ -75,7 +75,7 @@ namespace ES_PowerTool.Shared.CSV
 
         private static bool IsNotQuoteAttribute(Type type)
         {
-            return type == typeof(bool);
+            return type == typeof(bool) || type == typeof(int);
         }
     }
 }

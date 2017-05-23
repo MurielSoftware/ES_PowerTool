@@ -50,6 +50,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>es_pt32.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
@@ -67,6 +70,7 @@
       <HintPath>..\packages\Microsoft.SqlServer.Compact.4.0.8876.1\lib\net40\System.Data.SqlServerCe.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -85,8 +89,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Handlers\DefaultHandler.cs" />
     <Compile Include="Handlers\GenerateHandler.cs" />
+    <Compile Include="Handlers\NewPresetHandler.cs" />
+    <Compile Include="ModelViews\CompositeTypeDetailsTreeModelView.cs" />
     <Compile Include="ModelViews\GenerateWindowModelView.cs" />
+    <Compile Include="ModelViews\ModelViewsUtil.cs" />
     <Compile Include="Ui\Windows\GenerateWindow.xaml.cs">
       <DependentUpon>GenerateWindow.xaml</DependentUpon>
     </Compile>
@@ -100,8 +108,8 @@
     </Compile>
     <Compile Include="Editors\TypeReferenceEditor.cs" />
     <Compile Include="Editors\TypeReferenceDerivableEditor.cs" />
-    <Compile Include="Handlers\NewTypeElementHandler.cs" />
-    <Compile Include="Handlers\NewTypeHandler.cs" />
+    <Compile Include="Handlers\NewCompositeTypeElementHandler.cs" />
+    <Compile Include="Handlers\NewCompositeTypeHandler.cs" />
     <Compile Include="Handlers\NewFolderHandler.cs" />
     <Compile Include="Handlers\NewProjectHandler.cs" />
     <Compile Include="Handlers\OpenProjectHandler.cs" />
@@ -194,6 +202,32 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\generate.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\preset.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\red_square.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\default_item_decorator.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\preset_default.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\error.png" />
+    <Resource Include="Images\info.png" />
+    <Resource Include="Images\warning.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\es_pt32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="es_pt32.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\remove.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

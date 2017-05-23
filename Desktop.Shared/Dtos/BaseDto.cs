@@ -18,6 +18,10 @@ namespace Desktop.Shared.Core.Dtos
         public Guid Id { get; set; }
 
         [Browsable(false)]
+        [CSVAttribute("LAST_UPDATE", 1)]
+        public DateTime LastUpdate { get; set; }
+
+        [Browsable(false)]
         string IDataErrorInfo.Error { get { return string.Empty; } }
 
         [Browsable(false)]

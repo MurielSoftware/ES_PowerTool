@@ -21,13 +21,14 @@
     <TreeView.Resources>
         <Converters:AlphabetSortConverter x:Key="alphabetSortConverter" />
         <Converters:TreeNavigationItemLabelConverter x:Key="treeNavigationItemLabelConverter" />
+        <Converters:TreeNavigationItemImageConverter x:Key="treeNavigationItemImageConverter" />
         <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#CBE8F6" />
         <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="Black" />
     </TreeView.Resources>
     <TreeView.ItemTemplate>
         <HierarchicalDataTemplate ItemsSource="{Binding Children, Converter={StaticResource alphabetSortConverter}, ConverterParameter=Name}" DataType="{x:Type Navigations:TreeNavigationItem}">
             <StackPanel Orientation="Horizontal" MouseRightButtonUp="StackPanel_MouseRightButtonUp">
-                <Image Source="{Binding Image}" Width="16" Height="16" />
+                <Image Source="{Binding Converter={StaticResource treeNavigationItemImageConverter}}" Width="16" Height="16" />
                 <TextBlock Text="{Binding Converter={StaticResource treeNavigationItemLabelConverter}}" Margin="6, 1" />
             </StackPanel>
         </HierarchicalDataTemplate>

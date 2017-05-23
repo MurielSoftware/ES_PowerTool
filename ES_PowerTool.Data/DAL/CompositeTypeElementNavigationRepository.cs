@@ -19,7 +19,7 @@ namespace ES_PowerTool.Data.DAL
         {
             return GetContext().Set<CompositeTypeElement>()
                 .Where(x => x.OwningTypeId == parentId)
-                .Select(x => new CompositeTypeElementTreeNavigationItem() { Id = x.Id, Name = x.Description, Type = NavigationType.TYPE_ELEMENT, ElementTypeName = x.ElementType.Description })
+                .Select(x => new CompositeTypeElementTreeNavigationItem() { Id = x.Id, Name = x.Description, Type = NavigationType.TYPE_ELEMENT, ProjectId = x.ProjectId, ElementTypeName = x.ElementType.Description })
                 .ToList()
                 .Cast<TreeNavigationItem>()
                 .ToList();
@@ -29,7 +29,7 @@ namespace ES_PowerTool.Data.DAL
         {
             return GetContext().Set<CompositeTypeElement>()
                 .Where(x => x.Id == id)
-                .Select(x => new CompositeTypeElementTreeNavigationItem() { Id = x.Id, Name = x.Description, Type = NavigationType.TYPE_ELEMENT, ElementTypeName = x.ElementType.Description })
+                .Select(x => new CompositeTypeElementTreeNavigationItem() { Id = x.Id, Name = x.Description, Type = NavigationType.TYPE_ELEMENT, ProjectId = x.ProjectId, ElementTypeName = x.ElementType.Description })
                 .SingleOrDefault();
         }
     }

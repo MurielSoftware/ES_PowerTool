@@ -8,30 +8,31 @@ using ES_PowerTool.Shared.Services;
 using System.Collections.Generic;
 using System.Windows.Input;
 using System;
+using Desktop.Shared.Core.Services;
 
 namespace ES_PowerTool.ModelViews
 {
     public class CompositeTypeTreeModelView : BaseTreeModelView
     {
         public ICommand NewFolderCommand { get; private set; }
-        public ICommand NewTypeCommand { get; private set; }
-        public ICommand NewTypeElementCommand { get; private set; }
+        public ICommand NewCompositeTypeCommand { get; private set; }
+        public ICommand NewCompmositeTypeElementCommand { get; private set; }
         public ICommand DeleteCommand { get; private set; }
         public ICommand UpdateCommand { get; private set; }
 
         public CompositeTypeTreeModelView() 
             : base("CompositeTypeTreeModelView")
         {
-            NewFolderCommand = new RelayCommand(OnNewFolderCommand);
-            NewTypeCommand = new RelayCommand(OnNewTypeCommand);
-            NewTypeElementCommand = new RelayCommand(OnNewTypeElementCommand);
+            NewFolderCommand = new RelayCommand(OnNewFolderCommand, x => ModelViewsUtil.IsType(x, NavigationType.PROJECT, NavigationType.FOLDER));
+            NewCompositeTypeCommand = new RelayCommand(OnNewCompositeTypeCommand, x => ModelViewsUtil.IsType(x, NavigationType.FOLDER));
+            NewCompmositeTypeElementCommand = new RelayCommand(OnNewCompmositeTypeElementCommand, x => ModelViewsUtil.IsType(x, NavigationType.COMPOSITE_TYPE));
             DeleteCommand = new RelayCommand(OnDeleteCommand);
             UpdateCommand = new RelayCommand(OnUpdateCommand);
         }
 
-        public override void SetService()
+        protected override INavigationService CreateNavigationService()
         {
-            _service = ServiceActivator.Get<ICompositeTypeNavigationService>();
+            return ServiceActivator.Get<ICompositeTypeNavigationService>();
         }
 
         private void OnNewFolderCommand(object obj)
@@ -39,14 +40,14 @@ namespace ES_PowerTool.ModelViews
             HandlerExecutor.Execute<NewFolderHandler>(ExecutionEvent.Create(obj as List<TreeNavigationItem>));
         }
 
-        private void OnNewTypeCommand(object obj)
+        private void OnNewCompositeTypeCommand(object obj)
         {
-            HandlerExecutor.Execute<NewTypeHandler>(ExecutionEvent.Create(obj as List<TreeNavigationItem>));
+            HandlerExecutor.Execute<NewCompositeTypeHandler>(ExecutionEvent.Create(obj as List<TreeNavigationItem>));
         }
 
-        private void OnNewTypeElementCommand(object obj)
+        private void OnNewCompmositeTypeElementCommand(object obj)
         {
-            HandlerExecutor.Execute<NewTypeElementHandler>(ExecutionEvent.Create(obj as List<TreeNavigationItem>));
+            HandlerExecutor.Execute<NewCompositeTypeElementHandler>(ExecutionEvent.Create(obj as List<TreeNavigationItem>));
         }
 
         private void OnDeleteCommand(object obj)

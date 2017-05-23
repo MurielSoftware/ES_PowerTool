@@ -2,6 +2,7 @@
 using Desktop.Shared.Core.Navigations;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,6 +25,7 @@ namespace Desktop.App.Core.Ui.Windows
     {
         private Func<Task<List<TreeNavigationItem>>> _actionToGetProposals;
         private BaseReferenceWindowModelView _referenceWindowModelView;
+        private ICollectionView proposalCollectionView;
 
         public ReferenceWindow()
         {
@@ -40,7 +42,9 @@ namespace Desktop.App.Core.Ui.Windows
 
         private async void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            _referenceWindowModelView.LoadProposals(await _actionToGetProposals.Invoke());
+            List<TreeNavigationItem> proposals = await _actionToGetProposals.Invoke();
+            proposalCollectionView = CollectionViewSource.GetDefaultView(proposals);
+            _referenceWindowModelView.LoadProposals(proposals);
         }
 
         private void ButtonOK_Click(object sender, RoutedEventArgs e)
@@ -53,6 +57,11 @@ namespace Desktop.App.Core.Ui.Windows
         {
             DialogResult = false;
             Close();
+        }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
         }
     }
 }

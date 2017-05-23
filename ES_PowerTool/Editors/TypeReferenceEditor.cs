@@ -15,7 +15,7 @@ namespace ES_PowerTool.Editors
         protected override List<TreeNavigationItem> DoGetProposals()
         {
             ICompositeTypeNavigationService compositeTypeNavigationService = ServiceActivator.Get<ICompositeTypeNavigationService>();
-            return compositeTypeNavigationService.GetAllCompositeTypes();
+            return compositeTypeNavigationService.GetAllTypes();
         }
     }
 }

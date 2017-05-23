@@ -11,23 +11,31 @@ using System.Threading.Tasks;
 
 namespace Desktop.Data.Core.Model
 {
-    public abstract class ModelObjectType : BaseEntity, IStateAwareEntity
+    public abstract class ModelObjectType : BaseEntity, IProjectAwareEntity, IStateAwareEntity
     {
-        [Required]
-        public virtual string UniqueName { get; set; }
+        public virtual int SortValue { get; set; }
 
         [Required]
         public virtual string Description { get; set; }
-        public virtual Guid RuntimeId { get; set; }
-        public virtual bool BuiltIn { get; set; }
-        public virtual int SortValue { get; set; }
-        public virtual bool? Derivable { get; set; }
-        public virtual State State { get; set; }
 
+        [Required]
+        public virtual string UniqueName { get; set; }
+
+        public virtual Guid RuntimeId { get; set; }
+        public virtual string Dtype { get; set; }
         public virtual Guid FolderId { get; set; }
+        public virtual bool BuiltIn { get; set; }
+        public virtual bool? Derivable { get; set; }
+        public virtual string InstanceType { get; set; }
+
+        public virtual Guid ProjectId { get; set; }
+        public virtual State State { get; set; }
 
         [ForeignKey("FolderId")]
         public virtual Folder Folder { get; set; }
+
+        [ForeignKey("ProjectId")]
+        public virtual Project Project { get; set; }
 
         public override string ToString()
         {

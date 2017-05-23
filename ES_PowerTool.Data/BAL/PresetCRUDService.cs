@@ -17,5 +17,28 @@ namespace ES_PowerTool.Data.BAL
             : base(connection)
         {
         }
+
+        public void SetAsDefault(Guid presetId, Guid owningTypeId)
+        {
+            CompositeType owningType = _genericRepository.Find<CompositeType>(owningTypeId);
+            if(owningType.DefaultPresetId.Equals(presetId))
+            {
+                return;
+            }
+            owningType.DefaultPresetId = presetId;
+            _genericRepository.Persist<CompositeType>(owningType);
+        }
+
+        protected override Preset DoPersist(Preset preset)
+        {
+            preset = base.DoPersist(preset);
+            CompositeType type = preset.Type;
+            if (!type.DefaultPresetId.HasValue)
+            {
+                type.DefaultPresetId = preset.Id;
+                _genericRepository.Persist<CompositeType>(type);
+            }
+            return preset;
+        }
     }
 }

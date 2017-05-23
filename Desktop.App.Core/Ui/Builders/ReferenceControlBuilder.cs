@@ -10,11 +10,14 @@ using Desktop.Shared.Core.Navigations;
 using Desktop.App.Core.Editors;
 using Desktop.Shared.Core.Attributes;
 using Desktop.App.Core.Utils;
+using System.Windows.Media.Imaging;
 
 namespace Desktop.App.Core.Ui.Builders
 {
     public class ReferenceControlBuilder : BaseControlBuilder, IControlBuilder
     {
+        private static Uri RemoveReferenceImage = new Uri("pack://application:,,,/Images/remove.png");
+
         public UIElement GenerateUiControl(BaseDto dto, PropertyInfo propertyInfo, Grid grid, int rowIndex)
         {
             CreateLabel(propertyInfo, grid, rowIndex);
@@ -39,7 +42,9 @@ namespace Desktop.App.Core.Ui.Builders
                 }
             });
 
-            Button removeReferenceButton = CreateButton("x", delegate 
+            Image image = new Image();
+            image.Source = new BitmapImage(RemoveReferenceImage);
+            Button removeReferenceButton = CreateButton(image, delegate 
             {
                 propertyInfo.SetValue(dto, null);
                 referenceLabel.Content = string.Empty;
@@ -72,7 +77,7 @@ namespace Desktop.App.Core.Ui.Builders
             return label;
         }
 
-        private Button CreateButton(string label, RoutedEventHandler click)
+        private Button CreateButton(object label, RoutedEventHandler click)
         {
             Button button = new Button();
             button.Content = label;

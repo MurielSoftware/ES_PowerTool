@@ -20,7 +20,7 @@ namespace ES_PowerTool.Data.DAL
         internal List<TreeNavigationItem> FindRoots()
         {
             return GetContext().Set<Project>()
-                .Select(x => new TreeNavigationItem() { Id = x.Id, Name = x.Name, Type = NavigationType.PROJECT, HasRemoteChildren = x.Folders.Count > 0 })
+                .Select(x => new TreeNavigationItem() { Id = x.Id, Name = x.Name, Type = NavigationType.PROJECT, ProjectId = x.Id, HasRemoteChildren = x.Folders.Count > 0 })
                 .ToList();
         }
 
@@ -28,7 +28,7 @@ namespace ES_PowerTool.Data.DAL
         {
             return GetContext().Set<Project>()
                 .Where(x => x.Id == id)
-                .Select(x => new TreeNavigationItem() { Id = x.Id, Name = x.Name, Type = NavigationType.PROJECT, HasRemoteChildren = x.Folders.Count > 0 })
+                .Select(x => new TreeNavigationItem() { Id = x.Id, Name = x.Name, Type = NavigationType.PROJECT, ProjectId = x.Id, HasRemoteChildren = x.Folders.Count > 0 })
                 .SingleOrDefault();
         }
     }
