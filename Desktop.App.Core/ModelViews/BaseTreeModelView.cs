@@ -65,6 +65,11 @@ namespace Desktop.App.Core.ModelViews
 
         public async void LoadChildren(TreeNavigationItem parentTreeNavigationItem)
         {
+            if(parentTreeNavigationItem == null)
+            {
+                return;
+            }
+
             if (parentTreeNavigationItem.HasRemoteChildren)
             {
                 parentTreeNavigationItem.HasRemoteChildren = false;
@@ -72,7 +77,7 @@ namespace Desktop.App.Core.ModelViews
             }
         }
 
-        private async Task<List<TreeNavigationItem>> DoLoadChildren(TreeNavigationItem parentTreeNavigationItem)
+        protected virtual async Task<List<TreeNavigationItem>> DoLoadChildren(TreeNavigationItem parentTreeNavigationItem)
         {
             return await Task.Run(() => {
                 return _service.GetChildren(NavigationContext.CreateNavigationContext(), parentTreeNavigationItem);
@@ -120,8 +125,8 @@ namespace Desktop.App.Core.ModelViews
             updatedTreeNavigationItem.HasRemoteChildren = treeNavigationItem.HasRemoteChildren;
             updatedTreeNavigationItem.Children = treeNavigationItem.Children;
 
-            parentTreeNavigationItem.IsSelected = false;
-            updatedTreeNavigationItem.IsSelected = true;
+            //parentTreeNavigationItem.IsSelected = false;
+            //updatedTreeNavigationItem.IsSelected = true;
         }
 
         protected virtual void OnDelete(PublishEvent publishEvent)

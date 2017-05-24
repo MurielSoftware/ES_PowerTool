@@ -1,5 +1,6 @@
 ﻿using Desktop.App.Core.ModelViews;
 using ES_PowerTool.Shared.Dtos;
+using ES_PowerTool.Shared.Dtos.Generate;
 using System;
 using System.Collections.Generic;
 using System.Linq;

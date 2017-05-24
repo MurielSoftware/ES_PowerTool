@@ -53,6 +53,7 @@
     <Compile Include="Context\IUnitOfWork.cs" />
     <Compile Include="DataTypes\FilePath.cs" />
     <Compile Include="Dtos\BaseDto.cs" />
+    <Compile Include="Navigations\CompositePresetElementTreeNavigationItem.cs" />
     <Compile Include="Navigations\CompositeTypeElementTreeNavigationItem.cs" />
     <Compile Include="Navigations\MasterNavigationContext.cs" />
     <Compile Include="Navigations\NavigationContext.cs" />

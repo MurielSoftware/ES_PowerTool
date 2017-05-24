@@ -1,11 +1,6 @@
 ﻿using Desktop.App.Core.Handlers;
 using Desktop.Shared.Core;
-using ES_PowerTool.Shared.Dtos;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using ES_PowerTool.Shared.Dtos.OOE.Types;
 
 namespace ES_PowerTool.Handlers
 {

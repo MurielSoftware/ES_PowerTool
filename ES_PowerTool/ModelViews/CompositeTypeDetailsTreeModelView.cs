@@ -1,17 +1,13 @@
 ﻿using Desktop.App.Core.ModelViews;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Desktop.Shared.Core.Services;
 using Desktop.Shared.Core;
-using ES_PowerTool.Shared.Services;
 using System.Windows.Input;
 using Desktop.App.Core.Commands;
 using Desktop.App.Core.Handlers;
 using ES_PowerTool.Handlers;
 using Desktop.Shared.Core.Navigations;
+using ES_PowerTool.Shared.Services.OOE.Types;
 
 namespace ES_PowerTool.ModelViews
 {

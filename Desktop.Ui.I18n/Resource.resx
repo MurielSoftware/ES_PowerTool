@@ -208,9 +208,18 @@
     <value>Do you want to remove '{0}'?</value>
   </data>
   <data name="validation_message_type_is_used_as_super_type" xml:space="preserve">
-    <value>Type '{0}' is used as a supertype</value>
+    <value>Type '{0}' is used as a supertype for '{1}'</value>
   </data>
   <data name="validation_message_type_is_used_as_type_element" xml:space="preserve">
-    <value>Type '{0}' is used as a type element</value>
+    <value>Type '{0}' is used as a element type for composite type element '{1}'</value>
+  </data>
+  <data name="label_preset_element_csv_path" xml:space="preserve">
+    <value>Path to CSV Preset Element</value>
+  </data>
+  <data name="label_about" xml:space="preserve">
+    <value>O aplikaci</value>
+  </data>
+  <data name="validation_message_preset_is_associated_to_preset_element" xml:space="preserve">
+    <value>Preset '{0}' is used as associated preset for composite preset element '{1}'</value>
   </data>
 </root>

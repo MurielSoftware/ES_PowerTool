@@ -59,15 +59,15 @@ namespace Desktop.App.Core.Ui.Controls
 
         private void treeView_GotFocus(object sender, RoutedEventArgs e)
         {
-            if (!(e.Source is TreeView))
-            {
-                return;
-            }
-            TreeView sourceTreeView = e.Source as TreeView;
-            if (sourceTreeView.SelectedItem == null || !(sourceTreeView.SelectedItem is TreeNavigationItem))
-            {
-                return;
-            }
+            //if (!(e.Source is TreeView))
+            //{
+            //    return;
+            //}
+            //TreeView sourceTreeView = e.Source as TreeView;
+            //if (sourceTreeView.SelectedItem == null || !(sourceTreeView.SelectedItem is TreeNavigationItem))
+            //{
+            //    return;
+            //}
             //_baseTreeModelView.SelectionChanged(sourceTreeView.SelectedItem);
         }
 

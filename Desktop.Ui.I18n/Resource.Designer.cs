@@ -70,6 +70,15 @@ namespace Desktop.Ui.I18n {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to O aplikaci.
+        /// </summary>
+        public static string label_about {
+            get {
+                return ResourceManager.GetString("label_about", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Built-in.
         /// </summary>
         public static string label_built_in {
@@ -223,6 +232,15 @@ namespace Desktop.Ui.I18n {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Path to CSV Preset Element.
+        /// </summary>
+        public static string label_preset_element_csv_path {
+            get {
+                return ResourceManager.GetString("label_preset_element_csv_path", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Project.
         /// </summary>
         public static string label_project {
@@ -331,7 +349,16 @@ namespace Desktop.Ui.I18n {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Type &apos;{0}&apos; is used as a supertype.
+        ///   Looks up a localized string similar to Preset &apos;{0}&apos; is used as associated preset for composite preset element &apos;{1}&apos;.
+        /// </summary>
+        public static string validation_message_preset_is_associated_to_preset_element {
+            get {
+                return ResourceManager.GetString("validation_message_preset_is_associated_to_preset_element", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Type &apos;{0}&apos; is used as a supertype for &apos;{1}&apos;.
         /// </summary>
         public static string validation_message_type_is_used_as_super_type {
             get {
@@ -340,7 +367,7 @@ namespace Desktop.Ui.I18n {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Type &apos;{0}&apos; is used as a type element.
+        ///   Looks up a localized string similar to Type &apos;{0}&apos; is used as a element type for composite type element &apos;{1}&apos;.
         /// </summary>
         public static string validation_message_type_is_used_as_type_element {
             get {

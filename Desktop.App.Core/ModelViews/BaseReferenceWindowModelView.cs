@@ -31,6 +31,7 @@ namespace Desktop.App.Core.ModelViews
         public void LoadProposals(List<TreeNavigationItem> proposals)
         {
             Proposals = CollectionViewSource.GetDefaultView(proposals);
+            Proposals.SortDescriptions.Add(new SortDescription("Name", ListSortDirection.Ascending));
             OnPropertyChanged(() => Proposals);
         }
 

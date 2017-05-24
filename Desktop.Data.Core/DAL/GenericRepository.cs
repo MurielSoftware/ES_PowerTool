@@ -126,8 +126,12 @@ namespace Desktop.Data.Core.DAL
 
         public virtual void DeleteRange<T>(Func<T, bool> where) where T : BaseEntity
         {
-            GetContext().Set<T>().RemoveRange(GetContext().Set<T>().Where(where));
-            Flush();
+            IEnumerable<T> entitiesToRemove = GetContext().Set<T>().Where(where);
+            if (entitiesToRemove != null && entitiesToRemove.Count() > 0)
+            {                
+                GetContext().Set<T>().RemoveRange(entitiesToRemove);
+                Flush();
+            }
         }
 
         /// <summary>

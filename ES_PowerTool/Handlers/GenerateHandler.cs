@@ -3,15 +3,10 @@ using Desktop.App.Core.Jobs;
 using Desktop.App.Core.Ui.Windows;
 using Desktop.Shared.Core;
 using ES_PowerTool.ModelViews;
-using ES_PowerTool.Shared.Dtos;
+using ES_PowerTool.Shared.Dtos.Generate;
 using ES_PowerTool.Shared.Services;
 using ES_PowerTool.Ui.Windows;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Threading;
 
 namespace ES_PowerTool.Handlers

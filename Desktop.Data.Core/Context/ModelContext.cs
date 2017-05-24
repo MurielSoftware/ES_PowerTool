@@ -16,6 +16,9 @@ namespace Desktop.Data.Core.Context
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<CompositeTypeElement>().HasRequired(x => x.ElementType).WithMany().HasForeignKey(x => x.ElementTypeId).WillCascadeOnDelete(false);
             modelBuilder.Entity<CompositeTypeElement>().HasRequired(x => x.OwningType).WithMany().HasForeignKey(x => x.OwningTypeId).WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<CompositePresetElement>().HasRequired(x => x.PresetForTypeElement).WithMany().HasForeignKey(x => x.PresetForTypeElementId).WillCascadeOnDelete(false);
+            modelBuilder.Entity<CompositePresetElement>().HasRequired(x => x.OwningPreset).WithMany().HasForeignKey(x => x.OwningPresetId).WillCascadeOnDelete(false);
             //modelBuilder.Entity<Preset>().HasRequired(x => x.CompositeType).WithMany().HasForeignKey(x => x.CompositeTypeId).WillCascadeOnDelete(false);
             modelBuilder.Entity<CompositeType>().HasMany(x => x.Presets).WithRequired().HasForeignKey(x => x.TypeId).WillCascadeOnDelete(false);
             //modelBuilder.Entity<Preset>().HasRequired(x => x.).WithMany().HasForeignKey(x => x.OwningTypeId).WillCascadeOnDelete(false);

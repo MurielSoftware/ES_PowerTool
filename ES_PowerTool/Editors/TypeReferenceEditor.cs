@@ -1,12 +1,8 @@
 ﻿using Desktop.App.Core.Editors;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Desktop.Shared.Core.Navigations;
 using Desktop.Shared.Core;
-using ES_PowerTool.Shared.Services;
+using ES_PowerTool.Shared.Services.OOE.Types;
 
 namespace ES_PowerTool.Editors
 {

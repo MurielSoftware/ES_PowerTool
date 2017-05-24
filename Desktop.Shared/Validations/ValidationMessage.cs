@@ -10,11 +10,13 @@ namespace Desktop.Shared.Core.Validations
     {
         public string ResourceKey { get; private set; }
         public ValidationType Type { get; private set; }
+        public object[] Parameters { get; private set; }
 
-        public ValidationMessage(ValidationType type, string resourceKey)
+        public ValidationMessage(ValidationType type, string resourceKey, params object[] parameters)
         {
             ResourceKey = resourceKey;
             Type = type;
+            Parameters = parameters;
         }
     }
 }

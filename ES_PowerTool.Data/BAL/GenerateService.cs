@@ -3,10 +3,17 @@ using ES_PowerTool.Shared.Services;
 using System;
 using System.Collections.Generic;
 using Desktop.Shared.Core.Context;
-using ES_PowerTool.Data.DAL;
 using Desktop.Data.Core.Model;
 using ES_PowerTool.Shared.CSV;
-using ES_PowerTool.Shared.Dtos;
+using ES_PowerTool.Data.DAL.OOE.Presets;
+using ES_PowerTool.Data.DAL.OOE.Elements;
+using ES_PowerTool.Data.DAL.OOE;
+using ES_PowerTool.Data.DAL.OOE.Types;
+using ES_PowerTool.Shared.Dtos.Generate;
+using ES_PowerTool.Shared.Dtos.OOE.Types;
+using ES_PowerTool.Shared.Dtos.OOE;
+using ES_PowerTool.Shared.Dtos.OOE.Elements;
+using ES_PowerTool.Shared.Dtos.OOE.Presets;
 
 namespace ES_PowerTool.Data.BAL
 {
@@ -29,9 +36,9 @@ namespace ES_PowerTool.Data.BAL
         public GenerateDto Generate(Guid projectId)
         {
             GenerateDto generateDto = new GenerateDto();
-            List<Folder> folders = _folderRepository.GetFoldersToExport(projectId);
+            List<Folder> folders = _folderRepository.FindFoldersToExport(projectId);
             List<CompositeType> compositeTypes = _compositeTypeRepository.GetCompositeTypesToExport(projectId);
-            List<CompositeTypeElement> compositeTypeElements = _compositeTypeElementRepository.GetCompositeTypeElementsToExport(projectId);
+            List<CompositeTypeElement> compositeTypeElements = _compositeTypeElementRepository.FindCompositeTypeElementsToExport(projectId);
             List<Preset> presets = _presetRepository.GetPresetsToExport(projectId);
             List<DefaultPresetGenearateDto> defaultPresetGenerateDtos = CreateDefaultPresetGenerateDtos(compositeTypes);
             List<JoinTypeTypeGenerateDto> joinTypeTypeGenerateDtos = CreateJoinTypeTypeGenerateDtos(compositeTypes);

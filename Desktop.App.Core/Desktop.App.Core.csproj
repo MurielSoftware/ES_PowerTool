@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Handlers\UpdateEntityHandler.cs" />
+    <Compile Include="ModelViews\AboutWindowModelView.cs" />
     <Compile Include="ModelViews\BaseDetailsTreeModelView.cs" />
     <Compile Include="ModelViews\BaseReferenceWindowModelView.cs" />
     <Compile Include="ModelViews\ITreeModelView.cs" />
@@ -95,8 +96,12 @@
     <Compile Include="Singleton.cs" />
     <Compile Include="Ui\Converters\ListBoxConverter.cs" />
     <Compile Include="Ui\Converters\MessageWindowIconConverter.cs" />
+    <Compile Include="Ui\Converters\ResourceKeyConverter.cs" />
     <Compile Include="Ui\Converters\TreeNavigationItemImageConverter.cs" />
     <Compile Include="Ui\Converters\TreeNavigationItemLabelConverter.cs" />
+    <Compile Include="Ui\Windows\AboutWindow.xaml.cs">
+      <DependentUpon>AboutWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Ui\Windows\MessageWindow.xaml.cs">
       <DependentUpon>MessageWindow.xaml</DependentUpon>
     </Compile>
@@ -131,6 +136,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Ui\Controls\BaseTreeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ui\Windows\AboutWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

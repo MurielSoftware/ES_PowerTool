@@ -70,6 +70,7 @@
     <Compile Include="DAL\BaseRepository.cs" />
     <Compile Include="DAL\GenericRepository.cs" />
     <Compile Include="Model\BaseEntity.cs" />
+    <Compile Include="Model\CompositePresetElement.cs" />
     <Compile Include="Model\CompositeType.cs" />
     <Compile Include="Model\IStateAwareEntity.cs" />
     <Compile Include="Model\ModelObjectType.cs" />

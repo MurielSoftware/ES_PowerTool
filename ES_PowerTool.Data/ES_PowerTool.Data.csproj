@@ -50,23 +50,29 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BAL\CompositeTypeDetailsNavigationService.cs" />
-    <Compile Include="BAL\CompositeTypeElementCRUDService.cs" />
-    <Compile Include="BAL\CompositeTypeNavigationService.cs" />
-    <Compile Include="BAL\FolderCRUDService.cs" />
-    <Compile Include="BAL\CompositeTypeCRUDService.cs" />
+    <Compile Include="BAL\Ooe\FolderValidationService.cs" />
+    <Compile Include="BAL\Ooe\Presets\CompositePresetElementCRUDService.cs" />
+    <Compile Include="BAL\Ooe\Presets\PresetValidationService.cs" />
+    <Compile Include="BAL\Ooe\Types\CompositeTypeDetailsNavigationService.cs" />
+    <Compile Include="BAL\Ooe\Elements\CompositeTypeElementCRUDService.cs" />
+    <Compile Include="BAL\Ooe\Types\CompositeTypeNavigationService.cs" />
+    <Compile Include="BAL\Ooe\FolderCRUDService.cs" />
+    <Compile Include="BAL\Ooe\Types\CompositeTypeCRUDService.cs" />
     <Compile Include="BAL\GenerateService.cs" />
-    <Compile Include="BAL\PresetCRUDService.cs" />
+    <Compile Include="BAL\Ooe\Presets\PresetCRUDService.cs" />
+    <Compile Include="BAL\Ooe\Types\CompositeTypeValidationService.cs" />
     <Compile Include="BAL\ProjectCRUDService.cs" />
-    <Compile Include="DAL\CompositeTypeElementNavigationRepository.cs" />
-    <Compile Include="DAL\PresetRepository.cs" />
-    <Compile Include="DAL\CompositeTypeElementRepository.cs" />
-    <Compile Include="DAL\CompositeTypeNavigationRepository.cs" />
-    <Compile Include="DAL\FolderNavigationRepository.cs" />
-    <Compile Include="DAL\FolderRepository.cs" />
-    <Compile Include="DAL\CompositeTypeRepository.cs" />
-    <Compile Include="DAL\PresetNavigationRepository.cs" />
-    <Compile Include="DAL\PrimitiveTypeNavigationRepository.cs" />
+    <Compile Include="DAL\Ooe\Elements\CompositeTypeElementNavigationRepository.cs" />
+    <Compile Include="DAL\Ooe\Presets\CompositePresetElementNavigationRepository.cs" />
+    <Compile Include="DAL\Ooe\Presets\CompositePresetElementRepository.cs" />
+    <Compile Include="DAL\Ooe\Presets\PresetRepository.cs" />
+    <Compile Include="DAL\Ooe\Elements\CompositeTypeElementRepository.cs" />
+    <Compile Include="DAL\Ooe\Types\CompositeTypeNavigationRepository.cs" />
+    <Compile Include="DAL\Ooe\FolderNavigationRepository.cs" />
+    <Compile Include="DAL\Ooe\FolderRepository.cs" />
+    <Compile Include="DAL\Ooe\Types\CompositeTypeRepository.cs" />
+    <Compile Include="DAL\Ooe\Presets\PresetNavigationRepository.cs" />
+    <Compile Include="DAL\Ooe\Types\PrimitiveTypeNavigationRepository.cs" />
     <Compile Include="DAL\ProjectNavigationRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

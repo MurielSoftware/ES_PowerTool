@@ -13,6 +13,7 @@ namespace Desktop.Shared.Core.Navigations
         PRIMITIVE_TYPE,
         COMPOSITE_TYPE,
         TYPE_ELEMENT,
-        PRESET
+        PRESET,
+        COMPOSITE_PRESET_ELEMENT
     }
 }

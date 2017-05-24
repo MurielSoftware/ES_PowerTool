@@ -27,6 +27,11 @@ namespace Desktop.App.Core.Ui.Converters
                 CompositeTypeElementTreeNavigationItem compositeTypeElementTreeNavigationItem = (CompositeTypeElementTreeNavigationItem)treeNavigationItem;
                 return compositeTypeElementTreeNavigationItem.Name + " : " + compositeTypeElementTreeNavigationItem.ElementTypeName;
             }
+            else if(NavigationType.COMPOSITE_PRESET_ELEMENT.Equals(treeNavigationItem.Type))
+            {
+                CompositePresetElementTreeNavigationItem compositePresetElementTreeNavigationItem = (CompositePresetElementTreeNavigationItem)treeNavigationItem;
+                return compositePresetElementTreeNavigationItem.CompositeTypeElementName + " : " + compositePresetElementTreeNavigationItem.CompositeTypeElementElementTypeName + " <- " + compositePresetElementTreeNavigationItem.AssociatedPresetName;
+            }
             return treeNavigationItem.Name;
         }
 

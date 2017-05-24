@@ -111,9 +111,14 @@ namespace Desktop.Data.Core.BAL
         /// </summary>
         /// <param name="entity">The entity to check</param>
         /// <returns>Return <code>true</code> if the entity exists</returns>
-        protected bool EntityExists(T dto)
+        //protected bool EntityExists(T dto)
+        //{
+        //    return dto.Id != Guid.Empty;
+        //}
+
+        protected bool EntityExists(U entity)
         {
-            return dto.Id != Guid.Empty;
+            return entity.Id != Guid.Empty;
         }
     }
 }

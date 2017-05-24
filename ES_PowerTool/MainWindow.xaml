@@ -41,6 +41,13 @@
                         <TextBlock Text="{x:Static r:Resource.label_generate}" />
                     </StackPanel>
                 </Button>
+                <Separator />
+                <Button Command="{Binding AboutCommand}" CommandParameter="{Binding ElementName=ModelObjectViewTree, Path=SelectedItems}">
+                    <StackPanel>
+                        <Image Source="pack://application:,,,/Images/about.png" Width="16" Height="16" />
+                        <TextBlock Text="{x:Static r:Resource.label_about}" />
+                    </StackPanel>
+                </Button>
             </ToolBar>
         </ToolBarTray>
 
@@ -124,7 +131,16 @@
         </Grid>
         
         <StatusBar Grid.Row="2">
-            <Label Content="f" />
+            <StackPanel>
+                <Label Content="ES Power Tool - Jaromir Krpec" />
+            </StackPanel>
+            <!--<Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="auto" />
+                </Grid.ColumnDefinitions>
+                <Label Content="ES Power Tool - Jaromir Krpec" Grid.Column="1" />
+            </Grid>-->
         </StatusBar>
     </Grid>
 </Window>

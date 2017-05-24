@@ -12,6 +12,10 @@ using Desktop.Shared.Core.Dtos;
 using Desktop.Data.Core.Model;
 using Desktop.Data.Core.BAL;
 using Desktop.Shared.Core;
+using ES_PowerTool.Shared.Dtos.OOE;
+using ES_PowerTool.Shared.Dtos.OOE.Types;
+using ES_PowerTool.Shared.Dtos.OOE.Elements;
+using ES_PowerTool.Shared.Dtos.OOE.Presets;
 
 namespace ES_PowerTool.Data.BAL
 {
@@ -30,6 +34,7 @@ namespace ES_PowerTool.Data.BAL
             PersistEntities<PrimitiveType, PrimitiveTypeDto>(persistedProjectDto.Id, projectDto.CsvTypes, "PRI");
             PersistEntities<CompositeTypeElement, CompositeTypeElementDto>(persistedProjectDto.Id, projectDto.CsvTypeElements);
             PersistEntities<Preset, PresetDto>(persistedProjectDto.Id, projectDto.CsvPresets);
+            PersistEntities<CompositePresetElement, CompositePresetElementDto>(persistedProjectDto.Id, projectDto.CsvPresetElements);
             SetDefaultPresetsToTypes(projectDto.CsvDefaultPreset);
             SetSuperTypes(projectDto.CsvTypeType);
             return persistedProjectDto;
@@ -49,7 +54,7 @@ namespace ES_PowerTool.Data.BAL
             foreach(CSVRow row in file.GetValues())
             {
                 CSVValue dtypeValue = file.GetValueToColumn(row, "DTYPE");
-                if(dtypeValue != null)
+                if(dtypeValue != null && !string.IsNullOrEmpty(dtype))
                 {
                     if(!dtype.Equals(dtypeValue.GetValue()))
                     {

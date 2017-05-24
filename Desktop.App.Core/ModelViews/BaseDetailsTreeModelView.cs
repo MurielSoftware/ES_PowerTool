@@ -52,7 +52,12 @@ namespace Desktop.App.Core.ModelViews
             }
             parentTreeNavigationItem.SetChildren(_service.GetChildren(MasterNavigationContext.CreateMasterNavigationContext(_masterNavigationItem), parentTreeNavigationItem));
             parentTreeNavigationItem.IsExpanded = true;
-            Find(Roots, publishEvent.AffectedObjectId).IsSelected = true;
+
+            TreeNavigationItem affectedTreeNavigationItem = Find(Roots, publishEvent.AffectedObjectId);
+            if (affectedTreeNavigationItem != null)
+            {
+                affectedTreeNavigationItem.IsSelected = true;
+            }
         }
 
         protected override async Task<List<TreeNavigationItem>> DoLoadRoots()
@@ -63,7 +68,22 @@ namespace Desktop.App.Core.ModelViews
             }
             return await Task.Run(() =>
             {
-                return _service.GetRoots(MasterNavigationContext.CreateMasterNavigationContext(_masterNavigationItem));
+                List<TreeNavigationItem> roots = _service.GetRoots(MasterNavigationContext.CreateMasterNavigationContext(_masterNavigationItem));
+                foreach(TreeNavigationItem root in roots)
+                {
+                    if(!root.HasRemoteChildren && root.Children.Count > 0)
+                    {
+                        root.IsExpanded = true;
+                    }
+                }
+                return roots;
+            });
+        }
+
+        protected override async Task<List<TreeNavigationItem>> DoLoadChildren(TreeNavigationItem parentTreeNavigationItem)
+        {
+            return await Task.Run(() => {
+                return _service.GetChildren(MasterNavigationContext.CreateMasterNavigationContext(_masterNavigationItem), parentTreeNavigationItem);
             });
         }
     }

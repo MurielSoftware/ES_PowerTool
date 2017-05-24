@@ -52,6 +52,11 @@ namespace ES_PowerTool.Shared.CSV
                     {
                         row.Append(value.ToString().ToLower());
                     }
+                    else if(IsDateTime(propertyInfo.PropertyType))
+                    {
+                        DateTime dateTime = (DateTime)value;
+                        row.AppendFormat("\"{0}-{1}-{2}\"", dateTime.Year, dateTime.Month, dateTime.Day);
+                    }
                     else
                     {
                         row.AppendFormat("\"{0}\"", value);
@@ -76,6 +81,11 @@ namespace ES_PowerTool.Shared.CSV
         private static bool IsNotQuoteAttribute(Type type)
         {
             return type == typeof(bool) || type == typeof(int);
+        }
+
+        private static bool IsDateTime(Type type)
+        {
+            return type == typeof(DateTime);
         }
     }
 }

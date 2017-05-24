@@ -43,7 +43,11 @@ namespace Desktop.App.Core.Ui.Converters
                 int compare = firstTreeNavigationItem.Type.CompareTo(secondTreeNavigationItem.Type);
                 if (compare == 0)
                 {
-                    return firstTreeNavigationItem.Name.CompareTo(secondTreeNavigationItem.Name);
+                    if (firstTreeNavigationItem.Name != null)
+                    {
+                        return firstTreeNavigationItem.Name.CompareTo(secondTreeNavigationItem.Name);
+                    }
+                    return firstTreeNavigationItem.ToString().CompareTo(secondTreeNavigationItem.ToString());
                 }
                 return compare;
             }

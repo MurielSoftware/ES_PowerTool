@@ -4,11 +4,10 @@ using Desktop.App.Core.Commands;
 using Desktop.App.Core.Handlers;
 using Desktop.App.Core.ModelViews;
 using ES_PowerTool.Handlers;
-using ES_PowerTool.Shared.Services;
 using System.Collections.Generic;
 using System.Windows.Input;
-using System;
 using Desktop.Shared.Core.Services;
+using ES_PowerTool.Shared.Services.OOE.Types;
 
 namespace ES_PowerTool.ModelViews
 {

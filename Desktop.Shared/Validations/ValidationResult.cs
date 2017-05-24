@@ -20,6 +20,11 @@ namespace Desktop.Shared.Core.Validations
             ValidationMessages.Add(validationMessage);
         }
 
+        public void AddRange(List<ValidationMessage> validationMessages)
+        {
+            ValidationMessages.AddRange(validationMessages);
+        }
+
         public bool IsEmpty()
         {
             return ValidationMessages.Count == 0;

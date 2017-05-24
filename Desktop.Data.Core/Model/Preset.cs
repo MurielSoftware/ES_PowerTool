@@ -21,5 +21,8 @@ namespace Desktop.Data.Core.Model
 
         [ForeignKey("ProjectId")]
         public virtual Project Project { get; set; }
+
+        [InverseProperty("OwningPreset")]
+        public virtual ICollection<CompositePresetElement> Elements { get; set; }
     }
 }

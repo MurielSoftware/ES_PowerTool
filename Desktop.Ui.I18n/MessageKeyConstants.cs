@@ -12,6 +12,7 @@ namespace Desktop.Ui.I18n
         public const string LABEL_SPECIFIC_CATEGORY = "label_specific_category";
         public const string LABEL_FOLDER_CSV_PATH = "label_folder_csv_path";
         public const string LABEL_PRESET_CSV_PATH = "label_preset_csv_path";
+        public const string LABEL_PRESET_ELEMENT_CSV_PATH = "label_preset_element_csv_path";
         public const string LABEL_TYPE_CSV_PATH = "label_type_csv_path";
         public const string LABEL_TYPE_ELEMENT_CSV_PATH = "label_type_element_csv_path";
         public const string LABEL_DEFAULT_PRESET_CSV_PATH = "label_default_preset_csv_path";
@@ -38,5 +39,6 @@ namespace Desktop.Ui.I18n
 
         public const string VALIDATION_MESSAGE_TYPE_IS_USED_AS_TYPE_ELEMENT = "validation_message_type_is_used_as_type_element";
         public const string VALIDATION_MESSAGE_TYPE_IS_USED_AS_SUPER_TYPE = "validation_message_type_is_used_as_super_type";
+        public const string VALIDATION_MESSAGE_PRESET_IS_ASSOCIATED_TO_PRESET_ELEMENT = "validation_message_preset_is_associated_to_preset_element";
     }
 }

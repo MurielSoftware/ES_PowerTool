@@ -12,10 +12,11 @@ namespace Desktop.Shared.Core.Navigations
         {
             { NavigationType.PROJECT, new Uri("pack://application:,,,/Images/project.png") },
             { NavigationType.FOLDER, new Uri("pack://application:,,,/Images/folder.gif") },
-            { NavigationType.PRIMITIVE_TYPE, new Uri("pack://application:,,,/Images/type.png") },
+            { NavigationType.PRIMITIVE_TYPE, new Uri("pack://application:,,,/Images/red_square.gif") },
             { NavigationType.COMPOSITE_TYPE, new Uri("pack://application:,,,/Images/type.png") },
             { NavigationType.TYPE_ELEMENT, new Uri("pack://application:,,,/Images/green_circle_filled.gif") },
             { NavigationType.PRESET, new Uri("pack://application:,,,/Images/preset.png") },
+            { NavigationType.COMPOSITE_PRESET_ELEMENT, new Uri("pack://application:,,,/Images/green_circle_filled.gif") },
         };
     }
 }
