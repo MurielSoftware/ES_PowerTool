@@ -8,6 +8,7 @@
         xmlns:local="clr-namespace:Desktop.App.Core.Ui.Windows"
         mc:Ignorable="d" 
         Name="ThisDialog"
+        ShowInTaskbar="False"
         ResizeMode="NoResize"
         Loaded="Window_Loaded"
         Height="300" Width="300">

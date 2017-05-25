@@ -7,6 +7,8 @@
         xmlns:local="clr-namespace:ES_PowerTool.Ui.Windows"
         mc:Ignorable="d"
         Name="ThisDialog"
+        ResizeMode="NoResize"
+        ShowInTaskbar="False"
         Title="SettingsWindow" Height="360" Width="520">
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
@@ -99,7 +101,8 @@
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
                     <Label Content="Liquibase" Grid.Row="0" Style="{StaticResource HeaderLabel}" />
-                    <StackPanel Orientation="Horizontal" Margin="10" Grid.Row="1">
+                    <StackPanel Orientation="Vertical" Margin="10" Grid.Row="1">
+                        <Label Content="Default conversion of data types:" />
                         <DataGrid ItemsSource="{Binding SettingsDto.SettingsLiquibaseDatabase}" Width="332" Height="160" AutoGenerateColumns="False" HorizontalGridLinesBrush="LightGray" VerticalGridLinesBrush="LightGray">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Type element data type"  Width="5*" Binding="{Binding Path=Name}" />

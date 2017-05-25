@@ -7,6 +7,7 @@
         mc:Ignorable="d" 
         Name="ThisDialog"
         Title="O aplikaci"
+        ShowInTaskbar="False"
         ResizeMode="NoResize"
         Padding="0, 0, 0, 0"
         Width="320"

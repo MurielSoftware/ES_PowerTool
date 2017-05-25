@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ES_PowerTool.Ui.Windows"
         mc:Ignorable="d"
+        ShowInTaskbar="False"
         Title="GenerateWindow" Height="400" Width="560">
     <Grid>
         <TabControl>
