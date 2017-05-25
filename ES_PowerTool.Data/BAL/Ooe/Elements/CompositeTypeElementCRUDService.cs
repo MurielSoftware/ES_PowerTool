@@ -8,8 +8,8 @@ using System.Collections.Generic;
 using System;
 using ES_PowerTool.Data.DAL.OOE.Types;
 using Desktop.Shared.Core;
-using ES_PowerTool.Data.BAL.Ooe.Presets;
-using ES_PowerTool.Data.DAL.Ooe.Presets;
+using ES_PowerTool.Data.BAL.OOE.Presets;
+using ES_PowerTool.Data.DAL.OOE.Presets;
 
 namespace ES_PowerTool.Data.BAL.OOE.Elements
 {

@@ -6,7 +6,7 @@ using Desktop.Ui.I18n;
 using ES_PowerTool.Shared.Services.OOE.Types;
 using ES_PowerTool.Shared.Dtos.OOE.Types;
 using Desktop.Shared.Core;
-using ES_PowerTool.Data.BAL.Ooe.Types;
+using ES_PowerTool.Data.BAL.OOE.Types;
 
 namespace ES_PowerTool.Data.BAL.OOE.Types
 {

@@ -6,8 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Desktop.Shared.Core.Context;
 using Desktop.Data.Core.Model;
+using System.Collections.ObjectModel;
 
-namespace ES_PowerTool.Data.DAL.Ooe.Presets
+namespace ES_PowerTool.Data.DAL.OOE.Presets
 {
     public class CompositePresetElementRepository : BaseRepository
     {
@@ -20,6 +21,13 @@ namespace ES_PowerTool.Data.DAL.Ooe.Presets
         {
             return GetContext().Set<CompositePresetElement>()
                 .Where(x => x.PresetForTypeElementId == presetId)
+                .ToList();
+        }
+
+        public List<CompositePresetElement> FindCompositePresetElementsToPresets(ICollection<Guid> presetIds)
+        {
+            return GetContext().Set<CompositePresetElement>()
+                .Where(x => presetIds.Contains(x.OwningPresetId))
                 .ToList();
         }
     }

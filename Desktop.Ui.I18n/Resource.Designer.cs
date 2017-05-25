@@ -70,7 +70,16 @@ namespace Desktop.Ui.I18n {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to O aplikaci.
+        ///   Looks up a localized string similar to Error during generating the CSV files.
+        /// </summary>
+        public static string error_message_generated_csv_failed {
+            get {
+                return ResourceManager.GetString("error_message_generated_csv_failed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to About.
         /// </summary>
         public static string label_about {
             get {
@@ -160,11 +169,20 @@ namespace Desktop.Ui.I18n {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Generate.
+        ///   Looks up a localized string similar to Generate CSV.
         /// </summary>
-        public static string label_generate {
+        public static string label_generate_csv {
             get {
-                return ResourceManager.GetString("label_generate", resourceCulture);
+                return ResourceManager.GetString("label_generate_csv", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Generate Liquibase.
+        /// </summary>
+        public static string label_generate_liquibase {
+            get {
+                return ResourceManager.GetString("label_generate_liquibase", resourceCulture);
             }
         }
         
@@ -255,6 +273,15 @@ namespace Desktop.Ui.I18n {
         public static string label_runtime_id {
             get {
                 return ResourceManager.GetString("label_runtime_id", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Settings.
+        /// </summary>
+        public static string label_settings {
+            get {
+                return ResourceManager.GetString("label_settings", resourceCulture);
             }
         }
         
@@ -358,11 +385,29 @@ namespace Desktop.Ui.I18n {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The type &apos;{0}&apos; from folder &apos;{1}&apos; has type element which uses the type as element type from removed folder or subfolder.
+        /// </summary>
+        public static string validation_message_type_is_used_as_element_type_in_folder {
+            get {
+                return ResourceManager.GetString("validation_message_type_is_used_as_element_type_in_folder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Type &apos;{0}&apos; is used as a supertype for &apos;{1}&apos;.
         /// </summary>
         public static string validation_message_type_is_used_as_super_type {
             get {
                 return ResourceManager.GetString("validation_message_type_is_used_as_super_type", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Type &apos;{0}&apos; from folder &apos;{1}&apos; uses the type as a supertype from removed folder or subfolder.
+        /// </summary>
+        public static string validation_message_type_is_used_as_super_type_in_folder {
+            get {
+                return ResourceManager.GetString("validation_message_type_is_used_as_super_type_in_folder", resourceCulture);
             }
         }
         

@@ -6,6 +6,7 @@ using ES_PowerTool.Handlers;
 using System.Collections.Generic;
 using System.Windows.Input;
 using Desktop.App.Core.Ui.Windows;
+using ES_PowerTool.Ui.Windows;
 
 namespace ES_PowerTool.ModelViews
 {
@@ -13,16 +14,21 @@ namespace ES_PowerTool.ModelViews
     {
         public ICommand NewProjectCommand { get; private set; }
         public ICommand OpenProjectCommand { get; private set; }
-        public ICommand GenerateCommand { get; private set; }
+        public ICommand GenerateCSVCommand { get; private set; }
+        public ICommand GenerateLiquibaseCommand { get; private set; }
         public ICommand AboutCommand { get; private set; }
+        public ICommand SettingsCommand { get; private set; }
 
         public MainWindowModelView() 
             : base(typeof(MainWindowModelView).Name)
         {
             NewProjectCommand = new RelayCommand(OnNewProjectCommand);
             OpenProjectCommand = new RelayCommand(OnOpenProjectCommand);
-            GenerateCommand = new RelayCommand(OnGenerateCommand);
+            GenerateCSVCommand = new RelayCommand(OnGenerateCSVCommand);
+            GenerateLiquibaseCommand = new RelayCommand(OnGenerateLiquibaseCommand);
+            SettingsCommand = new RelayCommand(OnSettingsCommand);
             AboutCommand = new RelayCommand(OnOpenCommand);
+            
         }
 
         private void OnNewProjectCommand(object obj)
@@ -35,9 +41,19 @@ namespace ES_PowerTool.ModelViews
             HandlerExecutor.Execute<OpenProjectHandler>(null);
         }
 
-        private void OnGenerateCommand(object obj)
+        private void OnGenerateCSVCommand(object obj)
         {
-            HandlerExecutor.Execute<GenerateHandler>(ExecutionEvent.Create(obj as List<TreeNavigationItem>));
+            HandlerExecutor.Execute<GenerateCSVHandler>(ExecutionEvent.Create(obj as List<TreeNavigationItem>));
+        }
+
+        private void OnGenerateLiquibaseCommand(object obj)
+        {
+            HandlerExecutor.Execute<GenerateLiquibaseHandler>(ExecutionEvent.Create(obj as List<TreeNavigationItem>));
+        }
+
+        private void OnSettingsCommand(object obj)
+        {
+            WindowsManager.GetInstance().ShowDialog<SettingsWindow>(new SettingsModelView());
         }
 
         private void OnOpenCommand(object obj)

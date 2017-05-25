@@ -3,7 +3,7 @@ using System;
 
 namespace ES_PowerTool.Shared.Services
 {
-    public interface IGenerateService
+    public interface IGenerateCSVService
     {
         GenerateDto Generate(Guid projectId);
     }

@@ -8,6 +8,7 @@ namespace ES_PowerTool.Shared.Dtos.Generate
         public virtual string GeneratedCSVType { get; set; }
         public virtual string GeneratedCSVTypeElement { get; set; }
         public virtual string GeneratedCSVPreset { get; set; }
+        public virtual string GeneratedCSVCompositePresetElement { get; set; }
         public virtual string GeneratedCSVDefaultPreset { get; set; }
         public virtual string GeneratedCSVTypeType { get; set; }
     }

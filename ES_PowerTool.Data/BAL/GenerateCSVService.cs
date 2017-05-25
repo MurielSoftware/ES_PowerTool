@@ -14,23 +14,27 @@ using ES_PowerTool.Shared.Dtos.OOE.Types;
 using ES_PowerTool.Shared.Dtos.OOE;
 using ES_PowerTool.Shared.Dtos.OOE.Elements;
 using ES_PowerTool.Shared.Dtos.OOE.Presets;
+using ES_PowerTool.Data.DAL.OOE.Presets;
+using System.Linq;
 
 namespace ES_PowerTool.Data.BAL
 {
-    public class GenerateService : BaseService, IGenerateService
+    public class GenerateCSVService : BaseService, IGenerateCSVService
     {
         private FolderRepository _folderRepository;
         private CompositeTypeRepository _compositeTypeRepository;
         private CompositeTypeElementRepository _compositeTypeElementRepository;
         private PresetRepository _presetRepository;
+        private CompositePresetElementRepository _compositePresetElementRepository;
 
-        public GenerateService(Connection connection) 
+        public GenerateCSVService(Connection connection) 
             : base(connection)
         {
             _folderRepository = new FolderRepository(connection);
             _compositeTypeRepository = new CompositeTypeRepository(connection);
             _compositeTypeElementRepository = new CompositeTypeElementRepository(connection);
             _presetRepository = new PresetRepository(connection);
+            _compositePresetElementRepository = new CompositePresetElementRepository(connection);
         }
 
         public GenerateDto Generate(Guid projectId)
@@ -40,6 +44,7 @@ namespace ES_PowerTool.Data.BAL
             List<CompositeType> compositeTypes = _compositeTypeRepository.GetCompositeTypesToExport(projectId);
             List<CompositeTypeElement> compositeTypeElements = _compositeTypeElementRepository.FindCompositeTypeElementsToExport(projectId);
             List<Preset> presets = _presetRepository.GetPresetsToExport(projectId);
+            List<CompositePresetElement> presetElements = _compositePresetElementRepository.FindCompositePresetElementsToPresets(presets.Select(x => x.Id).ToList());
             List<DefaultPresetGenearateDto> defaultPresetGenerateDtos = CreateDefaultPresetGenerateDtos(compositeTypes);
             List<JoinTypeTypeGenerateDto> joinTypeTypeGenerateDtos = CreateJoinTypeTypeGenerateDtos(compositeTypes);
 
@@ -48,6 +53,7 @@ namespace ES_PowerTool.Data.BAL
             generateDto.GeneratedCSVType = CSVWriter.Write<CompositeTypeDto>(compositeTypes);
             generateDto.GeneratedCSVTypeElement = CSVWriter.Write<CompositeTypeElementDto>(compositeTypeElements);
             generateDto.GeneratedCSVPreset = CSVWriter.Write<PresetDto>(presets);
+            generateDto.GeneratedCSVCompositePresetElement = CSVWriter.Write<CompositePresetElementDto>(presetElements);
             generateDto.GeneratedCSVDefaultPreset = CSVWriter.Write<DefaultPresetGenearateDto>(defaultPresetGenerateDtos);
             generateDto.GeneratedCSVTypeType = CSVWriter.Write<JoinTypeTypeGenerateDto>(joinTypeTypeGenerateDtos);
             return generateDto;

@@ -186,8 +186,8 @@
   <data name="label_supertypes" xml:space="preserve">
     <value>Super types</value>
   </data>
-  <data name="label_generate" xml:space="preserve">
-    <value>Generate</value>
+  <data name="label_generate_csv" xml:space="preserve">
+    <value>Generate CSV</value>
   </data>
   <data name="label_preset" xml:space="preserve">
     <value>Preset</value>
@@ -217,9 +217,24 @@
     <value>Path to CSV Preset Element</value>
   </data>
   <data name="label_about" xml:space="preserve">
-    <value>O aplikaci</value>
+    <value>About</value>
   </data>
   <data name="validation_message_preset_is_associated_to_preset_element" xml:space="preserve">
     <value>Preset '{0}' is used as associated preset for composite preset element '{1}'</value>
+  </data>
+  <data name="validation_message_type_is_used_as_element_type_in_folder" xml:space="preserve">
+    <value>The type '{0}' from folder '{1}' has type element which uses the type as element type from removed folder or subfolder</value>
+  </data>
+  <data name="validation_message_type_is_used_as_super_type_in_folder" xml:space="preserve">
+    <value>Type '{0}' from folder '{1}' uses the type as a supertype from removed folder or subfolder</value>
+  </data>
+  <data name="error_message_generated_csv_failed" xml:space="preserve">
+    <value>Error during generating the CSV files</value>
+  </data>
+  <data name="label_generate_liquibase" xml:space="preserve">
+    <value>Generate Liquibase</value>
+  </data>
+  <data name="label_settings" xml:space="preserve">
+    <value>Settings</value>
   </data>
 </root>

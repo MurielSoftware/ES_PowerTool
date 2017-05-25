@@ -12,7 +12,7 @@ using Desktop.Data.Core.Model;
 using ES_PowerTool.Data.DAL.OOE.Types;
 using ES_PowerTool.Data.DAL.OOE.Elements;
 
-namespace ES_PowerTool.Data.BAL.Ooe.Types
+namespace ES_PowerTool.Data.BAL.OOE.Types
 {
     public class CompositeTypeValidationService : BaseService
     {

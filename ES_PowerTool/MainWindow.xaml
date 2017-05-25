@@ -9,7 +9,7 @@
         xmlns:local="clr-namespace:ES_PowerTool"
         Icon="pack://application:,,,/Images/es_pt32.png"
         mc:Ignorable="d"
-        Title="{x:Static r:Resource.App_Title}" Height="420" Width="640">
+        Title="{x:Static r:Resource.App_Title}" Height="540" Width="820">
     <Window.DataContext>
         <modelViews:MainWindowModelView />
     </Window.DataContext>
@@ -19,8 +19,35 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
-
-        <ToolBarTray Grid.Row="0">
+        <Ribbon Grid.Row="0" ShowQuickAccessToolBarOnTop="False">
+            <Ribbon.ApplicationMenu>
+                <RibbonApplicationMenu>
+                    <RibbonApplicationMenuItem Header="{x:Static r:Resource.label_new_project}" ImageSource="pack://application:,,,/Images/project32.png" Command="{Binding NewProjectCommand}" />
+                    <RibbonApplicationMenuItem Header="{x:Static r:Resource.label_open_project}" ImageSource="pack://application:,,,/Images/open32.png" Command="{Binding OpenProjectCommand}" />
+                    <RibbonSeparator />
+                    <RibbonApplicationMenuItem Header="{x:Static r:Resource.label_open_project}" ImageSource="pack://application:,,,/Images/exit32.png" Command="{Binding OpenProjectCommand}" />
+                </RibbonApplicationMenu>
+            </Ribbon.ApplicationMenu>
+            <RibbonTab Header="COMMON">
+                <RibbonGroup Header="Project">
+                    <RibbonButton LargeImageSource="pack://application:,,,/Images/project32.png" Label="{x:Static r:Resource.label_new_project}" Command="{Binding NewProjectCommand}" />
+                    <RibbonButton SmallImageSource="pack://application:,,,/Images/open.png" Label="{x:Static r:Resource.label_open_project}" Command="{Binding OpenProjectCommand}" />
+                </RibbonGroup>
+                <RibbonGroup Header="Generate">
+                    <RibbonButton LargeImageSource="pack://application:,,,/Images/generate_csv32.png" Label="{x:Static r:Resource.label_generate_csv}" Command="{Binding GenerateCSVCommand}" CommandParameter="{Binding ElementName=ModelObjectViewTree, Path=SelectedItems}" />
+                    <RibbonButton LargeImageSource="pack://application:,,,/Images/generate_liquibase32.png" Label="{x:Static r:Resource.label_generate_liquibase}" Command="{Binding GenerateLiquibaseCommand}" CommandParameter="{Binding ElementName=ModelObjectViewTree, Path=SelectedItems}" />
+                </RibbonGroup>
+                <RibbonGroup Header="Tools">
+                    <RibbonButton LargeImageSource="pack://application:,,,/Images/settings32.png" Label="{x:Static r:Resource.label_settings}" Command="{Binding SettingsCommand}" CommandParameter="{Binding ElementName=ModelObjectViewTree, Path=SelectedItems}" />
+                </RibbonGroup>
+            </RibbonTab>
+            <RibbonTab Header="HELP">
+                <RibbonGroup Header="About">
+                    <RibbonButton LargeImageSource="pack://application:,,,/Images/about.png" Label="{x:Static r:Resource.label_about}" Command="{Binding AboutCommand}" CommandParameter="{Binding ElementName=ModelObjectViewTree, Path=SelectedItems}" />
+                </RibbonGroup>
+            </RibbonTab>
+        </Ribbon>
+        <!--<ToolBarTray Grid.Row="0">
             <ToolBar>
                 <Button Command="{Binding NewProjectCommand}">
                     <StackPanel>
@@ -37,8 +64,14 @@
                 <Separator />
                 <Button Command="{Binding GenerateCommand}" CommandParameter="{Binding ElementName=ModelObjectViewTree, Path=SelectedItems}">
                     <StackPanel>
-                        <Image Source="pack://application:,,,/Images/generate.png" Width="16" Height="16" />
-                        <TextBlock Text="{x:Static r:Resource.label_generate}" />
+                        <Image Source="pack://application:,,,/Images/generate_csv.png" Width="16" Height="16" />
+                        <TextBlock Text="{x:Static r:Resource.label_generate_csv}" />
+                    </StackPanel>
+                </Button>
+                <Button Command="{Binding GenerateCommand}" CommandParameter="{Binding ElementName=ModelObjectViewTree, Path=SelectedItems}">
+                    <StackPanel>
+                        <Image Source="pack://application:,,,/Images/generate_liquibase.png" Width="16" Height="16" />
+                        <TextBlock Text="{x:Static r:Resource.label_generate_liquibase}" />
                     </StackPanel>
                 </Button>
                 <Separator />
@@ -49,7 +82,7 @@
                     </StackPanel>
                 </Button>
             </ToolBar>
-        </ToolBarTray>
+        </ToolBarTray>-->
 
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>

@@ -3,7 +3,8 @@ using Desktop.Data.Core.Model;
 using Desktop.Shared.Core.Context;
 using Desktop.Shared.Core.Services;
 using Desktop.Shared.Core.Validations;
-using ES_PowerTool.Data.BAL.Ooe.Types;
+using Desktop.Ui.I18n;
+using ES_PowerTool.Data.BAL.OOE.Types;
 using ES_PowerTool.Data.DAL.OOE;
 using ES_PowerTool.Data.DAL.OOE.Types;
 using System;
@@ -12,7 +13,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ES_PowerTool.Data.BAL.Ooe
+namespace ES_PowerTool.Data.BAL.OOE
 {
     public class FolderValidationService : BaseService
     {
@@ -35,46 +36,90 @@ namespace ES_PowerTool.Data.BAL.Ooe
             ValidationResult validationResult = new ValidationResult();
             List<Guid> folderIds = _folderRepository.FindAllSubFolderIds(folder.Id);
             List<CompositeType> compositeTypes = _compositeTypeRepository.FindCompositeTypesToFolderIds(folderIds);
-            List<CompositeType> invalidCompositeTypes = new List<CompositeType>();
-            Dictionary<Guid, List<CompositeType>> invalidCompositeTypesToFolder = new Dictionary<Guid, List<CompositeType>>();
+            List<ValidationMessage> validationMessages = CollectInvalidCompositeTypesUsedInSuperTypesValidationMessages(folderIds, compositeTypes);
+            validationMessages.AddRange(CollectInvalidCompositeTypesOwnerOfCompositeTypeElementsUsedAsElementType(folderIds, compositeTypes));
+            validationResult.AddRange(validationMessages);
+            return validationResult;
+        }
 
+        private List<ValidationMessage> CollectInvalidCompositeTypesUsedInSuperTypesValidationMessages(List<Guid> folderIds, List<CompositeType> compositeTypes)
+        {
+            List<ValidationMessage> validationMessages = new List<ValidationMessage>();
+            List<CompositeType> invalidCompositeTypes = GetInvalidCompositeTypesUsedInSuperTypes(compositeTypes);
+            Dictionary<Guid, List<CompositeType>> invalidCompositeTypesToFolder = CreateInvalidCompositeTypesToFolder(invalidCompositeTypes);
+            invalidCompositeTypesToFolder = RemoveValid(invalidCompositeTypesToFolder, folderIds);
+            if(invalidCompositeTypesToFolder.Count == 0)
+            {
+                return validationMessages;
+            }
+            foreach(KeyValuePair<Guid, List<CompositeType>> item in invalidCompositeTypesToFolder)
+            {
+                foreach(CompositeType compositeType in item.Value)
+                {
+                    validationMessages.Add(new ValidationMessage(ValidationType.ERROR, MessageKeyConstants.VALIDATION_MESSAGE_TYPE_IS_USED_AS_SUPER_TYPE_IN_FOLDER, compositeType.Description, compositeType.Folder.Name));
+                }
+            }
+            return validationMessages;
+        }
+
+        private List<ValidationMessage> CollectInvalidCompositeTypesOwnerOfCompositeTypeElementsUsedAsElementType(List<Guid> folderIds, List<CompositeType> compositeTypes)
+        {
+            List<ValidationMessage> validationMessages = new List<ValidationMessage>();
+            List<CompositeType> invalidCompositeTypes = GetInvalidCompositeTypesOwnerOfCompositeTypeElementsUsedAsElementType(compositeTypes);
+            Dictionary<Guid, List<CompositeType>> invalidCompositeTypesToFolder = CreateInvalidCompositeTypesToFolder(invalidCompositeTypes);
+            invalidCompositeTypesToFolder = RemoveValid(invalidCompositeTypesToFolder, folderIds);
+            if (invalidCompositeTypesToFolder.Count == 0)
+            {
+                return validationMessages;
+            }
+            foreach (KeyValuePair<Guid, List<CompositeType>> item in invalidCompositeTypesToFolder)
+            {
+                foreach (CompositeType compositeType in item.Value)
+                {
+                    validationMessages.Add(new ValidationMessage(ValidationType.ERROR, MessageKeyConstants.VALIDATION_MESSAGE_TYPE_IS_USED_AS_ELEMENT_TYPE_IN_FOLDER, compositeType.Description, compositeType.Folder.Name));
+                }
+            }
+            return validationMessages;
+        }
+
+        private List<CompositeType> GetInvalidCompositeTypesUsedInSuperTypes(List<CompositeType> compositeTypes)
+        {
+            List<CompositeType> invalidCompositeTypes = new List<CompositeType>();           
             foreach (CompositeType compositeType in compositeTypes)
             {
                 invalidCompositeTypes.AddRange(_compositeTypeRepository.FindCompositeTypesWhereIsUsedTypeInSuperTypes(compositeType.Id));
-                invalidCompositeTypes.AddRange(_compositeTypeRepository.FindCompositeTypeOwnerOfCompositeTypeElementsToElementTypeId(compositeType.Id));
-                //List<CompositeTypeElement> compositeTypeElementWhereTypeIsUsedAsElementType = _compositeTypeElementRepository.FindCompositeTypeElementsToElementTypeId(compositeType.Id);
             }
-            foreach(CompositeType invalidCompositeType in invalidCompositeTypes)
+            return invalidCompositeTypes;
+        }
+
+        private List<CompositeType> GetInvalidCompositeTypesOwnerOfCompositeTypeElementsUsedAsElementType(List<CompositeType> compositeTypes)
+        {
+            List<CompositeType> invalidCompositeTypes = new List<CompositeType>();
+            foreach (CompositeType compositeType in compositeTypes)
             {
-                if(!invalidCompositeTypesToFolder.ContainsKey(invalidCompositeType.FolderId))
+                invalidCompositeTypes.AddRange(_compositeTypeRepository.FindCompositeTypeOwnerOfCompositeTypeElementsToElementTypeId(compositeType.Id));
+            }
+            return invalidCompositeTypes;
+        }
+
+        private Dictionary<Guid, List<CompositeType>> CreateInvalidCompositeTypesToFolder(List<CompositeType> invalidCompositeTypes)
+        {
+            Dictionary<Guid, List<CompositeType>> invalidCompositeTypesToFolder = new Dictionary<Guid, List<CompositeType>>();
+            foreach (CompositeType invalidCompositeType in invalidCompositeTypes)
+            {
+                if (!invalidCompositeTypesToFolder.ContainsKey(invalidCompositeType.FolderId))
                 {
                     invalidCompositeTypesToFolder.Add(invalidCompositeType.FolderId, new List<CompositeType>());
                 }
                 invalidCompositeTypesToFolder[invalidCompositeType.FolderId].Add(invalidCompositeType);
             }
-            foreach(Guid folderId in folderIds)
-            {
-                invalidCompositeTypesToFolder.Remove(folderId);
-            }
-
-            if(invalidCompositeTypesToFolder.Count == 0)
-            {
-                return validationResult;
-            }
-
-            //List<CompositeTypeElement> compositeTypeElementWhereTypeIsUsedAsElementType = _compositeTypeElementRepository.FindCompositeTypeElementsToElementTypeId(compositeType.Id);
-            //if (compositeTypeElementWhereTypeIsUsedAsElementType.Count != 0)
-            //{
-            //    validationResult.AddRange(CreateValidationMessage(ValidationType.ERROR, MessageKeyConstants.VALIDATION_MESSAGE_TYPE_IS_USED_AS_TYPE_ELEMENT, compositeTypeElementWhereTypeIsUsedAsElementType, compositeType));
-            //}
-            //List<CompositeType> compositeTypesWhereTypeIsUsedAsSuperType = _compositeTypeRepository.FindCompositeTypesWhereIsUsedTypeInSuperTypes(compositeType.Id);
-            //if (compositeTypesWhereTypeIsUsedAsSuperType.Count != 0)
-            //{
-            //    validationResult.AddRange(CreateValidationMessage(ValidationType.ERROR, MessageKeyConstants.VALIDATION_MESSAGE_TYPE_IS_USED_AS_SUPER_TYPE, compositeTypesWhereTypeIsUsedAsSuperType, compositeType));
-            //}
-            return validationResult;
+            return invalidCompositeTypesToFolder;
         }
 
-        
+        private Dictionary<Guid, List<CompositeType>> RemoveValid(Dictionary<Guid, List<CompositeType>> invalidCompositeTypesToFolder, List<Guid> folderIds)
+        {
+            folderIds.ForEach(x => invalidCompositeTypesToFolder.Remove(x));
+            return invalidCompositeTypesToFolder;
+        }
     }
 }

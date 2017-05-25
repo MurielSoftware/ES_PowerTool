@@ -80,6 +80,7 @@
     <Compile Include="Model\Preset.cs" />
     <Compile Include="Model\PrimitiveType.cs" />
     <Compile Include="Model\Project.cs" />
+    <Compile Include="Model\Settings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
@@ -87,6 +88,10 @@
     <ProjectReference Include="..\Desktop.Shared\Desktop.Shared.Core.csproj">
       <Project>{61260a01-d7c6-42eb-896e-f13b16b264e9}</Project>
       <Name>Desktop.Shared.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ES_PowerTool.Shared\ES_PowerTool.Shared.csproj">
+      <Project>{C7ABC907-08A3-439B-BDEE-6D0F171EF4C6}</Project>
+      <Name>ES_PowerTool.Shared</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

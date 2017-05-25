@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace ES_PowerTool.ModelViews
 {
-    public class GenerateWindowModelView : BaseModelView
+    public class GenerateCSVWindowModelView : BaseModelView
     {
         public GenerateDto Dto { get; protected set; }
 
-        public GenerateWindowModelView(GenerateDto generateDto) 
+        public GenerateCSVWindowModelView(GenerateDto generateDto) 
             : base("GenerateWindowModelView")
         {
             Dto = generateDto;

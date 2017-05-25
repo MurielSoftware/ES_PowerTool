@@ -8,7 +8,7 @@ using Desktop.Shared.Core.Context;
 using Desktop.Shared.Core.Navigations;
 using Desktop.Data.Core.Model;
 
-namespace ES_PowerTool.Data.DAL.Ooe.Presets
+namespace ES_PowerTool.Data.DAL.OOE.Presets
 {
     public class CompositePresetElementNavigationRepository : BaseRepository
     {

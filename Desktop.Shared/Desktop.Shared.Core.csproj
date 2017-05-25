@@ -55,6 +55,7 @@
     <Compile Include="Dtos\BaseDto.cs" />
     <Compile Include="Navigations\CompositePresetElementTreeNavigationItem.cs" />
     <Compile Include="Navigations\CompositeTypeElementTreeNavigationItem.cs" />
+    <Compile Include="Navigations\GenerateLiquibaseCompositeTypeElementTreeNavigationItem.cs" />
     <Compile Include="Navigations\MasterNavigationContext.cs" />
     <Compile Include="Navigations\NavigationContext.cs" />
     <Compile Include="Navigations\NavigationType.cs" />

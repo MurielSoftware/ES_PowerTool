@@ -58,18 +58,24 @@
     <Compile Include="Dtos\OOE\Presets\PresetDto.cs" />
     <Compile Include="Dtos\OOE\Types\PrimitiveTypeDto.cs" />
     <Compile Include="Dtos\ProjectDto.cs" />
+    <Compile Include="Dtos\Settings\SettingsDto.cs" />
+    <Compile Include="Dtos\Settings\SettingsGroup.cs" />
+    <Compile Include="Dtos\Settings\SettingsSection.cs" />
+    <Compile Include="Dtos\Settings\SettingValueDto.cs" />
     <Compile Include="IdConstants.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\IGenerateLiquibaseService.cs" />
     <Compile Include="Services\OOE\Presets\ICompositePresetElementCRUDService.cs" />
     <Compile Include="Services\OOE\Types\ICompositeTypeDetailsNavigationService.cs" />
     <Compile Include="Services\OOE\Elements\ICompositeTypeElementCRUDService.cs" />
     <Compile Include="Services\OOE\Types\ICompositeTypeNavigationService.cs" />
     <Compile Include="Services\OOE\IFolderCRUDService.cs" />
     <Compile Include="Services\OOE\Types\ICompositeTypeCRUDService.cs" />
-    <Compile Include="Services\IGenerateService.cs" />
+    <Compile Include="Services\IGenerateCSVService.cs" />
     <Compile Include="Services\OOE\Presets\IPresetCRUDService.cs" />
     <Compile Include="Services\OOE\Types\IPrimitiveTypeCRUDService.cs" />
     <Compile Include="Services\IProjectCRUDService.cs" />
+    <Compile Include="Services\Settings\ISettingsCRUDService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Desktop.Shared\Desktop.Shared.Core.csproj">

@@ -70,6 +70,7 @@
       <HintPath>..\packages\Microsoft.SqlServer.Compact.4.0.8876.1\lib\net40\System.Data.SqlServerCe.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="system.windows.controls.ribbon" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -80,6 +81,8 @@
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
+    <Reference Include="UIAutomationProvider" />
+    <Reference Include="UIAutomationTypes" />
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -90,13 +93,22 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Handlers\DefaultHandler.cs" />
-    <Compile Include="Handlers\GenerateHandler.cs" />
+    <Compile Include="Handlers\GenerateLiquibaseHandler.cs" />
+    <Compile Include="Handlers\GenerateCSVHandler.cs" />
     <Compile Include="Handlers\NewPresetHandler.cs" />
     <Compile Include="ModelViews\CompositeTypeDetailsTreeModelView.cs" />
-    <Compile Include="ModelViews\GenerateWindowModelView.cs" />
+    <Compile Include="ModelViews\GenerateCSVWindowModelView.cs" />
+    <Compile Include="ModelViews\GenerateLiquibaseWindowModelView.cs" />
     <Compile Include="ModelViews\ModelViewsUtil.cs" />
-    <Compile Include="Ui\Windows\GenerateWindow.xaml.cs">
-      <DependentUpon>GenerateWindow.xaml</DependentUpon>
+    <Compile Include="ModelViews\SettingsModelView.cs" />
+    <Compile Include="Ui\Windows\GenerateCSVWindow.xaml.cs">
+      <DependentUpon>GenerateCSVWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ui\Windows\GenerateLiquibaseWindow.xaml.cs">
+      <DependentUpon>GenerateLiquibaseWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ui\Windows\SettingsWindow.xaml.cs">
+      <DependentUpon>SettingsWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -117,7 +129,15 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Ui\Windows\GenerateWindow.xaml">
+    <Page Include="Ui\Windows\GenerateCSVWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ui\Windows\GenerateLiquibaseWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ui\Windows\SettingsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -234,6 +254,20 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\about_image.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\generate_csv32.png" />
+    <Resource Include="Images\generate_liquibase32.png" />
+    <Resource Include="Images\project32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\open32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\exit32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\settings32.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

@@ -1,7 +1,9 @@
 ﻿using Desktop.App.Core.Handlers;
 using Desktop.App.Core.Jobs;
 using Desktop.App.Core.Ui.Windows;
+using Desktop.App.Core.Utils;
 using Desktop.Shared.Core;
+using Desktop.Ui.I18n;
 using ES_PowerTool.ModelViews;
 using ES_PowerTool.Shared.Dtos.Generate;
 using ES_PowerTool.Shared.Services;
@@ -11,9 +13,9 @@ using System.Windows.Threading;
 
 namespace ES_PowerTool.Handlers
 {
-    public class GenerateHandler : BaseHandler
+    public class GenerateCSVHandler : BaseHandler
     {
-        private GenerateWindow _generateWindow = new GenerateWindow();
+        private GenerateCSVWindow _generateWindow = new GenerateCSVWindow();
         private GenerateDto _generateDto = new GenerateDto();
         private Guid _projectId;
 
@@ -30,30 +32,29 @@ namespace ES_PowerTool.Handlers
             }
             catch (Exception ex)
             {
-
+                OnFailure(executionEvent);
             }
             //WindowsManager.GetInstance().ShowDialog<GenerateWindow>(new GenerateWindowModelView(generateDto));
         }
 
         private void GenerateAction(GenerateDto generateDto)
         {
-            IGenerateService generateService = ServiceActivator.Get<IGenerateService>();
+            IGenerateCSVService generateService = ServiceActivator.Get<IGenerateCSVService>();
             _generateDto = generateService.Generate(_projectId);
         }
 
         private void AfterGenerateAction()
         {
-            WindowsManager.GetInstance().ShowDialog<GenerateWindow>(new GenerateWindowModelView(_generateDto)); 
+            WindowsManager.GetInstance().ShowDialog<GenerateCSVWindow>(new GenerateCSVWindowModelView(_generateDto)); 
         }
 
         protected override void OnFailure(ExecutionEvent executionEvent)
         {
-            throw new NotImplementedException();
+            MessageDialogUtils.ErrorMessage(MessageKeyConstants.ERROR_MESSAGE_GENERATE_CSV_FAILED);
         }
 
         protected override void OnSuccessful(ExecutionEvent executionEvent, Guid affectedObjectId)
         {
-            throw new NotImplementedException();
         }
     }
 }

@@ -119,6 +119,6 @@ namespace Desktop.Data.Core.BAL
         protected bool EntityExists(U entity)
         {
             return entity.Id != Guid.Empty;
-        }
+        } 
     }
 }

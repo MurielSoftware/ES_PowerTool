@@ -4,14 +4,14 @@ using Desktop.Shared.Core.Context;
 using Desktop.Shared.Core.Services;
 using Desktop.Shared.Core.Validations;
 using Desktop.Ui.I18n;
-using ES_PowerTool.Data.DAL.Ooe.Presets;
+using ES_PowerTool.Data.DAL.OOE.Presets;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ES_PowerTool.Data.BAL.Ooe.Presets
+namespace ES_PowerTool.Data.BAL.OOE.Presets
 {
     public class PresetValidationService : BaseService
     {

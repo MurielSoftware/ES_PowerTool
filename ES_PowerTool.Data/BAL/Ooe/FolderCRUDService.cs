@@ -4,7 +4,7 @@ using Desktop.Data.Core.Model;
 using ES_PowerTool.Shared.Services.OOE;
 using ES_PowerTool.Shared.Dtos.OOE;
 using Desktop.Shared.Core.Validations;
-using ES_PowerTool.Data.BAL.Ooe;
+using ES_PowerTool.Data.BAL.OOE;
 
 namespace ES_PowerTool.Data.BAL.OOE
 {

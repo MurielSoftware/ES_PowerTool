@@ -40,5 +40,9 @@ namespace Desktop.Ui.I18n
         public const string VALIDATION_MESSAGE_TYPE_IS_USED_AS_TYPE_ELEMENT = "validation_message_type_is_used_as_type_element";
         public const string VALIDATION_MESSAGE_TYPE_IS_USED_AS_SUPER_TYPE = "validation_message_type_is_used_as_super_type";
         public const string VALIDATION_MESSAGE_PRESET_IS_ASSOCIATED_TO_PRESET_ELEMENT = "validation_message_preset_is_associated_to_preset_element";
+        public const string VALIDATION_MESSAGE_TYPE_IS_USED_AS_SUPER_TYPE_IN_FOLDER = "validation_message_type_is_used_as_super_type_in_folder";
+        public const string VALIDATION_MESSAGE_TYPE_IS_USED_AS_ELEMENT_TYPE_IN_FOLDER = "validation_message_type_is_used_as_element_type_in_folder";
+
+        public const string ERROR_MESSAGE_GENERATE_CSV_FAILED = "error_message_generated_csv_failed";
     }
 }

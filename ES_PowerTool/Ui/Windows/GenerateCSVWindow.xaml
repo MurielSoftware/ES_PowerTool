@@ -1,4 +1,4 @@
-﻿<Window x:Class="ES_PowerTool.Ui.Windows.GenerateWindow"
+﻿<Window x:Class="ES_PowerTool.Ui.Windows.GenerateCSVWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -14,16 +14,19 @@
             <TabItem Header="TYPE">
                 <TextBox Text="{Binding Dto.GeneratedCSVType}" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" />
             </TabItem>
-            <TabItem Header="TYPE ELEMENT">
+            <TabItem Header="TYPE__ELEMENT">
                 <TextBox Text="{Binding Dto.GeneratedCSVTypeElement}" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" />
             </TabItem>
             <TabItem Header="PRESET">
                 <TextBox Text="{Binding Dto.GeneratedCSVPreset}" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" />
             </TabItem>
-            <TabItem Header="DEFAULT_PRESET">
+            <TabItem Header="COMPOSITE__PRESET__ELEMENT">
+                <TextBox Text="{Binding Dto.GeneratedCSVCompositePresetElement}" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" />
+            </TabItem>
+            <TabItem Header="DEFAULT__PRESET">
                 <TextBox Text="{Binding Dto.GeneratedCSVDefaultPreset}" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" />
             </TabItem>
-            <TabItem Header="JOIN_TYPE_TYPE">
+            <TabItem Header="JOIN__TYPE__TYPE">
                 <TextBox Text="{Binding Dto.GeneratedCSVTypeType}" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" />
             </TabItem>
         </TabControl>

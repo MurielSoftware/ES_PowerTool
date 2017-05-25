@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using Desktop.Shared.Core.Context;
 using Desktop.Shared.Core;
 
-namespace ES_PowerTool.Data.BAL.Ooe.Presets
+namespace ES_PowerTool.Data.BAL.OOE.Presets
 {
     public class CompositePresetElementCRUDService : GenericCRUDService<CompositePresetElementDto, CompositePresetElement>, ICompositePresetElementCRUDService
     {
