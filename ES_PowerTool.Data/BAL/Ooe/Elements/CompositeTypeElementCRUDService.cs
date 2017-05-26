@@ -27,22 +27,59 @@ namespace ES_PowerTool.Data.BAL.OOE.Elements
 
         protected override CompositeTypeElement DoPersist(CompositeTypeElement compositeTypeElement)
         {
-            compositeTypeElement = base.DoPersist(compositeTypeElement);
-            if(_compositeTypeRepository.IsTypeCompositeType(compositeTypeElement.ElementTypeId))
+            if (EntityExists(compositeTypeElement))
             {
-                CompositeType owningType = _genericRepository.Find<CompositeType>(compositeTypeElement.OwningTypeId);
-                CompositeType elementType = _genericRepository.Find<CompositeType>(compositeTypeElement.ElementTypeId);
-                foreach (Preset preset in owningType.Presets)
+                UpdateCompositePresetElementIfNecessarry(compositeTypeElement);
+                compositeTypeElement = base.DoPersist(compositeTypeElement);
+            }
+            else
+            {
+                compositeTypeElement = base.DoPersist(compositeTypeElement);
+                if (_compositeTypeRepository.IsTypeCompositeType(compositeTypeElement.ElementTypeId))
                 {
-                    _compositePresetElementCRUDService.PersistFromCompositeTypeElement(compositeTypeElement, elementType, preset);
+                    AddAssociatedCompositePresetElement(compositeTypeElement);
                 }
             }
             return compositeTypeElement;
         }
 
-        protected override void DoDelete(CompositeTypeElement compositeTypeElement)
+        private void UpdateCompositePresetElementIfNecessarry(CompositeTypeElement compositeTypeElement)
+        {
+            CompositeTypeElement oldCompositeTypeElement = _genericRepository.FindNoTracking<CompositeTypeElement>(compositeTypeElement.Id);
+            if (compositeTypeElement.ElementTypeId.Equals(oldCompositeTypeElement.ElementTypeId))
+            {
+                return;
+            }
+            bool oldElementTypeIsComposite = _compositeTypeRepository.IsTypeCompositeType(oldCompositeTypeElement.ElementTypeId);
+            bool newElementTypeIsComposite = _compositeTypeRepository.IsTypeCompositeType(compositeTypeElement.ElementTypeId);
+            if(oldElementTypeIsComposite && !newElementTypeIsComposite)
+            {
+                RemoveAssociatedCompositePresetElement(compositeTypeElement);
+            }
+            else if(!oldElementTypeIsComposite && newElementTypeIsComposite)
+            {
+                AddAssociatedCompositePresetElement(compositeTypeElement);
+            }
+        }
+
+        private void AddAssociatedCompositePresetElement(CompositeTypeElement compositeTypeElement)
+        {
+            CompositeType owningType = _genericRepository.Find<CompositeType>(compositeTypeElement.OwningTypeId);
+            CompositeType elementType = _genericRepository.Find<CompositeType>(compositeTypeElement.ElementTypeId);
+            foreach (Preset preset in owningType.Presets)
+            {
+                _compositePresetElementCRUDService.PersistFromCompositeTypeElement(compositeTypeElement, elementType, preset);
+            }
+        }
+
+        private void RemoveAssociatedCompositePresetElement(CompositeTypeElement compositeTypeElement)
         {
             _genericRepository.DeleteRange<CompositePresetElement>(x => x.CompositeTypeElementId == compositeTypeElement.Id);
+        }
+
+        protected override void DoDelete(CompositeTypeElement compositeTypeElement)
+        {
+            RemoveAssociatedCompositePresetElement(compositeTypeElement);
             base.DoDelete(compositeTypeElement);
         }
     }

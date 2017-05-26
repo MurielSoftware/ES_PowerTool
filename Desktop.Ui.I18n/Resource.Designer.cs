@@ -178,6 +178,15 @@ namespace Desktop.Ui.I18n {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Generate UUID.
+        /// </summary>
+        public static string label_generate_guid {
+            get {
+                return ResourceManager.GetString("label_generate_guid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Generate Liquibase.
         /// </summary>
         public static string label_generate_liquibase {
@@ -372,6 +381,60 @@ namespace Desktop.Ui.I18n {
         public static string question_do_you_want_to_remove_objects_message {
             get {
                 return ResourceManager.GetString("question_do_you_want_to_remove_objects_message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to About.
+        /// </summary>
+        public static string ribbon_group_about_label {
+            get {
+                return ResourceManager.GetString("ribbon_group_about_label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Generate.
+        /// </summary>
+        public static string ribbon_group_generate_label {
+            get {
+                return ResourceManager.GetString("ribbon_group_generate_label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Project.
+        /// </summary>
+        public static string ribbon_group_project_label {
+            get {
+                return ResourceManager.GetString("ribbon_group_project_label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tools.
+        /// </summary>
+        public static string ribbon_group_tools_label {
+            get {
+                return ResourceManager.GetString("ribbon_group_tools_label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to COMMON.
+        /// </summary>
+        public static string ribbon_tab_common_label {
+            get {
+                return ResourceManager.GetString("ribbon_tab_common_label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to HELP.
+        /// </summary>
+        public static string ribbon_tab_help_label {
+            get {
+                return ResourceManager.GetString("ribbon_tab_help_label", resourceCulture);
             }
         }
         

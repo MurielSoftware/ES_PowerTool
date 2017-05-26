@@ -8,6 +8,7 @@ namespace ES_PowerTool.Shared.Dtos.Settings
 {
     public enum SettingsGroup
     {
+        LIQUIBASE_COMMON,
         LIQUIBASE_CONVERT_DATA_TYPE
     }
 }

@@ -11,6 +11,8 @@ using ES_PowerTool.Shared.CSV;
 using ES_PowerTool.Shared.Dtos;
 using ES_PowerTool.Shared.Services;
 using System;
+using Desktop.Shared.Core.Validations;
+using System.IO;
 
 namespace ES_PowerTool.ModelViews
 {
@@ -21,12 +23,23 @@ namespace ES_PowerTool.ModelViews
         {
         }
 
-        protected override void DoFinish(ProjectDto projectDto)
+        protected override void DoPersist(ProjectDto projectDto)
         {
-            Connection.GetInstance().CreateConnection(projectDto.Name + ".sdf");
+            Connection.GetInstance().CreateConnection(CreateDatabaseFileName(projectDto.Name));
             _crudService = (IProjectCRUDService)ServiceActivator.Get(typeof(IProjectCRUDService));
             _persister = new ProjectPersister(_crudService, projectDto);
-            base.DoFinish(projectDto);
+            _persister.Persist();
+        }
+
+        protected override void OnServerSideFailed(ProjectDto projectDto, ValidationResult validationResult)
+        {
+            base.OnServerSideFailed(projectDto, validationResult);
+            File.Delete(AppDomain.CurrentDomain.BaseDirectory + CreateDatabaseFileName(projectDto.Name));
+        }
+
+        private static string CreateDatabaseFileName(string projectName)
+        {
+            return projectName + ".sdf";
         }
     }
 }

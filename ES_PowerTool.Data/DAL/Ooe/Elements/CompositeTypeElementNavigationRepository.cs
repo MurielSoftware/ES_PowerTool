@@ -20,7 +20,7 @@ namespace ES_PowerTool.Data.DAL.OOE.Elements
         {
             return GetContext().Set<CompositeTypeElement>()
                 .Where(x => x.OwningTypeId == parentId)
-                .Select(x => new CompositeTypeElementTreeNavigationItem() { Id = x.Id, Name = x.Description, Type = NavigationType.TYPE_ELEMENT, ProjectId = x.ProjectId, ElementTypeName = x.ElementType.Description })
+                .Select(x => new CompositeTypeElementTreeNavigationItem() { Id = x.Id, Name = x.Description, Type = NavigationType.TYPE_ELEMENT, ProjectId = x.ProjectId, ElementTypeName = x.ElementType.Description, BuiltIn = x.OwningType.BuiltIn })
                 .ToList()
                 .Cast<TreeNavigationItem>()
                 .ToList();
@@ -30,15 +30,15 @@ namespace ES_PowerTool.Data.DAL.OOE.Elements
         {
             return GetContext().Set<CompositeTypeElement>()
                 .Where(x => x.Id == id)
-                .Select(x => new CompositeTypeElementTreeNavigationItem() { Id = x.Id, Name = x.Description, Type = NavigationType.TYPE_ELEMENT, ProjectId = x.ProjectId, ElementTypeName = x.ElementType.Description })
+                .Select(x => new CompositeTypeElementTreeNavigationItem() { Id = x.Id, Name = x.Description, Type = NavigationType.TYPE_ELEMENT, ProjectId = x.ProjectId, ElementTypeName = x.ElementType.Description, BuiltIn = x.OwningType.BuiltIn })
                 .SingleOrDefault();
         }
 
-        internal List<CompositeTypeElementTreeNavigationItem> FindCompositeTypeElementsToExport(Guid projectId)
+        internal List<CompositeTypeElementTreeNavigationItem> FindNewCompositeTypeElementsWhereElementTypeIsPrimitive(Guid projectId)
         {
             return GetContext().Set<CompositeTypeElement>()
-                .Where(x => x.ProjectId == projectId && x.State == State.NEW)
-                .Select(x => new CompositeTypeElementTreeNavigationItem() { Id = x.Id, Name = x.Description, Type = NavigationType.TYPE_ELEMENT, ProjectId = x.ProjectId, ElementTypeName = x.ElementType.Description })
+                .Where(x => x.ProjectId == projectId && x.State == State.NEW && x.ElementType.Dtype == PrimitiveType.DISC)
+                .Select(x => new CompositeTypeElementTreeNavigationItem() { Id = x.Id, Name = x.Description, Type = NavigationType.TYPE_ELEMENT, ProjectId = x.ProjectId, ElementTypeName = x.ElementType.Description, BuiltIn = x.OwningType.BuiltIn })
                 .ToList();
         }
     }

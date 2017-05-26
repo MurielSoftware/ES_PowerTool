@@ -102,8 +102,10 @@
                     </Grid.RowDefinitions>
                     <Label Content="Liquibase" Grid.Row="0" Style="{StaticResource HeaderLabel}" />
                     <StackPanel Orientation="Vertical" Margin="10" Grid.Row="1">
+                        <Label Content="{Binding SettingsDto.LiquibaseAddColumnFormat.Name}" />
+                        <TextBox Text="{Binding SettingsDto.LiquibaseAddColumnFormat.Value}" Height="24" VerticalContentAlignment="Center" />
                         <Label Content="Default conversion of data types:" />
-                        <DataGrid ItemsSource="{Binding SettingsDto.SettingsLiquibaseDatabase}" Width="332" Height="160" AutoGenerateColumns="False" HorizontalGridLinesBrush="LightGray" VerticalGridLinesBrush="LightGray">
+                        <DataGrid ItemsSource="{Binding SettingsDto.SettingsLiquibaseDataTypeConversion}" Width="332" Height="160" AutoGenerateColumns="False" HorizontalGridLinesBrush="LightGray" VerticalGridLinesBrush="LightGray">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Type element data type"  Width="5*" Binding="{Binding Path=Name}" />
                                 <DataGridTextColumn Header="SQL data type"  Width="5*" Binding="{Binding Path=Value}" />
@@ -115,7 +117,7 @@
         </TabControl>
         <StackPanel Orientation="Horizontal" Margin="10, 5" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right">
             <Button Content="Save" Width="60" IsDefault="True" Command="{Binding SaveCommand}" CommandParameter="{Binding ElementName=ThisDialog}" />
-            <Button Content="Close" Margin="10, 0" Width="60" IsDefault="True" Command="{Binding CloseCommand}" CommandParameter="{Binding ElementName=ThisDialog}" />
+            <Button Content="Close" Margin="10, 0" Width="60" IsCancel="True" Command="{Binding CloseCommand}" CommandParameter="{Binding ElementName=ThisDialog}" />
         </StackPanel>
     </Grid>
 

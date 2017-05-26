@@ -119,6 +119,7 @@ namespace Desktop.App.Core.ModelViews
             {
                 int indexOfUpdatedTreeNavigationItem = parentTreeNavigationItem.Children.IndexOf(treeNavigationItem);
                 //parentTreeNavigationItem.Children[indexOfUpdatedTreeNavigationItem] = updatedTreeNavigationItem;
+                updatedTreeNavigationItem.Parent = parentTreeNavigationItem;
                 parentTreeNavigationItem.Children.RemoveAt(indexOfUpdatedTreeNavigationItem);
                 parentTreeNavigationItem.Children.Insert(indexOfUpdatedTreeNavigationItem, updatedTreeNavigationItem);
             }

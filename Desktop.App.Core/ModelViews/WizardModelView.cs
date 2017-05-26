@@ -16,6 +16,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows.Threading;
+using Desktop.Shared.Core.Validations;
+using Desktop.Ui.I18n;
 
 namespace Desktop.App.Core.ModelViews
 {
@@ -98,16 +100,43 @@ namespace Desktop.App.Core.ModelViews
 
         protected virtual void DoFinish(T dto)
         {
-            if(!dto.IsValid)
+            if (!dto.IsValid)
             {
-                ValidationMessage = dto.GetValidationResult();
-                OnPropertyChanged(() => ValidationMessage);
+                OnClientSideFailed(dto.GetValidationResult());
                 return;
             }
-            if(_persister.Persist())
+
+            try
             {
+                DoPersist(dto);
                 _successFinish = true;
             }
+            catch (ValidationException ex)
+            {
+                OnServerSideFailed(dto, ex.GetValidationResult());
+            }
+        }
+
+        protected virtual void DoPersist(T dto)
+        {
+            _persister.Persist();
+        }
+
+        protected virtual void OnClientSideFailed(string validationResult)
+        {
+            ValidationMessage = validationResult;
+            OnPropertyChanged(() => ValidationMessage);
+        }
+
+        protected virtual void OnServerSideFailed(T dto, ValidationResult validationResult)
+        {
+            StringBuilder sb = new StringBuilder();
+            foreach (ValidationMessage validationMessage in validationResult.ValidationMessages)
+            {
+                sb.AppendLine(ResourceUtils.GetMessage(validationMessage.ResourceKey, validationMessage.Parameters));
+            }
+            ValidationMessage = sb.ToString();
+            OnPropertyChanged(() => ValidationMessage);
         }
 
         private void CreateTitle()

@@ -4,6 +4,7 @@ using Desktop.Shared.Core;
 using Desktop.Shared.Core.Navigations;
 using Desktop.Shared.Core.Services;
 using ES_PowerTool.Shared.Services;
+using ES_PowerTool.Ui.Windows;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,10 +39,10 @@ namespace ES_PowerTool.ModelViews
 
         private void OnLoadCommand(object obj)
         {
-            DoLoadItemsToGenerate();
+            DoOnLoad();
         }
 
-        private async void DoLoadItemsToGenerate()
+        private async void DoOnLoad()
         {
             IsThreadRunning = true;
             OnPropertyChanged(() => IsThreadRunning);
@@ -78,7 +79,7 @@ namespace ES_PowerTool.ModelViews
 
         private void OnCloseCommand(object obj)
         {
-
+            ((GenerateLiquibaseWindow)obj).Close();
         }
     }
 }

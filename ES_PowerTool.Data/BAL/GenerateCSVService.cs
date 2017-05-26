@@ -48,7 +48,6 @@ namespace ES_PowerTool.Data.BAL
             List<DefaultPresetGenearateDto> defaultPresetGenerateDtos = CreateDefaultPresetGenerateDtos(compositeTypes);
             List<JoinTypeTypeGenerateDto> joinTypeTypeGenerateDtos = CreateJoinTypeTypeGenerateDtos(compositeTypes);
 
-
             generateDto.GeneratedCSVFolder = CSVWriter.Write<FolderDto>(folders);
             generateDto.GeneratedCSVType = CSVWriter.Write<CompositeTypeDto>(compositeTypes);
             generateDto.GeneratedCSVTypeElement = CSVWriter.Write<CompositeTypeElementDto>(compositeTypeElements);

@@ -9,12 +9,25 @@ namespace ES_PowerTool.Shared.Dtos.Settings
 {
     public class SettingsDto : BaseDto
     {
-        public virtual List<SettingValueDto> SettingsLiquibaseDatabase { get; set; }
+        public virtual SettingValueDto LiquibaseAddColumnFormat { get; set; }
+        public virtual List<SettingValueDto> SettingsLiquibaseDataTypeConversion { get; set; }
 
         public SettingsDto()
         {
-            SettingsLiquibaseDatabase = new List<SettingValueDto>();
-            SettingsLiquibaseDatabase.Add(new SettingValueDto() { Name = "int", Value = "NUMBER" });
         }
+
+        public List<SettingValueDto> GetAllSettingValues()
+        {
+            List<SettingValueDto> settingValueDtos = new List<SettingValueDto>();
+            settingValueDtos.AddRange(SettingsLiquibaseDataTypeConversion);
+            return settingValueDtos;
+        }
+
+        //public List<SettingValueDto> GetAllChangedValues()
+        //{
+        //    List<SettingValueDto> settingValueDtos = new List<SettingValueDto>();
+        //    settingValueDtos.AddRange(SettingsLiquibaseDataTypeConversion.Where(x => x.Changed));
+        //    return settingValueDtos;
+        //}
     }
 }

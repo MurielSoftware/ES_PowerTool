@@ -28,21 +28,22 @@
                     <RibbonApplicationMenuItem Header="{x:Static r:Resource.label_open_project}" ImageSource="pack://application:,,,/Images/exit32.png" Command="{Binding OpenProjectCommand}" />
                 </RibbonApplicationMenu>
             </Ribbon.ApplicationMenu>
-            <RibbonTab Header="COMMON">
-                <RibbonGroup Header="Project">
+            <RibbonTab Header="{x:Static r:Resource.ribbon_tab_common_label}">
+                <RibbonGroup Header="{x:Static r:Resource.ribbon_group_project_label}">
                     <RibbonButton LargeImageSource="pack://application:,,,/Images/project32.png" Label="{x:Static r:Resource.label_new_project}" Command="{Binding NewProjectCommand}" />
                     <RibbonButton SmallImageSource="pack://application:,,,/Images/open.png" Label="{x:Static r:Resource.label_open_project}" Command="{Binding OpenProjectCommand}" />
                 </RibbonGroup>
-                <RibbonGroup Header="Generate">
+                <RibbonGroup Header="{x:Static r:Resource.ribbon_group_generate_label}">
                     <RibbonButton LargeImageSource="pack://application:,,,/Images/generate_csv32.png" Label="{x:Static r:Resource.label_generate_csv}" Command="{Binding GenerateCSVCommand}" CommandParameter="{Binding ElementName=ModelObjectViewTree, Path=SelectedItems}" />
                     <RibbonButton LargeImageSource="pack://application:,,,/Images/generate_liquibase32.png" Label="{x:Static r:Resource.label_generate_liquibase}" Command="{Binding GenerateLiquibaseCommand}" CommandParameter="{Binding ElementName=ModelObjectViewTree, Path=SelectedItems}" />
+                    <RibbonButton LargeImageSource="pack://application:,,,/Images/guid32.png" Label="{x:Static r:Resource.label_generate_guid}" Command="{Binding GenerateGuidCommand}" CommandParameter="{Binding ElementName=ModelObjectViewTree, Path=SelectedItems}" />
                 </RibbonGroup>
-                <RibbonGroup Header="Tools">
+                <RibbonGroup Header="{x:Static r:Resource.ribbon_group_tools_label}">
                     <RibbonButton LargeImageSource="pack://application:,,,/Images/settings32.png" Label="{x:Static r:Resource.label_settings}" Command="{Binding SettingsCommand}" CommandParameter="{Binding ElementName=ModelObjectViewTree, Path=SelectedItems}" />
                 </RibbonGroup>
             </RibbonTab>
-            <RibbonTab Header="HELP">
-                <RibbonGroup Header="About">
+            <RibbonTab Header="{x:Static r:Resource.ribbon_tab_help_label}">
+                <RibbonGroup Header="{x:Static r:Resource.ribbon_group_about_label}">
                     <RibbonButton LargeImageSource="pack://application:,,,/Images/about.png" Label="{x:Static r:Resource.label_about}" Command="{Binding AboutCommand}" CommandParameter="{Binding ElementName=ModelObjectViewTree, Path=SelectedItems}" />
                 </RibbonGroup>
             </RibbonTab>
@@ -86,9 +87,9 @@
 
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="6*" />
                 <ColumnDefinition Width="5" />
-                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="4*" />
             </Grid.ColumnDefinitions>
             <Controls:BaseTreeView Name="ModelObjectViewTree" Grid.Column="0">
                 <Controls:BaseTreeView.DataContext>

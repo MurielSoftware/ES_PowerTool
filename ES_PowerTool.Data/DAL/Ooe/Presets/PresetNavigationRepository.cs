@@ -21,7 +21,7 @@ namespace ES_PowerTool.Data.DAL.OOE.Presets
         {
             return GetContext().Set<Preset>()
                 .Where(x => x.TypeId == compositeTypeId)
-                .Select(x => new PresetTreeNavigationItem() { Id = x.Id, Name = x.Name, Type = NavigationType.PRESET, ProjectId = x.ProjectId, IsDefault = x.Type.DefaultPresetId == x.Id, HasRemoteChildren = x.Elements.Count > 0 })
+                .Select(x => new PresetTreeNavigationItem() { Id = x.Id, Name = x.Name, Type = NavigationType.PRESET, ProjectId = x.ProjectId, IsDefault = x.Type.DefaultPresetId == x.Id, HasRemoteChildren = x.Elements.Count > 0, BuiltIn = x.BuiltIn })
                 .ToList();
         }
 
@@ -29,7 +29,7 @@ namespace ES_PowerTool.Data.DAL.OOE.Presets
         {
             return GetContext().Set<Preset>()
                 .Where(x => x.Id == id)
-                .Select(x => new PresetTreeNavigationItem() { Id = x.Id, Name = x.Name, Type = NavigationType.PRESET, ProjectId = x.ProjectId, IsDefault = x.Type.DefaultPresetId == x.Id, HasRemoteChildren = x.Elements.Count > 0 })
+                .Select(x => new PresetTreeNavigationItem() { Id = x.Id, Name = x.Name, Type = NavigationType.PRESET, ProjectId = x.ProjectId, IsDefault = x.Type.DefaultPresetId == x.Id, HasRemoteChildren = x.Elements.Count > 0, BuiltIn = x.BuiltIn })
                 .SingleOrDefault();
         }
     }

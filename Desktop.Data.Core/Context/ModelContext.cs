@@ -39,5 +39,6 @@ namespace Desktop.Data.Core.Context
         public DbSet<CompositeTypeElement> CompositeTypeElements { get; set; }
         public DbSet<Project> Projects { get; set; }
         public DbSet<Preset> Preset { get; set; }
+        public DbSet<Settings> Settings { get; set; }
     }
 }

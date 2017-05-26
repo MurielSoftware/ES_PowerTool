@@ -22,8 +22,8 @@ namespace ES_PowerTool.ModelViews
             : base("CompositeTypeDetailsTreeModelView")
         {
             NewPresetCommand = new RelayCommand(OnNewPresetCommand, x => ModelViewsUtil.IsType(x, NavigationType.FOLDER));
-            DeleteCommand = new RelayCommand(OnDeleteCommand, x=> ModelViewsUtil.IsType(x, NavigationType.PRESET));
-            UpdateCommand = new RelayCommand(OnUpdateCommand, x => ModelViewsUtil.IsType(x, NavigationType.PRESET));
+            DeleteCommand = new RelayCommand(OnDeleteCommand, x=> ModelViewsUtil.IsType(x, NavigationType.PRESET) && !ModelViewsUtil.IsBuiltIn(x));
+            UpdateCommand = new RelayCommand(OnUpdateCommand, x => ModelViewsUtil.IsType(x, NavigationType.PRESET) && !ModelViewsUtil.IsBuiltIn(x));
             SetAsDefaultCommand = new RelayCommand(OnSetAsDefaultCommand, x => ModelViewsUtil.IsType(x, NavigationType.PRESET));
         }
 

@@ -16,6 +16,7 @@ namespace ES_PowerTool.ModelViews
         public ICommand OpenProjectCommand { get; private set; }
         public ICommand GenerateCSVCommand { get; private set; }
         public ICommand GenerateLiquibaseCommand { get; private set; }
+        public ICommand GenerateGuidCommand { get; private set; }
         public ICommand AboutCommand { get; private set; }
         public ICommand SettingsCommand { get; private set; }
 
@@ -24,8 +25,9 @@ namespace ES_PowerTool.ModelViews
         {
             NewProjectCommand = new RelayCommand(OnNewProjectCommand);
             OpenProjectCommand = new RelayCommand(OnOpenProjectCommand);
-            GenerateCSVCommand = new RelayCommand(OnGenerateCSVCommand);
-            GenerateLiquibaseCommand = new RelayCommand(OnGenerateLiquibaseCommand);
+            GenerateCSVCommand = new RelayCommand(OnGenerateCSVCommand, x => ModelViewsUtil.IsType(x, NavigationType.PROJECT));
+            GenerateLiquibaseCommand = new RelayCommand(OnGenerateLiquibaseCommand, x => ModelViewsUtil.IsType(x, NavigationType.PROJECT));
+            GenerateGuidCommand = new RelayCommand(OnGenerateGuidCommand);
             SettingsCommand = new RelayCommand(OnSettingsCommand);
             AboutCommand = new RelayCommand(OnOpenCommand);
             
@@ -59,6 +61,11 @@ namespace ES_PowerTool.ModelViews
         private void OnOpenCommand(object obj)
         {
             WindowsManager.GetInstance().ShowDialog<AboutWindow>(new AboutWindowModelView());
+        }
+
+        private void OnGenerateGuidCommand(object obj)
+        {
+            WindowsManager.GetInstance().ShowDialog<GenerateGuidWindow>(new GenerateGuidWindowModelView());
         }
     }
 }

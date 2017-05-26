@@ -237,4 +237,25 @@
   <data name="label_settings" xml:space="preserve">
     <value>Settings</value>
   </data>
+  <data name="label_generate_guid" xml:space="preserve">
+    <value>Generate UUID</value>
+  </data>
+  <data name="ribbon_group_about_label" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="ribbon_group_generate_label" xml:space="preserve">
+    <value>Generate</value>
+  </data>
+  <data name="ribbon_group_project_label" xml:space="preserve">
+    <value>Project</value>
+  </data>
+  <data name="ribbon_group_tools_label" xml:space="preserve">
+    <value>Tools</value>
+  </data>
+  <data name="ribbon_tab_common_label" xml:space="preserve">
+    <value>COMMON</value>
+  </data>
+  <data name="ribbon_tab_help_label" xml:space="preserve">
+    <value>HELP</value>
+  </data>
 </root>

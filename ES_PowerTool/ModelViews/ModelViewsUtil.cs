@@ -29,6 +29,17 @@ namespace ES_PowerTool.ModelViews
                 return false;
             }
             List<TreeNavigationItem> treeNavigationItems = (List<TreeNavigationItem>)obj;
+            if (treeNavigationItems.Count == 0)
+            {
+                return false;
+            }
+            foreach (TreeNavigationItem treeNavigationItem in treeNavigationItems)
+            {
+                if(!treeNavigationItem.BuiltIn)
+                {
+                    return false;
+                }
+            }
             return true;
         }
 
@@ -39,6 +50,10 @@ namespace ES_PowerTool.ModelViews
                 return false;
             }
             List<TreeNavigationItem> treeNavigationItems = (List<TreeNavigationItem>)obj;
+            if(treeNavigationItems.Count == 0)
+            {
+                return false;
+            }
             foreach (TreeNavigationItem treeNavigationItem in treeNavigationItems)
             {
                 if(!types.Contains(treeNavigationItem.Type))
@@ -48,5 +63,22 @@ namespace ES_PowerTool.ModelViews
             }
             return true;
         }
+
+        //public static bool IsProjectSet(object obj)
+        //{
+        //    if (!IsNotNullAndIsTreeNavigationItem(obj))
+        //    {
+        //        return false;
+        //    }
+        //    List<TreeNavigationItem> treeNavigationItems = (List<TreeNavigationItem>)obj;
+        //    foreach (TreeNavigationItem treeNavigationItem in treeNavigationItems)
+        //    {
+        //        if (!Guid.Empty.Equals(treeNavigationItem.ProjectId))
+        //        {
+        //            return true;
+        //        }
+        //    }
+        //    return false;
+        //}
     }
 }

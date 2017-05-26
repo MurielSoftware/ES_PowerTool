@@ -51,10 +51,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BAL\GenerateLiquibaseService.cs" />
+    <Compile Include="BAL\Generate\GenerateGuidService.cs" />
     <Compile Include="BAL\OOE\FolderValidationService.cs" />
     <Compile Include="BAL\OOE\Presets\CompositePresetElementCRUDService.cs" />
     <Compile Include="BAL\OOE\Presets\PresetValidationService.cs" />
-    <Compile Include="BAL\OOE\Set\SettingsCRUDService.cs" />
+    <Compile Include="BAL\Set\SettingsCRUDService.cs" />
     <Compile Include="BAL\OOE\Types\CompositeTypeDetailsNavigationService.cs" />
     <Compile Include="BAL\OOE\Elements\CompositeTypeElementCRUDService.cs" />
     <Compile Include="BAL\OOE\Types\CompositeTypeNavigationService.cs" />
@@ -76,6 +77,7 @@
     <Compile Include="DAL\OOE\Presets\PresetNavigationRepository.cs" />
     <Compile Include="DAL\OOE\Types\PrimitiveTypeNavigationRepository.cs" />
     <Compile Include="DAL\ProjectNavigationRepository.cs" />
+    <Compile Include="DAL\SettingsRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -96,5 +98,6 @@
       <Name>ES_PowerTool.Shared</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

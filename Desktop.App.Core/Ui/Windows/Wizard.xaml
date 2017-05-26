@@ -27,8 +27,8 @@
         </ScrollViewer>            
 
         <StackPanel Orientation="Horizontal" Margin="10, 6" Grid.Row="2" HorizontalAlignment="Right">
-            <Button Content="Cancel" Margin="10, 0" Width="70" IsDefault="True" Command="{Binding CancelCommand}" CommandParameter="{Binding ElementName=ThisWizard}" />
-            <Button Content="Finish" Margin="0, 0" Width="70" IsCancel="True" Command="{Binding FinishCommand}" CommandParameter="{Binding ElementName=ThisWizard}" />
+            <Button Content="Cancel" Margin="10, 0" Width="70" IsCancel="True" Command="{Binding CancelCommand}" CommandParameter="{Binding ElementName=ThisWizard}" />
+            <Button Content="Finish" Margin="0, 0" Width="70" IsDefault="True" Command="{Binding FinishCommand}" CommandParameter="{Binding ElementName=ThisWizard}" />
         </StackPanel>
     </Grid>
 </Window>

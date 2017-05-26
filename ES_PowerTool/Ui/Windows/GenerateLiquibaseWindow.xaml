@@ -8,6 +8,7 @@
         mc:Ignorable="d"
         ShowInTaskbar="False"
         ResizeMode="NoResize"
+        Name="ThisDialog"
         Title="GenerateLiquibaseWindow" Height="400" Width="560">
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
@@ -24,8 +25,9 @@
         </Grid.RowDefinitions>
         <DataGrid ItemsSource="{Binding ItemsToGenerate}" Grid.Row="0" AutoGenerateColumns="False" HorizontalGridLinesBrush="LightGray" VerticalGridLinesBrush="LightGray" CanUserResizeRows="True">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Name" Binding="{Binding Path=CompositeTypeElementTreeNavigationItem.Name}" Width="65*"/>
-                <DataGridTextColumn Header="Type" Binding="{Binding Path=CompositeTypeElementTreeNavigationItem.ElementTypeName}" Width="35*"/>
+                <DataGridTextColumn Header="Name" Binding="{Binding Path=CompositeTypeElementTreeNavigationItem.Name}" Width="4*"/>
+                <DataGridTextColumn Header="Column name" Binding="{Binding Path=ColumnName}" Width="4*"/>
+                <DataGridTextColumn Header="Type" Binding="{Binding Path=CompositeTypeElementTreeNavigationItem.ElementTypeName}" Width="2*"/>
                 <DataGridCheckBoxColumn Header="Generate" Binding="{Binding Path=Generate}" Width="64" />
             </DataGrid.Columns>
         </DataGrid>
@@ -34,7 +36,7 @@
         </StackPanel>
         <TextBox Grid.Row="2" Text="{Binding Path=GeneratedLiquibase}" />
         <StackPanel Orientation="Horizontal" Margin="10, 5" Grid.Row="3" HorizontalAlignment="Right">
-            <Button Content="Close" Margin="10, 0" Width="60" IsDefault="True" Command="{Binding CloseCommand}" CommandParameter="{Binding ElementName=ThisDialog}" />
+            <Button Content="Close" Margin="10, 0" Width="60" IsDefault="True" IsCancel="True" Command="{Binding CloseCommand}" CommandParameter="{Binding ElementName=ThisDialog}" />
         </StackPanel>
     </Grid>
 </Window>

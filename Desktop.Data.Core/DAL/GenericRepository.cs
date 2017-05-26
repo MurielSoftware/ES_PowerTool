@@ -28,31 +28,20 @@ namespace Desktop.Data.Core.DAL
        //     return GetContext().Set<T>().Where(x => x.Id == id).AsNoTracking().SingleOrDefault();
         }
 
-        /// <summary>
-        /// Finds the entity and track it by its ID
-        /// </summary>
-        /// <typeparam name="T">The type of the entity</typeparam>
-        /// <param name="id">The ID of the entity</param>
-        /// <returns>The found entity</returns>
+        public virtual T FindNoTracking<T>(Guid id) where T : BaseEntity
+        {
+            return GetContext().Set<T>().Where(x => x.Id == id).AsNoTracking().SingleOrDefault();
+        }
+
         public virtual T FindTracking<T>(Guid id) where T : BaseEntity
         {
             return GetContext().Set<T>().Where(x => x.Id == id).SingleOrDefault();
         }
 
-        /// <summary>
-        /// Finds the entity by its prefix
-        /// </summary>
-        /// <typeparam name="T">The type of the entity</typeparam>
-        /// <param name="baseFilterDto">The filtering DTO to make the where part</param>
-        /// <param name="selector">The selector for select the attributes</param>
-        /// <returns>The list of the referencedDto for the appropriate search DTO</returns>
-        //internal List<ReferenceDto> FindByPrefix<T>(BaseFilterDto baseFilterDto, Expression<Func<T, ReferenceDto>> selector) where T : BaseEntity
-        //{
-        //    return _modelContext.Set<T>()
-        //        .Where(ExpressionQueryBuilder.BuildWhere<T>(baseFilterDto))
-        //        .Select(selector)
-        //        .ToList();
-        //}
+        public virtual List<T> FindAll<T>() where T : BaseEntity
+        {
+            return GetContext().Set<T>().ToList();
+        }
 
         /// <summary>
         /// Checks if something exists.

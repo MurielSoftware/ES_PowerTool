@@ -20,21 +20,11 @@ namespace Desktop.App.Core.Persisters
             _dto = dto;
         }
 
-        public virtual bool Persist()
+        public virtual void Persist()
         {
-            try
-            {
-                //Connection.GetInstance().StartTransaction();
-                BeforePersist();
-                _dto = _service.Persist(_dto);
-                AfterPersist();
-                //Connection.GetInstance().EndTransaction();
-                return true;
-            }
-            catch (Exception ex)
-            {
-                return false;
-            }
+            BeforePersist();
+            _dto = _service.Persist(_dto);
+            AfterPersist();
         }
 
         protected virtual void BeforePersist()

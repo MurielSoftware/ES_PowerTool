@@ -98,11 +98,15 @@
     <Compile Include="Handlers\NewPresetHandler.cs" />
     <Compile Include="ModelViews\CompositeTypeDetailsTreeModelView.cs" />
     <Compile Include="ModelViews\GenerateCSVWindowModelView.cs" />
+    <Compile Include="ModelViews\GenerateGuidWindowModelView.cs" />
     <Compile Include="ModelViews\GenerateLiquibaseWindowModelView.cs" />
     <Compile Include="ModelViews\ModelViewsUtil.cs" />
     <Compile Include="ModelViews\SettingsModelView.cs" />
     <Compile Include="Ui\Windows\GenerateCSVWindow.xaml.cs">
       <DependentUpon>GenerateCSVWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ui\Windows\GenerateGuidWindow.xaml.cs">
+      <DependentUpon>GenerateGuidWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ui\Windows\GenerateLiquibaseWindow.xaml.cs">
       <DependentUpon>GenerateLiquibaseWindow.xaml</DependentUpon>
@@ -130,6 +134,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Ui\Windows\GenerateCSVWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ui\Windows\GenerateGuidWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -268,6 +276,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\settings32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\guid32.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

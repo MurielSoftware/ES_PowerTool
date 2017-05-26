@@ -16,6 +16,8 @@ using ES_PowerTool.Shared.Dtos.OOE;
 using ES_PowerTool.Shared.Dtos.OOE.Types;
 using ES_PowerTool.Shared.Dtos.OOE.Elements;
 using ES_PowerTool.Shared.Dtos.OOE.Presets;
+using Desktop.Shared.Core.Validations;
+using Desktop.Ui.I18n;
 
 namespace ES_PowerTool.Data.BAL
 {
@@ -85,6 +87,12 @@ namespace ES_PowerTool.Data.BAL
             {
                 CSVAttributeAttribute csvAttribute = csvAttributePropertyInfo.GetCustomAttribute<CSVAttributeAttribute>();
                 CSVValue currentValue = file.GetValueToColumn(row, csvAttribute.Name);
+                if(currentValue == null)
+                {
+                    ValidationResult validationResult = new ValidationResult();
+                    validationResult.Add(new ValidationMessage(ValidationType.ERROR, MessageKeyConstants.ERROR_MESSAGE_WRONG_CSV_FILE_ON_INPUT));
+                    throw new ValidationException(validationResult);
+                }
                 object convertedValue = Converter.ConvertValue(csvAttributePropertyInfo.PropertyType, currentValue.GetValue());
 
                 PropertyInfo entityPropertyInfo = entity.GetType().GetProperty(csvAttributePropertyInfo.Name);

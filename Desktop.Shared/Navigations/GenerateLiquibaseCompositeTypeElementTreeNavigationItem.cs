@@ -9,6 +9,7 @@ namespace Desktop.Shared.Core.Navigations
     public class GenerateLiquibaseCompositeTypeElementTreeNavigationItem 
     {
         public CompositeTypeElementTreeNavigationItem CompositeTypeElementTreeNavigationItem { get; set; }
+        public string ColumnName { get; set; }
         public bool Generate { get; set; }
     }
 }

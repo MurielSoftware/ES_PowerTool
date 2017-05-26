@@ -40,12 +40,6 @@ namespace Desktop.Shared.Core.Navigations
             }
         }
 
-        //public Uri Image
-        //{
-        //    get { return NavigationTypeToImage.NAVIGATION_TYPE_TO_IMAGE[Type]; }
-        //    set { }
-        //}
-
         public event PropertyChangedEventHandler PropertyChanged;
 
         public virtual Guid Id { get; set; }
@@ -55,6 +49,7 @@ namespace Desktop.Shared.Core.Navigations
         public virtual ObservableCollection<TreeNavigationItem> Children { get; set; }
         public virtual bool HasRemoteChildren { get; set; }
         public virtual Guid ProjectId { get; set; }
+        public virtual bool BuiltIn { get; set; }
 
         public TreeNavigationItem()
         {
@@ -68,12 +63,6 @@ namespace Desktop.Shared.Core.Navigations
             Name = name;
             Type = type;
         }
-
-        //public TreeNavigationItem(Guid id, string name, NavigationType type, bool remote)
-        //    : this(id, name, type)
-        //{
-        //    HasRemoteChildren = remote;
-        //}
 
         public void SetChildren(List<TreeNavigationItem> children)
         {

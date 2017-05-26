@@ -6,9 +6,16 @@
         xmlns:local="clr-namespace:ES_PowerTool.Ui.Windows"
         mc:Ignorable="d"
         ShowInTaskbar="False"
+        Name="ThisDialog"
+        ResizeMode="NoResize"
         Title="GenerateWindow" Height="400" Width="560">
     <Grid>
-        <TabControl>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="34" />
+        </Grid.RowDefinitions>
+        
+        <TabControl Grid.Row="0">
             <TabItem Header="FOLDER">
                 <TextBox Text="{Binding Dto.GeneratedCSVFolder}" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" />
             </TabItem>
@@ -31,5 +38,8 @@
                 <TextBox Text="{Binding Dto.GeneratedCSVTypeType}" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" />
             </TabItem>
         </TabControl>
+        <StackPanel Orientation="Horizontal" Margin="10, 5" Grid.Row="1" HorizontalAlignment="Right">
+            <Button Content="Close" Margin="10, 0" Width="60" IsDefault="True" IsCancel="True" Command="{Binding CloseCommand}" CommandParameter="{Binding ElementName=ThisDialog}" />
+        </StackPanel>
     </Grid>
 </Window>

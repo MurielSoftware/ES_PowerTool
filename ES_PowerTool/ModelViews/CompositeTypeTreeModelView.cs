@@ -22,11 +22,11 @@ namespace ES_PowerTool.ModelViews
         public CompositeTypeTreeModelView() 
             : base("CompositeTypeTreeModelView")
         {
-            NewFolderCommand = new RelayCommand(OnNewFolderCommand, x => ModelViewsUtil.IsType(x, NavigationType.PROJECT, NavigationType.FOLDER));
-            NewCompositeTypeCommand = new RelayCommand(OnNewCompositeTypeCommand, x => ModelViewsUtil.IsType(x, NavigationType.FOLDER));
-            NewCompmositeTypeElementCommand = new RelayCommand(OnNewCompmositeTypeElementCommand, x => ModelViewsUtil.IsType(x, NavigationType.COMPOSITE_TYPE));
-            DeleteCommand = new RelayCommand(OnDeleteCommand);
-            UpdateCommand = new RelayCommand(OnUpdateCommand);
+            NewFolderCommand = new RelayCommand(OnNewFolderCommand, x => ModelViewsUtil.IsType(x, NavigationType.PROJECT, NavigationType.FOLDER) && !ModelViewsUtil.IsBuiltIn(x));
+            NewCompositeTypeCommand = new RelayCommand(OnNewCompositeTypeCommand, x => ModelViewsUtil.IsType(x, NavigationType.FOLDER) && !ModelViewsUtil.IsBuiltIn(x));
+            NewCompmositeTypeElementCommand = new RelayCommand(OnNewCompmositeTypeElementCommand, x => ModelViewsUtil.IsType(x, NavigationType.COMPOSITE_TYPE) && !ModelViewsUtil.IsBuiltIn(x));
+            DeleteCommand = new RelayCommand(OnDeleteCommand, x => !ModelViewsUtil.IsBuiltIn(x) && ModelViewsUtil.IsType(x, NavigationType.FOLDER, NavigationType.COMPOSITE_TYPE, NavigationType.TYPE_ELEMENT));
+            UpdateCommand = new RelayCommand(OnUpdateCommand, x => !ModelViewsUtil.IsBuiltIn(x) && ModelViewsUtil.IsType(x, NavigationType.FOLDER, NavigationType.COMPOSITE_TYPE, NavigationType.TYPE_ELEMENT));
         }
 
         protected override INavigationService CreateNavigationService()

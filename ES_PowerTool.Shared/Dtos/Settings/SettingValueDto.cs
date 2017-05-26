@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Desktop.Shared.Core.Dtos;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ES_PowerTool.Shared.Dtos.Settings
 {
-    public class SettingValueDto
+    public class SettingValueDto : BaseDto
     {
         public virtual SettingsSection Section { get; set; }
         public virtual SettingsGroup Group { get; set; }
