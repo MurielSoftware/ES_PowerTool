@@ -33,7 +33,7 @@ namespace ES_PowerTool.ModelViews
             GenerateLiquibaseCommand = new RelayCommand(OnGenerateLiquibaseCommand, x => ModelViewsUtil.IsType(x, NavigationType.PROJECT));
             GenerateGuidCommand = new RelayCommand(OnGenerateGuidCommand);
             SettingsCommand = new RelayCommand(OnSettingsCommand, x => ModelViewsUtil.ProjectIsActive);
-            AboutCommand = new RelayCommand(OnOpenCommand);            
+            AboutCommand = new RelayCommand(OnAboutCommand);            
         }
 
         private void OnNewProjectCommand(object obj)
@@ -66,19 +66,19 @@ namespace ES_PowerTool.ModelViews
             HandlerExecutor.Execute<GenerateLiquibaseHandler>(ExecutionEvent.Create(obj as List<TreeNavigationItem>));
         }
 
+        private void OnGenerateGuidCommand(object obj)
+        {
+            WindowsManager.GetInstance().ShowDialog<GenerateGuidWindow>(new GenerateGuidWindowModelView());
+        }
+
         private void OnSettingsCommand(object obj)
         {
             WindowsManager.GetInstance().ShowDialog<SettingsWindow>(new SettingsModelView());
         }
 
-        private void OnOpenCommand(object obj)
+        private void OnAboutCommand(object obj)
         {
             WindowsManager.GetInstance().ShowDialog<AboutWindow>(new AboutWindowModelView());
-        }
-
-        private void OnGenerateGuidCommand(object obj)
-        {
-            WindowsManager.GetInstance().ShowDialog<GenerateGuidWindow>(new GenerateGuidWindowModelView());
         }
     }
 }

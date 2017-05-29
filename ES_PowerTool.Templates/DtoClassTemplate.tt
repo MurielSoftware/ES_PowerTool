@@ -1,0 +1,19 @@
+﻿<#@ template language="C#" #>
+<#@ parameter name="_namespace" type="System.String" #>
+<#@ parameter name="_className" type="System.String" #>
+
+namespace <#= _namespace #>
+{
+	public class <#= _className #>
+	{
+		private type name;
+
+		public void setName(type name) {
+			this.name = name;
+		}
+			
+		public type getName() {
+			return name;
+		}
+	}
+}

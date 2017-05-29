@@ -76,6 +76,12 @@
                             </MenuItem.Icon>
                         </MenuItem>
                         <Separator />
+                        <MenuItem Header="Generate Java..." Command="{Binding GenerateClassCommand}" CommandParameter="{Binding PlacementTarget.SelectedItems, RelativeSource={RelativeSource AncestorType={x:Type ContextMenu}}}">
+                            <MenuItem.Icon>
+                                <Image Source="pack://application:,,,/Images/java.png" />
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <Separator />
                         <MenuItem Header="New">
                             <MenuItem Header="Composite Type" Command="{Binding NewCompositeTypeCommand}" CommandParameter="{Binding PlacementTarget.SelectedItems, RelativeSource={RelativeSource AncestorType={x:Type ContextMenu}}}">
                                 <MenuItem.Icon>

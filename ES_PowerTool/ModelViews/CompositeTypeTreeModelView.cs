@@ -16,6 +16,7 @@ namespace ES_PowerTool.ModelViews
         public ICommand NewFolderCommand { get; private set; }
         public ICommand NewCompositeTypeCommand { get; private set; }
         public ICommand NewCompmositeTypeElementCommand { get; private set; }
+        public ICommand GenerateClassCommand { get; private set; }
         public ICommand DeleteCommand { get; private set; }
         public ICommand UpdateCommand { get; private set; }
 
@@ -25,6 +26,7 @@ namespace ES_PowerTool.ModelViews
             NewFolderCommand = new RelayCommand(OnNewFolderCommand, x => ModelViewsUtil.IsType(x, NavigationType.PROJECT, NavigationType.FOLDER) && !ModelViewsUtil.IsBuiltIn(x));
             NewCompositeTypeCommand = new RelayCommand(OnNewCompositeTypeCommand, x => ModelViewsUtil.IsType(x, NavigationType.FOLDER) && !ModelViewsUtil.IsBuiltIn(x));
             NewCompmositeTypeElementCommand = new RelayCommand(OnNewCompmositeTypeElementCommand, x => ModelViewsUtil.IsType(x, NavigationType.COMPOSITE_TYPE) && !ModelViewsUtil.IsBuiltIn(x));
+            GenerateClassCommand = new RelayCommand(OnGenerateClassCommand, x => ModelViewsUtil.IsType(x, NavigationType.COMPOSITE_TYPE));
             DeleteCommand = new RelayCommand(OnDeleteCommand, x => !ModelViewsUtil.IsBuiltIn(x) && ModelViewsUtil.IsType(x, NavigationType.FOLDER, NavigationType.COMPOSITE_TYPE, NavigationType.TYPE_ELEMENT));
             UpdateCommand = new RelayCommand(OnUpdateCommand, x => !ModelViewsUtil.IsBuiltIn(x) && ModelViewsUtil.IsType(x, NavigationType.FOLDER, NavigationType.COMPOSITE_TYPE, NavigationType.TYPE_ELEMENT));
         }
@@ -47,6 +49,11 @@ namespace ES_PowerTool.ModelViews
         private void OnNewCompmositeTypeElementCommand(object obj)
         {
             HandlerExecutor.Execute<NewCompositeTypeElementHandler>(ExecutionEvent.Create(obj as List<TreeNavigationItem>));
+        }
+
+        private void OnGenerateClassCommand(object obj)
+        {
+            HandlerExecutor.Execute<GenerateDtoHandler>(ExecutionEvent.Create(obj as List<TreeNavigationItem>));
         }
 
         private void OnDeleteCommand(object obj)

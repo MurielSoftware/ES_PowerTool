@@ -1,0 +1,23 @@
+﻿<#@ template language="C#" #>
+<#@ parameter name="_namespace" type="System.String" #>
+<#@ parameter name="_tableName" type="System.String" #>
+<#@ parameter name="_className" type="System.String" #>
+
+namespace <#= _namespace #>
+{
+	@Entity
+	@Table(name=<#= _tableName #>)
+    public class <#= _className #>
+    {
+		private type name;
+
+		public void setName(type name) {
+			this.name = name;
+		}
+			
+		@Column(name="")
+		public type getName() {
+			return name;
+		}
+    }
+}

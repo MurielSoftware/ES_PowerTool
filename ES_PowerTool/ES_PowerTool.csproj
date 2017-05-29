@@ -95,6 +95,7 @@
     <Compile Include="Editors\PresetReferenceEditor.cs" />
     <Compile Include="Handlers\CloseProjectHandler.cs" />
     <Compile Include="Handlers\DefaultHandler.cs" />
+    <Compile Include="Handlers\GenerateDtoHandler.cs" />
     <Compile Include="Handlers\GenerateLiquibaseHandler.cs" />
     <Compile Include="Handlers\GenerateCSVHandler.cs" />
     <Compile Include="Handlers\NewPresetHandler.cs" />
@@ -110,6 +111,9 @@
     <Compile Include="Ui\Dnd\TypesViewDropAdapter.cs" />
     <Compile Include="Ui\Windows\GenerateCSVWindow.xaml.cs">
       <DependentUpon>GenerateCSVWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ui\Windows\GenerateEntityWindow.xaml.cs">
+      <DependentUpon>GenerateEntityWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ui\Windows\GenerateGuidWindow.xaml.cs">
       <DependentUpon>GenerateGuidWindow.xaml</DependentUpon>
@@ -140,6 +144,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Ui\Windows\GenerateCSVWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ui\Windows\GenerateEntityWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -203,6 +211,10 @@
     <ProjectReference Include="..\ES_PowerTool.Shared\ES_PowerTool.Shared.csproj">
       <Project>{c7abc907-08a3-439b-bdee-6d0f171ef4c6}</Project>
       <Name>ES_PowerTool.Shared</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ES_PowerTool.Templates\ES_PowerTool.Templates.csproj">
+      <Project>{87a8edec-e37a-4cf2-b606-a936f20e4736}</Project>
+      <Name>ES_PowerTool.Templates</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -288,6 +300,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\close.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\java.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

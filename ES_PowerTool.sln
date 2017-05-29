@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26228.12
+VisualStudioVersion = 15.0.26403.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ES_PowerTool", "ES_PowerTool\ES_PowerTool.csproj", "{005FAEDA-90BE-410C-BE02-663199312242}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -25,6 +25,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{5A91951F-16A0-4F40-955C-42320F9FAF92}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{03B3B003-CAEE-47DD-93B0-115C8C1E8F89}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ES_PowerTool.Templates", "ES_PowerTool.Templates\ES_PowerTool.Templates.csproj", "{87A8EDEC-E37A-4CF2-B606-A936F20E4736}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -60,6 +62,10 @@ Global
 		{FEE263D1-C64F-448B-B24D-9347AF62A035}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FEE263D1-C64F-448B-B24D-9347AF62A035}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FEE263D1-C64F-448B-B24D-9347AF62A035}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87A8EDEC-E37A-4CF2-B606-A936F20E4736}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87A8EDEC-E37A-4CF2-B606-A936F20E4736}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87A8EDEC-E37A-4CF2-B606-A936F20E4736}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87A8EDEC-E37A-4CF2-B606-A936F20E4736}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -72,5 +78,6 @@ Global
 		{C7ABC907-08A3-439B-BDEE-6D0F171EF4C6} = {03B3B003-CAEE-47DD-93B0-115C8C1E8F89}
 		{4C59360D-3293-4248-95CE-06ACDBC6EB18} = {5A91951F-16A0-4F40-955C-42320F9FAF92}
 		{FEE263D1-C64F-448B-B24D-9347AF62A035} = {5A91951F-16A0-4F40-955C-42320F9FAF92}
+		{87A8EDEC-E37A-4CF2-B606-A936F20E4736} = {82592EC6-65DB-4FB7-BC8C-5BA57BF7B140}
 	EndGlobalSection
 EndGlobal
