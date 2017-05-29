@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using ES_PowerTool.ModelViews;
 
 namespace ES_PowerTool.Handlers
 {
@@ -23,7 +24,8 @@ namespace ES_PowerTool.Handlers
 
             fileName = fileName.Replace(AppDomain.CurrentDomain.BaseDirectory, "");
             Connection.GetInstance().CreateConnection(fileName);
-            Publisher.GetInstance().ServerChanged(null);
+            
+            OnSuccessful(executionEvent, Guid.Empty);
         }
 
         protected override void OnFailure(ExecutionEvent executionEvent)
@@ -33,7 +35,8 @@ namespace ES_PowerTool.Handlers
 
         protected override void OnSuccessful(ExecutionEvent executionEvent, Guid affectedObjectId)
         {
-            throw new NotImplementedException();
+            Publisher.GetInstance().ServerChanged(Connection.GetInstance());
+            ModelViewsUtil.ProjectIsActive = true;
         }
     }
 }

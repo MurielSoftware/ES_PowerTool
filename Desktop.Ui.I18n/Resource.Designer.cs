@@ -97,6 +97,42 @@ namespace Desktop.Ui.I18n {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string label_cancel {
+            get {
+                return ResourceManager.GetString("label_cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Close.
+        /// </summary>
+        public static string label_close {
+            get {
+                return ResourceManager.GetString("label_close", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Close project.
+        /// </summary>
+        public static string label_close_project {
+            get {
+                return ResourceManager.GetString("label_close_project", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Column name.
+        /// </summary>
+        public static string label_column_name {
+            get {
+                return ResourceManager.GetString("label_column_name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Common.
         /// </summary>
         public static string label_common_category {
@@ -106,11 +142,38 @@ namespace Desktop.Ui.I18n {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Composite preset element.
+        /// </summary>
+        public static string label_composite_preset_element {
+            get {
+                return ResourceManager.GetString("label_composite_preset_element", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Count.
+        /// </summary>
+        public static string label_count {
+            get {
+                return ResourceManager.GetString("label_count", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to CSV Paths.
         /// </summary>
         public static string label_csv_category {
             get {
                 return ResourceManager.GetString("label_csv_category", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Default data type conversions.
+        /// </summary>
+        public static string label_default_conversions_of_data_types {
+            get {
+                return ResourceManager.GetString("label_default_conversions_of_data_types", resourceCulture);
             }
         }
         
@@ -151,6 +214,24 @@ namespace Desktop.Ui.I18n {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Exit.
+        /// </summary>
+        public static string label_exit {
+            get {
+                return ResourceManager.GetString("label_exit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Finish.
+        /// </summary>
+        public static string label_finish {
+            get {
+                return ResourceManager.GetString("label_finish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Folder.
         /// </summary>
         public static string label_folder {
@@ -165,6 +246,15 @@ namespace Desktop.Ui.I18n {
         public static string label_folder_csv_path {
             get {
                 return ResourceManager.GetString("label_folder_csv_path", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Generate.
+        /// </summary>
+        public static string label_generate {
+            get {
+                return ResourceManager.GetString("label_generate", resourceCulture);
             }
         }
         
@@ -196,11 +286,38 @@ namespace Desktop.Ui.I18n {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Liquibase.
+        /// </summary>
+        public static string label_liquibase_category {
+            get {
+                return ResourceManager.GetString("label_liquibase_category", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Loading....
         /// </summary>
         public static string label_loading {
             get {
                 return ResourceManager.GetString("label_loading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Message.
+        /// </summary>
+        public static string label_message {
+            get {
+                return ResourceManager.GetString("label_message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Messages.
+        /// </summary>
+        public static string label_messages {
+            get {
+                return ResourceManager.GetString("label_messages", resourceCulture);
             }
         }
         
@@ -219,6 +336,15 @@ namespace Desktop.Ui.I18n {
         public static string label_new_project {
             get {
                 return ResourceManager.GetString("label_new_project", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OK.
+        /// </summary>
+        public static string label_ok {
+            get {
+                return ResourceManager.GetString("label_ok", resourceCulture);
             }
         }
         
@@ -277,6 +403,24 @@ namespace Desktop.Ui.I18n {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Reference.
+        /// </summary>
+        public static string label_reference {
+            get {
+                return ResourceManager.GetString("label_reference", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove brackets.
+        /// </summary>
+        public static string label_remove_brackets {
+            get {
+                return ResourceManager.GetString("label_remove_brackets", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Runtime ID.
         /// </summary>
         public static string label_runtime_id {
@@ -300,6 +444,15 @@ namespace Desktop.Ui.I18n {
         public static string label_specific_category {
             get {
                 return ResourceManager.GetString("label_specific_category", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Liquibase SQL data type.
+        /// </summary>
+        public static string label_sql_data_type {
+            get {
+                return ResourceManager.GetString("label_sql_data_type", resourceCulture);
             }
         }
         
@@ -349,6 +502,15 @@ namespace Desktop.Ui.I18n {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Type element data type.
+        /// </summary>
+        public static string label_type_element_data_type {
+            get {
+                return ResourceManager.GetString("label_type_element_data_type", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Path to super type.
         /// </summary>
         public static string label_type_type_csv_path {
@@ -363,6 +525,15 @@ namespace Desktop.Ui.I18n {
         public static string label_unique_name {
             get {
                 return ResourceManager.GetString("label_unique_name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Uppercase.
+        /// </summary>
+        public static string label_uppercase {
+            get {
+                return ResourceManager.GetString("label_uppercase", resourceCulture);
             }
         }
         

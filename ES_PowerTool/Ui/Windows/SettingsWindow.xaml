@@ -3,13 +3,14 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:r="clr-namespace:Desktop.Ui.I18n;assembly=Desktop.Ui.I18n"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ES_PowerTool.Ui.Windows"
         mc:Ignorable="d"
         Name="ThisDialog"
         ResizeMode="NoResize"
         ShowInTaskbar="False"
-        Title="SettingsWindow" Height="360" Width="520">
+        Title="{x:Static r:Resource.label_settings}" Height="360" Width="520">
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
             <i:InvokeCommandAction Command="{Binding LoadCommand}">
@@ -84,31 +85,31 @@
             <RowDefinition Height="34" />
         </Grid.RowDefinitions>
         <TabControl TabStripPlacement="Left" Grid.Row="0">
-            <TabItem Header="Common">
+            <TabItem Header="{x:Static r:Resource.label_common_category}">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                    <Label Content="Common" Grid.Row="0" Style="{StaticResource HeaderLabel}" />
+                    <Label Content="{x:Static r:Resource.label_common_category}" Grid.Row="0" Style="{StaticResource HeaderLabel}" />
                 </Grid>
             </TabItem>
-            <TabItem Header="Liquibase">
+            <TabItem Header="{x:Static r:Resource.label_liquibase_category}">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto" />
                         <RowDefinition Height="auto" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                    <Label Content="Liquibase" Grid.Row="0" Style="{StaticResource HeaderLabel}" />
+                    <Label Content="{x:Static r:Resource.label_liquibase_category}" Grid.Row="0" Style="{StaticResource HeaderLabel}" />
                     <StackPanel Orientation="Vertical" Margin="10" Grid.Row="1">
                         <Label Content="{Binding SettingsDto.LiquibaseAddColumnFormat.Name}" />
                         <TextBox Text="{Binding SettingsDto.LiquibaseAddColumnFormat.Value}" Height="24" VerticalContentAlignment="Center" />
-                        <Label Content="Default conversion of data types:" />
+                        <Label Content="{x:Static r:Resource.label_default_conversions_of_data_types}" />
                         <DataGrid ItemsSource="{Binding SettingsDto.SettingsLiquibaseDataTypeConversion}" Width="332" Height="160" AutoGenerateColumns="False" HorizontalGridLinesBrush="LightGray" VerticalGridLinesBrush="LightGray">
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="Type element data type"  Width="5*" Binding="{Binding Path=Name}" />
-                                <DataGridTextColumn Header="SQL data type"  Width="5*" Binding="{Binding Path=Value}" />
+                                <DataGridTextColumn Header="{x:Static r:Resource.label_type_element_data_type}"  Width="5*" Binding="{Binding Path=Name}" />
+                                <DataGridTextColumn Header="{x:Static r:Resource.label_sql_data_type}"  Width="5*" Binding="{Binding Path=Value}" />
                             </DataGrid.Columns>
                         </DataGrid>
                     </StackPanel>
@@ -116,8 +117,8 @@
             </TabItem>
         </TabControl>
         <StackPanel Orientation="Horizontal" Margin="10, 5" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right">
-            <Button Content="Save" Width="60" IsDefault="True" Command="{Binding SaveCommand}" CommandParameter="{Binding ElementName=ThisDialog}" />
-            <Button Content="Close" Margin="10, 0" Width="60" IsCancel="True" Command="{Binding CloseCommand}" CommandParameter="{Binding ElementName=ThisDialog}" />
+            <Button Content="Close" Margin="10, 0" Width="70" IsCancel="True" Command="{Binding CloseCommand}" CommandParameter="{Binding ElementName=ThisDialog}" />
+            <Button Content="Save" Width="70" IsDefault="True" Command="{Binding SaveCommand}" CommandParameter="{Binding ElementName=ThisDialog}" />
         </StackPanel>
     </Grid>
 

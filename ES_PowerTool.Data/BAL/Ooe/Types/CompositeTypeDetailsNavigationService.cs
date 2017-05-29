@@ -76,7 +76,7 @@ namespace ES_PowerTool.Data.BAL.OOE.Types
         {
             if(IdConstants.PRESET_FOLDER_ID.Equals(parentId))
             {
-                return _presetNavigationRepository.FindPresetsToCompositeType(masterNavigationItemId).Cast<TreeNavigationItem>().ToList();
+                return _presetNavigationRepository.FindPresetsToCompositeType(masterNavigationItemId);
             }
             return new List<TreeNavigationItem>();
         }

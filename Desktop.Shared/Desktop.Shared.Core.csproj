@@ -68,6 +68,7 @@
     <Compile Include="Services\BaseNavigationService.cs" />
     <Compile Include="Services\BaseService.cs" />
     <Compile Include="Services\ICRUDService.cs" />
+    <Compile Include="Services\IMoveAwareCRUDService.cs" />
     <Compile Include="Services\INavigationService.cs" />
     <Compile Include="Services\IService.cs" />
     <Compile Include="Singleton.cs" />

@@ -9,6 +9,7 @@ namespace Desktop.Data.Core.Context
         public ModelContext(string connectionString)
         {
             Database.Connection.ConnectionString = connectionString;
+            Configuration.ProxyCreationEnabled = true;
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

@@ -48,6 +48,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Editors\IReferenceEditor.cs" />
     <Compile Include="Handlers\UpdateEntityHandler.cs" />
     <Compile Include="ModelViews\AboutWindowModelView.cs" />
     <Compile Include="ModelViews\BaseDetailsTreeModelView.cs" />
@@ -99,6 +100,16 @@
     <Compile Include="Ui\Converters\ResourceKeyConverter.cs" />
     <Compile Include="Ui\Converters\TreeNavigationItemImageConverter.cs" />
     <Compile Include="Ui\Converters\TreeNavigationItemLabelConverter.cs" />
+    <Compile Include="Ui\Dnd\BaseDropAdapter.cs" />
+    <Compile Include="Ui\Dnd\DragAdorner.cs" />
+    <Compile Include="Ui\Dnd\DropHandlers\IDropHandler.cs" />
+    <Compile Include="Ui\Dnd\Validators\AncestorToDescendantsDropValidator.cs" />
+    <Compile Include="Ui\Dnd\Validators\BuiltInDragAndDropValidator.cs" />
+    <Compile Include="Ui\Dnd\Validators\DragAndTargetNotSame.cs" />
+    <Compile Include="Ui\Dnd\Validators\IDragAndDropEqualityValidator.cs" />
+    <Compile Include="Ui\Dnd\Validators\IDragAndDropValidator.cs" />
+    <Compile Include="Ui\Dnd\Validators\NavigationItemIsNotEmptyValidator.cs" />
+    <Compile Include="Ui\Dnd\Validators\NavigationItemTypeCompatibleDragAndDropValidator.cs" />
     <Compile Include="Ui\Windows\AboutWindow.xaml.cs">
       <DependentUpon>AboutWindow.xaml</DependentUpon>
     </Compile>

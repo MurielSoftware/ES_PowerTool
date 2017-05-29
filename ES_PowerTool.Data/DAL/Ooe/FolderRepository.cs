@@ -10,19 +10,19 @@ namespace ES_PowerTool.Data.DAL.OOE
 {
     public class FolderRepository : BaseRepository
     {
-        public FolderRepository(Connection connection) 
+        internal FolderRepository(Connection connection) 
             : base(connection)
         {
         }
 
-        public List<Folder> FindFoldersToExport(Guid projectId)
+        internal List<Folder> FindFoldersToExport(Guid projectId)
         {
             return GetContext().Set<Folder>()
                 .Where(x => x.ProjectId == projectId && x.State == State.NEW)
                 .ToList();
         }
 
-        public List<Guid> FindAllSubFolderIds(Guid parentFolderId)
+        internal List<Guid> FindAllSubFolderIds(Guid parentFolderId)
         {
 
             List<Guid> subFolderIds = new List<Guid>();
@@ -34,7 +34,7 @@ namespace ES_PowerTool.Data.DAL.OOE
             return subFolderIds;
         }
 
-        private List<Guid> FindDirectlySubFolderIds(Guid parentFolderId)
+        internal List<Guid> FindDirectlySubFolderIds(Guid parentFolderId)
         {
             return GetContext().Set<Folder>()
                 .Where(x => x.ParentId == parentFolderId)

@@ -10,12 +10,12 @@ namespace ES_PowerTool.Data.DAL.OOE.Types
 {
     public class CompositeTypeNavigationRepository : BaseRepository
     {
-        public CompositeTypeNavigationRepository(Connection connection) 
+        internal CompositeTypeNavigationRepository(Connection connection) 
             : base(connection)
         {
         }
 
-        public List<TreeNavigationItem> FindChildren(Guid parentId)
+        internal List<TreeNavigationItem> FindChildren(Guid parentId)
         {
             return GetContext().Set<CompositeType>()
                 .Where(x => x.FolderId == parentId)
@@ -23,7 +23,7 @@ namespace ES_PowerTool.Data.DAL.OOE.Types
                 .ToList();
         }
 
-        public TreeNavigationItem FindSpecific(Guid id)
+        internal TreeNavigationItem FindSpecific(Guid id)
         {
             return GetContext().Set<CompositeType>()
                 .Where(x => x.Id == id)

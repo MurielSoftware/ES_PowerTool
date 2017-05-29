@@ -1,4 +1,5 @@
 ﻿using Desktop.Shared.Core.DataTypes;
+using Desktop.Shared.Core.Dtos;
 using Desktop.Shared.Core.Navigations;
 using System;
 using System.Collections.Generic;
@@ -13,8 +14,20 @@ using System.Windows.Media.Imaging;
 
 namespace Desktop.App.Core.Editors
 {
-    public abstract class BaseReferenceEditor
+    public abstract class BaseReferenceEditor<T> : IReferenceEditor where T : BaseDto
     {
+        private T _dto;
+
+        public BaseReferenceEditor(T dto)
+        {
+            _dto = dto;
+        }
+
+        public T GetDto()
+        {
+            return _dto;
+        }
+
         public async Task<List<TreeNavigationItem>> GetProposals()
         {
             return await Task.Run(() =>

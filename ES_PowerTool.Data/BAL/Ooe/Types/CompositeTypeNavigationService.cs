@@ -7,6 +7,8 @@ using ES_PowerTool.Data.DAL.OOE.Types;
 using ES_PowerTool.Data.DAL.OOE.Elements;
 using ES_PowerTool.Data.DAL.OOE;
 using ES_PowerTool.Shared.Services.OOE.Types;
+using System;
+using ES_PowerTool.Data.DAL.OOE.Presets;
 
 namespace ES_PowerTool.Data.BAL.OOE.Types
 {
@@ -17,6 +19,7 @@ namespace ES_PowerTool.Data.BAL.OOE.Types
         private CompositeTypeElementNavigationRepository _compositeTypeElementNavigationRepository;
         private FolderNavigationRepository _folderNavigationRepository;
         private ProjectNavigationRepository _projectNavigationRepository;
+        private PresetNavigationRepository _presetNavigationRepository;
 
         public CompositeTypeNavigationService(Connection connection) 
             : base(connection)
@@ -26,6 +29,7 @@ namespace ES_PowerTool.Data.BAL.OOE.Types
             _compositeTypeElementNavigationRepository = new CompositeTypeElementNavigationRepository(connection);
             _folderNavigationRepository = new FolderNavigationRepository(connection);
             _projectNavigationRepository = new ProjectNavigationRepository(connection);
+            _presetNavigationRepository = new PresetNavigationRepository(connection);
         }
 
         public List<TreeNavigationItem> GetAllCompositeTypes()
@@ -105,6 +109,11 @@ namespace ES_PowerTool.Data.BAL.OOE.Types
                     break;
             }
             return updatedTreeNavigationItem;
+        }
+
+        public List<TreeNavigationItem> GetPresetsToCompositeTypeElement(Guid compositeTypeElementId)
+        {
+            return _presetNavigationRepository.FindPresetsToCompositeTypeElementElementType(compositeTypeElementId);
         }
     }
 }

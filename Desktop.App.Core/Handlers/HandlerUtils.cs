@@ -31,6 +31,7 @@ namespace Desktop.App.Core.Handlers
             Register(NavigationType.COMPOSITE_TYPE, typeof(CompositeTypeDto), typeof(ICompositeTypeCRUDService));
             Register(NavigationType.TYPE_ELEMENT, typeof(CompositeTypeElementDto), typeof(ICompositeTypeElementCRUDService));
             Register(NavigationType.PRESET, typeof(PresetDto), typeof(IPresetCRUDService));
+            Register(NavigationType.COMPOSITE_PRESET_ELEMENT, typeof(CompositePresetElementDto), typeof(ICompositePresetElementCRUDService));
         }
 
         private static void Register(NavigationType type, Type dto, Type service)

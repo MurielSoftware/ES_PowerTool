@@ -24,5 +24,10 @@ namespace Desktop.Data.Core.Model
 
         [InverseProperty("OwningPreset")]
         public virtual ICollection<CompositePresetElement> Elements { get; set; }
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }

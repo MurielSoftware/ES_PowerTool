@@ -12,34 +12,42 @@ namespace ES_PowerTool.Data.DAL.OOE.Types
 {
     public class CompositeTypeRepository : BaseRepository
     {
-        public CompositeTypeRepository(Connection connection) 
+        internal CompositeTypeRepository(Connection connection) 
             : base(connection)
         {
         }
 
-        public List<CompositeType> GetCompositeTypesToExport(Guid projectId)
+        internal List<CompositeType> GetCompositeTypesToExport(Guid projectId)
         {
             return GetContext().Set<CompositeType>()
                 .Where(x => x.ProjectId == projectId && x.State == State.NEW)
                 .ToList();
         }
 
-        public bool IsTypeCompositeType(Guid id)
+        internal bool IsTypeCompositeType(Guid id)
         {
             return GetContext().Set<CompositeType>().Count(x => x.Id == id) > 0;
         }
 
-        public List<CompositeType> FindCompositeTypesWhereIsUsedTypeInSuperTypes(Guid compositeTypeId)
+        internal List<CompositeType> FindCompositeTypesWhereIsUsedTypeInSuperTypes(Guid compositeTypeId)
         {
             return GetContext().Set<CompositeType>()
                 .Where(x => x.SuperTypes.Any(y => y.Id == compositeTypeId))
                 .ToList();
         }
 
-        public List<CompositeType> FindCompositeTypesToFolderIds(ICollection<Guid> folderIds)
+        internal List<CompositeType> FindCompositeTypesToFolderIds(ICollection<Guid> folderIds)
         {
             return GetContext().Set<CompositeType>()
                 .Where(x => folderIds.Contains(x.FolderId))
+                .ToList();
+        }
+
+        internal List<Guid> FindCompositeTypeIdsToFolderIds(ICollection<Guid> folderIds)
+        {
+            return GetContext().Set<CompositeType>()
+                .Where(x => folderIds.Contains(x.FolderId))
+                .Select(x => x.Id)
                 .ToList();
         }
 

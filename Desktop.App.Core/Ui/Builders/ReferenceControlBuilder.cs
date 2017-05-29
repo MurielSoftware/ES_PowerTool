@@ -31,9 +31,8 @@ namespace Desktop.App.Core.Ui.Builders
 
             Button referenceButton = CreateButton("...", delegate 
             {
-                ReferenceEdirorAttribute editorAttribute = (ReferenceEdirorAttribute)propertyInfo.GetCustomAttribute(typeof(ReferenceEdirorAttribute));
-                BaseReferenceEditor baseReferenceEditor = (BaseReferenceEditor)Activator.CreateInstance(Type.GetType(editorAttribute.CompleteAssembly));
-                TreeNavigationItem selectedTreeNavigationItem = DialogUtils.OpenReferenceWindow(baseReferenceEditor.GetProposals);
+                IReferenceEditor referenceEditor = CreateReferenceEditor(dto, propertyInfo); //(BaseReferenceEditor)Activator.CreateInstance(Type.GetType(editorAttribute.CompleteAssembly));
+                TreeNavigationItem selectedTreeNavigationItem = DialogUtils.OpenReferenceWindow(referenceEditor.GetProposals);
                 if (selectedTreeNavigationItem != null)
                 {
                     ReferenceString referenceString = new ReferenceString(selectedTreeNavigationItem.Id, selectedTreeNavigationItem.Name);
@@ -87,6 +86,13 @@ namespace Desktop.App.Core.Ui.Builders
             button.Height = 22;
             button.Click += click;
             return button;
+        }
+
+        private IReferenceEditor CreateReferenceEditor(BaseDto dto, PropertyInfo propertyInfo)
+        {
+            ReferenceEdirorAttribute editorAttribute = (ReferenceEdirorAttribute)propertyInfo.GetCustomAttribute(typeof(ReferenceEdirorAttribute));
+            Type baseReferenceType = typeof(BaseReferenceEditor<>).MakeGenericType(dto.GetType());
+            return (IReferenceEditor)Activator.CreateInstance(Type.GetType(editorAttribute.CompleteAssembly), new object[] { dto });
         }
     }
 }

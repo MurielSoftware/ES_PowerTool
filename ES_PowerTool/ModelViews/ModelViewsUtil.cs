@@ -9,6 +9,8 @@ namespace ES_PowerTool.ModelViews
 {
     public class ModelViewsUtil
     {
+        public static bool ProjectIsActive { get; set; }
+
         private static bool IsNotNullAndIsTreeNavigationItem(object obj)
         {
             if(obj == null)

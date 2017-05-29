@@ -28,6 +28,12 @@ namespace Desktop.App.Core.ModelViews
 
         public async void OnServerSwitched(object obj)
         {
+            if(obj == null)
+            {
+                Roots.Clear();
+                OnPropertyChanged(() => Roots);
+                return;
+            }
             _service = CreateNavigationService();
             Roots = new ObservableCollection<TreeNavigationItem>();
             Roots.Add(new TreeNavigationItem(Guid.Empty, ResourceUtils.GetMessage(MessageKeyConstants.LABEL_LOADING), NavigationType.FOLDER));

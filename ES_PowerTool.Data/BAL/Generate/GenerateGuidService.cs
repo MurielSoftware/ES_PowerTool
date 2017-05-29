@@ -23,12 +23,12 @@ namespace ES_PowerTool.Data.BAL.Generate
 
             if(generateGuidDto.Uppercase)
             {
-                DoUpperCase(guids);
+                guids = DoUpperCase(guids);
             }
 
             if(generateGuidDto.RemoveBrackets)
             {
-                DoRemoveBrackets(guids);
+                guids = DoRemoveBrackets(guids);
             }
             generateGuidDto.GeneratedGuids = BuildString(guids);
             return generateGuidDto;
@@ -43,14 +43,24 @@ namespace ES_PowerTool.Data.BAL.Generate
             return guids;
         }
 
-        private void DoUpperCase(List<string> guids)
+        private List<string> DoUpperCase(List<string> guids)
         {
-            guids.ForEach(x => x = x.ToUpper());
+            List<string> upperGuids = new List<string>();
+            foreach(string guid in guids)
+            {
+                upperGuids.Add(guid.ToUpper());
+            }
+            return upperGuids;
         }
 
-        private void DoRemoveBrackets(List<string> guids)
+        private List<string> DoRemoveBrackets(List<string> guids)
         {
-            guids.ForEach(x => x = x.Replace("-", ""));
+            List<string> guidsWithoutBrackets = new List<string>();
+            foreach (string guid in guids)
+            {
+                guidsWithoutBrackets.Add(guid.Replace("-", ""));
+            }
+            return guidsWithoutBrackets;
         }
 
         private string BuildString(List<string> guids)

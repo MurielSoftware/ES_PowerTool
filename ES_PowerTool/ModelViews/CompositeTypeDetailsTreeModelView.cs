@@ -23,7 +23,7 @@ namespace ES_PowerTool.ModelViews
         {
             NewPresetCommand = new RelayCommand(OnNewPresetCommand, x => ModelViewsUtil.IsType(x, NavigationType.FOLDER));
             DeleteCommand = new RelayCommand(OnDeleteCommand, x=> ModelViewsUtil.IsType(x, NavigationType.PRESET) && !ModelViewsUtil.IsBuiltIn(x));
-            UpdateCommand = new RelayCommand(OnUpdateCommand, x => ModelViewsUtil.IsType(x, NavigationType.PRESET) && !ModelViewsUtil.IsBuiltIn(x));
+            UpdateCommand = new RelayCommand(OnUpdateCommand, x => ModelViewsUtil.IsType(x, NavigationType.PRESET, NavigationType.COMPOSITE_PRESET_ELEMENT) && !ModelViewsUtil.IsBuiltIn(x));
             SetAsDefaultCommand = new RelayCommand(OnSetAsDefaultCommand, x => ModelViewsUtil.IsType(x, NavigationType.PRESET));
         }
 

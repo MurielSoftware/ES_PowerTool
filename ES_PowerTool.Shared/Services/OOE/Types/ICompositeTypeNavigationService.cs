@@ -14,5 +14,6 @@ namespace ES_PowerTool.Shared.Services.OOE.Types
         List<TreeNavigationItem> GetAllTypes();
         List<TreeNavigationItem> GetAllCompositeTypes();
         List<TreeNavigationItem> GetAllPrimitiveTypes();
+        List<TreeNavigationItem> GetPresetsToCompositeTypeElement(Guid compositeTypeElementId);
     }
 }

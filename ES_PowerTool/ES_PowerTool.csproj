@@ -92,6 +92,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Editors\PresetReferenceEditor.cs" />
+    <Compile Include="Handlers\CloseProjectHandler.cs" />
     <Compile Include="Handlers\DefaultHandler.cs" />
     <Compile Include="Handlers\GenerateLiquibaseHandler.cs" />
     <Compile Include="Handlers\GenerateCSVHandler.cs" />
@@ -102,6 +104,10 @@
     <Compile Include="ModelViews\GenerateLiquibaseWindowModelView.cs" />
     <Compile Include="ModelViews\ModelViewsUtil.cs" />
     <Compile Include="ModelViews\SettingsModelView.cs" />
+    <Compile Include="Ui\Dnd\DropHandlers\FolderToFolderDropHandler.cs" />
+    <Compile Include="Ui\Dnd\DropHandlers\TypeToCompositeTypeDropHandler.cs" />
+    <Compile Include="Ui\Dnd\DropHandlers\TypeToFolderDropHandler.cs" />
+    <Compile Include="Ui\Dnd\TypesViewDropAdapter.cs" />
     <Compile Include="Ui\Windows\GenerateCSVWindow.xaml.cs">
       <DependentUpon>GenerateCSVWindow.xaml</DependentUpon>
     </Compile>
@@ -279,6 +285,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\guid32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\close.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

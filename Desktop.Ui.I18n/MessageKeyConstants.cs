@@ -33,6 +33,7 @@ namespace Desktop.Ui.I18n
         public const string LABEL_ELEMENT_TYPE = "label_element_type";
         public const string LABEL_SUPERTYPES = "label_supertypes";
         public const string LABEL_PRESET = "label_preset";
+        public const string LABEL_COMPOSITE_PRESET_ELEMENT = "label_composite_preset_element";
 
         public const string QUESTION_DO_YOU_WANT_TO_REMOVE_OBJECTS_MESSAGE = "question_do_you_want_to_remove_objects_message";
         public const string QUESTION_DO_YOU_WANT_TO_REMOVE_OBJECT_MESSAGE = "question_do_you_want_to_remove_object_message";

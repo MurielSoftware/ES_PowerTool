@@ -258,4 +258,61 @@
   <data name="ribbon_tab_help_label" xml:space="preserve">
     <value>HELP</value>
   </data>
+  <data name="label_close_project" xml:space="preserve">
+    <value>Close project</value>
+  </data>
+  <data name="label_cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="label_close" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="label_column_name" xml:space="preserve">
+    <value>Column name</value>
+  </data>
+  <data name="label_count" xml:space="preserve">
+    <value>Count</value>
+  </data>
+  <data name="label_default_conversions_of_data_types" xml:space="preserve">
+    <value>Default data type conversions</value>
+  </data>
+  <data name="label_exit" xml:space="preserve">
+    <value>Exit</value>
+  </data>
+  <data name="label_finish" xml:space="preserve">
+    <value>Finish</value>
+  </data>
+  <data name="label_generate" xml:space="preserve">
+    <value>Generate</value>
+  </data>
+  <data name="label_liquibase_category" xml:space="preserve">
+    <value>Liquibase</value>
+  </data>
+  <data name="label_message" xml:space="preserve">
+    <value>Message</value>
+  </data>
+  <data name="label_messages" xml:space="preserve">
+    <value>Messages</value>
+  </data>
+  <data name="label_ok" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="label_reference" xml:space="preserve">
+    <value>Reference</value>
+  </data>
+  <data name="label_remove_brackets" xml:space="preserve">
+    <value>Remove brackets</value>
+  </data>
+  <data name="label_sql_data_type" xml:space="preserve">
+    <value>Liquibase SQL data type</value>
+  </data>
+  <data name="label_type_element_data_type" xml:space="preserve">
+    <value>Type element data type</value>
+  </data>
+  <data name="label_uppercase" xml:space="preserve">
+    <value>Uppercase</value>
+  </data>
+  <data name="label_composite_preset_element" xml:space="preserve">
+    <value>Composite preset element</value>
+  </data>
 </root>

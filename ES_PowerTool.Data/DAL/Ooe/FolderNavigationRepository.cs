@@ -10,7 +10,7 @@ namespace ES_PowerTool.Data.DAL.OOE
 {
     public class FolderNavigationRepository : BaseRepository
     {
-        public FolderNavigationRepository(Connection connection) 
+        internal FolderNavigationRepository(Connection connection) 
             : base(connection)
         {
         }
@@ -38,24 +38,5 @@ namespace ES_PowerTool.Data.DAL.OOE
                 .Select(x => new TreeNavigationItem() { Id = x.Id, Name = x.Name, Type = NavigationType.FOLDER, ProjectId = x.ProjectId, BuiltIn = x.BuiltIn, HasRemoteChildren = x.ModelObjectTypes.Count > 0 || x.Folders.Count > 0 })
                 .SingleOrDefault();
         }
-
-        //internal bool ContainsAnyChildren(Guid id)
-        //{
-        //    return ContainsAnyFolder(id) || ContainsAnyType(id);
-        //}
-
-        //internal bool ContainsAnyFolder(Guid id)
-        //{
-        //    return GetContext().Set<Folder>()
-        //        .Where(x => x.ParentId == id)
-        //        .Count() > 0;
-        //}
-
-        //internal bool ContainsAnyType(Guid id)
-        //{
-        //    return GetContext().Set<CompositeType>()
-        //        .Where(x => x.FolderId == id)
-        //        .Count() > 0;
-        //}
     }
 }

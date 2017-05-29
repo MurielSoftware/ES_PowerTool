@@ -12,19 +12,19 @@ namespace ES_PowerTool.Data.DAL.OOE.Presets
 {
     public class CompositePresetElementRepository : BaseRepository
     {
-        public CompositePresetElementRepository(Connection connection) 
+        internal CompositePresetElementRepository(Connection connection) 
             : base(connection)
         {
         }
 
-        public List<CompositePresetElement> FindCompositePresetElementToAssociatedPreset(Guid presetId)
+        internal List<CompositePresetElement> FindCompositePresetElementToAssociatedPreset(Guid presetId)
         {
             return GetContext().Set<CompositePresetElement>()
                 .Where(x => x.PresetForTypeElementId == presetId)
                 .ToList();
         }
 
-        public List<CompositePresetElement> FindCompositePresetElementsToPresets(ICollection<Guid> presetIds)
+        internal List<CompositePresetElement> FindCompositePresetElementsToPresets(ICollection<Guid> presetIds)
         {
             return GetContext().Set<CompositePresetElement>()
                 .Where(x => presetIds.Contains(x.OwningPresetId))

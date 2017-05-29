@@ -37,7 +37,12 @@ namespace Desktop.App.Core.Ui.Windows
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            FindVisualChild<TextBox>(this).Focus();
+            TextBox textBox = FindVisualChild<TextBox>(this);
+            if(textBox == null)
+            {
+                return;
+            }
+            textBox.Focus();
         }
 
         private static T FindVisualChild<T>(DependencyObject dependencyObject) where T : DependencyObject

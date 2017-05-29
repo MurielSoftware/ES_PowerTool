@@ -14,6 +14,8 @@ namespace ES_PowerTool.ModelViews
     {
         public ICommand NewProjectCommand { get; private set; }
         public ICommand OpenProjectCommand { get; private set; }
+        public ICommand CloseProjectCommand { get; private set; }
+        public ICommand ExitCommand { get; private set; }
         public ICommand GenerateCSVCommand { get; private set; }
         public ICommand GenerateLiquibaseCommand { get; private set; }
         public ICommand GenerateGuidCommand { get; private set; }
@@ -25,12 +27,13 @@ namespace ES_PowerTool.ModelViews
         {
             NewProjectCommand = new RelayCommand(OnNewProjectCommand);
             OpenProjectCommand = new RelayCommand(OnOpenProjectCommand);
+            CloseProjectCommand = new RelayCommand(OnCloseProjectCommand, x => ModelViewsUtil.ProjectIsActive);
+            ExitCommand = new RelayCommand(OnExitCommand);
             GenerateCSVCommand = new RelayCommand(OnGenerateCSVCommand, x => ModelViewsUtil.IsType(x, NavigationType.PROJECT));
             GenerateLiquibaseCommand = new RelayCommand(OnGenerateLiquibaseCommand, x => ModelViewsUtil.IsType(x, NavigationType.PROJECT));
             GenerateGuidCommand = new RelayCommand(OnGenerateGuidCommand);
-            SettingsCommand = new RelayCommand(OnSettingsCommand);
-            AboutCommand = new RelayCommand(OnOpenCommand);
-            
+            SettingsCommand = new RelayCommand(OnSettingsCommand, x => ModelViewsUtil.ProjectIsActive);
+            AboutCommand = new RelayCommand(OnOpenCommand);            
         }
 
         private void OnNewProjectCommand(object obj)
@@ -41,6 +44,16 @@ namespace ES_PowerTool.ModelViews
         private void OnOpenProjectCommand(object obj)
         {
             HandlerExecutor.Execute<OpenProjectHandler>(null);
+        }
+
+        private void OnCloseProjectCommand(object obj)
+        {
+            HandlerExecutor.Execute<CloseProjectHandler>(null);
+        }
+
+        private void OnExitCommand(object obj)
+        {
+            System.Environment.Exit(1);
         }
 
         private void OnGenerateCSVCommand(object obj)

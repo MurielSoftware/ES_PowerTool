@@ -31,6 +31,15 @@ namespace Desktop.Shared.Core.Context
             _unitOfWork = (IUnitOfWork)Activator.CreateInstance(unitOfWorkType, new object[] { _databaseContext });
         }
 
+        public void CloseConnection()
+        {
+            _unitOfWork.Dispose();
+            _databaseContext.Dispose();
+
+            _unitOfWork = null;
+            _databaseContext = null;
+        }
+
         public string GetConnectionString()
         {
             return string.Format(CONNECTION_STRING, _databaseName);

@@ -10,15 +10,23 @@ namespace ES_PowerTool.Data.DAL.OOE.Presets
 {
     public class PresetRepository : BaseRepository
     {
-        public PresetRepository(Connection connection)
+        internal PresetRepository(Connection connection)
             : base(connection)
         {
         }
 
-        public List<Preset> GetPresetsToExport(Guid projectId)
+        internal List<Preset> GetPresetsToExport(Guid projectId)
         {
             return GetContext().Set<Preset>()
                 .Where(x => x.ProjectId == projectId && x.State == State.NEW)
+                .ToList();
+        }
+
+        internal List<Guid> FindPresetIdsToCompositeTypeIds(ICollection<Guid> typeIds)
+        {
+            return GetContext().Set<Preset>()
+                .Where(x => typeIds.Contains(x.TypeId))
+                .Select(x => x.Id)
                 .ToList();
         }
     }

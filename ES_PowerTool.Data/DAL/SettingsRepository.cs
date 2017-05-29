@@ -12,12 +12,12 @@ namespace ES_PowerTool.Data.DAL
 {
     public class SettingsRepository : BaseRepository
     {
-        public SettingsRepository(Connection connection) 
+        internal SettingsRepository(Connection connection) 
             : base(connection)
         {
         }
 
-        public List<Settings> FindLiquibaseDataTypeConversion()
+        internal List<Settings> FindLiquibaseDataTypeConversion()
         {
             return GetContext().Set<Settings>()
                 .Where(x => x.Group == SettingsGroup.LIQUIBASE_CONVERT_DATA_TYPE)

@@ -12,7 +12,7 @@ namespace ES_PowerTool.Data.DAL.OOE.Presets
 {
     public class CompositePresetElementNavigationRepository : BaseRepository
     {
-        public CompositePresetElementNavigationRepository(Connection connection) 
+        internal CompositePresetElementNavigationRepository(Connection connection) 
             : base(connection)
         {
         }

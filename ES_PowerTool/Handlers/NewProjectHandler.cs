@@ -18,7 +18,8 @@ namespace ES_PowerTool.Handlers
 
         protected override void OnSuccessful(ExecutionEvent executionEvent, Guid affectedObjectId)
         {
-            Publisher.GetInstance().ServerChanged(null);
+            ModelViewsUtil.ProjectIsActive = true;
+            Publisher.GetInstance().ServerChanged(Connection.GetInstance());
         }
     }
 }

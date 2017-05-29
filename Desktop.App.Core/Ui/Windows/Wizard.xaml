@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:r="clr-namespace:Desktop.Ui.I18n;assembly=Desktop.Ui.I18n"
         mc:Ignorable="d" 
         Name="ThisWizard"
         Title="{Binding Title}"
@@ -27,8 +28,8 @@
         </ScrollViewer>            
 
         <StackPanel Orientation="Horizontal" Margin="10, 6" Grid.Row="2" HorizontalAlignment="Right">
-            <Button Content="Cancel" Margin="10, 0" Width="70" IsCancel="True" Command="{Binding CancelCommand}" CommandParameter="{Binding ElementName=ThisWizard}" />
-            <Button Content="Finish" Margin="0, 0" Width="70" IsDefault="True" Command="{Binding FinishCommand}" CommandParameter="{Binding ElementName=ThisWizard}" />
+            <Button Content="{x:Static r:Resource.label_cancel}" Margin="10, 0" Width="70" IsCancel="True" Command="{Binding CancelCommand}" CommandParameter="{Binding ElementName=ThisWizard}" />
+            <Button Content="{x:Static r:Resource.label_finish}" Margin="0, 0" Width="70" IsDefault="True" Command="{Binding FinishCommand}" CommandParameter="{Binding ElementName=ThisWizard}" />
         </StackPanel>
     </Grid>
 </Window>

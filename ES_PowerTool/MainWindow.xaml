@@ -5,6 +5,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:r="clr-namespace:Desktop.Ui.I18n;assembly=Desktop.Ui.I18n"
+        xmlns:dnd="clr-namespace:ES_PowerTool.Ui.Dnd"
         xmlns:modelViews="clr-namespace:ES_PowerTool.ModelViews"
         xmlns:local="clr-namespace:ES_PowerTool"
         Icon="pack://application:,,,/Images/es_pt32.png"
@@ -21,17 +22,18 @@
         </Grid.RowDefinitions>
         <Ribbon Grid.Row="0" ShowQuickAccessToolBarOnTop="False">
             <Ribbon.ApplicationMenu>
-                <RibbonApplicationMenu>
+                <RibbonApplicationMenu SmallImageSource="pack://application:,,,/Images/es_pt32.png">
                     <RibbonApplicationMenuItem Header="{x:Static r:Resource.label_new_project}" ImageSource="pack://application:,,,/Images/project32.png" Command="{Binding NewProjectCommand}" />
                     <RibbonApplicationMenuItem Header="{x:Static r:Resource.label_open_project}" ImageSource="pack://application:,,,/Images/open32.png" Command="{Binding OpenProjectCommand}" />
                     <RibbonSeparator />
-                    <RibbonApplicationMenuItem Header="{x:Static r:Resource.label_open_project}" ImageSource="pack://application:,,,/Images/exit32.png" Command="{Binding OpenProjectCommand}" />
+                    <RibbonApplicationMenuItem Header="{x:Static r:Resource.label_exit}" ImageSource="pack://application:,,,/Images/exit32.png" Command="{Binding ExitCommand}" />
                 </RibbonApplicationMenu>
             </Ribbon.ApplicationMenu>
             <RibbonTab Header="{x:Static r:Resource.ribbon_tab_common_label}">
                 <RibbonGroup Header="{x:Static r:Resource.ribbon_group_project_label}">
                     <RibbonButton LargeImageSource="pack://application:,,,/Images/project32.png" Label="{x:Static r:Resource.label_new_project}" Command="{Binding NewProjectCommand}" />
                     <RibbonButton SmallImageSource="pack://application:,,,/Images/open.png" Label="{x:Static r:Resource.label_open_project}" Command="{Binding OpenProjectCommand}" />
+                    <RibbonButton SmallImageSource="pack://application:,,,/Images/close.png" Label="{x:Static r:Resource.label_close_project}" Command="{Binding CloseProjectCommand}" />
                 </RibbonGroup>
                 <RibbonGroup Header="{x:Static r:Resource.ribbon_group_generate_label}">
                     <RibbonButton LargeImageSource="pack://application:,,,/Images/generate_csv32.png" Label="{x:Static r:Resource.label_generate_csv}" Command="{Binding GenerateCSVCommand}" CommandParameter="{Binding ElementName=ModelObjectViewTree, Path=SelectedItems}" />
@@ -48,43 +50,6 @@
                 </RibbonGroup>
             </RibbonTab>
         </Ribbon>
-        <!--<ToolBarTray Grid.Row="0">
-            <ToolBar>
-                <Button Command="{Binding NewProjectCommand}">
-                    <StackPanel>
-                        <Image Source="pack://application:,,,/Images/project.png" Width="16" Height="16" />
-                        <TextBlock Text="{x:Static r:Resource.label_new_project}" />
-                    </StackPanel>
-                </Button>
-                <Button Command="{Binding OpenProjectCommand}">
-                    <StackPanel>
-                        <Image Source="pack://application:,,,/Images/open.png" Width="16" Height="16" />
-                        <TextBlock Text="{x:Static r:Resource.label_open_project}" />
-                    </StackPanel>
-                </Button>
-                <Separator />
-                <Button Command="{Binding GenerateCommand}" CommandParameter="{Binding ElementName=ModelObjectViewTree, Path=SelectedItems}">
-                    <StackPanel>
-                        <Image Source="pack://application:,,,/Images/generate_csv.png" Width="16" Height="16" />
-                        <TextBlock Text="{x:Static r:Resource.label_generate_csv}" />
-                    </StackPanel>
-                </Button>
-                <Button Command="{Binding GenerateCommand}" CommandParameter="{Binding ElementName=ModelObjectViewTree, Path=SelectedItems}">
-                    <StackPanel>
-                        <Image Source="pack://application:,,,/Images/generate_liquibase.png" Width="16" Height="16" />
-                        <TextBlock Text="{x:Static r:Resource.label_generate_liquibase}" />
-                    </StackPanel>
-                </Button>
-                <Separator />
-                <Button Command="{Binding AboutCommand}" CommandParameter="{Binding ElementName=ModelObjectViewTree, Path=SelectedItems}">
-                    <StackPanel>
-                        <Image Source="pack://application:,,,/Images/about.png" Width="16" Height="16" />
-                        <TextBlock Text="{x:Static r:Resource.label_about}" />
-                    </StackPanel>
-                </Button>
-            </ToolBar>
-        </ToolBarTray>-->
-
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="6*" />
@@ -95,6 +60,9 @@
                 <Controls:BaseTreeView.DataContext>
                     <modelViews:CompositeTypeTreeModelView />
                 </Controls:BaseTreeView.DataContext>
+                <Controls:BaseTreeView.DropAdapter>
+                    <dnd:TypesViewDropAdapter />
+                </Controls:BaseTreeView.DropAdapter>
                 <Controls:BaseTreeView.ContextMenu>
                     <ContextMenu>
                         <MenuItem Header="Edit" Command="{Binding UpdateCommand}" CommandParameter="{Binding PlacementTarget.SelectedItems, RelativeSource={RelativeSource AncestorType={x:Type ContextMenu}}}">
@@ -163,18 +131,10 @@
                 </Controls:BaseTreeView.ContextMenu>
             </Controls:BaseTreeView>
         </Grid>
-        
         <StatusBar Grid.Row="2">
             <StackPanel>
                 <Label Content="ES Power Tool - Jaromir Krpec" />
             </StackPanel>
-            <!--<Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="auto" />
-                </Grid.ColumnDefinitions>
-                <Label Content="ES Power Tool - Jaromir Krpec" Grid.Column="1" />
-            </Grid>-->
         </StatusBar>
     </Grid>
 </Window>

@@ -3,7 +3,7 @@ using ES_PowerTool.Shared.Dtos.OOE.Types;
 
 namespace ES_PowerTool.Shared.Services.OOE.Types
 {
-    public interface ICompositeTypeCRUDService : ICRUDService<CompositeTypeDto>
+    public interface ICompositeTypeCRUDService : ICRUDService<CompositeTypeDto>, IMoveAwareCRUDService
     {
     }
 }

@@ -12,7 +12,7 @@ namespace ES_PowerTool.Data.DAL
 {
     public class ProjectNavigationRepository : BaseRepository
     {
-        public ProjectNavigationRepository(Connection connection) 
+        internal ProjectNavigationRepository(Connection connection) 
             : base(connection)
         {
         }

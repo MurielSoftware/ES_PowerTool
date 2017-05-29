@@ -59,7 +59,7 @@ namespace ES_PowerTool.Shared.Dtos.OOE.Elements
         [LocalizedDisplayName(MessageKeyConstants.LABEL_ELEMENT_TYPE)]
         [Reference("ElementType")]
         [ReferenceEdiror("ES_PowerTool.Editors.TypeReferenceEditor", "ES_PowerTool")]
-        public virtual ReferenceString ModelReference { get; set; }
+        public virtual ReferenceString ElementTypeReference { get; set; }
 
         [Browsable(false)]
         public virtual State State { get; set; }

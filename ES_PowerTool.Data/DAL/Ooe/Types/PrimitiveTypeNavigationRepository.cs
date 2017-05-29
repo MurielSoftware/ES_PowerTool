@@ -12,12 +12,12 @@ namespace ES_PowerTool.Data.DAL.OOE.Types
 {
     public class PrimitiveTypeNavigationRepository : BaseRepository
     {
-        public PrimitiveTypeNavigationRepository(Connection connection) 
+        internal PrimitiveTypeNavigationRepository(Connection connection) 
             : base(connection)
         {
         }
 
-        public List<TreeNavigationItem> FindChildren(Guid parentId)
+        internal List<TreeNavigationItem> FindChildren(Guid parentId)
         {
             return GetContext().Set<PrimitiveType>()
                 .Where(x => x.FolderId == parentId)

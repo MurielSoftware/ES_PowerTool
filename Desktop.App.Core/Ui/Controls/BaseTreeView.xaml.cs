@@ -1,5 +1,7 @@
 ﻿using Desktop.App.Core.ModelViews;
+using Desktop.App.Core.Ui.Dnd;
 using Desktop.Shared.Core.Navigations;
+using System;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Windows;
@@ -14,20 +16,18 @@ namespace Desktop.App.Core.Ui.Controls
     /// </summary>
     public partial class BaseTreeView : TreeView
     {
-
-
         private static readonly PropertyInfo IsSelectionChangeActiveProperty = typeof(TreeView).GetProperty("IsSelectionChangeActive", BindingFlags.NonPublic | BindingFlags.Instance);
 
-        //public static readonly DependencyProperty DropAdapterProperty = DependencyProperty.RegisterAttached("DropHandler", typeof(BaseDropAdapter), typeof(BaseTreeView), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.AffectsRender));
+        public static readonly DependencyProperty DropAdapterProperty = DependencyProperty.RegisterAttached("DropHandler", typeof(BaseDropAdapter), typeof(BaseTreeView), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.AffectsRender));
         public static readonly DependencyProperty SelectedItemsProperty = DependencyProperty.Register("SelectedItems", typeof(List<TreeNavigationItem>), typeof(BaseTreeView), new FrameworkPropertyMetadata(new List<TreeNavigationItem>(), FrameworkPropertyMetadataOptions.None));
 
         private BaseTreeModelView _baseTreeModelView;
 
-        //public BaseDropAdapter DropAdapter
-        //{
-        //    get { return (BaseDropAdapter)GetValue(DropAdapterProperty); }
-        //    set { SetValue(DropAdapterProperty, value); }
-        //}
+        public BaseDropAdapter DropAdapter
+        {
+            get { return (BaseDropAdapter)GetValue(DropAdapterProperty); }
+            set { SetValue(DropAdapterProperty, value); }
+        }
 
         public List<TreeNavigationItem> SelectedItems
         {
@@ -39,6 +39,7 @@ namespace Desktop.App.Core.Ui.Controls
         {
             InitializeComponent();
             AllowMultiSelection(this);
+            AllowDrop = true;
         }
 
         private void TreeView_Loaded(object sender, RoutedEventArgs e)
@@ -80,54 +81,54 @@ namespace Desktop.App.Core.Ui.Controls
 
         private void treeView_MouseMove(object sender, MouseEventArgs e)
         {
-            //if (e.LeftButton == MouseButtonState.Pressed)
-            //{
-            //    if (DropAdapter == null)
-            //    {
-            //        return;
-            //    }
-            //    if (!(e.Source is BaseTreeView))
-            //    {
-            //        return;
-            //    }
-            //    if (treeView.SelectedItem == null)
-            //    {
-            //        return;
-            //    }
-            //    TreeNavigationItem selectedTreeNavigationItem = treeView.SelectedItem as TreeNavigationItem;
-            //    if (!DropAdapter.DragStart(e, selectedTreeNavigationItem))
-            //    {
-            //        return;
-            //    }
-            //    TreeViewItem treeViewItem = GetTreeViewItemAt(e.GetPosition(treeView));
-            //    //_dragAdorner = new DragAdorner(treeViewItem, treeViewItem.DesiredSize, e.GetPosition(treeView));
-            //    DragDrop.DoDragDrop(treeView, treeView.SelectedItem, DragDropEffects.All);
-            //    //_dragAdorner.Detach();
-            //}
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                if (DropAdapter == null)
+                {
+                    return;
+                }
+                if (!(e.Source is BaseTreeView))
+                {
+                    return;
+                }
+                if (treeView.SelectedItem == null)
+                {
+                    return;
+                }
+                TreeNavigationItem selectedTreeNavigationItem = treeView.SelectedItem as TreeNavigationItem;
+                if (!DropAdapter.DragStart(e, selectedTreeNavigationItem))
+                {
+                    return;
+                }
+                TreeViewItem treeViewItem = GetTreeViewItemAt(e.GetPosition(treeView));
+                //_dragAdorner = new DragAdorner(treeViewItem, treeViewItem.DesiredSize, e.GetPosition(treeView));
+                DragDrop.DoDragDrop(treeView, treeView.SelectedItem, DragDropEffects.All);
+                //_dragAdorner.Detach();
+            }
         }
 
         private void treeView_DragOver(object sender, DragEventArgs e)
         {
-            //if (DropAdapter == null)
-            //{
-            //    return;
-            //}
-            //TreeNavigationItem targetTreeNavigationItem = GetTreeNavigationItemAt(e.GetPosition(treeView));
-            //TreeNavigationItem draggedTreeNavigationItem = GetDataFromDragEventArgs(e);
-            ////      _dragAdorner.UpdatePosition(e.GetPosition(treeView));
-            //DropAdapter.DragOver(e, draggedTreeNavigationItem, targetTreeNavigationItem);
-            //e.Handled = true;
+            if (DropAdapter == null)
+            {
+                return;
+            }
+            TreeNavigationItem targetTreeNavigationItem = GetTreeNavigationItemAt(e.GetPosition(treeView));
+            TreeNavigationItem draggedTreeNavigationItem = GetDataFromDragEventArgs(e);
+            //      _dragAdorner.UpdatePosition(e.GetPosition(treeView));
+            DropAdapter.DragOver(e, draggedTreeNavigationItem, targetTreeNavigationItem);
+            e.Handled = true;
         }
 
         private void treeView_Drop(object sender, DragEventArgs e)
         {
-            //if (DropAdapter == null)
-            //{
-            //    return;
-            //}
-            //TreeNavigationItem targetTreeNavigationItem = GetTreeNavigationItemAt(e.GetPosition(treeView));
-            //TreeNavigationItem draggedTreeNavigationItem = GetDataFromDragEventArgs(e);
-            //DropAdapter.Drop(e, draggedTreeNavigationItem, targetTreeNavigationItem);
+            if (DropAdapter == null)
+            {
+                return;
+            }
+            TreeNavigationItem targetTreeNavigationItem = GetTreeNavigationItemAt(e.GetPosition(treeView));
+            TreeNavigationItem draggedTreeNavigationItem = GetDataFromDragEventArgs(e);
+            DropAdapter.Drop(e, draggedTreeNavigationItem, targetTreeNavigationItem);
         }
 
 
@@ -181,14 +182,14 @@ namespace Desktop.App.Core.Ui.Controls
 
         private TreeNavigationItem GetDataFromDragEventArgs(DragEventArgs e)
         {
-            //Type[] treeNavigationItemTypes = { typeof(TreeNavigationItem), typeof(ResourceTreeNavigationItem), typeof(FolderTreeNavigationItem) };
-            //foreach (Type treeNavigationItemType in treeNavigationItemTypes)
-            //{
-            //    if (e.Data.GetDataPresent(treeNavigationItemType))
-            //    {
-            //        return e.Data.GetData(treeNavigationItemType) as TreeNavigationItem;
-            //    }
-            //}
+            Type[] treeNavigationItemTypes = { typeof(TreeNavigationItem), typeof(CompositeTypeElementTreeNavigationItem), typeof(CompositePresetElementTreeNavigationItem), typeof(PresetTreeNavigationItem) };
+            foreach (Type treeNavigationItemType in treeNavigationItemTypes)
+            {
+                if (e.Data.GetDataPresent(treeNavigationItemType))
+                {
+                    return e.Data.GetData(treeNavigationItemType) as TreeNavigationItem;
+                }
+            }
             return null;
         }
 
