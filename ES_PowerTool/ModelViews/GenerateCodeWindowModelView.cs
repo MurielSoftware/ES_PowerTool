@@ -5,30 +5,31 @@ using Desktop.Shared.Core.Navigations;
 using Desktop.Shared.Core.Navigations.Generate;
 using ES_PowerTool.Shared.Services.Generate;
 using ES_PowerTool.Ui.Windows;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace ES_PowerTool.ModelViews
 {
-    public class GenerateLiquibaseWindowModelView : BaseModelView
+    public class GenerateCodeWindowModelView : BaseModelView
     {
-        public List<GenerateLiquibaseCompositeTypeElementTreeNavigationItem> ItemsToGenerate { get; private set; }
-        public string GeneratedLiquibase { get; set; }
-        public bool IsThreadRunning { get; private set; }
+        public GenerateCodeTypeTreeNavigationItem ItemToGenerate { get; private set; }
+        public string DtoGenerated { get; set; }
+        public string EntityGenerated { get; set; }
 
+        public bool IsThreadRunning { get; private set; }
         public ICommand LoadCommand { get; private set; }
         public ICommand GenerateCommand { get; private set; }
         public ICommand CloseCommand { get; private set; }
 
-        protected IGenerateLiquibaseService _generateService;
-        protected TreeNavigationItem _selectedTreeNavigationItem;
+        private TreeNavigationItem _selectedTreeNavigationItem;
+        private IGenerateCodeService _generateCodeService;
 
-        public GenerateLiquibaseWindowModelView(TreeNavigationItem selectedTreeNavigationItem)
-            : base("GenerateLiquibaseWindowModelView")
+        public GenerateCodeWindowModelView(TreeNavigationItem selectedTreeNavigationItem) 
+            : base("GenerateCodeWindowModelView")
         {
-            _generateService = ServiceActivator.Get<IGenerateLiquibaseService>();
             _selectedTreeNavigationItem = selectedTreeNavigationItem;
+            _generateCodeService = ServiceActivator.Get<IGenerateCodeService>();
+
             LoadCommand = new RelayCommand(OnLoadCommand);
             GenerateCommand = new RelayCommand(OnGenerateCommand, x => !IsThreadRunning);
             CloseCommand = new RelayCommand(OnCloseCommand, x => !IsThreadRunning);
@@ -45,11 +46,11 @@ namespace ES_PowerTool.ModelViews
             OnPropertyChanged(() => IsThreadRunning);
             await Task.Run(() =>
             {
-                ItemsToGenerate = _generateService.GetCompositeTypeElementsToGenerate(_selectedTreeNavigationItem.ProjectId);
+                ItemToGenerate = _generateCodeService.GetTypeToGenerate(_selectedTreeNavigationItem.Id);
             }).ContinueWith((x) =>
             {
                 IsThreadRunning = false;
-                OnPropertyChanged(() => ItemsToGenerate);
+                OnPropertyChanged(() => ItemToGenerate);
                 OnPropertyChanged(() => IsThreadRunning);
             });
         }
@@ -65,18 +66,20 @@ namespace ES_PowerTool.ModelViews
             OnPropertyChanged(() => IsThreadRunning);
             await Task.Run(() =>
             {
-                GeneratedLiquibase = _generateService.GenerateCompositeTypeElements(ItemsToGenerate);
+                ItemToGenerate = _generateCodeService.Generate(ItemToGenerate);
             }).ContinueWith((x) =>
             {
                 IsThreadRunning = false;
-                OnPropertyChanged(() => GeneratedLiquibase);
+                OnPropertyChanged(() => ItemToGenerate);
                 OnPropertyChanged(() => IsThreadRunning);
             });
         }
 
+
+
         private void OnCloseCommand(object obj)
         {
-            ((GenerateLiquibaseWindow)obj).Close();
+            ((GenerateCodeWindow)obj).Close();
         }
     }
 }

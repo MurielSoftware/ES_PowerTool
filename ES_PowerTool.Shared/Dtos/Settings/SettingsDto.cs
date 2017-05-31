@@ -11,6 +11,7 @@ namespace ES_PowerTool.Shared.Dtos.Settings
     {
         public virtual SettingValueDto LiquibaseAddColumnFormat { get; set; }
         public virtual List<SettingValueDto> SettingsLiquibaseDataTypeConversion { get; set; }
+        public virtual List<SettingValueDto> SettingsCodeDataTypeConversion { get; set; }
 
         public SettingsDto()
         {
@@ -20,6 +21,7 @@ namespace ES_PowerTool.Shared.Dtos.Settings
         {
             List<SettingValueDto> settingValueDtos = new List<SettingValueDto>();
             settingValueDtos.AddRange(SettingsLiquibaseDataTypeConversion);
+            settingValueDtos.AddRange(SettingsCodeDataTypeConversion);
             return settingValueDtos;
         }
 

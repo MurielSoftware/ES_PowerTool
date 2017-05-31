@@ -1,5 +1,4 @@
 ﻿using Desktop.Shared.Core.Services;
-using ES_PowerTool.Shared.Services;
 using System;
 using System.Collections.Generic;
 using Desktop.Shared.Core.Context;
@@ -14,10 +13,10 @@ using ES_PowerTool.Shared.Dtos.OOE.Types;
 using ES_PowerTool.Shared.Dtos.OOE;
 using ES_PowerTool.Shared.Dtos.OOE.Elements;
 using ES_PowerTool.Shared.Dtos.OOE.Presets;
-using ES_PowerTool.Data.DAL.OOE.Presets;
 using System.Linq;
+using ES_PowerTool.Shared.Services.Generate;
 
-namespace ES_PowerTool.Data.BAL
+namespace ES_PowerTool.Data.BAL.Generate
 {
     public class GenerateCSVService : BaseService, IGenerateCSVService
     {

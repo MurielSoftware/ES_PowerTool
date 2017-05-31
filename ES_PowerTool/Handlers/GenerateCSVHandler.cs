@@ -6,7 +6,7 @@ using Desktop.Shared.Core;
 using Desktop.Ui.I18n;
 using ES_PowerTool.ModelViews;
 using ES_PowerTool.Shared.Dtos.Generate;
-using ES_PowerTool.Shared.Services;
+using ES_PowerTool.Shared.Services.Generate;
 using ES_PowerTool.Ui.Windows;
 using System;
 using System.Windows.Threading;
@@ -34,7 +34,6 @@ namespace ES_PowerTool.Handlers
             {
                 OnFailure(executionEvent);
             }
-            //WindowsManager.GetInstance().ShowDialog<GenerateWindow>(new GenerateWindowModelView(generateDto));
         }
 
         private void GenerateAction(GenerateDto generateDto)

@@ -51,6 +51,11 @@
       <DependentUpon>EntityClassTemplate.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Structures\Annotation.cs" />
+    <Compile Include="Structures\ClassStructure.cs" />
+    <Compile Include="Structures\DataType.cs" />
+    <Compile Include="Structures\FieldStructure.cs" />
+    <Compile Include="Structures\Modifier.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="DtoClassTemplate.tt">

@@ -50,7 +50,8 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BAL\GenerateLiquibaseService.cs" />
+    <Compile Include="BAL\Generate\GenerateCodeService.cs" />
+    <Compile Include="BAL\Generate\GenerateLiquibaseService.cs" />
     <Compile Include="BAL\Generate\GenerateGuidService.cs" />
     <Compile Include="BAL\OOE\FolderValidationService.cs" />
     <Compile Include="BAL\OOE\Presets\CompositePresetElementCRUDService.cs" />
@@ -61,7 +62,7 @@
     <Compile Include="BAL\OOE\Types\CompositeTypeNavigationService.cs" />
     <Compile Include="BAL\OOE\FolderCRUDService.cs" />
     <Compile Include="BAL\OOE\Types\CompositeTypeCRUDService.cs" />
-    <Compile Include="BAL\GenerateCSVService.cs" />
+    <Compile Include="BAL\Generate\GenerateCSVService.cs" />
     <Compile Include="BAL\OOE\Presets\PresetCRUDService.cs" />
     <Compile Include="BAL\OOE\Types\CompositeTypeValidationService.cs" />
     <Compile Include="BAL\ProjectCRUDService.cs" />
@@ -96,6 +97,10 @@
     <ProjectReference Include="..\ES_PowerTool.Shared\ES_PowerTool.Shared.csproj">
       <Project>{c7abc907-08a3-439b-bdee-6d0f171ef4c6}</Project>
       <Name>ES_PowerTool.Shared</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ES_PowerTool.Templates\ES_PowerTool.Templates.csproj">
+      <Project>{87a8edec-e37a-4cf2-b606-a936f20e4736}</Project>
+      <Name>ES_PowerTool.Templates</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

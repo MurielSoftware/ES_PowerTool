@@ -10,6 +10,7 @@
 namespace ES_PowerTool.Templates
 {
     using System;
+    using ES_PowerTool.Templates.Structures;
     
     /// <summary>
     /// Class to produce the template output
@@ -25,50 +26,171 @@ namespace ES_PowerTool.Templates
         /// </summary>
         public virtual string TransformText()
         {
-            this.Write("\r\nnamespace ");
+            this.Write("package ");
             
             #line 5 "D:\Repos\ES_PowerTool\ES_PowerTool.Templates\DtoClassTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(_namespace));
+            this.Write(this.ToStringHelper.ToStringWithCulture(_classStructure.Namespace));
             
             #line default
             #line hidden
-            this.Write("\r\n{\r\n\tpublic class ");
+            this.Write("\r\n\r\npublic class ");
             
             #line 7 "D:\Repos\ES_PowerTool\ES_PowerTool.Templates\DtoClassTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(_className));
+            this.Write(this.ToStringHelper.ToStringWithCulture(_classStructure.Name));
             
             #line default
             #line hidden
-            this.Write("\r\n\t{\r\n\t\tprivate type name;\r\n\r\n\t\tpublic void setName(type name) {\r\n\t\t\tthis.name = " +
-                    "name;\r\n\t\t}\r\n\t\t\t\r\n\t\tpublic type getName() {\r\n\t\t\treturn name;\r\n\t\t}\r\n\t}\r\n}");
+            this.Write("Dto\r\n{\r\n");
+            
+            #line 9 "D:\Repos\ES_PowerTool\ES_PowerTool.Templates\DtoClassTemplate.tt"
+ foreach(FieldStructure field in _classStructure.Fields) { 
+	if(!IsSymbolicReference(field.DataType)) { 
+            
+            #line default
+            #line hidden
+            this.Write("\t\r\n\t");
+            
+            #line 11 "D:\Repos\ES_PowerTool\ES_PowerTool.Templates\DtoClassTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(field.Modifier.ToString().ToLower()));
+            
+            #line default
+            #line hidden
+            this.Write(" ");
+            
+            #line 11 "D:\Repos\ES_PowerTool\ES_PowerTool.Templates\DtoClassTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(field.DataType));
+            
+            #line default
+            #line hidden
+            this.Write(" ");
+            
+            #line 11 "D:\Repos\ES_PowerTool\ES_PowerTool.Templates\DtoClassTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(field.Name));
+            
+            #line default
+            #line hidden
+            this.Write(";\r\n");
+            
+            #line 12 "D:\Repos\ES_PowerTool\ES_PowerTool.Templates\DtoClassTemplate.tt"
+ }
+} 
+            
+            #line default
+            #line hidden
+            this.Write("\r\n");
+            
+            #line 15 "D:\Repos\ES_PowerTool\ES_PowerTool.Templates\DtoClassTemplate.tt"
+ foreach(FieldStructure field in _classStructure.Fields) { 
+            
+            #line default
+            #line hidden
+            this.Write("\tpublic ");
+            
+            #line 16 "D:\Repos\ES_PowerTool\ES_PowerTool.Templates\DtoClassTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(field.DataType.ToString().ToLower()));
+            
+            #line default
+            #line hidden
+            this.Write(" ");
+            
+            #line 16 "D:\Repos\ES_PowerTool\ES_PowerTool.Templates\DtoClassTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(CreateGetterName(field)));
+            
+            #line default
+            #line hidden
+            this.Write("() {\r\n\t\treturn ");
+            
+            #line 17 "D:\Repos\ES_PowerTool\ES_PowerTool.Templates\DtoClassTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(CreateGetterBody(field)));
+            
+            #line default
+            #line hidden
+            this.Write(";\r\n\t}\r\n\r\n\tpublic void set");
+            
+            #line 20 "D:\Repos\ES_PowerTool\ES_PowerTool.Templates\DtoClassTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(field.Name));
+            
+            #line default
+            #line hidden
+            this.Write("(");
+            
+            #line 20 "D:\Repos\ES_PowerTool\ES_PowerTool.Templates\DtoClassTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(field.DataType));
+            
+            #line default
+            #line hidden
+            this.Write(" ");
+            
+            #line 20 "D:\Repos\ES_PowerTool\ES_PowerTool.Templates\DtoClassTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(field.Name));
+            
+            #line default
+            #line hidden
+            this.Write(") {\r\n\t\t");
+            
+            #line 21 "D:\Repos\ES_PowerTool\ES_PowerTool.Templates\DtoClassTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(CreateSetterBody(field)));
+            
+            #line default
+            #line hidden
+            this.Write(";\r\n\t}\r\n\r\n");
+            
+            #line 24 "D:\Repos\ES_PowerTool\ES_PowerTool.Templates\DtoClassTemplate.tt"
+ } 
+            
+            #line default
+            #line hidden
+            this.Write("}\r\n\r\n");
             return this.GenerationEnvironment.ToString();
         }
         
+        #line 27 "D:\Repos\ES_PowerTool\ES_PowerTool.Templates\DtoClassTemplate.tt"
+
+    public string CreateGetterName(FieldStructure field)
+    {
+        string prefix = "boolean".Equals(field.DataType) ? "is" : "get";
+		return prefix + field.Name;
+    }
+
+	public string CreateGetterBody(FieldStructure field)
+	{
+		if("SymbolicReference".Equals(field.DataType) || "SymbolicReferenceDto".Equals(field.DataType))
+		{
+			return "getReferences().get(..)";
+		}
+		return field.Name;
+	}
+
+	public string CreateSetterBody(FieldStructure field)
+	{
+		if(IsSymbolicReference(field.DataType))
+		{
+			return "getReferences().put(..," + field.Name +")";
+		}
+		return "this." + field.Name + " = " + field.Name;
+	}
+
+	public bool IsSymbolicReference(string dataType)
+	{
+		return "SymbolicReference".Equals(dataType) || "SymbolicReferenceDto".Equals(dataType);
+	}
+
+        
+        #line default
+        #line hidden
+        
         #line 1 "D:\Repos\ES_PowerTool\ES_PowerTool.Templates\DtoClassTemplate.tt"
 
-private string @__namespaceField;
+private global::ES_PowerTool.Templates.Structures.ClassStructure @__classStructureField;
 
 /// <summary>
-/// Access the _namespace parameter of the template.
+/// Access the _classStructure parameter of the template.
 /// </summary>
-private string _namespace
+private global::ES_PowerTool.Templates.Structures.ClassStructure _classStructure
 {
     get
     {
-        return this.@__namespaceField;
-    }
-}
-
-private string @__classNameField;
-
-/// <summary>
-/// Access the _className parameter of the template.
-/// </summary>
-private string _className
-{
-    get
-    {
-        return this.@__classNameField;
+        return this.@__classStructureField;
     }
 }
 
@@ -80,32 +202,18 @@ public virtual void Initialize()
 {
     if ((this.Errors.HasErrors == false))
     {
-bool _namespaceValueAcquired = false;
-if (this.Session.ContainsKey("_namespace"))
+bool _classStructureValueAcquired = false;
+if (this.Session.ContainsKey("_classStructure"))
 {
-    this.@__namespaceField = ((string)(this.Session["_namespace"]));
-    _namespaceValueAcquired = true;
+    this.@__classStructureField = ((global::ES_PowerTool.Templates.Structures.ClassStructure)(this.Session["_classStructure"]));
+    _classStructureValueAcquired = true;
 }
-if ((_namespaceValueAcquired == false))
+if ((_classStructureValueAcquired == false))
 {
-    object data = global::System.Runtime.Remoting.Messaging.CallContext.LogicalGetData("_namespace");
+    object data = global::System.Runtime.Remoting.Messaging.CallContext.LogicalGetData("_classStructure");
     if ((data != null))
     {
-        this.@__namespaceField = ((string)(data));
-    }
-}
-bool _classNameValueAcquired = false;
-if (this.Session.ContainsKey("_className"))
-{
-    this.@__classNameField = ((string)(this.Session["_className"]));
-    _classNameValueAcquired = true;
-}
-if ((_classNameValueAcquired == false))
-{
-    object data = global::System.Runtime.Remoting.Messaging.CallContext.LogicalGetData("_className");
-    if ((data != null))
-    {
-        this.@__classNameField = ((string)(data));
+        this.@__classStructureField = ((global::ES_PowerTool.Templates.Structures.ClassStructure)(data));
     }
 }
 

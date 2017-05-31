@@ -2,9 +2,7 @@
 using ES_PowerTool.Shared.Services.Generate;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using Desktop.Shared.Core.Context;
 using ES_PowerTool.Shared.Dtos.Generate;
 
@@ -17,7 +15,7 @@ namespace ES_PowerTool.Data.BAL.Generate
         {
         }
 
-        public GenerateGuidDto GenerateGuids(GenerateGuidDto generateGuidDto)
+        public GenerateGuidDto Generate(GenerateGuidDto generateGuidDto)
         {
             List<string> guids = DoGenerateGuids(generateGuidDto.Count);
 

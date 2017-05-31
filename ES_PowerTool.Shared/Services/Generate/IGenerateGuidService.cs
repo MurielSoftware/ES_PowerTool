@@ -9,6 +9,6 @@ namespace ES_PowerTool.Shared.Services.Generate
 {
     public interface IGenerateGuidService
     {
-        GenerateGuidDto GenerateGuids(GenerateGuidDto generateGuidDto);
+        GenerateGuidDto Generate(GenerateGuidDto generateGuidDto);
     }
 }

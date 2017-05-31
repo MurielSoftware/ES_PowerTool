@@ -95,11 +95,12 @@
     <Compile Include="Editors\PresetReferenceEditor.cs" />
     <Compile Include="Handlers\CloseProjectHandler.cs" />
     <Compile Include="Handlers\DefaultHandler.cs" />
-    <Compile Include="Handlers\GenerateDtoHandler.cs" />
+    <Compile Include="Handlers\GenerateCodeHandler.cs" />
     <Compile Include="Handlers\GenerateLiquibaseHandler.cs" />
     <Compile Include="Handlers\GenerateCSVHandler.cs" />
     <Compile Include="Handlers\NewPresetHandler.cs" />
     <Compile Include="ModelViews\CompositeTypeDetailsTreeModelView.cs" />
+    <Compile Include="ModelViews\GenerateCodeWindowModelView.cs" />
     <Compile Include="ModelViews\GenerateCSVWindowModelView.cs" />
     <Compile Include="ModelViews\GenerateGuidWindowModelView.cs" />
     <Compile Include="ModelViews\GenerateLiquibaseWindowModelView.cs" />
@@ -109,11 +110,11 @@
     <Compile Include="Ui\Dnd\DropHandlers\TypeToCompositeTypeDropHandler.cs" />
     <Compile Include="Ui\Dnd\DropHandlers\TypeToFolderDropHandler.cs" />
     <Compile Include="Ui\Dnd\TypesViewDropAdapter.cs" />
+    <Compile Include="Ui\Windows\GenerateCodeWindow.xaml.cs">
+      <DependentUpon>GenerateCodeWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Ui\Windows\GenerateCSVWindow.xaml.cs">
       <DependentUpon>GenerateCSVWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Ui\Windows\GenerateEntityWindow.xaml.cs">
-      <DependentUpon>GenerateEntityWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ui\Windows\GenerateGuidWindow.xaml.cs">
       <DependentUpon>GenerateGuidWindow.xaml</DependentUpon>
@@ -143,11 +144,11 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Ui\Windows\GenerateCSVWindow.xaml">
+    <Page Include="Ui\Windows\GenerateCodeWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Ui\Windows\GenerateEntityWindow.xaml">
+    <Page Include="Ui\Windows\GenerateCSVWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -211,10 +212,6 @@
     <ProjectReference Include="..\ES_PowerTool.Shared\ES_PowerTool.Shared.csproj">
       <Project>{c7abc907-08a3-439b-bdee-6d0f171ef4c6}</Project>
       <Name>ES_PowerTool.Shared</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ES_PowerTool.Templates\ES_PowerTool.Templates.csproj">
-      <Project>{87a8edec-e37a-4cf2-b606-a936f20e4736}</Project>
-      <Name>ES_PowerTool.Templates</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -315,4 +315,22 @@
   <data name="label_composite_preset_element" xml:space="preserve">
     <value>Composite preset element</value>
   </data>
+  <data name="label_column_name_annotation" xml:space="preserve">
+    <value>@Column</value>
+  </data>
+  <data name="label_generated_code" xml:space="preserve">
+    <value>Generated code</value>
+  </data>
+  <data name="label_id_annotation" xml:space="preserve">
+    <value>@Id</value>
+  </data>
+  <data name="label_transient_annotation" xml:space="preserve">
+    <value>@Transient</value>
+  </data>
+  <data name="label_code" xml:space="preserve">
+    <value>Code</value>
+  </data>
+  <data name="label_java_data_type" xml:space="preserve">
+    <value>Java code data type</value>
+  </data>
 </root>

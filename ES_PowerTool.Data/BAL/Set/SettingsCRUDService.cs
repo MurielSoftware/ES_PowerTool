@@ -21,7 +21,7 @@ namespace ES_PowerTool.Data.BAL.Set
         protected BaseConvertProvider<SettingValueDto, Settings> _dtoToEntityConverter = new DtoToEntityConvertProvider<SettingValueDto, Settings>();
         protected BaseConvertProvider<Settings, SettingValueDto> _entityToDtoConverter = new EntityToDtoConvertProvider<Settings, SettingValueDto>();
 
-        private const int SETTINGS_COUNT = 11;
+        private const int SETTINGS_COUNT = 21;
 
         public SettingsCRUDService(Connection connection) 
             : base(connection)
@@ -50,6 +50,7 @@ namespace ES_PowerTool.Data.BAL.Set
             settings.ForEach(x => settingValueDtos.Add(_entityToDtoConverter.Convert(_connection, x)));
             settingsDto.LiquibaseAddColumnFormat = settingValueDtos.Where(x => x.Id == IdConstants.SETTINGS_LIQUIBASE_COLUMN_FORMAT_ID).SingleOrDefault();
             settingsDto.SettingsLiquibaseDataTypeConversion = settingValueDtos.Where(x => x.Group == SettingsGroup.LIQUIBASE_CONVERT_DATA_TYPE).ToList();
+            settingsDto.SettingsCodeDataTypeConversion = settingValueDtos.Where(x => x.Group == SettingsGroup.CODE_CONVERT_DATA_TYPE).ToList();
             return settingsDto;
         }
 
@@ -74,6 +75,18 @@ namespace ES_PowerTool.Data.BAL.Set
             settings.Add(CreateSettings(IdConstants.SETTINGS_LIQUIBASE_DATA_TYPE_CONVERSION_SHORT_ID, SettingsSection.LIQUIBASE, SettingsGroup.LIQUIBASE_CONVERT_DATA_TYPE, "short", "NUMBER"));
             settings.Add(CreateSettings(IdConstants.SETTINGS_LIQUIBASE_DATA_TYPE_CONVERSION_STRING_ID, SettingsSection.LIQUIBASE, SettingsGroup.LIQUIBASE_CONVERT_DATA_TYPE, "java.lang.String", "VARCHAR2(255)"));
             settings.Add(CreateSettings(IdConstants.SETTINGS_LIQUIBASE_DATA_TYPE_CONVERSION_UUID_ID, SettingsSection.LIQUIBASE, SettingsGroup.LIQUIBASE_CONVERT_DATA_TYPE, "java.util.UUID", "UUID"));
+
+            settings.Add(CreateSettings(IdConstants.SETTINGS_JAVA_DATA_TYPE_CONVERSION_BOOLEAN_ID, SettingsSection.CODE, SettingsGroup.CODE_CONVERT_DATA_TYPE, "boolean", "boolean"));
+            settings.Add(CreateSettings(IdConstants.SETTINGS_JAVA_DATA_TYPE_CONVERSION_BYTE_ID, SettingsSection.CODE, SettingsGroup.CODE_CONVERT_DATA_TYPE, "byte", "byte"));
+            settings.Add(CreateSettings(IdConstants.SETTINGS_JAVA_DATA_TYPE_CONVERSION_DATE_ID, SettingsSection.CODE, SettingsGroup.CODE_CONVERT_DATA_TYPE, "Date", "Date"));
+            settings.Add(CreateSettings(IdConstants.SETTINGS_JAVA_DATA_TYPE_CONVERSION_DOUBLE_ID, SettingsSection.CODE, SettingsGroup.CODE_CONVERT_DATA_TYPE, "double", "double"));
+            settings.Add(CreateSettings(IdConstants.SETTINGS_JAVA_DATA_TYPE_CONVERSION_FLOAT_ID, SettingsSection.CODE, SettingsGroup.CODE_CONVERT_DATA_TYPE, "float", "float"));
+            settings.Add(CreateSettings(IdConstants.SETTINGS_JAVA_DATA_TYPE_CONVERSION_INT_ID, SettingsSection.CODE, SettingsGroup.CODE_CONVERT_DATA_TYPE, "int", "int"));
+            settings.Add(CreateSettings(IdConstants.SETTINGS_JAVA_DATA_TYPE_CONVERSION_LONG_ID, SettingsSection.CODE, SettingsGroup.CODE_CONVERT_DATA_TYPE, "long", "long"));
+            settings.Add(CreateSettings(IdConstants.SETTINGS_JAVA_DATA_TYPE_CONVERSION_SHORT_ID, SettingsSection.CODE, SettingsGroup.CODE_CONVERT_DATA_TYPE, "short", "short"));
+            settings.Add(CreateSettings(IdConstants.SETTINGS_JAVA_DATA_TYPE_CONVERSION_STRING_ID, SettingsSection.CODE, SettingsGroup.CODE_CONVERT_DATA_TYPE, "java.lang.String", "String"));
+            settings.Add(CreateSettings(IdConstants.SETTINGS_JAVA_DATA_TYPE_CONVERSION_UUID_ID, SettingsSection.CODE, SettingsGroup.CODE_CONVERT_DATA_TYPE, "java.util.UUID", "UUID"));
+
             _genericRepository.PersistAsNews<Settings>(settings);
             return settings;
         }

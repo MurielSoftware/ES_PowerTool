@@ -17,10 +17,10 @@ namespace ES_PowerTool.Data.DAL
         {
         }
 
-        internal List<Settings> FindLiquibaseDataTypeConversion()
+        internal List<Settings> FindSettingsToGroup(SettingsGroup settingGroup)
         {
             return GetContext().Set<Settings>()
-                .Where(x => x.Group == SettingsGroup.LIQUIBASE_CONVERT_DATA_TYPE)
+                .Where(x => x.Group == settingGroup)
                 .ToList();
         }
     }

@@ -124,11 +124,29 @@ namespace Desktop.Ui.I18n {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Code.
+        /// </summary>
+        public static string label_code {
+            get {
+                return ResourceManager.GetString("label_code", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Column name.
         /// </summary>
         public static string label_column_name {
             get {
                 return ResourceManager.GetString("label_column_name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to @Column.
+        /// </summary>
+        public static string label_column_name_annotation {
+            get {
+                return ResourceManager.GetString("label_column_name_annotation", resourceCulture);
             }
         }
         
@@ -282,6 +300,33 @@ namespace Desktop.Ui.I18n {
         public static string label_generate_liquibase {
             get {
                 return ResourceManager.GetString("label_generate_liquibase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Generated code.
+        /// </summary>
+        public static string label_generated_code {
+            get {
+                return ResourceManager.GetString("label_generated_code", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to @Id.
+        /// </summary>
+        public static string label_id_annotation {
+            get {
+                return ResourceManager.GetString("label_id_annotation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Java code data type.
+        /// </summary>
+        public static string label_java_data_type {
+            get {
+                return ResourceManager.GetString("label_java_data_type", resourceCulture);
             }
         }
         
@@ -462,6 +507,15 @@ namespace Desktop.Ui.I18n {
         public static string label_supertypes {
             get {
                 return ResourceManager.GetString("label_supertypes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to @Transient.
+        /// </summary>
+        public static string label_transient_annotation {
+            get {
+                return ResourceManager.GetString("label_transient_annotation", resourceCulture);
             }
         }
         

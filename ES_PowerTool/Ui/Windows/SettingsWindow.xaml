@@ -115,6 +115,24 @@
                     </StackPanel>
                 </Grid>
             </TabItem>
+            <TabItem Header="{x:Static r:Resource.label_code}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Label Content="{x:Static r:Resource.label_code}" Grid.Row="0" Style="{StaticResource HeaderLabel}" />
+                    <StackPanel Orientation="Vertical" Margin="10" Grid.Row="1">
+                        <Label Content="{x:Static r:Resource.label_default_conversions_of_data_types}" />
+                        <DataGrid ItemsSource="{Binding SettingsDto.SettingsCodeDataTypeConversion}" Width="332" Height="160" AutoGenerateColumns="False" HorizontalGridLinesBrush="LightGray" VerticalGridLinesBrush="LightGray">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="{x:Static r:Resource.label_type_element_data_type}"  Width="5*" Binding="{Binding Path=Name}" />
+                                <DataGridTextColumn Header="{x:Static r:Resource.label_java_data_type}"  Width="5*" Binding="{Binding Path=Value}" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
         </TabControl>
         <StackPanel Orientation="Horizontal" Margin="10, 5" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right">
             <Button Content="Close" Margin="10, 0" Width="70" IsCancel="True" Command="{Binding CloseCommand}" CommandParameter="{Binding ElementName=ThisDialog}" />

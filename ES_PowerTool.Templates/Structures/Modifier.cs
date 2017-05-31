@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ES_PowerTool.Shared.Dtos.Settings
+namespace ES_PowerTool.Templates.Structures
 {
-    public enum SettingsSection
+    public enum Modifier
     {
-        COMMON,
-        LIQUIBASE,
-        CODE
+        PRIVATE,
+        PROTECTED,
+        PUBLIC,
     }
 }

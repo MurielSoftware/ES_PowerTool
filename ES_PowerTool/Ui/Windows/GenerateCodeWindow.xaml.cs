@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace ES_PowerTool.Ui.Windows
 {
     /// <summary>
-    /// Interaction logic for GenerateEntityWindow.xaml
+    /// Interaction logic for GenerateCodeWindow.xaml
     /// </summary>
-    public partial class GenerateEntityWindow : Window
+    public partial class GenerateCodeWindow : Window
     {
-        public GenerateEntityWindow()
+        public GenerateCodeWindow()
         {
             InitializeComponent();
         }

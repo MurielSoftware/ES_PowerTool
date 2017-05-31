@@ -1,10 +1,8 @@
 ﻿using Desktop.Shared.Core.Services;
-using ES_PowerTool.Shared.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using Desktop.Shared.Core.Context;
 using ES_PowerTool.Data.DAL.OOE.Elements;
 using Desktop.Shared.Core.Navigations;
@@ -13,8 +11,11 @@ using System.Text.RegularExpressions;
 using ES_PowerTool.Data.DAL;
 using Desktop.Data.Core.DAL;
 using ES_PowerTool.Shared;
+using ES_PowerTool.Shared.Services.Generate;
+using Desktop.Shared.Core.Navigations.Generate;
+using ES_PowerTool.Shared.Dtos.Settings;
 
-namespace ES_PowerTool.Data.BAL
+namespace ES_PowerTool.Data.BAL.Generate
 {
     public class GenerateLiquibaseService : BaseService, IGenerateLiquibaseService
     {
@@ -73,7 +74,7 @@ namespace ES_PowerTool.Data.BAL
 
         private Dictionary<string, Settings> GetLiquibaseDataTypeConversionToName()
         {
-            return _settingsRepository.FindLiquibaseDataTypeConversion().ToDictionary(x => x.Name, x => x);
+            return _settingsRepository.FindSettingsToGroup(SettingsGroup.LIQUIBASE_CONVERT_DATA_TYPE).ToDictionary(x => x.Name, x => x);
         }
     }
 }

@@ -1,23 +1,67 @@
 ﻿<#@ template language="C#" #>
-<#@ parameter name="_namespace" type="System.String" #>
-<#@ parameter name="_tableName" type="System.String" #>
-<#@ parameter name="_className" type="System.String" #>
+<#@ import namespace="System" #>
+<#@ import namespace="ES_PowerTool.Templates.Structures" #>
+<#@ parameter name="_classStructure" type="ES_PowerTool.Templates.Structures.ClassStructure" #>
+package <#= _classStructure.Namespace #>
 
-namespace <#= _namespace #>
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+
+@Entity
+<# foreach(Annotation annotation in _classStructure.Annotations) { #>
+<#= annotation.ToString() #>
+<# } #>
+public class <#= _classStructure.Name #>
 {
-	@Entity
-	@Table(name=<#= _tableName #>)
-    public class <#= _className #>
-    {
-		private type name;
+<# foreach(FieldStructure field in _classStructure.Fields) { 
+	if(!IsSymbolicReference(field.DataType)) { #>	
+	<#= field.Modifier.ToString().ToLower() #> <#= field.DataType #> <#= field.Name #>;
+<# }
+} #>
 
-		public void setName(type name) {
-			this.name = name;
-		}
-			
-		@Column(name="")
-		public type getName() {
-			return name;
-		}
-    }
+<# foreach(FieldStructure field in _classStructure.Fields) { #>
+<# foreach(Annotation annotation in field.Annotations) { #>
+	<#= annotation.ToString() #>
+<# } #>
+	public <#= field.DataType.ToString().ToLower() #> <#= CreateGetterName(field) #>() {
+		return <#= CreateGetterBody(field) #>;
+	}
+
+	public void set<#= field.Name #>(<#= field.DataType #> <#= field.Name #>) {
+		<#= CreateSetterBody(field) #>;
+	}
+
+<# } #>
 }
+
+<#+
+    public string CreateGetterName(FieldStructure field)
+    {
+        string prefix = "boolean".Equals(field.DataType) ? "is" : "get";
+		return prefix + field.Name;
+    }
+
+	public string CreateGetterBody(FieldStructure field)
+	{
+		if("SymbolicReference".Equals(field.DataType) || "SymbolicReferenceDto".Equals(field.DataType))
+		{
+			return "getReferences().get(..)";
+		}
+		return field.Name;
+	}
+
+	public string CreateSetterBody(FieldStructure field)
+	{
+		if(IsSymbolicReference(field.DataType))
+		{
+			return "getReferences().put(..," + field.Name +")";
+		}
+		return "this." + field.Name + " = " + field.Name;
+	}
+
+	public bool IsSymbolicReference(string dataType)
+	{
+		return "SymbolicReference".Equals(dataType) || "SymbolicReferenceDto".Equals(dataType);
+	}
+#>

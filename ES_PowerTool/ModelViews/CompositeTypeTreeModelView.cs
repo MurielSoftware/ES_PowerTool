@@ -53,7 +53,7 @@ namespace ES_PowerTool.ModelViews
 
         private void OnGenerateClassCommand(object obj)
         {
-            HandlerExecutor.Execute<GenerateDtoHandler>(ExecutionEvent.Create(obj as List<TreeNavigationItem>));
+            HandlerExecutor.Execute<GenerateCodeHandler>(ExecutionEvent.Create(obj as List<TreeNavigationItem>));
         }
 
         private void OnDeleteCommand(object obj)

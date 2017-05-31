@@ -4,10 +4,6 @@ using Desktop.Shared.Core;
 using ES_PowerTool.Shared.Dtos.Generate;
 using ES_PowerTool.Shared.Services.Generate;
 using ES_PowerTool.Ui.Windows;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
@@ -48,7 +44,7 @@ namespace ES_PowerTool.ModelViews
             OnPropertyChanged(() => IsThreadRunning);
             await Task.Run(() =>
             {
-                GenerateGuidDto = _generateGuidService.GenerateGuids(GenerateGuidDto);
+                GenerateGuidDto = _generateGuidService.Generate(GenerateGuidDto);
             }).ContinueWith((x) =>
             {
                 IsThreadRunning = false;
