@@ -5,6 +5,7 @@
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         xmlns:r="clr-namespace:Desktop.Ui.I18n;assembly=Desktop.Ui.I18n"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Controls="clr-namespace:Desktop.App.Core.Ui.Controls;assembly=Desktop.App.Core" 
         xmlns:local="clr-namespace:ES_PowerTool.Ui.Windows"
         mc:Ignorable="d"
         ShowInTaskbar="False"
@@ -62,10 +63,10 @@
         </StackPanel>
         <TabControl Grid.Row="3">
             <TabItem Header="DTO">
-                <TextBox Text="{Binding ItemToGenerate.DtoGenerated}" VerticalScrollBarVisibility="Auto" FontFamily="Courier New" />
+                <Controls:SyntaxHighlightTextBox Text="{Binding ItemToGenerate.DtoGenerated}" />
             </TabItem>
             <TabItem Header="Entity">
-                <TextBox Text="{Binding ItemToGenerate.EntityGenerated}" VerticalScrollBarVisibility="Auto" FontFamily="Courier New" />
+                <Controls:SyntaxHighlightTextBox Text="{Binding ItemToGenerate.EntityGenerated}" />
             </TabItem>
         </TabControl>
         <StackPanel Orientation="Horizontal" Margin="10, 5" Grid.Row="4" HorizontalAlignment="Right">

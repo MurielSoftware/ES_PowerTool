@@ -70,6 +70,9 @@
     <Compile Include="Ui\Controls\BaseTreeView.xaml.cs">
       <DependentUpon>BaseTreeView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Ui\Controls\SyntaxHighlightTextBox.xaml.cs">
+      <DependentUpon>SyntaxHighlightTextBox.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Ui\Converters\AlphabetSortConverter.cs" />
     <Compile Include="Editors\BaseReferenceEditor.cs" />
     <Compile Include="Handlers\BaseHandler.cs" />
@@ -147,6 +150,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Ui\Controls\BaseTreeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ui\Controls\SyntaxHighlightTextBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
