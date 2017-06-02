@@ -65,22 +65,5 @@ namespace ES_PowerTool.ModelViews
             }
             return true;
         }
-
-        //public static bool IsProjectSet(object obj)
-        //{
-        //    if (!IsNotNullAndIsTreeNavigationItem(obj))
-        //    {
-        //        return false;
-        //    }
-        //    List<TreeNavigationItem> treeNavigationItems = (List<TreeNavigationItem>)obj;
-        //    foreach (TreeNavigationItem treeNavigationItem in treeNavigationItems)
-        //    {
-        //        if (!Guid.Empty.Equals(treeNavigationItem.ProjectId))
-        //        {
-        //            return true;
-        //        }
-        //    }
-        //    return false;
-        //}
     }
 }

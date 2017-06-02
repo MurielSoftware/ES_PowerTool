@@ -66,11 +66,13 @@ namespace Desktop.Data.Core.Context
         {
             //_modelContext.SaveChanges();
             _transaction.Commit();
+            _transaction = null;
         }
 
         private void Rollback()
         {
             _transaction.Rollback();
+            _transaction = null;
         }
     }
 }

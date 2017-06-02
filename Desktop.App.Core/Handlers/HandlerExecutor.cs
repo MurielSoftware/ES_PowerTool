@@ -28,23 +28,5 @@ namespace Desktop.App.Core.Handlers
             Type dtoType = HandlerUtils.TYPE_TO_DTO[selectedTreeNavigationItems.First().Type];
             Execute(handlerType, dtoType, ExecutionEvent.Create(obj as List<TreeNavigationItem>));
         }
-
-        //public static void DeleteExecute(object obj)
-        //{
-        //    //List<TreeNavigationItem> selectedTreeNavigationItems = obj as List<TreeNavigationItem>;
-        //    //Type dtoType = ServiceMapper.GetDto(selectedTreeNavigationItems.First().NavigationItemType);
-        //    //Execute(typeof(DeleteEntityHandler<>), dtoType, ExecutionEvent.Create(obj as List<TreeNavigationItem>));
-        //}
-
-        //public static void PasteExecute(object obj)
-        //{
-        //    List<TreeNavigationItem> treeNavigationItemsToPaste = ClipboardUtils.GetTreeNavigationItemsFromClipboard();
-        //    if (treeNavigationItemsToPaste == null)
-        //    {
-        //        return;
-        //    }
-        //    Type dtoType = ServiceMapper.GetDto(treeNavigationItemsToPaste.First().NavigationItemType);
-        //    Execute(typeof(PasteHandler<>), dtoType, ExecutionEvent.Create(obj as List<TreeNavigationItem>));
-        //}
     }
 }

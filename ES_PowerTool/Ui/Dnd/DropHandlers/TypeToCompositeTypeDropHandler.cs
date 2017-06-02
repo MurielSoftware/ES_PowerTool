@@ -10,6 +10,7 @@ using Desktop.Shared.Core;
 using ES_PowerTool.Shared.Dtos.OOE.Elements;
 using Desktop.App.Core.Events.Publishing;
 using Desktop.Shared.Core.DataTypes;
+using Desktop.Shared.Core.Context;
 
 namespace ES_PowerTool.Ui.Dnd.DropHandlers
 {
@@ -27,7 +28,9 @@ namespace ES_PowerTool.Ui.Dnd.DropHandlers
             compositeTypeElementDto.OwningTypeId = targetTreeNavigationItem.Id;
             compositeTypeElementDto.State = State.NEW;
             compositeTypeElementDto.ElementTypeReference = new ReferenceString(draggedTreeNavigationItem.Id, draggedTreeNavigationItem.Name);
+            Connection.GetInstance().StartTransaction();
             compositeTypeElementDto = compositeTypeElementCRUDService.Persist(compositeTypeElementDto);
+            Connection.GetInstance().EndTransaction();
             Publisher.GetInstance().Publish(PublishEvent.CreateCreationEvent(compositeTypeElementDto.Id, compositeTypeElementDto.OwningTypeId));
         }
 

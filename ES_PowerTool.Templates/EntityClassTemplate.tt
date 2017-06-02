@@ -2,7 +2,11 @@
 <#@ import namespace="System" #>
 <#@ import namespace="ES_PowerTool.Templates.Structures" #>
 <#@ parameter name="_classStructure" type="ES_PowerTool.Templates.Structures.ClassStructure" #>
+<# if(_classStructure.Namespace != null) { #>
 package <#= _classStructure.Namespace #>
+<# } else { #>
+package 
+<# } #>
 
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;

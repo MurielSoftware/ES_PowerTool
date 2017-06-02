@@ -22,9 +22,11 @@ namespace Desktop.App.Core.Persisters
 
         public virtual void Persist()
         {
-            BeforePersist();
-            _dto = _service.Persist(_dto);
+            Connection.GetInstance().StartTransaction();
+            BeforePersist();            
+            _dto = _service.Persist(_dto);            
             AfterPersist();
+            Connection.GetInstance().EndTransaction();
         }
 
         protected virtual void BeforePersist()

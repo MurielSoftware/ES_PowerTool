@@ -15,6 +15,7 @@ using Desktop.Ui.I18n;
 using Desktop.App.Core.Utils;
 using Desktop.App.Core.Ui.Windows;
 using Desktop.App.Core.ModelViews;
+using Desktop.Shared.Core.Context;
 
 namespace Desktop.App.Core.Handlers
 {
@@ -41,15 +42,15 @@ namespace Desktop.App.Core.Handlers
             catch (ValidationException ex)
             {
                 WindowsManager.GetInstance().ShowDialog<MessageWindow>(new MessageWindowModelView(ex.GetValidationResult()));
-                //MessageDialogUtils.ErrorMessage(ValidationResultUtils.FormatValidationMessage(ex.GetValidationResult()));
             }
         }
 
         protected virtual void Delete(ExecutionEvent executionEvent, Guid id)
         {
             ICRUDService<T> crudService = (ICRUDService<T>)ServiceActivator.Get(HandlerUtils.DTO_TO_SERVICE[typeof(T)]);
-            T dto = crudService.Read(id);
+            Connection.GetInstance().StartTransaction();
             crudService.Delete(id);
+            Connection.GetInstance().EndTransaction();
         }
 
         protected override void OnFailure(ExecutionEvent executionEvent)

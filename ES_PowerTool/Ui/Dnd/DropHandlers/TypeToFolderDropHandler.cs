@@ -9,6 +9,7 @@ using ES_PowerTool.Shared.Services.OOE.Types;
 using Desktop.App.Core.Events.Publishing;
 using Desktop.Shared.Core;
 using Desktop.Shared.Core.Services;
+using Desktop.Shared.Core.Context;
 
 namespace ES_PowerTool.Ui.Dnd.DropHandlers
 {
@@ -17,7 +18,9 @@ namespace ES_PowerTool.Ui.Dnd.DropHandlers
         public void Drop(TreeNavigationItem draggedTreeNavigationItem, TreeNavigationItem targetTreeNavigationItem)
         {
             IMoveAwareCRUDService moveAwareCRUDService = ServiceActivator.Get<ICompositeTypeCRUDService>();
+            Connection.GetInstance().StartTransaction();
             moveAwareCRUDService.Move(draggedTreeNavigationItem.Id, targetTreeNavigationItem.Id);
+            Connection.GetInstance().EndTransaction();
             Publisher.GetInstance().Publish(PublishEvent.CreateDeletionEvent(draggedTreeNavigationItem.Id, draggedTreeNavigationItem.GetParentId()));
             Publisher.GetInstance().Publish(PublishEvent.CreateCreationEvent(draggedTreeNavigationItem.Id, targetTreeNavigationItem.GetParentId()));
         }

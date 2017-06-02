@@ -169,6 +169,15 @@ namespace Desktop.Ui.I18n {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Content Built-in.
+        /// </summary>
+        public static string label_content_built_in {
+            get {
+                return ResourceManager.GetString("label_content_built_in", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Count.
         /// </summary>
         public static string label_count {

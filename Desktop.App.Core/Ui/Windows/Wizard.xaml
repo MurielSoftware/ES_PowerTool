@@ -24,12 +24,13 @@
             </StackPanel>
         </Border>
         <ScrollViewer VerticalScrollBarVisibility="Visible" Grid.Row="1">
-            <Grid x:Name="MainGrid"></Grid>
-        </ScrollViewer>            
-
-        <StackPanel Orientation="Horizontal" Margin="10, 6" Grid.Row="2" HorizontalAlignment="Right">
-            <Button Content="{x:Static r:Resource.label_cancel}" Margin="10, 0" Width="70" IsCancel="True" Command="{Binding CancelCommand}" CommandParameter="{Binding ElementName=ThisWizard}" />
-            <Button Content="{x:Static r:Resource.label_finish}" Margin="0, 0" Width="70" IsDefault="True" Command="{Binding FinishCommand}" CommandParameter="{Binding ElementName=ThisWizard}" />
-        </StackPanel>
+            <Grid x:Name="MainGrid" Margin="0 0 0 5"></Grid>
+        </ScrollViewer>
+        <Border BorderBrush="LightGray" Grid.Row="2"  BorderThickness="0 1 0 0">
+            <StackPanel Orientation="Horizontal" Margin="10, 6" HorizontalAlignment="Right">
+                <Button Content="{x:Static r:Resource.label_cancel}" Margin="10, 0" Width="70" IsCancel="True" Command="{Binding CancelCommand}" CommandParameter="{Binding ElementName=ThisWizard}" />
+                <Button Content="{x:Static r:Resource.label_finish}" Margin="0, 0" Width="70" IsDefault="True" Command="{Binding FinishCommand}" CommandParameter="{Binding ElementName=ThisWizard}" />
+            </StackPanel>
+        </Border>
     </Grid>
 </Window>

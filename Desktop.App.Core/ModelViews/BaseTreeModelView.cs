@@ -9,6 +9,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Desktop.Shared.Core.Context;
 
 namespace Desktop.App.Core.ModelViews
 {
@@ -25,6 +26,8 @@ namespace Desktop.App.Core.ModelViews
             Publisher.GetInstance().AddServerListener(this);
             Roots = new ObservableCollection<TreeNavigationItem>();
         }
+
+        protected abstract INavigationService CreateNavigationService();
 
         public async void OnServerSwitched(object obj)
         {
@@ -43,13 +46,33 @@ namespace Desktop.App.Core.ModelViews
             OnPropertyChanged(() => Roots);
         }
 
-        protected abstract INavigationService CreateNavigationService();
-
         protected virtual async Task<List<TreeNavigationItem>> DoLoadRoots()
         {
             return await Task.Run(() =>
             {
                 return _service.GetRoots(NavigationContext.CreateNavigationContext());
+            });
+        }
+
+        public async void LoadChildren(TreeNavigationItem parentTreeNavigationItem)
+        {
+            if (parentTreeNavigationItem == null)
+            {
+                return;
+            }
+
+            if (parentTreeNavigationItem.HasRemoteChildren)
+            {
+                parentTreeNavigationItem.HasRemoteChildren = false;
+                parentTreeNavigationItem.SetChildren(await DoLoadChildren(parentTreeNavigationItem));
+            }
+        }
+
+        protected virtual async Task<List<TreeNavigationItem>> DoLoadChildren(TreeNavigationItem parentTreeNavigationItem)
+        {
+            return await Task.Run(() => 
+            {
+                return _service.GetChildren(NavigationContext.CreateNavigationContext(), parentTreeNavigationItem);
             });
         }
 
@@ -67,27 +90,6 @@ namespace Desktop.App.Core.ModelViews
                     OnDelete(publishEvent);
                     break;
             }
-        }
-
-        public async void LoadChildren(TreeNavigationItem parentTreeNavigationItem)
-        {
-            if(parentTreeNavigationItem == null)
-            {
-                return;
-            }
-
-            if (parentTreeNavigationItem.HasRemoteChildren)
-            {
-                parentTreeNavigationItem.HasRemoteChildren = false;
-                parentTreeNavigationItem.SetChildren(await DoLoadChildren(parentTreeNavigationItem));
-            }
-        }
-
-        protected virtual async Task<List<TreeNavigationItem>> DoLoadChildren(TreeNavigationItem parentTreeNavigationItem)
-        {
-            return await Task.Run(() => {
-                return _service.GetChildren(NavigationContext.CreateNavigationContext(), parentTreeNavigationItem);
-            });
         }
 
         protected virtual void OnCreate(PublishEvent publishEvent)
@@ -124,16 +126,12 @@ namespace Desktop.App.Core.ModelViews
             else
             {
                 int indexOfUpdatedTreeNavigationItem = parentTreeNavigationItem.Children.IndexOf(treeNavigationItem);
-                //parentTreeNavigationItem.Children[indexOfUpdatedTreeNavigationItem] = updatedTreeNavigationItem;
                 updatedTreeNavigationItem.Parent = parentTreeNavigationItem;
                 parentTreeNavigationItem.Children.RemoveAt(indexOfUpdatedTreeNavigationItem);
                 parentTreeNavigationItem.Children.Insert(indexOfUpdatedTreeNavigationItem, updatedTreeNavigationItem);
             }
             updatedTreeNavigationItem.HasRemoteChildren = treeNavigationItem.HasRemoteChildren;
             updatedTreeNavigationItem.Children = treeNavigationItem.Children;
-
-            //parentTreeNavigationItem.IsSelected = false;
-            //updatedTreeNavigationItem.IsSelected = true;
         }
 
         protected virtual void OnDelete(PublishEvent publishEvent)

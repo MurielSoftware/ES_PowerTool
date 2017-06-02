@@ -26,23 +26,43 @@ namespace ES_PowerTool.Templates
         /// </summary>
         public virtual string TransformText()
         {
-            this.Write("package ");
             
             #line 5 "D:\Repos\ES_PowerTool\ES_PowerTool.Templates\DtoClassTemplate.tt"
+ if(_classStructure.Namespace != null) { 
+            
+            #line default
+            #line hidden
+            this.Write("package ");
+            
+            #line 6 "D:\Repos\ES_PowerTool\ES_PowerTool.Templates\DtoClassTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_classStructure.Namespace));
             
             #line default
             #line hidden
-            this.Write("\r\n\r\npublic class ");
+            this.Write("\r\n");
             
             #line 7 "D:\Repos\ES_PowerTool\ES_PowerTool.Templates\DtoClassTemplate.tt"
+ } else { 
+            
+            #line default
+            #line hidden
+            this.Write("package \r\n");
+            
+            #line 9 "D:\Repos\ES_PowerTool\ES_PowerTool.Templates\DtoClassTemplate.tt"
+ } 
+            
+            #line default
+            #line hidden
+            this.Write("\r\npublic class ");
+            
+            #line 11 "D:\Repos\ES_PowerTool\ES_PowerTool.Templates\DtoClassTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_classStructure.Name));
             
             #line default
             #line hidden
             this.Write("Dto\r\n{\r\n");
             
-            #line 9 "D:\Repos\ES_PowerTool\ES_PowerTool.Templates\DtoClassTemplate.tt"
+            #line 13 "D:\Repos\ES_PowerTool\ES_PowerTool.Templates\DtoClassTemplate.tt"
  foreach(FieldStructure field in _classStructure.Fields) { 
 	if(!IsSymbolicReference(field.DataType)) { 
             
@@ -50,28 +70,28 @@ namespace ES_PowerTool.Templates
             #line hidden
             this.Write("\t\r\n\t");
             
-            #line 11 "D:\Repos\ES_PowerTool\ES_PowerTool.Templates\DtoClassTemplate.tt"
+            #line 15 "D:\Repos\ES_PowerTool\ES_PowerTool.Templates\DtoClassTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.Modifier.ToString().ToLower()));
             
             #line default
             #line hidden
             this.Write(" ");
             
-            #line 11 "D:\Repos\ES_PowerTool\ES_PowerTool.Templates\DtoClassTemplate.tt"
+            #line 15 "D:\Repos\ES_PowerTool\ES_PowerTool.Templates\DtoClassTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.DataType));
             
             #line default
             #line hidden
             this.Write(" ");
             
-            #line 11 "D:\Repos\ES_PowerTool\ES_PowerTool.Templates\DtoClassTemplate.tt"
+            #line 15 "D:\Repos\ES_PowerTool\ES_PowerTool.Templates\DtoClassTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.Name));
             
             #line default
             #line hidden
             this.Write(";\r\n");
             
-            #line 12 "D:\Repos\ES_PowerTool\ES_PowerTool.Templates\DtoClassTemplate.tt"
+            #line 16 "D:\Repos\ES_PowerTool\ES_PowerTool.Templates\DtoClassTemplate.tt"
  }
 } 
             
@@ -79,63 +99,63 @@ namespace ES_PowerTool.Templates
             #line hidden
             this.Write("\r\n");
             
-            #line 15 "D:\Repos\ES_PowerTool\ES_PowerTool.Templates\DtoClassTemplate.tt"
+            #line 19 "D:\Repos\ES_PowerTool\ES_PowerTool.Templates\DtoClassTemplate.tt"
  foreach(FieldStructure field in _classStructure.Fields) { 
             
             #line default
             #line hidden
             this.Write("\tpublic ");
             
-            #line 16 "D:\Repos\ES_PowerTool\ES_PowerTool.Templates\DtoClassTemplate.tt"
+            #line 20 "D:\Repos\ES_PowerTool\ES_PowerTool.Templates\DtoClassTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.DataType.ToString().ToLower()));
             
             #line default
             #line hidden
             this.Write(" ");
             
-            #line 16 "D:\Repos\ES_PowerTool\ES_PowerTool.Templates\DtoClassTemplate.tt"
+            #line 20 "D:\Repos\ES_PowerTool\ES_PowerTool.Templates\DtoClassTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(CreateGetterName(field)));
             
             #line default
             #line hidden
             this.Write("() {\r\n\t\treturn ");
             
-            #line 17 "D:\Repos\ES_PowerTool\ES_PowerTool.Templates\DtoClassTemplate.tt"
+            #line 21 "D:\Repos\ES_PowerTool\ES_PowerTool.Templates\DtoClassTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(CreateGetterBody(field)));
             
             #line default
             #line hidden
             this.Write(";\r\n\t}\r\n\r\n\tpublic void set");
             
-            #line 20 "D:\Repos\ES_PowerTool\ES_PowerTool.Templates\DtoClassTemplate.tt"
+            #line 24 "D:\Repos\ES_PowerTool\ES_PowerTool.Templates\DtoClassTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.Name));
             
             #line default
             #line hidden
             this.Write("(");
             
-            #line 20 "D:\Repos\ES_PowerTool\ES_PowerTool.Templates\DtoClassTemplate.tt"
+            #line 24 "D:\Repos\ES_PowerTool\ES_PowerTool.Templates\DtoClassTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.DataType));
             
             #line default
             #line hidden
             this.Write(" ");
             
-            #line 20 "D:\Repos\ES_PowerTool\ES_PowerTool.Templates\DtoClassTemplate.tt"
+            #line 24 "D:\Repos\ES_PowerTool\ES_PowerTool.Templates\DtoClassTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.Name));
             
             #line default
             #line hidden
             this.Write(") {\r\n\t\t");
             
-            #line 21 "D:\Repos\ES_PowerTool\ES_PowerTool.Templates\DtoClassTemplate.tt"
+            #line 25 "D:\Repos\ES_PowerTool\ES_PowerTool.Templates\DtoClassTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(CreateSetterBody(field)));
             
             #line default
             #line hidden
             this.Write(";\r\n\t}\r\n\r\n");
             
-            #line 24 "D:\Repos\ES_PowerTool\ES_PowerTool.Templates\DtoClassTemplate.tt"
+            #line 28 "D:\Repos\ES_PowerTool\ES_PowerTool.Templates\DtoClassTemplate.tt"
  } 
             
             #line default
@@ -144,7 +164,7 @@ namespace ES_PowerTool.Templates
             return this.GenerationEnvironment.ToString();
         }
         
-        #line 27 "D:\Repos\ES_PowerTool\ES_PowerTool.Templates\DtoClassTemplate.tt"
+        #line 31 "D:\Repos\ES_PowerTool\ES_PowerTool.Templates\DtoClassTemplate.tt"
 
     public string CreateGetterName(FieldStructure field)
     {

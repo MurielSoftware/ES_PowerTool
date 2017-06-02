@@ -24,8 +24,10 @@
             <CheckBox Content="{x:Static r:Resource.label_remove_brackets}" Height="24" VerticalContentAlignment="Center" Margin="10,0" IsChecked="{Binding GenerateGuidDto.RemoveBrackets}" />
             <Button Content="{x:Static r:Resource.label_generate}" Height="24" Width="60" Margin="35,0" Command="{Binding GenerateCommand}" />
         </StackPanel>
-        <StackPanel Orientation="Horizontal" Margin="10, 5" Grid.Row="2" HorizontalAlignment="Right">
-            <Button Content="Close" Margin="10, 0" Width="60" IsDefault="True" IsCancel="True" Command="{Binding CloseCommand}" CommandParameter="{Binding ElementName=ThisDialog}" />
-        </StackPanel>
+        <Border BorderBrush="LightGray" Grid.Row="2"  BorderThickness="0 1 0 0">
+            <StackPanel Orientation="Horizontal" Margin="10, 5" HorizontalAlignment="Right">
+                <Button Content="Close" Margin="10, 0" Width="60" IsDefault="True" IsCancel="True" Command="{Binding CloseCommand}" CommandParameter="{Binding ElementName=ThisDialog}" />
+            </StackPanel>
+        </Border>
     </Grid>
 </Window>

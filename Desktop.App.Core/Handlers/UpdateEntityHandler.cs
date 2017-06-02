@@ -36,9 +36,9 @@ namespace Desktop.App.Core.Handlers
         {
 
             ICRUDService<T> crudService = (ICRUDService<T>)ServiceActivator.Get(HandlerUtils.DTO_TO_SERVICE[typeof(T)]);
-            //Connection.GetInstance().StartTransaction();
+            Connection.GetInstance().StartTransaction();
             T dto = crudService.Read(executionEvent.GetFirstSelectedTreeNavigationItem().Id);
-            //Connection.GetInstance().EndTransaction();
+            Connection.GetInstance().EndTransaction();
             return dto;
         }
 

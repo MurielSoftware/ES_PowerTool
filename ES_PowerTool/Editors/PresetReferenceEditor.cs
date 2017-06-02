@@ -22,7 +22,6 @@ namespace ES_PowerTool.Editors
         {
             ICompositeTypeNavigationService compositeTypeNavigationService = ServiceActivator.Get<ICompositeTypeNavigationService>();
             return compositeTypeNavigationService.GetPresetsToCompositeTypeElement(GetDto().CompositeTypeElementId);
-
         }
     }
 }

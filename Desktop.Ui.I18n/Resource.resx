@@ -333,4 +333,7 @@
   <data name="label_java_data_type" xml:space="preserve">
     <value>Java code data type</value>
   </data>
+  <data name="label_content_built_in" xml:space="preserve">
+    <value>Content Built-in</value>
+  </data>
 </root>

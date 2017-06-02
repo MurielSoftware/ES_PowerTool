@@ -82,7 +82,8 @@ namespace Desktop.App.Core.ModelViews
 
         protected override async Task<List<TreeNavigationItem>> DoLoadChildren(TreeNavigationItem parentTreeNavigationItem)
         {
-            return await Task.Run(() => {
+            return await Task.Run(() => 
+            {
                 return _service.GetChildren(MasterNavigationContext.CreateMasterNavigationContext(_masterNavigationItem), parentTreeNavigationItem);
             });
         }

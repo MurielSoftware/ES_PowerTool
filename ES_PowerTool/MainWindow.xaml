@@ -76,6 +76,22 @@
                             </MenuItem.Icon>
                         </MenuItem>
                         <Separator />
+                        <MenuItem Header="Cut" Command="{Binding CutCommand}" CommandParameter="{Binding PlacementTarget.SelectedItems, RelativeSource={RelativeSource AncestorType={x:Type ContextMenu}}}">
+                            <MenuItem.Icon>
+                                <Image Source="pack://application:,,,/Images/cut.png" />
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <MenuItem Header="Copy" Command="{Binding CopyCommand}" CommandParameter="{Binding PlacementTarget.SelectedItems, RelativeSource={RelativeSource AncestorType={x:Type ContextMenu}}}">
+                            <MenuItem.Icon>
+                                <Image Source="pack://application:,,,/Images/copy.png" />
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <MenuItem Header="Paste" Command="{Binding PasteCommand}" CommandParameter="{Binding PlacementTarget.SelectedItems, RelativeSource={RelativeSource AncestorType={x:Type ContextMenu}}}">
+                            <MenuItem.Icon>
+                                <Image Source="pack://application:,,,/Images/paste.png" />
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <Separator />
                         <MenuItem Header="Generate Java..." Command="{Binding GenerateClassCommand}" CommandParameter="{Binding PlacementTarget.SelectedItems, RelativeSource={RelativeSource AncestorType={x:Type ContextMenu}}}">
                             <MenuItem.Icon>
                                 <Image Source="pack://application:,,,/Images/java.png" />

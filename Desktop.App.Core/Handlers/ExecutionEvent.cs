@@ -12,7 +12,6 @@ namespace Desktop.App.Core.Handlers
     {
         private List<TreeNavigationItem> _selectedTreeNavigationItems;
         private TreeNavigationItem _masterTreeNavigationItem; 
-        //public BaseDto Dto { get; set; }
 
         private ExecutionEvent()
         {
@@ -28,18 +27,6 @@ namespace Desktop.App.Core.Handlers
         {
             _masterTreeNavigationItem = masterTreeNavigationItem;
         }
-
-        //private ExecutionEvent(List<TreeNavigationItem> treeNavigationItems, BaseDto dto)
-        //    : this(treeNavigationItems)
-        //{
-        //    Dto = dto;
-        //}
-
-        ////private ExecutionEvent(List<TreeNavigationItem> treeNavigationItems, ResourceType resourceType)
-        ////    : this(treeNavigationItems)
-        ////{
-        ////    ResourceType = resourceType;
-        ////}
 
         public TreeNavigationItem GetFirstSelectedTreeNavigationItem()
         {
@@ -80,15 +67,5 @@ namespace Desktop.App.Core.Handlers
         {
             return new ExecutionEvent(new List<TreeNavigationItem>() { selectedTreeNavigationItem }, masterTreeNavigationItem);
         }
-
-        //public static ExecutionEvent Create(List<TreeNavigationItem> treeNavigationItems, ResourceType resourceType)
-        //{
-        //    return new ExecutionEvent(treeNavigationItems, resourceType);
-        //}
-
-        //public static ExecutionEvent Create(List<TreeNavigationItem> treeNavigationItems, BaseDto dto)
-        //{
-        //    return new ExecutionEvent(treeNavigationItems, dto);
-        //}
     }
 }

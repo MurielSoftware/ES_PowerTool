@@ -26,44 +26,64 @@ namespace ES_PowerTool.Templates
         /// </summary>
         public virtual string TransformText()
         {
-            this.Write("package ");
             
             #line 5 "D:\Repos\ES_PowerTool\ES_PowerTool.Templates\EntityClassTemplate.tt"
+ if(_classStructure.Namespace != null) { 
+            
+            #line default
+            #line hidden
+            this.Write("package ");
+            
+            #line 6 "D:\Repos\ES_PowerTool\ES_PowerTool.Templates\EntityClassTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_classStructure.Namespace));
             
             #line default
             #line hidden
-            this.Write("\r\n\r\nimport javax.persistence.Column;\r\nimport javax.persistence.DiscriminatorValue" +
-                    ";\r\nimport javax.persistence.Entity;\r\n\r\n@Entity\r\n");
+            this.Write("\r\n");
             
-            #line 12 "D:\Repos\ES_PowerTool\ES_PowerTool.Templates\EntityClassTemplate.tt"
+            #line 7 "D:\Repos\ES_PowerTool\ES_PowerTool.Templates\EntityClassTemplate.tt"
+ } else { 
+            
+            #line default
+            #line hidden
+            this.Write("package \r\n");
+            
+            #line 9 "D:\Repos\ES_PowerTool\ES_PowerTool.Templates\EntityClassTemplate.tt"
+ } 
+            
+            #line default
+            #line hidden
+            this.Write("\r\nimport javax.persistence.Column;\r\nimport javax.persistence.DiscriminatorValue;\r" +
+                    "\nimport javax.persistence.Entity;\r\n\r\n@Entity\r\n");
+            
+            #line 16 "D:\Repos\ES_PowerTool\ES_PowerTool.Templates\EntityClassTemplate.tt"
  foreach(Annotation annotation in _classStructure.Annotations) { 
             
             #line default
             #line hidden
             
-            #line 13 "D:\Repos\ES_PowerTool\ES_PowerTool.Templates\EntityClassTemplate.tt"
+            #line 17 "D:\Repos\ES_PowerTool\ES_PowerTool.Templates\EntityClassTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(annotation.ToString()));
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 14 "D:\Repos\ES_PowerTool\ES_PowerTool.Templates\EntityClassTemplate.tt"
+            #line 18 "D:\Repos\ES_PowerTool\ES_PowerTool.Templates\EntityClassTemplate.tt"
  } 
             
             #line default
             #line hidden
             this.Write("public class ");
             
-            #line 15 "D:\Repos\ES_PowerTool\ES_PowerTool.Templates\EntityClassTemplate.tt"
+            #line 19 "D:\Repos\ES_PowerTool\ES_PowerTool.Templates\EntityClassTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_classStructure.Name));
             
             #line default
             #line hidden
             this.Write("\r\n{\r\n");
             
-            #line 17 "D:\Repos\ES_PowerTool\ES_PowerTool.Templates\EntityClassTemplate.tt"
+            #line 21 "D:\Repos\ES_PowerTool\ES_PowerTool.Templates\EntityClassTemplate.tt"
  foreach(FieldStructure field in _classStructure.Fields) { 
 	if(!IsSymbolicReference(field.DataType)) { 
             
@@ -71,28 +91,28 @@ namespace ES_PowerTool.Templates
             #line hidden
             this.Write("\t\r\n\t");
             
-            #line 19 "D:\Repos\ES_PowerTool\ES_PowerTool.Templates\EntityClassTemplate.tt"
+            #line 23 "D:\Repos\ES_PowerTool\ES_PowerTool.Templates\EntityClassTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.Modifier.ToString().ToLower()));
             
             #line default
             #line hidden
             this.Write(" ");
             
-            #line 19 "D:\Repos\ES_PowerTool\ES_PowerTool.Templates\EntityClassTemplate.tt"
+            #line 23 "D:\Repos\ES_PowerTool\ES_PowerTool.Templates\EntityClassTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.DataType));
             
             #line default
             #line hidden
             this.Write(" ");
             
-            #line 19 "D:\Repos\ES_PowerTool\ES_PowerTool.Templates\EntityClassTemplate.tt"
+            #line 23 "D:\Repos\ES_PowerTool\ES_PowerTool.Templates\EntityClassTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.Name));
             
             #line default
             #line hidden
             this.Write(";\r\n");
             
-            #line 20 "D:\Repos\ES_PowerTool\ES_PowerTool.Templates\EntityClassTemplate.tt"
+            #line 24 "D:\Repos\ES_PowerTool\ES_PowerTool.Templates\EntityClassTemplate.tt"
  }
 } 
             
@@ -100,83 +120,83 @@ namespace ES_PowerTool.Templates
             #line hidden
             this.Write("\r\n");
             
-            #line 23 "D:\Repos\ES_PowerTool\ES_PowerTool.Templates\EntityClassTemplate.tt"
+            #line 27 "D:\Repos\ES_PowerTool\ES_PowerTool.Templates\EntityClassTemplate.tt"
  foreach(FieldStructure field in _classStructure.Fields) { 
             
             #line default
             #line hidden
             
-            #line 24 "D:\Repos\ES_PowerTool\ES_PowerTool.Templates\EntityClassTemplate.tt"
+            #line 28 "D:\Repos\ES_PowerTool\ES_PowerTool.Templates\EntityClassTemplate.tt"
  foreach(Annotation annotation in field.Annotations) { 
             
             #line default
             #line hidden
             this.Write("\t");
             
-            #line 25 "D:\Repos\ES_PowerTool\ES_PowerTool.Templates\EntityClassTemplate.tt"
+            #line 29 "D:\Repos\ES_PowerTool\ES_PowerTool.Templates\EntityClassTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(annotation.ToString()));
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 26 "D:\Repos\ES_PowerTool\ES_PowerTool.Templates\EntityClassTemplate.tt"
+            #line 30 "D:\Repos\ES_PowerTool\ES_PowerTool.Templates\EntityClassTemplate.tt"
  } 
             
             #line default
             #line hidden
             this.Write("\tpublic ");
             
-            #line 27 "D:\Repos\ES_PowerTool\ES_PowerTool.Templates\EntityClassTemplate.tt"
+            #line 31 "D:\Repos\ES_PowerTool\ES_PowerTool.Templates\EntityClassTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.DataType.ToString().ToLower()));
             
             #line default
             #line hidden
             this.Write(" ");
             
-            #line 27 "D:\Repos\ES_PowerTool\ES_PowerTool.Templates\EntityClassTemplate.tt"
+            #line 31 "D:\Repos\ES_PowerTool\ES_PowerTool.Templates\EntityClassTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(CreateGetterName(field)));
             
             #line default
             #line hidden
             this.Write("() {\r\n\t\treturn ");
             
-            #line 28 "D:\Repos\ES_PowerTool\ES_PowerTool.Templates\EntityClassTemplate.tt"
+            #line 32 "D:\Repos\ES_PowerTool\ES_PowerTool.Templates\EntityClassTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(CreateGetterBody(field)));
             
             #line default
             #line hidden
             this.Write(";\r\n\t}\r\n\r\n\tpublic void set");
             
-            #line 31 "D:\Repos\ES_PowerTool\ES_PowerTool.Templates\EntityClassTemplate.tt"
+            #line 35 "D:\Repos\ES_PowerTool\ES_PowerTool.Templates\EntityClassTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.Name));
             
             #line default
             #line hidden
             this.Write("(");
             
-            #line 31 "D:\Repos\ES_PowerTool\ES_PowerTool.Templates\EntityClassTemplate.tt"
+            #line 35 "D:\Repos\ES_PowerTool\ES_PowerTool.Templates\EntityClassTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.DataType));
             
             #line default
             #line hidden
             this.Write(" ");
             
-            #line 31 "D:\Repos\ES_PowerTool\ES_PowerTool.Templates\EntityClassTemplate.tt"
+            #line 35 "D:\Repos\ES_PowerTool\ES_PowerTool.Templates\EntityClassTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.Name));
             
             #line default
             #line hidden
             this.Write(") {\r\n\t\t");
             
-            #line 32 "D:\Repos\ES_PowerTool\ES_PowerTool.Templates\EntityClassTemplate.tt"
+            #line 36 "D:\Repos\ES_PowerTool\ES_PowerTool.Templates\EntityClassTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(CreateSetterBody(field)));
             
             #line default
             #line hidden
             this.Write(";\r\n\t}\r\n\r\n");
             
-            #line 35 "D:\Repos\ES_PowerTool\ES_PowerTool.Templates\EntityClassTemplate.tt"
+            #line 39 "D:\Repos\ES_PowerTool\ES_PowerTool.Templates\EntityClassTemplate.tt"
  } 
             
             #line default
@@ -185,7 +205,7 @@ namespace ES_PowerTool.Templates
             return this.GenerationEnvironment.ToString();
         }
         
-        #line 38 "D:\Repos\ES_PowerTool\ES_PowerTool.Templates\EntityClassTemplate.tt"
+        #line 42 "D:\Repos\ES_PowerTool\ES_PowerTool.Templates\EntityClassTemplate.tt"
 
     public string CreateGetterName(FieldStructure field)
     {
