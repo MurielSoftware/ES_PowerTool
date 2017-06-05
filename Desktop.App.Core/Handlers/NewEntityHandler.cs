@@ -3,6 +3,7 @@ using Desktop.Shared.Core.Dtos;
 using Desktop.App.Core.Events.Publishing;
 using Desktop.App.Core.ModelViews;
 using System;
+using Log4N.Logger;
 
 namespace Desktop.App.Core.Handlers
 {
@@ -32,10 +33,12 @@ namespace Desktop.App.Core.Handlers
 
         protected override void OnFailure(ExecutionEvent executionEvent)
         {
+            Log.Error("Error during the insertion of the entity");
         }
 
         protected override void OnSuccessful(ExecutionEvent executionEvent, Guid affectedObjectId)
         {
+            Log.Info(string.Format("Entity '{0}' was craeted", affectedObjectId));
             Publisher.GetInstance().Publish(PublishEvent.CreateCreationEvent(affectedObjectId, executionEvent.GetFirstSelectedTreeNavigationItem().Id));
         }
     }

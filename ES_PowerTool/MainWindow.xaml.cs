@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Log4N.Logger;
+using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,8 +25,6 @@ namespace ES_PowerTool
         public MainWindow()
         {
             InitializeComponent();
-
-            //AppDomain.CurrentDomain.SetData("DataDirectory", AppDomain.CurrentDomain.BaseDirectory);
         }
     }
 }

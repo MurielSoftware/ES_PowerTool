@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using ES_PowerTool.ModelViews;
+using Log4N.Logger;
 
 namespace ES_PowerTool.Handlers
 {
@@ -30,7 +31,7 @@ namespace ES_PowerTool.Handlers
 
         protected override void OnFailure(ExecutionEvent executionEvent)
         {
-            throw new NotImplementedException();
+            Log.Error("Error during the opening the project");
         }
 
         protected override void OnSuccessful(ExecutionEvent executionEvent, Guid affectedObjectId)

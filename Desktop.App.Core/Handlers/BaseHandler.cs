@@ -14,7 +14,6 @@ namespace Desktop.App.Core.Handlers
             try
             {
                 DoExecute(executionEvent);
-                //OnSuccessful(executionEvent);
             }
             catch(Exception ex)
             {

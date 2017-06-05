@@ -3,6 +3,7 @@ using Desktop.App.Core.Handlers;
 using Desktop.Shared.Core;
 using ES_PowerTool.Shared;
 using ES_PowerTool.Shared.Services.OOE.Presets;
+using Log4N.Logger;
 using System;
 
 namespace ES_PowerTool.Handlers
@@ -18,6 +19,7 @@ namespace ES_PowerTool.Handlers
 
         protected override void OnFailure(ExecutionEvent executionEvent)
         {
+            Log.Error("Error during the set the default to the entity");
         }
 
         protected override void OnSuccessful(ExecutionEvent executionEvent, Guid affectedObjectId)

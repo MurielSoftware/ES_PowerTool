@@ -65,6 +65,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.SqlServerCe, Version=4.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.SqlServer.Compact.4.0.8876.1\lib\net40\System.Data.SqlServerCe.dll</HintPath>
@@ -212,6 +213,10 @@
     <ProjectReference Include="..\ES_PowerTool.Shared\ES_PowerTool.Shared.csproj">
       <Project>{c7abc907-08a3-439b-bdee-6d0f171ef4c6}</Project>
       <Name>ES_PowerTool.Shared</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Log\Log4N.csproj">
+      <Project>{9467eee6-d426-4269-a04c-01a91afc8eb2}</Project>
+      <Name>Log4N</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -18,6 +18,7 @@ using System.Windows.Input;
 using System.Windows.Threading;
 using Desktop.Shared.Core.Validations;
 using Desktop.Ui.I18n;
+using Log4N.Logger;
 
 namespace Desktop.App.Core.ModelViews
 {
@@ -74,19 +75,19 @@ namespace Desktop.App.Core.ModelViews
         protected virtual void OnFinishCommand(object obj)
         {
             _wizard = (Wizard)obj;
-            try
-            {
+            //try
+            //{
                 LongRunningJob<T> projectCreationJob = new LongRunningJob<T>(DoFinish, Title);
                 projectCreationJob.AddAction(delegate 
                 {
                     _wizard.Dispatcher.Invoke(DispatcherPriority.Normal, new ThreadStart(CloseWizardOnFinish));
                 });
                 projectCreationJob.Execute(Dto);
-            }
-            catch(Exception ex)
-            {
-
-            }
+            //}
+            //catch(Exception ex)
+            //{
+            //    Log.Error("Error during finishing the wizard");
+            //}
         }
 
         protected virtual void CloseWizardOnFinish()
@@ -102,6 +103,7 @@ namespace Desktop.App.Core.ModelViews
         {
             if (!dto.IsValid)
             {
+                Log.Warning(string.Format("The object type({0}) client side validation exception", typeof(T)));
                 OnClientSideFailed(dto.GetValidationResult());
                 return;
             }
@@ -109,10 +111,12 @@ namespace Desktop.App.Core.ModelViews
             try
             {
                 DoPersist(dto);
+                Log.Info(string.Format("The object type({0}) was created/updated", typeof(T)));
                 _successFinish = true;
             }
             catch (ValidationException ex)
             {
+                Log.Warning(string.Format("The object type({0}) server side validation exception", typeof(T)));
                 OnServerSideFailed(dto, ex.GetValidationResult());
             }
         }

@@ -2,6 +2,7 @@
 using Desktop.App.Core.Handlers;
 using Desktop.Shared.Core.Context;
 using ES_PowerTool.ModelViews;
+using Log4N.Logger;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,7 +21,7 @@ namespace ES_PowerTool.Handlers
 
         protected override void OnFailure(ExecutionEvent executionEvent)
         {
-            throw new NotImplementedException();
+            Log.Error("Error during the closing the project");
         }
 
         protected override void OnSuccessful(ExecutionEvent executionEvent, Guid affectedObjectId)

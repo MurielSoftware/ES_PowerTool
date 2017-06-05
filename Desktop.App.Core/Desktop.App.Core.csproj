@@ -147,6 +147,10 @@
       <Project>{c7abc907-08a3-439b-bdee-6d0f171ef4c6}</Project>
       <Name>ES_PowerTool.Shared</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Log\Log4N.csproj">
+      <Project>{9467EEE6-D426-4269-A04C-01A91AFC8EB2}</Project>
+      <Name>Log4N</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Page Include="Ui\Controls\BaseTreeView.xaml">

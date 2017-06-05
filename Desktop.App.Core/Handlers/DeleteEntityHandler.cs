@@ -3,12 +3,8 @@ using Desktop.Shared.Core.Dtos;
 using Desktop.Shared.Core.Navigations;
 using Desktop.Shared.Core.Services;
 using Desktop.App.Core.Events.Publishing;
-using Desktop.App.Core.Handlers;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Desktop.Shared.Core.Validations;
 using System.Windows;
 using Desktop.Ui.I18n;
@@ -16,6 +12,7 @@ using Desktop.App.Core.Utils;
 using Desktop.App.Core.Ui.Windows;
 using Desktop.App.Core.ModelViews;
 using Desktop.Shared.Core.Context;
+using Log4N.Logger;
 
 namespace Desktop.App.Core.Handlers
 {
@@ -55,10 +52,12 @@ namespace Desktop.App.Core.Handlers
 
         protected override void OnFailure(ExecutionEvent executionEvent)
         {
+            Log.Error("Error during the deletion");
         }
 
         protected override void OnSuccessful(ExecutionEvent executionEvent, Guid affectedObjectId)
         {
+            Log.Info(string.Format("Entity '{0}' was deleted", affectedObjectId));
             Publisher.GetInstance().Publish(PublishEvent.CreateDeletionEvent(affectedObjectId, null));
         }
 

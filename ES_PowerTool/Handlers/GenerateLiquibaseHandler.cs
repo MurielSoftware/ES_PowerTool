@@ -8,6 +8,7 @@ using ES_PowerTool.ModelViews;
 using ES_PowerTool.Shared.Dtos.Generate;
 using ES_PowerTool.Shared.Services;
 using ES_PowerTool.Ui.Windows;
+using Log4N.Logger;
 using System;
 using System.Windows.Threading;
 
@@ -18,16 +19,17 @@ namespace ES_PowerTool.Handlers
         protected override void DoExecute(ExecutionEvent executionEvent)
         {
             WindowsManager.GetInstance().ShowDialog<GenerateLiquibaseWindow>(new GenerateLiquibaseWindowModelView(executionEvent.GetFirstSelectedTreeNavigationItem()));
+            OnSuccessful(executionEvent, Guid.Empty);
         }
 
         protected override void OnFailure(ExecutionEvent executionEvent)
         {
-            throw new NotImplementedException();
+            Log.Error("Error during the liquibase generating");
         }
 
         protected override void OnSuccessful(ExecutionEvent executionEvent, Guid affectedObjectId)
         {
-            throw new NotImplementedException();
+            Log.Info("Generating of the liquibase was success");
         }
     }
 }

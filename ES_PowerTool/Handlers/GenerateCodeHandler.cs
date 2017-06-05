@@ -2,6 +2,7 @@
 using Desktop.App.Core.Ui.Windows;
 using ES_PowerTool.ModelViews;
 using ES_PowerTool.Ui.Windows;
+using Log4N.Logger;
 using System;
 
 namespace ES_PowerTool.Handlers
@@ -11,16 +12,17 @@ namespace ES_PowerTool.Handlers
         protected override void DoExecute(ExecutionEvent executionEvent)
         {
             WindowsManager.GetInstance().ShowDialog<GenerateCodeWindow>(new GenerateCodeWindowModelView(executionEvent.GetFirstSelectedTreeNavigationItem()));
+            OnSuccessful(executionEvent, Guid.Empty);
         }
 
         protected override void OnFailure(ExecutionEvent executionEvent)
         {
-            throw new NotImplementedException();
+            Log.Error("Error during the code generating");
         }
 
         protected override void OnSuccessful(ExecutionEvent executionEvent, Guid affectedObjectId)
         {
-            throw new NotImplementedException();
+            Log.Info("Code generating was success");
         }
     }
 }

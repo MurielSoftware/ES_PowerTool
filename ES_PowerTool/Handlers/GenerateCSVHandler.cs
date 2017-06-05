@@ -8,6 +8,7 @@ using ES_PowerTool.ModelViews;
 using ES_PowerTool.Shared.Dtos.Generate;
 using ES_PowerTool.Shared.Services.Generate;
 using ES_PowerTool.Ui.Windows;
+using Log4N.Logger;
 using System;
 using System.Windows.Threading;
 
@@ -44,7 +45,8 @@ namespace ES_PowerTool.Handlers
 
         private void AfterGenerateAction()
         {
-            WindowsManager.GetInstance().ShowDialog<GenerateCSVWindow>(new GenerateCSVWindowModelView(_generateDto)); 
+            WindowsManager.GetInstance().ShowDialog<GenerateCSVWindow>(new GenerateCSVWindowModelView(_generateDto));
+            OnSuccessful(null, Guid.Empty);
         }
 
         protected override void OnFailure(ExecutionEvent executionEvent)
@@ -54,6 +56,7 @@ namespace ES_PowerTool.Handlers
 
         protected override void OnSuccessful(ExecutionEvent executionEvent, Guid affectedObjectId)
         {
+            Log.Info("Generate CSV was success");
         }
     }
 }

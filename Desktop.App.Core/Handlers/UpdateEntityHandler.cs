@@ -5,6 +5,7 @@ using Desktop.Shared.Core;
 using Desktop.Shared.Core.Context;
 using Desktop.Shared.Core.Dtos;
 using Desktop.Shared.Core.Services;
+using Log4N.Logger;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -44,10 +45,12 @@ namespace Desktop.App.Core.Handlers
 
         protected override void OnFailure(ExecutionEvent executionEvent)
         {
+            Log.Error("Error during the updating of the entity");
         }
 
         protected override void OnSuccessful(ExecutionEvent executionEvent, Guid affectedObjectId)
         {
+            Log.Info(string.Format("Entity '{0}' was updated", affectedObjectId));
             Publisher.GetInstance().Publish(PublishEvent.CreateUpdateEvent(affectedObjectId, executionEvent.GetFirstSelectedTreeNavigationItem().Id));
         }
     }
