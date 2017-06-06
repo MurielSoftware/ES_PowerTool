@@ -47,7 +47,7 @@ namespace Desktop.Data.Core.Context
             {
                 Commit();
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
                 Rollback();
             }
