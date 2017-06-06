@@ -18,6 +18,7 @@ namespace ES_PowerTool.Data.DAL.OOE.Types
         internal List<TreeNavigationItem> FindChildren(Guid parentId)
         {
             return GetContext().Set<CompositeType>()
+                .AsNoTracking()
                 .Where(x => x.FolderId == parentId)
                 .Select(x => new TreeNavigationItem() { Id = x.Id, Name = x.Description, Type = NavigationType.COMPOSITE_TYPE, ProjectId = x.ProjectId, HasRemoteChildren = x.Children.Count > 0, State = x.State })
                 .ToList();
@@ -26,6 +27,7 @@ namespace ES_PowerTool.Data.DAL.OOE.Types
         internal TreeNavigationItem FindSpecific(Guid id)
         {
             return GetContext().Set<CompositeType>()
+                .AsNoTracking()
                 .Where(x => x.Id == id)
                 .Select(x => new TreeNavigationItem() { Id = x.Id, Name = x.Description, Type = NavigationType.COMPOSITE_TYPE, ProjectId = x.ProjectId, HasRemoteChildren = x.Children.Count > 0, State = x.State })
                 .SingleOrDefault();

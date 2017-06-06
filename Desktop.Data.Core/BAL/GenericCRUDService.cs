@@ -43,7 +43,7 @@ namespace Desktop.Data.Core.BAL
 
         public virtual T Read(Guid id)
         {
-            return CreateDto(_genericRepository.Find<U>(id));
+            return CreateDto(_genericRepository.FindNoTracking<U>(id));
         }
 
         public void Dispose()

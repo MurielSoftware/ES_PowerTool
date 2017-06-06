@@ -80,19 +80,12 @@ namespace Desktop.App.Core.ModelViews
         protected virtual void OnFinishCommand(object obj)
         {
             _wizard = (Wizard)obj;
-            //try
-            //{
-                LongRunningJob<T> projectCreationJob = new LongRunningJob<T>(DoFinish, Title);
-                projectCreationJob.AddAction(delegate 
-                {
-                    _wizard.Dispatcher.Invoke(DispatcherPriority.Normal, new ThreadStart(CloseWizardOnFinish));
-                });
-                projectCreationJob.Execute(Dto);
-            //}
-            //catch(Exception ex)
-            //{
-            //    Log.Error("Error during finishing the wizard");
-            //}
+            LongRunningJob<T> projectCreationJob = new LongRunningJob<T>(DoFinish, Title);
+            projectCreationJob.AddAction(delegate 
+            {
+                _wizard.Dispatcher.Invoke(DispatcherPriority.Normal, new ThreadStart(CloseWizardOnFinish));
+            });
+            projectCreationJob.Execute(Dto);
         }
 
         protected virtual void CloseWizardOnFinish()

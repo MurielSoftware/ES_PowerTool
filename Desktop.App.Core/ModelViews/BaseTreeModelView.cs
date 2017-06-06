@@ -115,23 +115,31 @@ namespace Desktop.App.Core.ModelViews
             {
                 return;
             }
-            TreeNavigationItem updatedTreeNavigationItem = _service.Reload(treeNavigationItem);
             TreeNavigationItem parentTreeNavigationItem = treeNavigationItem.Parent;
             if (parentTreeNavigationItem == null)
             {
-                int indexOfUpdatedTreeNavigationItem = Roots.IndexOf(treeNavigationItem);
-                Roots.RemoveAt(indexOfUpdatedTreeNavigationItem);
-                Roots.Insert(indexOfUpdatedTreeNavigationItem, updatedTreeNavigationItem);
+                DoUpdate(Roots, parentTreeNavigationItem, treeNavigationItem);
             }
             else
             {
-                int indexOfUpdatedTreeNavigationItem = parentTreeNavigationItem.Children.IndexOf(treeNavigationItem);
-                updatedTreeNavigationItem.Parent = parentTreeNavigationItem;
-                parentTreeNavigationItem.Children.RemoveAt(indexOfUpdatedTreeNavigationItem);
-                parentTreeNavigationItem.Children.Insert(indexOfUpdatedTreeNavigationItem, updatedTreeNavigationItem);
+                DoUpdate(parentTreeNavigationItem.Children, parentTreeNavigationItem, treeNavigationItem);
             }
-            updatedTreeNavigationItem.HasRemoteChildren = treeNavigationItem.HasRemoteChildren;
-            updatedTreeNavigationItem.Children = treeNavigationItem.Children;
+        }
+
+        private void DoUpdate(IList<TreeNavigationItem> children, TreeNavigationItem parentTreeNavigationItem, TreeNavigationItem originalTreeNavigationItem)
+        {
+            int indexOfUpdatedTreeNavigationItem = children.IndexOf(originalTreeNavigationItem);
+            children.RemoveAt(indexOfUpdatedTreeNavigationItem);
+            TreeNavigationItem updatedTreeNavigationItem = _service.Reload(originalTreeNavigationItem);
+            updatedTreeNavigationItem.Parent = parentTreeNavigationItem;
+            updatedTreeNavigationItem.HasRemoteChildren = originalTreeNavigationItem.HasRemoteChildren;
+            updatedTreeNavigationItem.Children = originalTreeNavigationItem.Children;
+
+            if (!updatedTreeNavigationItem.HasRemoteChildren && updatedTreeNavigationItem.Children.Count > 0)
+            {
+                updatedTreeNavigationItem.IsExpanded = true;
+            }
+            children.Insert(indexOfUpdatedTreeNavigationItem, updatedTreeNavigationItem);
         }
 
         protected virtual void OnDelete(PublishEvent publishEvent)

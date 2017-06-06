@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Desktop.Shared.Core.Context;
 using Desktop.Data.Core.Model;
 using Desktop.Shared.Core.Navigations;
+using Desktop.Shared.Core;
 
 namespace ES_PowerTool.Data.DAL
 {
@@ -20,7 +21,7 @@ namespace ES_PowerTool.Data.DAL
         internal List<TreeNavigationItem> FindRoots()
         {
             return GetContext().Set<Project>()
-                .Select(x => new TreeNavigationItem() { Id = x.Id, Name = x.Name, Type = NavigationType.PROJECT, ProjectId = x.Id, HasRemoteChildren = x.Folders.Count > 0 })
+                .Select(x => new TreeNavigationItem() { Id = x.Id, Name = x.Name, Type = NavigationType.PROJECT, ProjectId = x.Id, State = State.NEW, HasRemoteChildren = x.Folders.Count > 0 })
                 .ToList();
         }
 
@@ -28,7 +29,7 @@ namespace ES_PowerTool.Data.DAL
         {
             return GetContext().Set<Project>()
                 .Where(x => x.Id == id)
-                .Select(x => new TreeNavigationItem() { Id = x.Id, Name = x.Name, Type = NavigationType.PROJECT, ProjectId = x.Id, HasRemoteChildren = x.Folders.Count > 0 })
+                .Select(x => new TreeNavigationItem() { Id = x.Id, Name = x.Name, Type = NavigationType.PROJECT, ProjectId = x.Id, State = State.NEW, HasRemoteChildren = x.Folders.Count > 0 })
                 .SingleOrDefault();
         }
     }

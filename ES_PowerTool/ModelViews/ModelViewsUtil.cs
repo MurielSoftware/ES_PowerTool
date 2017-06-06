@@ -43,7 +43,7 @@ namespace ES_PowerTool.ModelViews
             }
             foreach (TreeNavigationItem treeNavigationItem in treeNavigationItems)
             {
-                if(!State.BUILTIN.Equals(treeNavigationItem.State))
+                if (!State.BUILTIN.Equals(treeNavigationItem.State))
                 {
                     return false;
                 }
