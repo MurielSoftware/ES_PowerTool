@@ -21,8 +21,6 @@ namespace ES_PowerTool.Data.BAL.Set
         protected BaseConvertProvider<SettingValueDto, Settings> _dtoToEntityConverter = new DtoToEntityConvertProvider<SettingValueDto, Settings>();
         protected BaseConvertProvider<Settings, SettingValueDto> _entityToDtoConverter = new EntityToDtoConvertProvider<Settings, SettingValueDto>();
 
-        private const int SETTINGS_COUNT = 21;
-
         public SettingsCRUDService(Connection connection) 
             : base(connection)
         {
@@ -43,14 +41,8 @@ namespace ES_PowerTool.Data.BAL.Set
             SettingsDto settingsDto = new SettingsDto();
             List<SettingValueDto> settingValueDtos = new List<SettingValueDto>();
             List<Settings> settings = _genericRepository.FindAll<Settings>();
-            if(settings.Count != SETTINGS_COUNT)
-            {
-                settings = CreateAndPresistDefaultSettings();
-            }
             settings.ForEach(x => settingValueDtos.Add(_entityToDtoConverter.Convert(_connection, x)));
-            settingsDto.LiquibaseAddColumnFormat = settingValueDtos.Where(x => x.Id == IdConstants.SETTINGS_LIQUIBASE_COLUMN_FORMAT_ID).SingleOrDefault();
-            settingsDto.SettingsLiquibaseDataTypeConversion = settingValueDtos.Where(x => x.Group == SettingsGroup.LIQUIBASE_CONVERT_DATA_TYPE).ToList();
-            settingsDto.SettingsCodeDataTypeConversion = settingValueDtos.Where(x => x.Group == SettingsGroup.CODE_CONVERT_DATA_TYPE).ToList();
+            settingsDto.SettAllSetingValues(settingValueDtos);
             return settingsDto;
         }
 
@@ -59,11 +51,13 @@ namespace ES_PowerTool.Data.BAL.Set
             throw new NotImplementedException();
         }
 
-        private List<Settings> CreateAndPresistDefaultSettings()
+        public List<Settings> CreateAndPresistDefaultSettings()
         {
-            _genericRepository.DeleteRange<Settings>(x => x.Id != Guid.Empty);
+            //_genericRepository.DeleteRange<Settings>(x => x.Id != Guid.Empty);
 
             List<Settings> settings = new List<Settings>();
+            settings.Add(CreateSettings(IdConstants.SETTINGS_COMMON_EDIT_IMPORTED_ELEMENTS_ID, SettingsSection.COMMON, SettingsGroup.LIQUIBASE_COMMON, "Allow to update imported elements", "false"));
+
             settings.Add(CreateSettings(IdConstants.SETTINGS_LIQUIBASE_COLUMN_FORMAT_ID, SettingsSection.LIQUIBASE, SettingsGroup.LIQUIBASE_COMMON, "Column definition", "<column name=\"{0}\" type=\"{1}\" />"));
             settings.Add(CreateSettings(IdConstants.SETTINGS_LIQUIBASE_DATA_TYPE_CONVERSION_BOOLEAN_ID, SettingsSection.LIQUIBASE, SettingsGroup.LIQUIBASE_CONVERT_DATA_TYPE, "boolean", "BOOLEAN"));
             settings.Add(CreateSettings(IdConstants.SETTINGS_LIQUIBASE_DATA_TYPE_CONVERSION_BYTE_ID, SettingsSection.LIQUIBASE, SettingsGroup.LIQUIBASE_CONVERT_DATA_TYPE, "byte", "NUMBER"));

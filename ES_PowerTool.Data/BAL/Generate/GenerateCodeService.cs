@@ -33,11 +33,6 @@ namespace ES_PowerTool.Data.BAL.Generate
             _settingsRepository = new SettingsRepository(connection);
         }
 
-        public void Generate()
-        {
-            throw new NotImplementedException();
-        }
-
         public GenerateCodeTypeTreeNavigationItem GetTypeToGenerate(Guid owningTypeId)
         {
             TreeNavigationItem compositeTypeTreeNavigationItem = _compositeTypeNavigationRepository.FindSpecific(owningTypeId);

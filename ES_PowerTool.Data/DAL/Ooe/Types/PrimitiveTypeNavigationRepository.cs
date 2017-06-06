@@ -21,7 +21,7 @@ namespace ES_PowerTool.Data.DAL.OOE.Types
         {
             return GetContext().Set<PrimitiveType>()
                 .Where(x => x.FolderId == parentId)
-                .Select(x => new TreeNavigationItem() { Id = x.Id, Name = x.Description, Type = NavigationType.PRIMITIVE_TYPE, ProjectId = x.ProjectId, BuiltIn = x.BuiltIn })
+                .Select(x => new TreeNavigationItem() { Id = x.Id, Name = x.Description, Type = NavigationType.PRIMITIVE_TYPE, ProjectId = x.ProjectId, State = x.State })
                 .ToList();
         }
 
@@ -29,7 +29,7 @@ namespace ES_PowerTool.Data.DAL.OOE.Types
         {
             return GetContext().Set<PrimitiveType>()
                 .AsNoTracking()
-                .Select(x => new TreeNavigationItem() { Id = x.Id, Name = x.Description, Type = NavigationType.PRIMITIVE_TYPE, ProjectId = x.ProjectId, BuiltIn = x.BuiltIn })
+                .Select(x => new TreeNavigationItem() { Id = x.Id, Name = x.Description, Type = NavigationType.PRIMITIVE_TYPE, ProjectId = x.ProjectId, State = x.State })
                 .ToList();
         }
     }

@@ -82,5 +82,11 @@ namespace ES_PowerTool.Data.BAL.OOE.Elements
             RemoveAssociatedCompositePresetElement(compositeTypeElement);
             base.DoDelete(compositeTypeElement);
         }
+
+        public void Copy(CompositeTypeElementDto compositeTypeElementDto)
+        {
+            compositeTypeElementDto.Id = Guid.Empty;
+            Persist(compositeTypeElementDto);
+        }
     }
 }

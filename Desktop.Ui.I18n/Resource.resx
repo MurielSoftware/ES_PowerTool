@@ -336,4 +336,13 @@
   <data name="label_content_built_in" xml:space="preserve">
     <value>Content Built-in</value>
   </data>
+  <data name="validation_message_name_is_not_unique" xml:space="preserve">
+    <value>The name '{0}' is not unique</value>
+  </data>
+  <data name="error_message_wrong_csv_file_on_input" xml:space="preserve">
+    <value>Nevalidní soubor na vstupu</value>
+  </data>
+  <data name="label_allow_to_edit_imported_elements" xml:space="preserve">
+    <value>Allow to edit imported elements</value>
+  </data>
 </root>

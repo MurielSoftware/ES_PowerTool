@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace Desktop.Shared.Core.Navigations
 {
+    [Serializable]
     public class TreeNavigationItem : INotifyPropertyChanged
     {
         private bool _isSelected;
@@ -49,7 +50,7 @@ namespace Desktop.Shared.Core.Navigations
         public virtual ObservableCollection<TreeNavigationItem> Children { get; set; }
         public virtual bool HasRemoteChildren { get; set; }
         public virtual Guid ProjectId { get; set; }
-        public virtual bool BuiltIn { get; set; }
+        public virtual State State { get; set; }
 
         public TreeNavigationItem()
         {

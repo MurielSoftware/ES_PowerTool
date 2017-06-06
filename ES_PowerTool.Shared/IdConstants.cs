@@ -6,6 +6,8 @@ namespace ES_PowerTool.Shared
     {
         public static Guid PRESET_FOLDER_ID = Guid.Parse("c50943aa-6683-4ab1-ba6a-a9e9ff2f0ba8");
 
+        public static Guid SETTINGS_COMMON_EDIT_IMPORTED_ELEMENTS_ID = Guid.Parse("e3ae333b-dd8f-481b-8959-9f1f85b242b0");
+
         public static Guid SETTINGS_LIQUIBASE_COLUMN_FORMAT_ID = Guid.Parse("AC0B9926-176C-4FE5-A35C-B6ACA1447F20");
         public static Guid SETTINGS_LIQUIBASE_DATA_TYPE_CONVERSION_BOOLEAN_ID = Guid.Parse("80bfba57-ed82-431f-ab00-ffa71215b01c");
         public static Guid SETTINGS_LIQUIBASE_DATA_TYPE_CONVERSION_BYTE_ID = Guid.Parse("e106e0d5-93d1-4cf0-a054-0e087b910e1c");

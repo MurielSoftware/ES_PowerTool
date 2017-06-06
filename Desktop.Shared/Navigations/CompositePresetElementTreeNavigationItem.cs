@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Desktop.Shared.Core.Navigations
 {
+    [Serializable]
     public class CompositePresetElementTreeNavigationItem : TreeNavigationItem
     {
         public virtual string CompositeTypeElementName { get; set; }

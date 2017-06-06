@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using ES_PowerTool.ModelViews;
 using Log4N.Logger;
+using ES_PowerTool.Settings;
 
 namespace ES_PowerTool.Handlers
 {
@@ -37,7 +38,7 @@ namespace ES_PowerTool.Handlers
         protected override void OnSuccessful(ExecutionEvent executionEvent, Guid affectedObjectId)
         {
             Publisher.GetInstance().ServerChanged(Connection.GetInstance());
-            ModelViewsUtil.ProjectIsActive = true;
+            ProjectProvider.GetInstance().SetProjectActive(true);
         }
     }
 }

@@ -79,11 +79,29 @@ namespace Desktop.Ui.I18n {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Nevalidní soubor na vstupu.
+        /// </summary>
+        public static string error_message_wrong_csv_file_on_input {
+            get {
+                return ResourceManager.GetString("error_message_wrong_csv_file_on_input", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to About.
         /// </summary>
         public static string label_about {
             get {
                 return ResourceManager.GetString("label_about", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Allow to edit imported elements.
+        /// </summary>
+        public static string label_allow_to_edit_imported_elements {
+            get {
+                return ResourceManager.GetString("label_allow_to_edit_imported_elements", resourceCulture);
             }
         }
         
@@ -669,6 +687,15 @@ namespace Desktop.Ui.I18n {
         public static string ribbon_tab_help_label {
             get {
                 return ResourceManager.GetString("ribbon_tab_help_label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The name &apos;{0}&apos; is not unique.
+        /// </summary>
+        public static string validation_message_name_is_not_unique {
+            get {
+                return ResourceManager.GetString("validation_message_name_is_not_unique", resourceCulture);
             }
         }
         

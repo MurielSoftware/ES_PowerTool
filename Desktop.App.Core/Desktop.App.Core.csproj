@@ -49,12 +49,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Editors\IReferenceEditor.cs" />
+    <Compile Include="Handlers\CopyHandler.cs" />
+    <Compile Include="Handlers\CutHandler.cs" />
+    <Compile Include="Handlers\PasteHandler.cs" />
     <Compile Include="Handlers\UpdateEntityHandler.cs" />
+    <Compile Include="Events\IListener.cs" />
+    <Compile Include="Jobs\ProgressCounter.cs" />
     <Compile Include="ModelViews\AboutWindowModelView.cs" />
     <Compile Include="ModelViews\BaseDetailsTreeModelView.cs" />
     <Compile Include="ModelViews\BaseReferenceWindowModelView.cs" />
     <Compile Include="ModelViews\ITreeModelView.cs" />
     <Compile Include="ModelViews\MessageWindowModelView.cs" />
+    <Compile Include="PropertyChangedProvider.cs" />
     <Compile Include="Ui\Builders\BaseControlBuilder.cs" />
     <Compile Include="Ui\Builders\CheckBoxControlBuilder.cs" />
     <Compile Include="Ui\Builders\EnumControlBuilder.cs" />
@@ -97,10 +103,10 @@
     <Compile Include="Events\Publishing\Publisher.cs" />
     <Compile Include="Events\Publishing\PublishEvent.cs" />
     <Compile Include="Events\Selection\SelectionChangeNotifier.cs" />
-    <Compile Include="Singleton.cs" />
     <Compile Include="Ui\Converters\ListBoxConverter.cs" />
     <Compile Include="Ui\Converters\MessageWindowIconConverter.cs" />
     <Compile Include="Ui\Converters\ResourceKeyConverter.cs" />
+    <Compile Include="Ui\Converters\StringToBooleanConverter.cs" />
     <Compile Include="Ui\Converters\TreeNavigationItemImageConverter.cs" />
     <Compile Include="Ui\Converters\TreeNavigationItemLabelConverter.cs" />
     <Compile Include="Ui\Dnd\BaseDropAdapter.cs" />

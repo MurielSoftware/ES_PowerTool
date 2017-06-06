@@ -18,14 +18,20 @@ using ES_PowerTool.Shared.Dtos.OOE.Elements;
 using ES_PowerTool.Shared.Dtos.OOE.Presets;
 using Desktop.Shared.Core.Validations;
 using Desktop.Ui.I18n;
+using ES_PowerTool.Data.BAL.Set;
 
 namespace ES_PowerTool.Data.BAL
 {
     public class ProjectCRUDService : GenericCRUDService<ProjectDto, Project>, IProjectCRUDService
     {
+        private ProjectValidationService _projectValidationService;
+        private SettingsCRUDService _settingsCRUDService;
+
         public ProjectCRUDService(Connection connection) 
             : base(connection)
         {
+            _projectValidationService = new ProjectValidationService(connection);
+            _settingsCRUDService = new SettingsCRUDService(connection);
         }
 
         public override ProjectDto Persist(ProjectDto projectDto)
@@ -39,7 +45,18 @@ namespace ES_PowerTool.Data.BAL
             PersistEntities<CompositePresetElement, CompositePresetElementDto>(persistedProjectDto.Id, projectDto.CsvPresetElements);
             SetDefaultPresetsToTypes(projectDto.CsvDefaultPreset);
             SetSuperTypes(projectDto.CsvTypeType);
+            _settingsCRUDService.CreateAndPresistDefaultSettings();
             return persistedProjectDto;
+        }
+
+        protected override void ValidationBeforePersist(ProjectDto projectDto)
+        {
+            base.ValidationBeforePersist(projectDto);
+            ValidationResult validationResult = _projectValidationService.CollectValidationResultBeforePersist(projectDto);
+            if (!validationResult.IsEmpty())
+            {
+                throw new ValidationException(validationResult);
+            }
         }
 
         private void PersistEntities<T, U>(Guid projectId, CSVFile file, string dtype = "")

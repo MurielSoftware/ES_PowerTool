@@ -19,6 +19,7 @@ using System.Windows.Threading;
 using Desktop.Shared.Core.Validations;
 using Desktop.Ui.I18n;
 using Log4N.Logger;
+using System.Windows;
 
 namespace Desktop.App.Core.ModelViews
 {
@@ -30,6 +31,8 @@ namespace Desktop.App.Core.ModelViews
         public ICommand CancelCommand { get; private set; }
         public ICommand FinishCommand { get; private set; }
         public string ValidationMessage { get; private set; }
+        public Visibility InfoVisibility { get; private set; }
+        public Visibility ValidationMessageVisibility { get; private set; }
 
         protected ICRUDService<T> _crudService;
         protected BasePersister<T> _persister;
@@ -43,6 +46,8 @@ namespace Desktop.App.Core.ModelViews
             Dto = dto;
             FinishCommand = new RelayCommand(OnFinishCommand);
             CancelCommand = new RelayCommand(OnCancelCommand);
+            InfoVisibility = Visibility.Visible;
+            ValidationMessageVisibility = Visibility.Hidden;
 
             _crudService = (ICRUDService<T>)ServiceActivator.Get(HandlerUtils.DTO_TO_SERVICE[typeof(T)]);
             _persister = new BasePersister<T>(_crudService, Dto);
@@ -129,7 +134,11 @@ namespace Desktop.App.Core.ModelViews
         protected virtual void OnClientSideFailed(string validationResult)
         {
             ValidationMessage = validationResult;
+            InfoVisibility = Visibility.Collapsed;
+            ValidationMessageVisibility = Visibility.Visible;
             OnPropertyChanged(() => ValidationMessage);
+            OnPropertyChanged(() => InfoVisibility);
+            OnPropertyChanged(() => ValidationMessageVisibility);
         }
 
         protected virtual void OnServerSideFailed(T dto, ValidationResult validationResult)
@@ -140,7 +149,11 @@ namespace Desktop.App.Core.ModelViews
                 sb.AppendLine(ResourceUtils.GetMessage(validationMessage.ResourceKey, validationMessage.Parameters));
             }
             ValidationMessage = sb.ToString();
+            InfoVisibility = Visibility.Collapsed;
+            ValidationMessageVisibility = Visibility.Visible;
             OnPropertyChanged(() => ValidationMessage);
+            OnPropertyChanged(() => InfoVisibility);
+            OnPropertyChanged(() => ValidationMessageVisibility);
         }
 
         private void CreateTitle()

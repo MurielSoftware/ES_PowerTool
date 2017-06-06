@@ -2,6 +2,7 @@
 using Desktop.App.Core.Handlers;
 using Desktop.Shared.Core.Context;
 using ES_PowerTool.ModelViews;
+using ES_PowerTool.Settings;
 using Log4N.Logger;
 using System;
 using System.Collections.Generic;
@@ -27,7 +28,7 @@ namespace ES_PowerTool.Handlers
         protected override void OnSuccessful(ExecutionEvent executionEvent, Guid affectedObjectId)
         {
             Publisher.GetInstance().ServerChanged(null);
-            ModelViewsUtil.ProjectIsActive = false;
+            ProjectProvider.GetInstance().SetProjectActive(false);
         }
     }
 }

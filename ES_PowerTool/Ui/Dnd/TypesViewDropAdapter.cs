@@ -15,11 +15,12 @@ namespace ES_PowerTool.Ui.Dnd
         protected override void AddDragAndDropEqualityValidators()
         {
             base.AddDragAndDropEqualityValidators();
+            _dragAndDropEqualityValidators.Add(new BuiltInDragAndDropValidator());
             _dragAndDropEqualityValidators.Add(new NavigationItemTypeCompatibleDragAndDropValidator(new List<NavigationType>() { NavigationType.PRIMITIVE_TYPE, NavigationType.COMPOSITE_TYPE, NavigationType.FOLDER }, new List<NavigationType>() { NavigationType.COMPOSITE_TYPE, NavigationType.FOLDER }));
         }
 
         protected override void AddDropHandlers()
-        {
+        { 
             _dropHandlers.Add(new TypeToCompositeTypeDropHandler());
             _dropHandlers.Add(new FolderToFolderDropHandler());
             _dropHandlers.Add(new TypeToFolderDropHandler());

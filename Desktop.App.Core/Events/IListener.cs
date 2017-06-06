@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Desktop.App.Core.Events.Publishing
+namespace Desktop.App.Core.Events
 {
-    public interface IPublishListener : IListener<PublishEvent>
+    public interface IListener<T>
     {
+        void OnEvent(T e);
     }
 }

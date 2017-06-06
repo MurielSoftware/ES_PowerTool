@@ -107,6 +107,8 @@
     <Compile Include="ModelViews\GenerateLiquibaseWindowModelView.cs" />
     <Compile Include="ModelViews\ModelViewsUtil.cs" />
     <Compile Include="ModelViews\SettingsModelView.cs" />
+    <Compile Include="Settings\ProjectProvider.cs" />
+    <Compile Include="Settings\SettingsProvider.cs" />
     <Compile Include="Ui\Dnd\DropHandlers\FolderToFolderDropHandler.cs" />
     <Compile Include="Ui\Dnd\DropHandlers\TypeToCompositeTypeDropHandler.cs" />
     <Compile Include="Ui\Dnd\DropHandlers\TypeToFolderDropHandler.cs" />

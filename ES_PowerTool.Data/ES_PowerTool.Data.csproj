@@ -56,6 +56,7 @@
     <Compile Include="BAL\OOE\FolderValidationService.cs" />
     <Compile Include="BAL\OOE\Presets\CompositePresetElementCRUDService.cs" />
     <Compile Include="BAL\OOE\Presets\PresetValidationService.cs" />
+    <Compile Include="BAL\ProjectValidationService.cs" />
     <Compile Include="BAL\Set\SettingsCRUDService.cs" />
     <Compile Include="BAL\OOE\Types\CompositeTypeDetailsNavigationService.cs" />
     <Compile Include="BAL\OOE\Elements\CompositeTypeElementCRUDService.cs" />

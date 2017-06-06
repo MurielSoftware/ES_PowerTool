@@ -18,6 +18,8 @@ namespace ES_PowerTool.ModelViews
 {
     public class NewProjectModelView : WizardModelView<ProjectDto>
     {
+        private bool _isDatabaseFileAlreadyExisting;
+
         public NewProjectModelView(ProjectDto projectDto) 
             : base(projectDto)
         {
@@ -25,6 +27,7 @@ namespace ES_PowerTool.ModelViews
 
         protected override void DoPersist(ProjectDto projectDto)
         {
+            _isDatabaseFileAlreadyExisting = IsDatabaseFileExisting(projectDto.Name);
             Connection.GetInstance().CreateConnection(CreateDatabaseFileName(projectDto.Name));
             _crudService = (IProjectCRUDService)ServiceActivator.Get(typeof(IProjectCRUDService));
             _persister = new ProjectPersister(_crudService, projectDto);
@@ -34,12 +37,25 @@ namespace ES_PowerTool.ModelViews
         protected override void OnServerSideFailed(ProjectDto projectDto, ValidationResult validationResult)
         {
             base.OnServerSideFailed(projectDto, validationResult);
-            File.Delete(AppDomain.CurrentDomain.BaseDirectory + CreateDatabaseFileName(projectDto.Name));
+            if (!_isDatabaseFileAlreadyExisting)
+            {
+                File.Delete(GetPathToDatabaseFile(projectDto.Name));
+            }
+        }
+
+        private static bool IsDatabaseFileExisting(string projectName)
+        {
+            return File.Exists(GetPathToDatabaseFile(projectName));
         }
 
         private static string CreateDatabaseFileName(string projectName)
         {
             return projectName + ".sdf";
+        }
+
+        private static string GetPathToDatabaseFile(string projectName)
+        {
+            return AppDomain.CurrentDomain.BaseDirectory + CreateDatabaseFileName(projectName);
         }
     }
 }

@@ -19,7 +19,7 @@ namespace ES_PowerTool.Data.DAL.OOE.Types
         {
             return GetContext().Set<CompositeType>()
                 .Where(x => x.FolderId == parentId)
-                .Select(x => new TreeNavigationItem() { Id = x.Id, Name = x.Description, Type = NavigationType.COMPOSITE_TYPE, ProjectId = x.ProjectId, HasRemoteChildren = x.Children.Count > 0, BuiltIn = x.BuiltIn })
+                .Select(x => new TreeNavigationItem() { Id = x.Id, Name = x.Description, Type = NavigationType.COMPOSITE_TYPE, ProjectId = x.ProjectId, HasRemoteChildren = x.Children.Count > 0, State = x.State })
                 .ToList();
         }
 
@@ -27,7 +27,7 @@ namespace ES_PowerTool.Data.DAL.OOE.Types
         {
             return GetContext().Set<CompositeType>()
                 .Where(x => x.Id == id)
-                .Select(x => new TreeNavigationItem() { Id = x.Id, Name = x.Description, Type = NavigationType.COMPOSITE_TYPE, ProjectId = x.ProjectId, HasRemoteChildren = x.Children.Count > 0, BuiltIn = x.BuiltIn })
+                .Select(x => new TreeNavigationItem() { Id = x.Id, Name = x.Description, Type = NavigationType.COMPOSITE_TYPE, ProjectId = x.ProjectId, HasRemoteChildren = x.Children.Count > 0, State = x.State })
                 .SingleOrDefault();
         }
 

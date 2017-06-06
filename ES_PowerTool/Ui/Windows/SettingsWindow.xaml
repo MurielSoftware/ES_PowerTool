@@ -5,6 +5,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:r="clr-namespace:Desktop.Ui.I18n;assembly=Desktop.Ui.I18n"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:converters="clr-namespace:Desktop.App.Core.Ui.Converters;assembly=Desktop.App.Core"
         xmlns:local="clr-namespace:ES_PowerTool.Ui.Windows"
         mc:Ignorable="d"
         Name="ThisDialog"
@@ -18,6 +19,7 @@
         </i:EventTrigger>
     </i:Interaction.Triggers>
     <Window.Resources>
+        <converters:StringToBooleanConverter x:Key="stringToBooleanConverter" />
         <Style x:Key="HeaderLabel" TargetType="Label">
             <Setter Property="FontSize" Value="16" />
         </Style>
@@ -89,9 +91,11 @@
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
                     <Label Content="{x:Static r:Resource.label_common_category}" Grid.Row="0" Style="{StaticResource HeaderLabel}" />
+                    <CheckBox Content="{x:Static r:Resource.label_allow_to_edit_imported_elements}" IsChecked="{Binding Path=SettingsDto.AllowEditImportedElements.Value, Converter={StaticResource stringToBooleanConverter}}" Grid.Row="1" />
                 </Grid>
             </TabItem>
             <TabItem Header="{x:Static r:Resource.label_liquibase_category}">

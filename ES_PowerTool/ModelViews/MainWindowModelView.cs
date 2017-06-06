@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Windows.Input;
 using Desktop.App.Core.Ui.Windows;
 using ES_PowerTool.Ui.Windows;
+using ES_PowerTool.Settings;
 
 namespace ES_PowerTool.ModelViews
 {
@@ -25,14 +26,14 @@ namespace ES_PowerTool.ModelViews
         public MainWindowModelView() 
             : base(typeof(MainWindowModelView).Name)
         {
-            NewProjectCommand = new RelayCommand(OnNewProjectCommand);
-            OpenProjectCommand = new RelayCommand(OnOpenProjectCommand);
-            CloseProjectCommand = new RelayCommand(OnCloseProjectCommand, x => ModelViewsUtil.ProjectIsActive);
+            NewProjectCommand = new RelayCommand(OnNewProjectCommand, x => !ProjectProvider.GetInstance().IsProjectActive());
+            OpenProjectCommand = new RelayCommand(OnOpenProjectCommand, x => !ProjectProvider.GetInstance().IsProjectActive());
+            CloseProjectCommand = new RelayCommand(OnCloseProjectCommand, x => ProjectProvider.GetInstance().IsProjectActive());
             ExitCommand = new RelayCommand(OnExitCommand);
-            GenerateCSVCommand = new RelayCommand(OnGenerateCSVCommand, x => ModelViewsUtil.IsType(x, NavigationType.PROJECT));
-            GenerateLiquibaseCommand = new RelayCommand(OnGenerateLiquibaseCommand, x => ModelViewsUtil.IsType(x, NavigationType.PROJECT));
+            GenerateCSVCommand = new RelayCommand(OnGenerateCSVCommand, x => ProjectProvider.GetInstance().IsProjectActive() && ModelViewsUtil.IsType(x, NavigationType.PROJECT));
+            GenerateLiquibaseCommand = new RelayCommand(OnGenerateLiquibaseCommand, x => ProjectProvider.GetInstance().IsProjectActive() && ModelViewsUtil.IsType(x, NavigationType.PROJECT));
             GenerateGuidCommand = new RelayCommand(OnGenerateGuidCommand);
-            SettingsCommand = new RelayCommand(OnSettingsCommand, x => ModelViewsUtil.ProjectIsActive);
+            SettingsCommand = new RelayCommand(OnSettingsCommand, x => ProjectProvider.GetInstance().IsProjectActive());
             AboutCommand = new RelayCommand(OnAboutCommand);            
         }
 

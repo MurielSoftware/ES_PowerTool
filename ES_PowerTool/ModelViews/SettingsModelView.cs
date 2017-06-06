@@ -1,6 +1,7 @@
 ﻿using Desktop.App.Core.Commands;
 using Desktop.App.Core.ModelViews;
 using Desktop.Shared.Core;
+using ES_PowerTool.Settings;
 using ES_PowerTool.Shared.Dtos.Settings;
 using ES_PowerTool.Shared.Services.Settings;
 using ES_PowerTool.Ui.Windows;
@@ -30,8 +31,8 @@ namespace ES_PowerTool.ModelViews
             _settingsCRUDService = ServiceActivator.Get<ISettingsCRUDService>();
 
             LoadCommand = new RelayCommand(OnLoadCommand);
-            SaveCommand = new RelayCommand(OnSaveCommand);
-            CloseCommand = new RelayCommand(OnCloseCommand);
+            SaveCommand = new RelayCommand(OnSaveCommand, x => !IsThreadRunning);
+            CloseCommand = new RelayCommand(OnCloseCommand, x => !IsThreadRunning);
         }
 
         private void OnLoadCommand(object obj)
@@ -45,7 +46,7 @@ namespace ES_PowerTool.ModelViews
             OnPropertyChanged(() => IsThreadRunning);
             await Task.Run(() =>
             {
-                SettingsDto = _settingsCRUDService.Read(Guid.Empty);
+                SettingsDto = SettingsProvider.GetInstance().GetSettings();
             }).ContinueWith((x) =>
             {
                 IsThreadRunning = false;
@@ -54,9 +55,19 @@ namespace ES_PowerTool.ModelViews
             });
         }
 
-        private void OnSaveCommand(object obj)
+        private async void OnSaveCommand(object obj)
         {
-            _settingsCRUDService.Persist(SettingsDto);
+            IsThreadRunning = true;
+            OnPropertyChanged(() => IsThreadRunning);
+            await Task.Run(() =>
+            {
+                _settingsCRUDService.Persist(SettingsDto);
+            }).ContinueWith((x) =>
+            {
+                SettingsProvider.GetInstance().SetSettings(SettingsDto);
+                IsThreadRunning = false;
+                OnPropertyChanged(() => IsThreadRunning);
+            });                       
         }
 
         private void OnCloseCommand(object obj)

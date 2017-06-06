@@ -1,4 +1,7 @@
-﻿using Desktop.Shared.Core.Navigations;
+﻿using Desktop.Shared.Core;
+using Desktop.Shared.Core.Navigations;
+using Desktop.Shared.Utils;
+using ES_PowerTool.Settings;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,8 +12,6 @@ namespace ES_PowerTool.ModelViews
 {
     public class ModelViewsUtil
     {
-        public static bool ProjectIsActive { get; set; }
-
         private static bool IsNotNullAndIsTreeNavigationItem(object obj)
         {
             if(obj == null)
@@ -35,9 +36,14 @@ namespace ES_PowerTool.ModelViews
             {
                 return false;
             }
+            bool allowEditImportedElements = Converter.ConvertValue<bool>(SettingsProvider.GetInstance().GetSettings().AllowEditImportedElements.Value);
+            if(allowEditImportedElements)
+            {
+                return false;
+            }
             foreach (TreeNavigationItem treeNavigationItem in treeNavigationItems)
             {
-                if(!treeNavigationItem.BuiltIn)
+                if(!State.BUILTIN.Equals(treeNavigationItem.State))
                 {
                     return false;
                 }

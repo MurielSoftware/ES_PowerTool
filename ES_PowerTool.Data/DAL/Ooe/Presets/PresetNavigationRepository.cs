@@ -21,7 +21,7 @@ namespace ES_PowerTool.Data.DAL.OOE.Presets
         {
             return GetContext().Set<Preset>()
                 .Where(x => x.TypeId == compositeTypeId)
-                .Select(x => new PresetTreeNavigationItem() { Id = x.Id, Name = x.Name, Type = NavigationType.PRESET, ProjectId = x.ProjectId, IsDefault = x.Type.DefaultPresetId == x.Id, HasRemoteChildren = x.Elements.Count > 0, BuiltIn = x.BuiltIn })
+                .Select(x => new PresetTreeNavigationItem() { Id = x.Id, Name = x.Name, Type = NavigationType.PRESET, ProjectId = x.ProjectId, IsDefault = x.Type.DefaultPresetId == x.Id, HasRemoteChildren = x.Elements.Count > 0, State = x.State })
                 .ToList()
                 .Cast<TreeNavigationItem>()
                 .ToList();
@@ -31,7 +31,7 @@ namespace ES_PowerTool.Data.DAL.OOE.Presets
         {
             return GetContext().Set<Preset>()
                 .Where(x => x.Id == id)
-                .Select(x => new PresetTreeNavigationItem() { Id = x.Id, Name = x.Name, Type = NavigationType.PRESET, ProjectId = x.ProjectId, IsDefault = x.Type.DefaultPresetId == x.Id, HasRemoteChildren = x.Elements.Count > 0, BuiltIn = x.BuiltIn })
+                .Select(x => new PresetTreeNavigationItem() { Id = x.Id, Name = x.Name, Type = NavigationType.PRESET, ProjectId = x.ProjectId, IsDefault = x.Type.DefaultPresetId == x.Id, HasRemoteChildren = x.Elements.Count > 0, State = x.State })
                 .SingleOrDefault();
         }
 
@@ -47,7 +47,7 @@ namespace ES_PowerTool.Data.DAL.OOE.Presets
             Guid elementTypeId = GetContext().Set<CompositeTypeElement>().Where(x => x.Id == compositeTypeElementId).Select(x => x.ElementTypeId).SingleOrDefault();
             return GetContext().Set<Preset>()
                 .Where(x => x.TypeId == elementTypeId)
-                .Select(x => new PresetTreeNavigationItem() { Id = x.Id, Name = x.Name, Type = NavigationType.PRESET, ProjectId = x.ProjectId, IsDefault = x.Type.DefaultPresetId == x.Id, HasRemoteChildren = x.Elements.Count > 0, BuiltIn = x.BuiltIn })
+                .Select(x => new PresetTreeNavigationItem() { Id = x.Id, Name = x.Name, Type = NavigationType.PRESET, ProjectId = x.ProjectId, IsDefault = x.Type.DefaultPresetId == x.Id, HasRemoteChildren = x.Elements.Count > 0, State = x.State })
                 .ToList()
                 .Cast<TreeNavigationItem>()
                 .ToList();

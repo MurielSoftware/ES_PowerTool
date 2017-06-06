@@ -25,30 +25,37 @@ namespace ES_PowerTool.Shared.Dtos
 
         [LocalizedCategory(MessageKeyConstants.LABEL_CSV_CATEGORY, 1)]
         [LocalizedDisplayName(MessageKeyConstants.LABEL_FOLDER_CSV_PATH)]
+        [Required]
         public virtual FilePath PathFolder { get; set; }
 
         [LocalizedCategory(MessageKeyConstants.LABEL_CSV_CATEGORY, 1)]
         [LocalizedDisplayName(MessageKeyConstants.LABEL_TYPE_CSV_PATH)]
+        [Required]
         public virtual FilePath PathType { get; set; }
 
         [LocalizedCategory(MessageKeyConstants.LABEL_CSV_CATEGORY, 1)]
         [LocalizedDisplayName(MessageKeyConstants.LABEL_TYPE_ELEMENT_CSV_PATH)]
+        [Required]
         public virtual FilePath PathTypeElement { get; set; }
 
         [LocalizedCategory(MessageKeyConstants.LABEL_CSV_CATEGORY, 1)]
         [LocalizedDisplayName(MessageKeyConstants.LABEL_PRESET_CSV_PATH)]
+        [Required]
         public virtual FilePath PathPreset { get; set; }
 
         [LocalizedCategory(MessageKeyConstants.LABEL_CSV_CATEGORY, 1)]
         [LocalizedDisplayName(MessageKeyConstants.LABEL_PRESET_ELEMENT_CSV_PATH)]
+        [Required]
         public virtual FilePath PathPresetElement { get; set; }
 
         [LocalizedCategory(MessageKeyConstants.LABEL_CSV_CATEGORY, 1)]
         [LocalizedDisplayName(MessageKeyConstants.LABEL_DEFAULT_PRESET_CSV_PATH)]
+        [Required]
         public virtual FilePath PathDefaultPreset { get; set; }
 
         [LocalizedCategory(MessageKeyConstants.LABEL_CSV_CATEGORY, 1)]
         [LocalizedDisplayName(MessageKeyConstants.LABEL_TYPE_TYPE_CSV_PATH)]
+        [Required]
         public virtual FilePath PathTypeType { get; set; }
 
         [Browsable(false)]

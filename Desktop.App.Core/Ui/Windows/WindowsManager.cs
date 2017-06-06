@@ -1,5 +1,6 @@
 ﻿using Desktop.App.Core;
 using Desktop.App.Core.ModelViews;
+using Desktop.Shared.Core;
 using System;
 using System.Threading;
 using System.Windows;

@@ -6,6 +6,7 @@ using ES_PowerTool.Persister;
 using Desktop.App.Core.Events.Publishing;
 using Desktop.Shared.Core.Context;
 using ES_PowerTool.ModelViews;
+using ES_PowerTool.Settings;
 
 namespace ES_PowerTool.Handlers
 {
@@ -18,7 +19,7 @@ namespace ES_PowerTool.Handlers
 
         protected override void OnSuccessful(ExecutionEvent executionEvent, Guid affectedObjectId)
         {
-            ModelViewsUtil.ProjectIsActive = true;
+            ProjectProvider.GetInstance().SetProjectActive(true);
             Publisher.GetInstance().ServerChanged(Connection.GetInstance());
         }
     }

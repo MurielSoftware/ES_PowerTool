@@ -19,6 +19,9 @@ namespace ES_PowerTool.ModelViews
         public ICommand GenerateClassCommand { get; private set; }
         public ICommand DeleteCommand { get; private set; }
         public ICommand UpdateCommand { get; private set; }
+        public ICommand CutCommand { get; private set; }
+        public ICommand CopyCommand { get; private set; }
+        public ICommand PasteCommand { get; private set; }
 
         public CompositeTypeTreeModelView() 
             : base("CompositeTypeTreeModelView")
@@ -29,6 +32,9 @@ namespace ES_PowerTool.ModelViews
             GenerateClassCommand = new RelayCommand(OnGenerateClassCommand, x => ModelViewsUtil.IsType(x, NavigationType.COMPOSITE_TYPE));
             DeleteCommand = new RelayCommand(OnDeleteCommand, x => !ModelViewsUtil.IsBuiltIn(x) && ModelViewsUtil.IsType(x, NavigationType.FOLDER, NavigationType.COMPOSITE_TYPE, NavigationType.TYPE_ELEMENT));
             UpdateCommand = new RelayCommand(OnUpdateCommand, x => !ModelViewsUtil.IsBuiltIn(x) && ModelViewsUtil.IsType(x, NavigationType.FOLDER, NavigationType.COMPOSITE_TYPE, NavigationType.TYPE_ELEMENT));
+            CutCommand = new RelayCommand(OnCutCommand, x => false);
+            CopyCommand = new RelayCommand(OnCopyCommand, x => false);
+            PasteCommand = new RelayCommand(OnPasteCommand, x => false);
         }
 
         protected override INavigationService CreateNavigationService()
@@ -64,6 +70,21 @@ namespace ES_PowerTool.ModelViews
         private void OnUpdateCommand(object obj)
         {
             HandlerExecutor.ExecuteEx(typeof(UpdateEntityHandler<>), obj);
+        }
+
+        private void OnCutCommand(object obj)
+        {
+            HandlerExecutor.Execute<CutHandler>(ExecutionEvent.Create(obj as List<TreeNavigationItem>));
+        }
+
+        private void OnCopyCommand(object obj)
+        {
+            HandlerExecutor.Execute<CopyHandler>(ExecutionEvent.Create(obj as List<TreeNavigationItem>));
+        }
+
+        private void OnPasteCommand(object obj)
+        {
+            HandlerExecutor.ExecuteEx(typeof(PasteHandler<>), obj);
         }
     }
 }

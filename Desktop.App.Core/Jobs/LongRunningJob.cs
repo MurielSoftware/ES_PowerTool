@@ -18,8 +18,8 @@ namespace Desktop.App.Core.Jobs
             _action = action;
             _progressWindowModelView = new ProgressWindowModelView();
             _progressWindowModelView.Title = title;
-            _progressWindowModelView.CurrentStep = string.Empty;
-            _progressWindowModelView.CurrentProgress = 0;
+            //_progressWindowModelView.CurrentStep = string.Empty;
+            //_progressWindowModelView.CurrentProgress = 0;
 
             _progressWindow = WindowsManager.GetInstance().ShowDialog<ProgressWindow>();
             _progressWindow.DataContext = _progressWindowModelView;

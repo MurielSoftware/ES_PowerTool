@@ -69,6 +69,7 @@
     <Compile Include="ServiceActivator.cs" />
     <Compile Include="Services\BaseNavigationService.cs" />
     <Compile Include="Services\BaseService.cs" />
+    <Compile Include="Services\ICopyAwareCRUDService.cs" />
     <Compile Include="Services\ICRUDService.cs" />
     <Compile Include="Services\IMoveAwareCRUDService.cs" />
     <Compile Include="Services\INavigationService.cs" />

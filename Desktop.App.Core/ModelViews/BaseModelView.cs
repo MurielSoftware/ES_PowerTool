@@ -9,13 +9,10 @@ using System.Threading.Tasks;
 
 namespace Desktop.App.Core.ModelViews
 {
-    public abstract class BaseModelView : INotifyPropertyChanged
+    public abstract class BaseModelView : PropertyChangedProvider
     {
-        public event PropertyChangedEventHandler PropertyChanged;
-
         private string _modelViewId;
         protected MasterSelectionChangeService _masterSelectionChangeService = new MasterSelectionChangeService();
-
 
         public BaseModelView(string modelViewId)
         {
@@ -25,28 +22,6 @@ namespace Desktop.App.Core.ModelViews
         public string GetModelViewId()
         {
             return _modelViewId;
-        }
-
-        public void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
-        protected void OnPropertyChanged<T>(Expression<Func<T>> expression)
-        {
-            var property = (MemberExpression)expression.Body;
-            OnPropertyChanged(property.Member.Name);
-        }
-
-        protected bool SetProperty<T>(ref T backingField, T Value, Expression<Func<T>> propertyExpression)
-        {
-            var changed = !EqualityComparer<T>.Default.Equals(backingField, Value);
-            if (changed)
-            {
-                backingField = Value;
-                OnPropertyChanged(propertyExpression);
-            }
-            return changed;
         }
     }
 }

@@ -21,7 +21,7 @@ namespace ES_PowerTool.Data.DAL.OOE.Presets
         {
             return GetContext().Set<CompositePresetElement>()
                 .Where(x => x.OwningPresetId == presetId)
-                .Select(x => new CompositePresetElementTreeNavigationItem() { Id = x.Id, CompositeTypeElementName = x.CompositeTypeElement.Description, CompositeTypeElementElementTypeName = x.CompositeTypeElement.ElementType.Description, AssociatedPresetName = x.PresetForTypeElement.Name, Type = NavigationType.COMPOSITE_PRESET_ELEMENT, BuiltIn = x.OwningPreset.BuiltIn })
+                .Select(x => new CompositePresetElementTreeNavigationItem() { Id = x.Id, CompositeTypeElementName = x.CompositeTypeElement.Description, CompositeTypeElementElementTypeName = x.CompositeTypeElement.ElementType.Description, AssociatedPresetName = x.PresetForTypeElement.Name, Type = NavigationType.COMPOSITE_PRESET_ELEMENT, State = x.OwningPreset.State })
                 .ToList()
                 .Cast<TreeNavigationItem>()
                 .ToList();
@@ -31,7 +31,7 @@ namespace ES_PowerTool.Data.DAL.OOE.Presets
         {
             return GetContext().Set<CompositePresetElement>()
                 .Where(x => x.Id == id)
-                .Select(x => new CompositePresetElementTreeNavigationItem() { Id = x.Id, CompositeTypeElementName = x.CompositeTypeElement.Description, CompositeTypeElementElementTypeName = x.CompositeTypeElement.ElementType.Description, AssociatedPresetName = x.PresetForTypeElement.Name, Type = NavigationType.COMPOSITE_PRESET_ELEMENT, BuiltIn = x.OwningPreset.BuiltIn })
+                .Select(x => new CompositePresetElementTreeNavigationItem() { Id = x.Id, CompositeTypeElementName = x.CompositeTypeElement.Description, CompositeTypeElementElementTypeName = x.CompositeTypeElement.ElementType.Description, AssociatedPresetName = x.PresetForTypeElement.Name, Type = NavigationType.COMPOSITE_PRESET_ELEMENT, State = x.OwningPreset.State })
                 .SingleOrDefault();
         }
     }

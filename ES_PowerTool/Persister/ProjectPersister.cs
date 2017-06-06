@@ -41,5 +41,9 @@ namespace ES_PowerTool.Persister
             GetDto().CsvDefaultPreset = CSVReader.Read(GetDto().PathDefaultPreset.Path);
             GetDto().CsvTypeType = CSVReader.Read(GetDto().PathTypeType.Path);
         }
+
+        protected override void AfterPersist()
+        {
+        }
     }
 }

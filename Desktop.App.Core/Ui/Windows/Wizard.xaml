@@ -20,7 +20,8 @@
         <Border BorderBrush="LightGray" BorderThickness="0 0 0 1">
             <StackPanel Grid.Row="0" Background="White" Orientation="Vertical">
                 <Label Content="{Binding Title}" FontWeight="Bold" />
-                <Label Content="{Binding ValidationMessage}" Foreground="Red" />
+                <Label Content="Here you can insert the value." Visibility="{Binding InfoVisibility}" />
+                <Label Content="{Binding ValidationMessage}" Visibility="{Binding ValidationMessageVisibility}" Foreground="Red" />
             </StackPanel>
         </Border>
         <ScrollViewer VerticalScrollBarVisibility="Visible" Grid.Row="1">
