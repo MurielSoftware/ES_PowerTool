@@ -13,7 +13,7 @@ using Desktop.Data.Core.Converters;
 using Desktop.Data.Core.DAL;
 using ES_PowerTool.Shared;
 
-namespace ES_PowerTool.Data.BAL.Set
+namespace ES_PowerTool.Data.BAL.Setting
 {
     public class SettingsCRUDService : BaseService, ISettingsCRUDService
     {
@@ -53,8 +53,6 @@ namespace ES_PowerTool.Data.BAL.Set
 
         public List<Settings> CreateAndPresistDefaultSettings()
         {
-            //_genericRepository.DeleteRange<Settings>(x => x.Id != Guid.Empty);
-
             List<Settings> settings = new List<Settings>();
             settings.Add(CreateSettings(IdConstants.SETTINGS_COMMON_EDIT_IMPORTED_ELEMENTS_ID, SettingsSection.COMMON, SettingsGroup.LIQUIBASE_COMMON, "Allow to update imported elements", "false"));
 

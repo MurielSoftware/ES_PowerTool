@@ -9,10 +9,14 @@ namespace Desktop.App.Core.Utils
 {
     public class SystemDialogUtils
     {
-        public static string ShowOpenFileDialog(string filter)
+        public static string ShowOpenFileDialog(string filter, string initPath = "")
         {
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
+                if(!string.IsNullOrEmpty(initPath))
+                {
+                    openFileDialog.InitialDirectory = initPath;
+                }
                 openFileDialog.Filter = filter;
                 if(DialogResult.OK.Equals(openFileDialog.ShowDialog()))
                 {

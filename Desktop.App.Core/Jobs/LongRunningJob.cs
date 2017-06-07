@@ -3,6 +3,7 @@ using Desktop.App.Core.ModelViews;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Desktop.Shared.Core.Jobs;
 
 namespace Desktop.App.Core.Jobs
 {
@@ -10,17 +11,26 @@ namespace Desktop.App.Core.Jobs
     {
         private ProgressWindow _progressWindow;
         private ProgressWindowModelView _progressWindowModelView;
-        private Action<T> _action;
+        private Action<ProgressCounter, T> _action;
         private List<Action<T>> _afterAction = new List<Action<T>>();
             
-        public LongRunningJob(Action<T> action, string title)
+        //public LongRunningJob(Action<T> action, string title)
+        //{
+        //    _action = action;
+        //    _progressWindowModelView = new ProgressWindowModelView(null);
+        //    //_progressWindowModelView.Title = title;
+
+        //    _progressWindow = WindowsManager.GetInstance().ShowDialog<ProgressWindow>(_progressWindowModelView);
+        //    //_progressWindow.DataContext = _progressWindowModelView;
+        //}
+
+        public LongRunningJob(Action<ProgressCounter, T> action, ProgressCounter progressCounter)
         {
             _action = action;
-            _progressWindowModelView = new ProgressWindowModelView();
-            _progressWindowModelView.Title = title;
+            _progressWindowModelView = new ProgressWindowModelView(progressCounter);
 
-            _progressWindow = WindowsManager.GetInstance().ShowDialog<ProgressWindow>();
-            _progressWindow.DataContext = _progressWindowModelView;
+            _progressWindow = WindowsManager.GetInstance().ShowDialog<ProgressWindow>(_progressWindowModelView);
+            //_progressWindow.DataContext = _progressWindowModelView;
         }
 
         public void AddAction(Action<T> action)
@@ -37,7 +47,7 @@ namespace Desktop.App.Core.Jobs
 
         private async Task AsyncExecute(T parameter)
         {
-            Task task = Task.Factory.StartNew(() => _action.Invoke(parameter));
+            Task task = Task.Factory.StartNew(() => _action.Invoke(_progressWindowModelView.ProgressCounter, parameter));
             foreach(Action<T> action in _afterAction)
             {
                 await task.ContinueWith(t => action.Invoke(parameter));

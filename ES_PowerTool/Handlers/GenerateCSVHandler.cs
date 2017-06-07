@@ -3,6 +3,7 @@ using Desktop.App.Core.Jobs;
 using Desktop.App.Core.Ui.Windows;
 using Desktop.App.Core.Utils;
 using Desktop.Shared.Core;
+using Desktop.Shared.Core.Jobs;
 using Desktop.Ui.I18n;
 using ES_PowerTool.ModelViews;
 using ES_PowerTool.Shared.Dtos.Generate;
@@ -25,7 +26,8 @@ namespace ES_PowerTool.Handlers
             _projectId = executionEvent.GetFirstSelectedTreeNavigationItem().ProjectId;
             try
             {
-                LongRunningJob<GenerateDto> projectCreationJob = new LongRunningJob<GenerateDto>(GenerateAction, "Generate");
+                ProgressCounter progressCounter = new ProgressCounter("Generate", "Generating the CSV files...", 1);
+                LongRunningJob<GenerateDto> projectCreationJob = new LongRunningJob<GenerateDto>(GenerateAction, progressCounter);
                 projectCreationJob.AddAction(delegate {
                     _generateWindow.Dispatcher.Invoke(AfterGenerateAction, DispatcherPriority.Normal);
                 });
@@ -37,7 +39,7 @@ namespace ES_PowerTool.Handlers
             }
         }
 
-        private void GenerateAction(GenerateDto generateDto)
+        private void GenerateAction(ProgressCounter progressCounter, GenerateDto generateDto)
         {
             IGenerateCSVService generateService = ServiceActivator.Get<IGenerateCSVService>();
             _generateDto = generateService.Generate(_projectId);

@@ -1,4 +1,5 @@
 ﻿using Desktop.App.Core.Jobs;
+using Desktop.Shared.Core.Jobs;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -24,9 +25,10 @@ namespace Desktop.App.Core.ModelViews
             get { return Imaging.CreateBitmapSourceFromHIcon(SystemIcons.Information.Handle, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions()); }
         }
 
-        public ProgressWindowModelView()
+        public ProgressWindowModelView(ProgressCounter progressCounter)
             : base("ProgressWindowModelView")
         {
+            ProgressCounter = progressCounter;
         }
 
         //public void UpdateProgress(string currentStep, int currentProgress)

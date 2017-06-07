@@ -20,6 +20,7 @@ using Desktop.Shared.Core.Validations;
 using Desktop.Ui.I18n;
 using Log4N.Logger;
 using System.Windows;
+using Desktop.Shared.Core.Jobs;
 
 namespace Desktop.App.Core.ModelViews
 {
@@ -80,7 +81,8 @@ namespace Desktop.App.Core.ModelViews
         protected virtual void OnFinishCommand(object obj)
         {
             _wizard = (Wizard)obj;
-            LongRunningJob<T> projectCreationJob = new LongRunningJob<T>(DoFinish, Title);
+            ProgressCounter progressCounter = new ProgressCounter(Title, "Persisting object...", 1);
+            LongRunningJob<T> projectCreationJob = new LongRunningJob<T>(DoFinish, progressCounter);
             projectCreationJob.AddAction(delegate 
             {
                 _wizard.Dispatcher.Invoke(DispatcherPriority.Normal, new ThreadStart(CloseWizardOnFinish));
@@ -97,7 +99,7 @@ namespace Desktop.App.Core.ModelViews
             }
         }
 
-        protected virtual void DoFinish(T dto)
+        protected virtual void DoFinish(ProgressCounter progressCounter, T dto)
         {
             if (!dto.IsValid)
             {
@@ -108,7 +110,7 @@ namespace Desktop.App.Core.ModelViews
 
             try
             {
-                DoPersist(dto);
+                DoPersist(progressCounter, dto);
                 Log.Info(string.Format("The object type({0}) was created/updated", typeof(T)));
                 _successFinish = true;
             }
@@ -119,7 +121,7 @@ namespace Desktop.App.Core.ModelViews
             }
         }
 
-        protected virtual void DoPersist(T dto)
+        protected virtual void DoPersist(ProgressCounter progressCounter, T dto)
         {
             _persister.Persist();
         }

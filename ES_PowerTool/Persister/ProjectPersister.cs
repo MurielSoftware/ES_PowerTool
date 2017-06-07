@@ -9,14 +9,29 @@ using Desktop.Shared.Core.Services;
 using ES_PowerTool.Shared.CSV;
 using Desktop.Shared.Core.Context;
 using Desktop.Shared.DataTypes;
+using Desktop.Shared.Core;
+using ES_PowerTool.Shared.Services.Projects;
+using Desktop.Shared.Core.Jobs;
 
 namespace ES_PowerTool.Persister
 {
     public class ProjectPersister : BasePersister<ProjectDto>
     {
-        public ProjectPersister(ICRUDService<ProjectDto> service, ProjectDto dto) 
+        private ProgressCounter _progressCounter;
+
+        public ProjectPersister(ICRUDService<ProjectDto> service, ProgressCounter progressCounter, ProjectDto dto) 
             : base(service, dto)
         {
+            _progressCounter = progressCounter;
+        }
+
+
+        public override void Persist()
+        {
+            BeforePersist();
+            IProjectImportService projectImportService = ServiceActivator.Get<IProjectImportService>();
+            projectImportService.Import(_progressCounter, GetDto());
+            AfterPersist();
         }
 
         protected override void BeforePersist()

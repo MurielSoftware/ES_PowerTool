@@ -18,13 +18,13 @@ namespace ES_PowerTool.Handlers
     {
         protected override void DoExecute(ExecutionEvent executionEvent)
         {
-            string fileName = SystemDialogUtils.ShowOpenFileDialog("*SQL Database file|*.sdf");
+            string fileName = SystemDialogUtils.ShowOpenFileDialog("*ES Power Tool Data File|*.est", ProjectProvider.WORKSPACE_DIRECTORY);
             if(string.IsNullOrEmpty(fileName))
             {
                 return;
             }
 
-            fileName = fileName.Replace(AppDomain.CurrentDomain.BaseDirectory, "");
+          //  fileName = fileName.Replace(AppDomain.CurrentDomain.BaseDirectory, fileName);
             Connection.GetInstance().CreateConnection(fileName);
             
             OnSuccessful(executionEvent, Guid.Empty);

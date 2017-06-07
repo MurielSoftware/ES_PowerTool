@@ -13,6 +13,8 @@ using ES_PowerTool.Shared.Services;
 using System;
 using Desktop.Shared.Core.Validations;
 using System.IO;
+using Desktop.Shared.Core.Jobs;
+using ES_PowerTool.Settings;
 
 namespace ES_PowerTool.ModelViews
 {
@@ -25,12 +27,12 @@ namespace ES_PowerTool.ModelViews
         {
         }
 
-        protected override void DoPersist(ProjectDto projectDto)
+        protected override void DoPersist(ProgressCounter progressCounter, ProjectDto projectDto)
         {
             _isDatabaseFileAlreadyExisting = IsDatabaseFileExisting(projectDto.Name);
-            Connection.GetInstance().CreateConnection(CreateDatabaseFileName(projectDto.Name));
+            Connection.GetInstance().CreateConnection(GetPathToDatabaseFile(projectDto.Name));
             _crudService = (IProjectCRUDService)ServiceActivator.Get(typeof(IProjectCRUDService));
-            _persister = new ProjectPersister(_crudService, projectDto);
+            _persister = new ProjectPersister(_crudService, progressCounter, projectDto);
             _persister.Persist();
         }
 
@@ -48,14 +50,14 @@ namespace ES_PowerTool.ModelViews
             return File.Exists(GetPathToDatabaseFile(projectName));
         }
 
-        private static string CreateDatabaseFileName(string projectName)
-        {
-            return projectName + ".sdf";
-        }
-
         private static string GetPathToDatabaseFile(string projectName)
         {
-            return AppDomain.CurrentDomain.BaseDirectory + CreateDatabaseFileName(projectName);
+            return ProjectProvider.WORKSPACE_DIRECTORY + CreateDatabaseFileName(projectName);
+        }
+
+        private static string CreateDatabaseFileName(string projectName)
+        {
+            return projectName + ".est";
         }
     }
 }

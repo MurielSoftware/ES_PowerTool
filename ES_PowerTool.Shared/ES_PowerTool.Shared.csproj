@@ -77,7 +77,8 @@
     <Compile Include="Services\Generate\IGenerateCSVService.cs" />
     <Compile Include="Services\OOE\Presets\IPresetCRUDService.cs" />
     <Compile Include="Services\OOE\Types\IPrimitiveTypeCRUDService.cs" />
-    <Compile Include="Services\IProjectCRUDService.cs" />
+    <Compile Include="Services\Projects\IProjectCRUDService.cs" />
+    <Compile Include="Services\Projects\IProjectImportService.cs" />
     <Compile Include="Services\Settings\ISettingsCRUDService.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -11,7 +11,7 @@ using ES_PowerTool.Shared.Dtos;
 using Desktop.Data.Core.Model;
 using Desktop.Ui.I18n;
 
-namespace ES_PowerTool.Data.BAL
+namespace ES_PowerTool.Data.BAL.Projects
 {
     public class ProjectValidationService : BaseService
     {

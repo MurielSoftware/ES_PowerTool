@@ -27,7 +27,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>..\ES_PowerTool\bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -56,8 +56,19 @@
     <Compile Include="BAL\OOE\FolderValidationService.cs" />
     <Compile Include="BAL\OOE\Presets\CompositePresetElementCRUDService.cs" />
     <Compile Include="BAL\OOE\Presets\PresetValidationService.cs" />
-    <Compile Include="BAL\ProjectValidationService.cs" />
-    <Compile Include="BAL\Set\SettingsCRUDService.cs" />
+    <Compile Include="BAL\Projects\Import\DefaultPresetTransferService.cs" />
+    <Compile Include="BAL\Projects\Import\PresetElementsTransferService.cs" />
+    <Compile Include="BAL\Projects\Import\PresetTransferService.cs" />
+    <Compile Include="BAL\Projects\Import\FolderTransferService.cs" />
+    <Compile Include="BAL\Projects\Import\ITransferService.cs" />
+    <Compile Include="BAL\Projects\Import\ProjectTransferService.cs" />
+    <Compile Include="BAL\Projects\Import\CompositeTypeElementsTransferService.cs" />
+    <Compile Include="BAL\Projects\Import\SettingsTransferService.cs" />
+    <Compile Include="BAL\Projects\Import\SuperTypeTransferService.cs" />
+    <Compile Include="BAL\Projects\Import\TypesTransferService.cs" />
+    <Compile Include="BAL\Projects\ProjectImportService.cs" />
+    <Compile Include="BAL\Projects\ProjectValidationService.cs" />
+    <Compile Include="BAL\Setting\SettingsCRUDService.cs" />
     <Compile Include="BAL\OOE\Types\CompositeTypeDetailsNavigationService.cs" />
     <Compile Include="BAL\OOE\Elements\CompositeTypeElementCRUDService.cs" />
     <Compile Include="BAL\OOE\Types\CompositeTypeNavigationService.cs" />
@@ -66,7 +77,7 @@
     <Compile Include="BAL\Generate\GenerateCSVService.cs" />
     <Compile Include="BAL\OOE\Presets\PresetCRUDService.cs" />
     <Compile Include="BAL\OOE\Types\CompositeTypeValidationService.cs" />
-    <Compile Include="BAL\ProjectCRUDService.cs" />
+    <Compile Include="BAL\Projects\ProjectCRUDService.cs" />
     <Compile Include="DAL\OOE\Elements\CompositeTypeElementNavigationRepository.cs" />
     <Compile Include="DAL\OOE\Presets\CompositePresetElementNavigationRepository.cs" />
     <Compile Include="DAL\OOE\Presets\CompositePresetElementRepository.cs" />

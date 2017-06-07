@@ -54,7 +54,7 @@
     <Compile Include="Handlers\PasteHandler.cs" />
     <Compile Include="Handlers\UpdateEntityHandler.cs" />
     <Compile Include="Events\IListener.cs" />
-    <Compile Include="Jobs\ProgressCounter.cs" />
+    <Compile Include="Jobs\LongRunningJob.cs" />
     <Compile Include="ModelViews\AboutWindowModelView.cs" />
     <Compile Include="ModelViews\BaseDetailsTreeModelView.cs" />
     <Compile Include="ModelViews\BaseReferenceWindowModelView.cs" />
@@ -87,7 +87,6 @@
     <Compile Include="Handlers\HandlerExecutor.cs" />
     <Compile Include="Handlers\HandlerUtils.cs" />
     <Compile Include="Handlers\NewEntityHandler.cs" />
-    <Compile Include="Jobs\LongRunningJob.cs" />
     <Compile Include="ModelViews\BaseModelView.cs" />
     <Compile Include="ModelViews\BaseTreeModelView.cs" />
     <Compile Include="ModelViews\ProgressWindowModelView.cs" />

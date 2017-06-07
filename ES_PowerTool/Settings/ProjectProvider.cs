@@ -13,8 +13,10 @@ namespace ES_PowerTool.Settings
 {
     public class ProjectProvider : Singleton<ProjectProvider>
     {
-        private bool _projectIsActive { get; set; }
+        public static string WORKSPACE_DIRECTORY = AppDomain.CurrentDomain.BaseDirectory + "workspace\\";
 
+        private bool _projectIsActive { get; set; }
+        
         public void SetProjectActive(bool projectIsActive)
         {
             _projectIsActive = projectIsActive;
